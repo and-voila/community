@@ -5,3 +5,4 @@ build/
 dist/
 .eslintrc.js
 packages/eslint-config-custom/*
+prettier.config.js
