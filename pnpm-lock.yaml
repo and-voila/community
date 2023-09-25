@@ -101,7 +101,7 @@ importers:
       '@types/react-dom': ^18.2.0
       autoprefixer: ^10.4.14
       class-variance-authority: ^0.6.0
-      clsx: ^1.2.1
+      clsx: ^2.0.0
       eslint: ^7.32.0
       eslint-config-custom: workspace:*
       lucide-react: ^0.244.0
@@ -115,7 +115,7 @@ importers:
     dependencies:
       '@radix-ui/react-slot': 1.0.2_7yc4bk7cow44a3wigl72clsx4m
       class-variance-authority: 0.6.1
-      clsx: 1.2.1
+      clsx: 2.0.0
       lucide-react: 0.244.0_react@17.0.2
       tailwind-merge: 1.14.0
       tailwindcss-animate: 1.0.7_tailwindcss@3.3.3
@@ -1076,6 +1076,11 @@ packages:
 
   /clsx/1.2.1:
     resolution: {integrity: sha512-EcR6r5a8bj6pu3ycsa/E/cKVGuTgZJZdsyUYHOksG/UHIiKfjxzRxYJpyVBwYaQeOvghal9fcc4PidlgzugAQg==}
+    engines: {node: '>=6'}
+    dev: false
+
+  /clsx/2.0.0:
+    resolution: {integrity: sha512-rQ1+kcj+ttHG0MKVGBUXwayCCF1oh39BF5COIpRzuCEv8Mwjv0XucrI2ExNTOn9IlLifGClWQcU9BrZORvtw6Q==}
     engines: {node: '>=6'}
     dev: false
 
