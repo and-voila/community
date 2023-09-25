@@ -1,0 +1,7 @@
+node_modules/
+target/
+.next/
+build/
+dist/
+.eslintrc.js
+packages/eslint-config-custom/*
