@@ -29,7 +29,7 @@ importers:
       react-dom: ^18.2.0
       tailwindcss: ^3.3.2
       tsconfig: workspace:*
-      typescript: ^4.5.3
+      typescript: ^5.2.2
       ui: workspace:*
     dependencies:
       next: 13.5.2_biqbaboplfbrettd7655fr4n2y
@@ -45,7 +45,7 @@ importers:
       postcss: 8.4.30
       tailwindcss: 3.3.3
       tsconfig: link:../../packages/tsconfig
-      typescript: 4.9.5
+      typescript: 5.2.2
 
   apps/web:
     specifiers:
@@ -60,7 +60,7 @@ importers:
       react-dom: ^18.2.0
       tailwindcss: ^3.3.2
       tsconfig: workspace:*
-      typescript: ^4.5.3
+      typescript: ^5.2.2
       ui: workspace:*
     dependencies:
       next: 13.5.2_biqbaboplfbrettd7655fr4n2y
@@ -76,7 +76,7 @@ importers:
       postcss: 8.4.30
       tailwindcss: 3.3.3
       tsconfig: link:../../packages/tsconfig
-      typescript: 4.9.5
+      typescript: 5.2.2
 
   packages/eslint-config-custom:
     specifiers:
@@ -111,7 +111,7 @@ importers:
       tailwindcss: ^3.3.2
       tailwindcss-animate: ^1.0.6
       tsconfig: workspace:*
-      typescript: ^4.5.2
+      typescript: ^5.2.2
     dependencies:
       '@radix-ui/react-slot': 1.0.2_7yc4bk7cow44a3wigl72clsx4m
       class-variance-authority: 0.6.1
@@ -130,7 +130,7 @@ importers:
       react: 17.0.2
       tailwindcss: 3.3.3
       tsconfig: link:../tsconfig
-      typescript: 4.9.5
+      typescript: 5.2.2
 
 packages:
 
@@ -3953,12 +3953,6 @@ packages:
       for-each: 0.3.3
       is-typed-array: 1.1.12
     dev: false
-
-  /typescript/4.9.5:
-    resolution: {integrity: sha512-1FXk9E2Hm+QzZQ7z+McJiHL4NW1F2EzMu9Nq9i3zAaGqibafqYwCVU6WyWAuyQRRzOlxou8xZSyXLEN8oKj24g==}
-    engines: {node: '>=4.2.0'}
-    hasBin: true
-    dev: true
 
   /typescript/5.2.2:
     resolution: {integrity: sha512-mI4WrpHsbCIcwT9cF4FZvr80QUeKvsUsUvKDoR+X/7XHQH98xYD8YHZg7ANtz2GtZt/CBq2QJ0thkGJMHfqc1w==}
