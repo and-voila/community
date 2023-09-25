@@ -23,6 +23,6 @@
       "contentlayer/generated": ["./.contentlayer/generated"]
     }
   },
-  "include": ["apps", "next-env.d.ts", ".contentlayer/generated"],
+  "include": ["src", "next-env.d.ts", ".contentlayer/generated"],
   "exclude": ["node_modules"]
 }

@@ -22,11 +22,6 @@ module.exports = {
   ],
   parser: '@typescript-eslint/parser',
   parserOptions: {
-    project: [
-      './apps/web/tsconfig.json',
-      './apps/docs/tsconfig.json',
-      './packages/ui/tsconfig.json',
-    ],
     ecmaFeatures: {
       jsx: true,
     },
@@ -52,8 +47,6 @@ module.exports = {
         vars: 'all',
       },
     ],
-    '@typescript-eslint/no-unsafe-assignment': 'error',
-    '@typescript-eslint/no-unsafe-member-access': 'error',
     camelcase: ['error', { properties: 'never', ignoreDestructuring: true }],
     'comma-style': ['error', 'last'],
     'jsx-quotes': ['error', 'prefer-double'],
