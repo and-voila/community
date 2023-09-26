@@ -1,11 +1,11 @@
 import { auth } from '@clerk/nextjs';
+import { Separator } from '@ui/components/ui/separator';
 import { File } from 'lucide-react';
 import { redirect } from 'next/navigation';
 
 import { getChapter } from '@/actions/get-chapter';
 import { Banner } from '@/components/banner';
 import { Preview } from '@/components/preview';
-import { Separator } from '@/components/ui/separator';
 
 import { CourseEnrollButton } from './_components/course-enroll-button';
 import { CourseProgressButton } from './_components/course-progress-button';

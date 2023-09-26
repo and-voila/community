@@ -1,6 +1,7 @@
 import 'ui/styles/globals.css';
 
 import { ClerkProvider } from '@clerk/nextjs';
+import { ThemeProvider } from '@ui/index';
 import type { Metadata } from 'next';
 import localFont from 'next/font/local';
 
@@ -38,9 +39,11 @@ export default function RootLayout({
         suppressHydrationWarning
       >
         <body>
-          <ConfettiProvider />
-          <ToastProvider />
-          {children}
+          <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>
+            <ConfettiProvider />
+            <ToastProvider />
+            {children}
+          </ThemeProvider>
         </body>
       </html>
     </ClerkProvider>

@@ -2,6 +2,14 @@
 
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Chapter } from '@prisma/client';
+import { Button } from '@ui/components/ui/button';
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormMessage,
+} from '@ui/components/ui/form';
 import axios from 'axios';
 import { Pencil } from 'lucide-react';
 import { useRouter } from 'next/navigation';
@@ -12,14 +20,6 @@ import * as z from 'zod';
 
 import { Editor } from '@/components/editor';
 import { Preview } from '@/components/preview';
-import { Button } from '@/components/ui/button';
-import {
-  Form,
-  FormControl,
-  FormField,
-  FormItem,
-  FormMessage,
-} from '@/components/ui/form';
 import { cn } from '@/lib/utils';
 
 interface ChapterDescriptionFormProps {

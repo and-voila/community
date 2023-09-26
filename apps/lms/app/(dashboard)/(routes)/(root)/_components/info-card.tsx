@@ -16,11 +16,11 @@ export const InfoCard = ({
   label,
 }: InfoCardProps) => {
   return (
-    <div className="flex items-center gap-x-2 rounded-md border p-3">
+    <div className="flex items-center gap-x-2 rounded-md border bg-white p-3 dark:bg-background">
       <IconBadge variant={variant} icon={Icon} />
       <div>
-        <p className="font-medium">{label}</p>
-        <p className="text-sm text-gray-500">
+        <p className="font-semibold">{label}</p>
+        <p className="text-sm text-muted-foreground">
           {numberOfItems} {numberOfItems === 1 ? 'Course' : 'Courses'}
         </p>
       </div>

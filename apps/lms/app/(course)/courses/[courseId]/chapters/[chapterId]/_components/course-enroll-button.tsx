@@ -1,10 +1,10 @@
 'use client';
 
+import { Button } from '@ui/components/ui/button';
 import axios from 'axios';
 import { useState } from 'react';
 import toast from 'react-hot-toast';
 
-import { Button } from '@/components/ui/button';
 import { formatPrice } from '@/lib/format';
 
 interface CourseEnrollButtonProps {

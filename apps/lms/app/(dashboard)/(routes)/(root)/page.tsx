@@ -29,7 +29,7 @@ export default async function Dashboard() {
           icon={CheckCircle}
           label="Completed"
           numberOfItems={completedCourses.length}
-          variant="success"
+          variant="default"
         />
       </div>
       <CoursesList items={[...coursesInProgress, ...completedCourses]} />

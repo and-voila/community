@@ -1,6 +1,7 @@
 'use client';
 
 import { Course } from '@prisma/client';
+import { Button } from '@ui/components/ui/button';
 import axios from 'axios';
 import { ImageIcon, Pencil, PlusCircle } from 'lucide-react';
 import Image from 'next/image';
@@ -10,7 +11,6 @@ import toast from 'react-hot-toast';
 import * as z from 'zod';
 
 import { FileUpload } from '@/components/file-upload';
-import { Button } from '@/components/ui/button';
 
 interface ImageFormProps {
   initialData: Course;

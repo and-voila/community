@@ -13,10 +13,9 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from '@ui/components/ui/popover';
+import { cn } from '@ui/lib/utils';
 import { Check, ChevronsUpDown } from 'lucide-react';
 import * as React from 'react';
-
-import { cn } from '@/lib/utils';
 
 interface ComboboxProps {
   options: { label: string; value: string }[];

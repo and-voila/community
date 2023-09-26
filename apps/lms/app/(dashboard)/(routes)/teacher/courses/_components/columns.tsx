@@ -2,17 +2,17 @@
 
 import { Course } from '@prisma/client';
 import { ColumnDef } from '@tanstack/react-table';
-import { ArrowUpDown, MoreHorizontal, Pencil } from 'lucide-react';
-import Link from 'next/link';
-
-import { Badge } from '@/components/ui/badge';
-import { Button } from '@/components/ui/button';
+import { Badge } from '@ui/components/ui/badge';
+import { Button } from '@ui/components/ui/button';
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
-} from '@/components/ui/dropdown-menu';
+} from '@ui/components/ui/dropdown-menu';
+import { ArrowUpDown, MoreHorizontal, Pencil } from 'lucide-react';
+import Link from 'next/link';
+
 import { cn } from '@/lib/utils';
 
 export const columns: ColumnDef<Course>[] = [

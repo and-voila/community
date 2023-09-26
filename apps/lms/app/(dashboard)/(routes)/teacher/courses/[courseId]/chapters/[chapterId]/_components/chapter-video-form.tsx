@@ -2,6 +2,7 @@
 
 import MuxPlayer from '@mux/mux-player-react';
 import { Chapter, MuxData } from '@prisma/client';
+import { Button } from '@ui/components/ui/button';
 import axios from 'axios';
 import { Pencil, PlusCircle, Video } from 'lucide-react';
 import { useRouter } from 'next/navigation';
@@ -10,7 +11,6 @@ import toast from 'react-hot-toast';
 import * as z from 'zod';
 
 import { FileUpload } from '@/components/file-upload';
-import { Button } from '@/components/ui/button';
 
 interface ChapterVideoFormProps {
   initialData: Chapter & { muxData?: MuxData | null };

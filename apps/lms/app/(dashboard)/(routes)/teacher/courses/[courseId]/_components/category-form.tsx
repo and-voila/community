@@ -2,6 +2,15 @@
 
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Course } from '@prisma/client';
+import { Button } from '@ui/components/ui/button';
+import { Combobox } from '@ui/components/ui/combobox';
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormMessage,
+} from '@ui/components/ui/form';
 import axios from 'axios';
 import { Pencil } from 'lucide-react';
 import { useRouter } from 'next/navigation';
@@ -10,15 +19,6 @@ import { useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
 import * as z from 'zod';
 
-import { Button } from '@/components/ui/button';
-import { Combobox } from '@/components/ui/combobox';
-import {
-  Form,
-  FormControl,
-  FormField,
-  FormItem,
-  FormMessage,
-} from '@/components/ui/form';
 import { cn } from '@/lib/utils';
 
 interface CategoryFormProps {

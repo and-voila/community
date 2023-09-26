@@ -1,6 +1,7 @@
 'use client';
 
 import { Attachment, Course } from '@prisma/client';
+import { Button } from '@ui/components/ui/button';
 import axios from 'axios';
 import { File, Loader2, PlusCircle, X } from 'lucide-react';
 import { useRouter } from 'next/navigation';
@@ -9,7 +10,6 @@ import toast from 'react-hot-toast';
 import * as z from 'zod';
 
 import { FileUpload } from '@/components/file-upload';
-import { Button } from '@/components/ui/button';
 
 interface AttachmentFormProps {
   initialData: Course & { attachments: Attachment[] };
