@@ -1,0 +1,183 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* And Voila GG Light
+--black: hsla(0, 0%, 0%, 1);
+--night: hsla(240, 8%, 9%, 1);
+--raisin-black: hsla(216, 6%, 15%, 1);
+--dim-gray: hsla(228, 5%, 40%, 1);
+--cadet-gray: hsla(214, 16%, 64%, 1);
+--french-gray: hsla(217, 16%, 84%, 1);
+--platinum: hsla(220, 15%, 88%, 1);
+--antiflash-white: hsla(210, 20%, 92%, 1);
+--mint: hsla(155, 61%, 44%, 1);
+--iris: hsla(256, 50%, 52%, 1);
+*/
+
+/* And Voila GG Dark
+--black: hsla(0, 0%, 0%, 1); 
+--night: hsla(240, 8%, 9%, 1);
+--raisin-black: hsla(216, 6%, 15%, 1);
+--gray: hsla(225, 5%, 47%, 1);
+--cadet-gray: hsla(214, 16%, 64%, 1);
+--antiflash-white: hsla(0, 0%, 92%, 1);
+--white-smoke: hsla(0, 0%, 96%, 1);
+--white: hsla(60, 100%, 100%, 1);
+--mint: hsla(155, 61%, 44%, 1);
+--medium-slate-blue: hsla(255, 83%, 65%, 1);
+*/
+
+@layer base {
+  :root {
+    --background: 210 20% 92%; /* 50 */
+    --foreground: 0 0% 0%; /* 950 */
+
+    --card: 0 0% 100%; /* white */
+    --card-foreground: 0 0% 0%; /* 950 */
+
+    --popover: 0 0% 100%; /* white */
+    --popover-foreground: 0 0% 0%; /* 950 */
+
+    --primary: 240 8% 9%; /* 900 */
+    --primary-foreground: 0 0% 100%; /* white */
+
+    --secondary: 220 15% 88%; /* 100 */
+    --secondary-foreground: 240 8% 9%; /* 900 */
+
+    --muted: 220 15% 88%; /* 100 */
+    --muted-foreground: 228 5% 40%; /* 500 */
+
+    --accent: 220 15% 88%; /* 100 */
+    --accent-foreground: 240 8% 9%; /* 900 */
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 20% 92%; /* 50 */
+
+    --border: 217 16% 84%; /* 200 */
+    --input: 217 16% 84%; /* 200 */
+
+    --ring: 240 8% 9%; /* 900 */
+    --radius: 0.5rem;
+
+    --brand: 256 50% 52%;
+    --alternate: 155 61% 44%;
+  }
+
+  .dark {
+    --background: 0 0% 0%; /* 950 */
+    --foreground: 0 0% 100%; /* white */
+
+    --card: 0 0% 0%; /* 950 */
+    --card-foreground: 210 20% 92%; /* 50 */
+
+    --popover: 0 0% 0%; /* 950 */
+    --popover-foreground: 210 20% 92%; /* 50 */
+
+    --primary: 210 20% 92%; /* 50 */
+    --primary-foreground: 240 8% 9%; /* 900 */
+
+    --secondary: 216 6% 15%; /* 800 */
+    --secondary-foreground: 210 20% 92%; /* 50 */
+
+    --muted: 216 6% 15%; /* 800 */
+    --muted-foreground: 214 16% 64%; /* 400 */
+
+    --accent: 216 6% 15%; /* 800 */
+    --accent-foreground: 210 20% 92%; /* 50 */
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 20% 92%; /* 50 */
+
+    --border: 225 5% 47%; /* 700 */
+    --input: 225 5% 47%; /* 700 */
+
+    --ring: 217 16% 84%; /* 200 */
+    --radius: 0.5rem;
+
+    --brand: 255 83% 65%;
+    --alternate: 155 61% 44%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+@supports (font: -apple-system-body) and (-webkit-appearance: none) {
+  img[loading='lazy'] {
+    clip-path: inset(0.6px);
+  }
+}
+
+a,
+input,
+button {
+  @apply focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-gray-50 dark:focus-visible:ring-gray-600 dark:focus-visible:ring-offset-gray-900;
+}
+
+/* Pulsing animation */
+@keyframes pulseLoop {
+  0% {
+    opacity: 0;
+    transform: scale(0.25) translateZ(0);
+  }
+
+  30% {
+    opacity: 0.4;
+  }
+
+  70% {
+    opacity: 0;
+  }
+
+  80% {
+    transform: scale(1) translateZ(0);
+  }
+}
+
+.pulse {
+  opacity: 0;
+  transform-origin: center;
+  animation: pulseLoop 12000ms linear infinite;
+}
+
+.pulse-1 {
+  animation-delay: -4000ms;
+}
+
+.pulse-2 {
+  animation-delay: -8000ms;
+}
+
+.translate-z-0 {
+  transform: translateZ(0);
+}
+
+/* Custom Swiper styles */
+.swiper-button-disabled {
+  @apply pointer-events-none cursor-default opacity-50;
+}
+
+.testimonials-carousel .swiper-slide {
+  @apply opacity-80;
+}
+
+.testimonials-carousel .swiper-slide.swiper-slide-active {
+  @apply opacity-100;
+}
+
+/* Chrome, Safari and Opera */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.no-scrollbar {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
