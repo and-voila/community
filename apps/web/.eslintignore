@@ -1,0 +1,5 @@
+tailwind.config.js
+.eslintrc.js
+prettier.config.js
+next.config.js
+contentlayer.config.js
