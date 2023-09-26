@@ -1,4 +1,4 @@
-import '@/styles/base.css';
+import 'ui/styles/globals.css';
 
 import localFont from 'next/font/local';
 import { ReactNode } from 'react';
