@@ -71,6 +71,7 @@ export const getCourses = async ({
 
     return coursesWithProgress;
   } catch (error) {
+    // eslint-disable-next-line no-console
     console.log('[GET_COURSES]', error);
     return [];
   }

@@ -40,6 +40,7 @@ export async function POST(
       return new NextResponse('Not found', { status: 404 });
     }
 
+    // eslint-disable-next-line camelcase
     const line_items: Stripe.Checkout.SessionCreateParams.LineItem[] = [
       {
         quantity: 1,
@@ -90,6 +91,7 @@ export async function POST(
 
     return NextResponse.json({ url: session.url });
   } catch (error) {
+    // eslint-disable-next-line no-console
     console.log('[COURSE_ID_CHECKOUT]', error);
     return new NextResponse('Internal Error', { status: 500 });
   }

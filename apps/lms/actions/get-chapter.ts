@@ -96,6 +96,7 @@ export const getChapter = async ({
       purchase,
     };
   } catch (error) {
+    // eslint-disable-next-line no-console
     console.log('[GET_CHAPTER]', error);
     return {
       chapter: null,

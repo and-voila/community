@@ -50,6 +50,7 @@ export const getAnalytics = async (userId: string) => {
       totalSales,
     };
   } catch (error) {
+    // eslint-disable-next-line no-console
     console.log('[GET_ANALYTICS]', error);
     return {
       data: [],

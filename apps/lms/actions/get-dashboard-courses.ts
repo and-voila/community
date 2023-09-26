@@ -57,6 +57,7 @@ export const getDashboardCourses = async (
       coursesInProgress,
     };
   } catch (error) {
+    // eslint-disable-next-line no-console
     console.log('[GET_DASHBOARD_COURSES]', error);
     return {
       completedCourses: [],

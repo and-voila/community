@@ -58,6 +58,7 @@ export async function PATCH(
 
     return NextResponse.json(publishedCourse);
   } catch (error) {
+    // eslint-disable-next-line no-console
     console.log('[COURSE_ID_PUBLISH]', error);
     return new NextResponse('Internal Error', { status: 500 });
   }

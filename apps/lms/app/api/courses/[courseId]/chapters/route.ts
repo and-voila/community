@@ -47,6 +47,7 @@ export async function POST(
 
     return NextResponse.json(chapter);
   } catch (error) {
+    // eslint-disable-next-line no-console
     console.log('[CHAPTERS]', error);
     return new NextResponse('Internal Error', { status: 500 });
   }

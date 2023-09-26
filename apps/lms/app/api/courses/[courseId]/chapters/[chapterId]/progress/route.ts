@@ -34,6 +34,7 @@ export async function PUT(
 
     return NextResponse.json(userProgress);
   } catch (error) {
+    // eslint-disable-next-line no-console
     console.log('[CHAPTER_ID_PROGRESS]', error);
     return new NextResponse('Internal Error', { status: 500 });
   }
