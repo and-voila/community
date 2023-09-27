@@ -121,7 +121,11 @@ export const ChapterAccessForm = ({
               )}
             />
             <div className="flex items-center gap-x-2">
-              <Button disabled={!isValid || isSubmitting} type="submit">
+              <Button
+                variant="custom"
+                disabled={!isValid || isSubmitting}
+                type="submit"
+              >
                 Save
               </Button>
             </div>

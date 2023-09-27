@@ -63,23 +63,23 @@ export function DataTable<TData, TValue>({
           onChange={(event) =>
             table.getColumn('title')?.setFilterValue(event.target.value)
           }
-          className="max-w-sm"
+          className="max-w-sm bg-white dark:bg-background"
         />
         <Link href="/teacher/create">
-          <Button>
+          <Button variant="custom">
             <PlusCircle className="mr-2 h-4 w-4" />
             New course
           </Button>
         </Link>
       </div>
-      <div className="rounded-md border">
-        <Table>
+      <div className="my-6 rounded-md border">
+        <Table className="rounded-xl bg-white dark:bg-background">
           <TableHeader>
             {table.getHeaderGroups().map((headerGroup) => (
               <TableRow key={headerGroup.id}>
                 {headerGroup.headers.map((header) => {
                   return (
-                    <TableHead key={header.id}>
+                    <TableHead className="" key={header.id}>
                       {header.isPlaceholder
                         ? null
                         : flexRender(
