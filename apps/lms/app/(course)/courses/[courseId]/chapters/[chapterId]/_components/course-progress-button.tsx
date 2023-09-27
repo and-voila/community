@@ -1,8 +1,8 @@
 'use client';
 
 import { Button } from '@ui/components/ui/button';
+import { CheckCircledIcon, CrossCircledIcon } from '@ui/index';
 import axios from 'axios';
-import { CheckCircle, XCircle } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 import toast from 'react-hot-toast';
@@ -54,14 +54,14 @@ export const CourseProgressButton = ({
     }
   };
 
-  const Icon = isCompleted ? XCircle : CheckCircle;
+  const Icon = isCompleted ? CrossCircledIcon : CheckCircledIcon;
 
   return (
     <Button
       onClick={onClick}
       disabled={isLoading}
       type="button"
-      variant={isCompleted ? 'outline' : 'success'}
+      variant={isCompleted ? 'outline' : 'custom'}
       className="w-full md:w-auto"
     >
       {isCompleted ? 'Not completed' : 'Mark as complete'}

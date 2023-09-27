@@ -1,6 +1,6 @@
 import { auth } from '@clerk/nextjs';
 import { Separator } from '@ui/components/ui/separator';
-import { File } from 'lucide-react';
+import { FileIcon } from '@ui/index';
 import { redirect } from 'next/navigation';
 
 import { getChapter } from '@/actions/get-chapter';
@@ -99,7 +99,7 @@ const ChapterIdPage = async ({
                     key={attachment.id}
                     className="flex w-full items-center rounded-md border bg-sky-200 p-3 text-sky-700 hover:underline"
                   >
-                    <File />
+                    <FileIcon />
                     <p className="line-clamp-1">{attachment.name}</p>
                   </a>
                 ))}

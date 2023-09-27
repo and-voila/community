@@ -2,7 +2,7 @@
 
 import { useAuth, UserButton } from '@clerk/nextjs';
 import { Button } from '@ui/components/ui/button';
-import { LogOut } from 'lucide-react';
+import { ExitIcon } from '@ui/index';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 
@@ -29,7 +29,7 @@ export const NavbarRoutes = () => {
         {isTeacherPage || isCoursePage ? (
           <Link href="/">
             <Button size="sm" variant="ghost">
-              <LogOut className="mr-2 h-4 w-4" />
+              <ExitIcon className="mr-2 h-4 w-4" />
               Exit
             </Button>
           </Link>

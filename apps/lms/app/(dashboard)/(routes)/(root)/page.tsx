@@ -1,5 +1,5 @@
 import { auth } from '@clerk/nextjs';
-import { CheckCircle, Clock } from 'lucide-react';
+import { CheckCircledIcon, ClockIcon } from '@ui/index';
 import { redirect } from 'next/navigation';
 
 import { getDashboardCourses } from '@/actions/get-dashboard-courses';
@@ -21,12 +21,12 @@ export default async function Dashboard() {
     <div className="space-y-4 p-6">
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
         <InfoCard
-          icon={Clock}
+          icon={ClockIcon}
           label="In Progress"
           numberOfItems={coursesInProgress.length}
         />
         <InfoCard
-          icon={CheckCircle}
+          icon={CheckCircledIcon}
           label="Completed"
           numberOfItems={completedCourses.length}
           variant="default"

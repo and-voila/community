@@ -6,7 +6,7 @@ export const Sidebar = () => {
   return (
     <div className="flex h-full flex-col overflow-y-auto bg-[#d0d5dd] shadow-sm dark:bg-[#010101]">
       <div className="p-6">
-        <Logo fillOnHover className="h-8 md:h-12" />
+        <Logo fillOnHover className="h-8 md:h-10" />
       </div>
       <div className="flex w-full flex-col">
         <SidebarRoutes />
