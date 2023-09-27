@@ -6,6 +6,7 @@ import { Button } from '@ui/components/ui/button';
 import {
   Form,
   FormControl,
+  FormDescription,
   FormField,
   FormItem,
   FormMessage,
@@ -100,11 +101,16 @@ export const DescriptionForm = ({
                 <FormItem>
                   <FormControl>
                     <Textarea
+                      className="py-4"
                       disabled={isSubmitting}
-                      placeholder="e.g. 'This course is about...'"
+                      placeholder="e.g. 'You'll master the fine art of doing nothing, yet appearing extremely busy. Learn to strategically delay tasks, perfect your 'I'll do it tomorrow' excuses, and cultivate the illusion of constant activity.'"
                       {...field}
                     />
                   </FormControl>
+                  <FormDescription>
+                    A short paragraph describing the learning outcome of the
+                    course.
+                  </FormDescription>
                   <FormMessage />
                 </FormItem>
               )}
