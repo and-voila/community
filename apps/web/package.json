@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "next dev --port 3000",
     "build": "next build",
     "start": "next start",
     "lint": "next lint"
@@ -29,7 +29,7 @@
   },
   "devDependencies": {
     "@types/node": "^20.7.0",
-    "@types/react": "^18.2.22",
+    "@types/react": "^18.2.21",
     "@types/react-dom": "^18.2.7",
     "@vercel/git-hooks": "^1.0.0",
     "autoprefixer": "^10.4.16",
