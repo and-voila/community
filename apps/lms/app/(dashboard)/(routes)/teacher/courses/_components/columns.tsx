@@ -48,6 +48,8 @@ export const columns: ColumnDef<Course>[] = [
       const formatted = new Intl.NumberFormat('en-US', {
         style: 'currency',
         currency: 'USD',
+        minimumFractionDigits: 0,
+        maximumFractionDigits: 0,
       }).format(price);
 
       return <div>{formatted}</div>;
@@ -70,7 +72,13 @@ export const columns: ColumnDef<Course>[] = [
       const isPublished = row.getValue('isPublished') || false;
 
       return (
-        <Badge className={cn('bg-slate-500', isPublished && 'bg-sky-700')}>
+        <Badge
+          className={cn(
+            'border bg-transparent text-muted-foreground',
+            isPublished &&
+              'pointer-events-none border-brand bg-transparent text-brand',
+          )}
+        >
           {isPublished ? 'Published' : 'Draft'}
         </Badge>
       );

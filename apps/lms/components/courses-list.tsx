@@ -32,7 +32,7 @@ export const CoursesList = ({ items }: CoursesListProps) => {
       </div>
       {items.length === 0 && (
         <div className="mt-10 text-center text-sm text-muted-foreground">
-          No courses found
+          You haven&apos;t started a course yet.
         </div>
       )}
     </div>

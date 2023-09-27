@@ -6,7 +6,7 @@ import { cn } from '@/lib/utils';
 const backgroundVariants = cva('rounded-xl flex items-center justify-center', {
   variants: {
     variant: {
-      default: 'bg-white dark:bg-background',
+      default: 'bg-transparent',
       success: 'bg-emerald-100',
     },
     size: {
