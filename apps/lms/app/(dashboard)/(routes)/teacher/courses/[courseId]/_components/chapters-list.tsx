@@ -75,7 +75,7 @@ export const ChaptersList = ({
                 {(provided) => (
                   <div
                     className={cn(
-                      'mb-4 flex items-center gap-x-2 rounded-md border bg-muted text-sm text-muted-foreground',
+                      'mb-4 flex items-center gap-x-2 rounded-md border bg-transparent text-sm text-muted-foreground',
                       chapter.isPublished &&
                         'border bg-white text-foreground dark:bg-background',
                     )}
@@ -84,7 +84,7 @@ export const ChaptersList = ({
                   >
                     <div
                       className={cn(
-                        'rounded-l-md border-r border-r-foreground px-2 py-3 text-muted-foreground transition hover:bg-muted-foreground hover:text-primary-foreground',
+                        'rounded-l-md border-r border-r-muted-foreground px-2 py-3 text-muted-foreground transition hover:bg-muted-foreground hover:text-primary-foreground',
                         chapter.isPublished &&
                           'border-r-brand text-brand hover:bg-brand',
                       )}
@@ -95,19 +95,22 @@ export const ChaptersList = ({
                     {chapter.title}
                     <div className="ml-auto flex items-center gap-x-2 pr-2">
                       {chapter.isFree && (
-                        <Badge className="bg-alternate text-black">Free</Badge>
+                        <Badge className="pointer-events-none border-alternate bg-transparent text-alternate">
+                          Free
+                        </Badge>
                       )}
                       <Badge
                         className={cn(
-                          'bg-muted-foreground',
-                          chapter.isPublished && 'bg-brand',
+                          'border bg-transparent text-muted-foreground',
+                          chapter.isPublished &&
+                            'pointer-events-none border-brand bg-transparent text-brand',
                         )}
                       >
                         {chapter.isPublished ? 'Published' : 'Draft'}
                       </Badge>
                       <Pencil
                         onClick={() => onEdit(chapter.id)}
-                        className="h-4 w-4 cursor-pointer transition hover:opacity-75"
+                        className="ml-2 h-4 w-4 cursor-pointer transition hover:opacity-75"
                       />
                     </div>
                   </div>
