@@ -48,9 +48,9 @@ const CreatePage = () => {
   };
 
   return (
-    <div className="mx-auto flex max-w-5xl rounded-xl border bg-white p-6 shadow-md dark:bg-background md:mt-32 md:justify-center md:p-12">
+    <div className="mx-auto mt-24 flex rounded-xl border bg-white p-6 shadow-md dark:bg-background md:mt-32 md:max-w-4xl md:justify-center md:p-12">
       <div>
-        <H3 as="h1">Create a course title</H3>
+        <H3 as="h1">Course title</H3>
         <p className="text-base text-muted-foreground">
           Choose a short and SEO friendly title for your course.
         </p>
