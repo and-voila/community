@@ -12,6 +12,7 @@ import {
   FormMessage,
 } from '@ui/components/ui/form';
 import { Input } from '@ui/components/ui/input';
+import { H3 } from '@ui/index';
 import axios from 'axios';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
@@ -47,12 +48,11 @@ const CreatePage = () => {
   };
 
   return (
-    <div className="mx-auto flex h-full max-w-5xl p-6 md:items-center md:justify-center">
+    <div className="mx-auto flex max-w-5xl rounded-xl border bg-white p-6 shadow-md dark:bg-background md:mt-32 md:justify-center md:p-12">
       <div>
-        <h1 className="text-2xl">Name your course</h1>
-        <p className="text-sm text-slate-600">
-          What would you like to name your course? Don&apos;t worry, you can
-          change this later.
+        <H3 as="h1">Create a course title</H3>
+        <p className="text-base text-muted-foreground">
+          Choose a short and SEO friendly title for your course.
         </p>
         <Form {...form}>
           <form
@@ -68,12 +68,12 @@ const CreatePage = () => {
                   <FormControl>
                     <Input
                       disabled={isSubmitting}
-                      placeholder="e.g. 'Advanced web development'"
+                      placeholder="e.g. 'The art of procrastination'"
                       {...field}
                     />
                   </FormControl>
                   <FormDescription>
-                    What will you teach in this course?
+                    Use sentence case for your title.
                   </FormDescription>
                   <FormMessage />
                 </FormItem>
