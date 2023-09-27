@@ -83,13 +83,13 @@ export const ChaptersForm = ({ initialData, courseId }: ChaptersFormProps) => {
   };
 
   return (
-    <div className="relative mt-6 rounded-md border bg-slate-100 p-4">
+    <div className="relative mt-6 rounded-md border bg-white p-4 dark:bg-background">
       {isUpdating && (
         <div className="rounded-m absolute right-0 top-0 flex h-full w-full items-center justify-center bg-slate-500/20">
           <Loader2 className="h-6 w-6 animate-spin text-sky-700" />
         </div>
       )}
-      <div className="flex items-center justify-between font-medium">
+      <div className="flex items-center justify-between font-display">
         Course chapters
         <Button onClick={toggleCreating} variant="ghost">
           {isCreating ? (
@@ -134,7 +134,7 @@ export const ChaptersForm = ({ initialData, courseId }: ChaptersFormProps) => {
         <div
           className={cn(
             'mt-2 text-sm',
-            !initialData.chapters.length && 'italic text-slate-500',
+            !initialData.chapters.length && 'italic text-muted-foreground',
           )}
         >
           {!initialData.chapters.length && 'No chapters'}

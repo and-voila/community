@@ -67,8 +67,8 @@ export const CategoryForm = ({
   );
 
   return (
-    <div className="mt-6 rounded-md border bg-slate-100 p-4">
-      <div className="flex items-center justify-between font-medium">
+    <div className="mt-6 rounded-md border bg-white p-4 dark:bg-background">
+      <div className="flex items-center justify-between font-display">
         Course category
         <Button onClick={toggleEdit} variant="ghost">
           {isEditing ? (
@@ -85,7 +85,7 @@ export const CategoryForm = ({
         <p
           className={cn(
             'mt-2 text-sm',
-            !initialData.categoryId && 'italic text-slate-500',
+            !initialData.categoryId && 'italic text-muted-foreground',
           )}
         >
           {selectedOption?.label || 'No category'}
@@ -103,7 +103,11 @@ export const CategoryForm = ({
               render={({ field }) => (
                 <FormItem>
                   <FormControl>
-                    <Combobox options={...options} {...field} />
+                    <Combobox
+                      options={options}
+                      {...field}
+                      onChange={(value) => field.onChange(value)}
+                    />
                   </FormControl>
                   <FormMessage />
                 </FormItem>

@@ -57,8 +57,8 @@ export const TitleForm = ({ initialData, courseId }: TitleFormProps) => {
   };
 
   return (
-    <div className="mt-6 rounded-md border bg-slate-100 p-4">
-      <div className="flex items-center justify-between font-medium">
+    <div className="mt-6 rounded-md border bg-white p-4 dark:bg-background">
+      <div className="flex items-center justify-between font-display">
         Course title
         <Button onClick={toggleEdit} variant="ghost">
           {isEditing ? (
@@ -71,7 +71,7 @@ export const TitleForm = ({ initialData, courseId }: TitleFormProps) => {
           )}
         </Button>
       </div>
-      {!isEditing && <p className="mt-2 text-sm">{initialData.title}</p>}
+      {!isEditing && <p className="mt-2 text-base">{initialData.title}</p>}
       {isEditing && (
         <Form {...form}>
           <form
@@ -86,7 +86,7 @@ export const TitleForm = ({ initialData, courseId }: TitleFormProps) => {
                   <FormControl>
                     <Input
                       disabled={isSubmitting}
-                      placeholder="e.g. 'Advanced web development'"
+                      placeholder="e.g. 'The art of procrastination'"
                       {...field}
                     />
                   </FormControl>

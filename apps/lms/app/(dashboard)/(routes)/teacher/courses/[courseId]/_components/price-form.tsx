@@ -59,8 +59,8 @@ export const PriceForm = ({ initialData, courseId }: PriceFormProps) => {
   };
 
   return (
-    <div className="mt-6 rounded-md border bg-slate-100 p-4">
-      <div className="flex items-center justify-between font-medium">
+    <div className="mt-6 rounded-md border bg-white p-4 dark:bg-background">
+      <div className="flex items-center justify-between font-display">
         Course price
         <Button onClick={toggleEdit} variant="ghost">
           {isEditing ? (
@@ -77,7 +77,7 @@ export const PriceForm = ({ initialData, courseId }: PriceFormProps) => {
         <p
           className={cn(
             'mt-2 text-sm',
-            !initialData.price && 'italic text-slate-500',
+            !initialData.price && 'italic text-muted-foreground',
           )}
         >
           {initialData.price ? formatPrice(initialData.price) : 'No price'}

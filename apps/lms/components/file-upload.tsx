@@ -12,14 +12,16 @@ interface FileUploadProps {
 
 export const FileUpload = ({ onChange, endpoint }: FileUploadProps) => {
   return (
-    <UploadDropzone
-      endpoint={endpoint}
-      onClientUploadComplete={(res) => {
-        onChange(res?.[0].url);
-      }}
-      onUploadError={(error: Error) => {
-        toast.error(`${error?.message}`);
-      }}
-    />
+    <div className="bg-muted">
+      <UploadDropzone
+        endpoint={endpoint}
+        onClientUploadComplete={(res) => {
+          onChange(res?.[0].url);
+        }}
+        onUploadError={(error: Error) => {
+          toast.error(`${error?.message}`);
+        }}
+      />
+    </div>
   );
 };

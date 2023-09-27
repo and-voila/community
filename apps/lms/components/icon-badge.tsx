@@ -3,25 +3,22 @@ import { LucideIcon } from 'lucide-react';
 
 import { cn } from '@/lib/utils';
 
-const backgroundVariants = cva(
-  'rounded-full flex items-center justify-center',
-  {
-    variants: {
-      variant: {
-        default: 'bg-primary-foreground',
-        success: 'bg-emerald-100',
-      },
-      size: {
-        default: 'p-2',
-        sm: 'p-1',
-      },
+const backgroundVariants = cva('rounded-xl flex items-center justify-center', {
+  variants: {
+    variant: {
+      default: 'bg-white dark:bg-background',
+      success: 'bg-emerald-100',
     },
-    defaultVariants: {
-      variant: 'default',
-      size: 'default',
+    size: {
+      default: 'p-2',
+      sm: 'p-1',
     },
   },
-);
+  defaultVariants: {
+    variant: 'default',
+    size: 'default',
+  },
+});
 
 const iconVariants = cva('', {
   variants: {
@@ -30,7 +27,7 @@ const iconVariants = cva('', {
       success: 'text-emerald-700',
     },
     size: {
-      default: 'h-8 w-8',
+      default: 'h-6 w-6',
       sm: 'h-4 w-4',
     },
   },

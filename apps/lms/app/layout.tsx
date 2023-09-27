@@ -38,7 +38,7 @@ export default function RootLayout({
         className={`${monaSans.variable} ${calSans.variable} text-base antialiased`}
         suppressHydrationWarning
       >
-        <body>
+        <body className="bg-background dark:bg-[#242629]">
           <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>
             <ConfettiProvider />
             <ToastProvider />
