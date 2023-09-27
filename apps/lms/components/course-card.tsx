@@ -27,17 +27,17 @@ export const CourseCard = ({
 }: CourseCardProps) => {
   return (
     <Link href={`/courses/${id}`}>
-      <div className="group h-full overflow-hidden rounded-lg border p-3 transition hover:shadow-sm">
+      <div className="group h-full overflow-hidden rounded-lg border bg-white p-3 transition hover:shadow-sm dark:bg-background">
         <div className="relative aspect-video w-full overflow-hidden rounded-md">
           <Image fill className="object-cover" alt={title} src={imageUrl} />
         </div>
         <div className="flex flex-col pt-2">
-          <div className="line-clamp-2 text-lg font-medium transition group-hover:text-sky-700 md:text-base">
+          <div className="line-clamp-2 font-display text-lg transition group-hover:text-muted-foreground">
             {title}
           </div>
-          <p className="text-xs text-muted-foreground">{category}</p>
+          <p className="text-sm text-muted-foreground">{category}</p>
           <div className="my-3 flex items-center gap-x-2 text-sm md:text-xs">
-            <div className="flex items-center gap-x-1 text-slate-500">
+            <div className="flex items-center gap-x-1 text-foreground">
               <IconBadge size="sm" icon={BookOpen} />
               <span>
                 {chaptersLength} {chaptersLength === 1 ? 'Chapter' : 'Chapters'}
@@ -51,8 +51,8 @@ export const CourseCard = ({
               value={progress}
             />
           ) : (
-            <p className="text-md font-medium text-slate-700 md:text-sm">
-              {formatPrice(price)}
+            <p className="text-md font-medium text-foreground md:text-sm">
+              {formatPrice(price) === '$0' ? 'Free' : formatPrice(price)}
             </p>
           )}
         </div>

@@ -1,0 +1,5 @@
+.myQuill .ql-container {
+  @apply prose;
+  @apply dark:prose-invert;
+  @apply lg:prose-lg;
+}

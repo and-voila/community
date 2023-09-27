@@ -50,7 +50,7 @@ const CourseLayout = async ({
   const progressCount = await getProgress(userId, course.id);
 
   return (
-    <div className="h-full">
+    <div className="h-full bg-background dark:bg-[#242629]">
       <div className="fixed inset-y-0 z-50 h-[80px] w-full md:pl-80">
         <CourseNavbar course={course} progressCount={progressCount} />
       </div>

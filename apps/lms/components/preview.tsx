@@ -1,6 +1,7 @@
 'use client';
 
 import 'react-quill/dist/quill.bubble.css';
+import './quill.css';
 
 import dynamic from 'next/dynamic';
 import { useMemo } from 'react';
@@ -15,5 +16,7 @@ export const Preview = ({ value }: PreviewProps) => {
     [],
   );
 
-  return <ReactQuill theme="bubble" value={value} readOnly />;
+  return (
+    <ReactQuill className="myQuill" theme="bubble" value={value} readOnly />
+  );
 };

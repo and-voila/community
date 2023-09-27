@@ -9,8 +9,8 @@ interface CourseProgressProps {
 }
 
 const colorByVariant = {
-  default: 'text-sky-700',
-  success: 'text-emerald-700',
+  default: 'text-foreground',
+  success: 'text-foreground',
 };
 
 const sizeByVariant = {
@@ -18,18 +18,25 @@ const sizeByVariant = {
   sm: 'text-xs',
 };
 
+const variantClasses = {
+  default: 'default-class',
+  success: 'success-class',
+};
+
 export const CourseProgress = ({
   value,
-  variant,
+  variant = 'default',
   size,
 }: CourseProgressProps) => {
+  const progressClass = variantClasses[variant];
+
   return (
     <div>
-      <Progress className="h-2" value={value} variant={variant} />
+      <Progress className={`h-2 ${progressClass}`} value={value} />
       <p
         className={cn(
           'mt-2 font-medium text-sky-700',
-          colorByVariant[variant || 'default'],
+          colorByVariant[variant],
           sizeByVariant[size || 'default'],
         )}
       >

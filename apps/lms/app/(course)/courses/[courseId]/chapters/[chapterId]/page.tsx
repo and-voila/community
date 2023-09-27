@@ -45,16 +45,19 @@ const ChapterIdPage = async ({
 
   return (
     <div>
-      {userProgress?.isCompleted && (
-        <Banner variant="success" label="You already completed this chapter." />
-      )}
-      {isLocked && (
-        <Banner
-          variant="warning"
-          label="You need to purchase this course to watch this chapter."
-        />
-      )}
       <div className="mx-auto flex max-w-4xl flex-col pb-20">
+        {userProgress?.isCompleted && (
+          <Banner
+            variant="success"
+            label="You already completed this chapter."
+          />
+        )}
+        {isLocked && (
+          <Banner
+            variant="warning"
+            label="You need to purchase this course to watch this chapter."
+          />
+        )}
         <div className="p-4">
           <VideoPlayer
             chapterId={params.chapterId}
@@ -67,9 +70,11 @@ const ChapterIdPage = async ({
             completeOnEnd={completeOnEnd}
           />
         </div>
-        <div>
+        <div className="rounded-xl bg-white p-6 dark:bg-background lg:p-8">
           <div className="flex flex-col items-center justify-between p-4 md:flex-row">
-            <h2 className="mb-2 text-2xl font-semibold">{chapter.title}</h2>
+            <h2 className="mb-2 flex-grow font-display text-lg">
+              {chapter.title}
+            </h2>
             {purchase ? (
               <CourseProgressButton
                 chapterId={params.chapterId}
@@ -92,15 +97,22 @@ const ChapterIdPage = async ({
             <>
               <Separator />
               <div className="p-4">
+                {attachments.length > 0 && (
+                  <div className="mt-16 flex items-center gap-x-2">
+                    <h2 className="font-display text-lg">
+                      Resources & Attachments
+                    </h2>
+                  </div>
+                )}
                 {attachments.map((attachment) => (
                   <a
                     href={attachment.url}
                     target="_blank"
                     key={attachment.id}
-                    className="flex w-full items-center rounded-md border bg-sky-200 p-3 text-sky-700 hover:underline"
+                    className="mt-8 flex w-full items-center rounded-md border p-3 text-foreground hover:underline"
                   >
                     <FileIcon />
-                    <p className="line-clamp-1">{attachment.name}</p>
+                    <p className="ml-2 line-clamp-1">{attachment.name}</p>
                   </a>
                 ))}
               </div>
