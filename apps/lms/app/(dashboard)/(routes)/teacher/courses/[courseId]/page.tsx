@@ -73,7 +73,7 @@ const CourseIdPage = async ({ params }: { params: { courseId: string } }) => {
   const isComplete = requiredFields.every(Boolean);
 
   return (
-    <div className="mx-auto max-w-3xl bg-background dark:bg-[#242629]">
+    <div className="mx-auto max-w-3xl bg-background pb-24 dark:bg-[#242629] lg:pb-32">
       {!course.isPublished && (
         <Banner label="This course is unpublished. It will not be visible to the students." />
       )}
@@ -120,7 +120,7 @@ const CourseIdPage = async ({ params }: { params: { courseId: string } }) => {
             <div>
               <div className="mt-16 flex items-center gap-x-2">
                 <IconBadge icon={CircleDollarSign} />
-                <h2 className="font-display text-lg">Sell your course</h2>
+                <h2 className="font-display text-lg">Course pricing</h2>
               </div>
               <PriceForm initialData={course} courseId={course.id} />
             </div>
