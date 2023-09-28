@@ -27,22 +27,22 @@ export const CourseCard = ({
 }: CourseCardProps) => {
   return (
     <Link href={`/courses/${id}`}>
-      <div className="group h-full overflow-hidden rounded-lg border bg-white p-3 transition hover:shadow-sm dark:bg-background">
-        <div className="relative aspect-video w-full overflow-hidden rounded-md">
+      <div className="group h-full overflow-hidden rounded-xl border bg-white transition hover:shadow-sm dark:bg-background">
+        <div className="relative aspect-video w-full overflow-hidden md:grayscale md:group-hover:grayscale-0">
           <Image fill className="object-cover" alt={title} src={imageUrl} />
         </div>
-        <div className="flex flex-col pt-2">
-          <div className="line-clamp-2 font-display text-lg transition group-hover:text-muted-foreground">
-            {title}
-          </div>
-          <p className="text-sm text-muted-foreground">{category}</p>
-          <div className="my-3 flex items-center gap-x-2 text-sm md:text-xs">
+        <div className="flex flex-col p-3 pt-2">
+          <div className="mb-2 flex items-center justify-between text-sm text-muted-foreground">
+            <p>{category}</p>
             <div className="flex items-center gap-x-1 text-foreground">
               <IconBadge size="sm" icon={BookOpen} />
               <span>
                 {chaptersLength} {chaptersLength === 1 ? 'Chapter' : 'Chapters'}
               </span>
             </div>
+          </div>
+          <div className="line-clamp-2 font-display text-lg leading-6 transition group-hover:text-brand md:h-12">
+            {title}
           </div>
           {progress !== null ? (
             <CourseProgress
@@ -51,7 +51,7 @@ export const CourseCard = ({
               value={progress}
             />
           ) : (
-            <p className="text-md font-medium text-foreground md:text-sm">
+            <p className="text-md mt-2 font-display text-brand">
               {formatPrice(price) === '$0' ? 'Free' : formatPrice(price)}
             </p>
           )}

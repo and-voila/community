@@ -13,6 +13,7 @@ async function main() {
         { name: 'Content' },
         { name: 'Design' },
         { name: 'Expansion' },
+        { name: 'Hot' },
         { name: 'Marketing' },
         { name: 'Operations' },
         { name: 'Productivity' },
