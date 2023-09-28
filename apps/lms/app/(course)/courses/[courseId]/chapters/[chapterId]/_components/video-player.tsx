@@ -69,7 +69,7 @@ export const VideoPlayer = ({
       {isLocked && (
         <div className="absolute inset-0 flex flex-col items-center justify-center gap-y-2 bg-brand/20 text-foreground">
           <LockClosedIcon className="h-8 w-8" />
-          <p className="text-sm">This chapter is locked</p>
+          <p className="text-sm">Please enroll to enjoy this course.</p>
         </div>
       )}
       {!isLocked && (

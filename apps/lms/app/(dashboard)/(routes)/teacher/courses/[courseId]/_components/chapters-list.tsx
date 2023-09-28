@@ -101,7 +101,7 @@ export const ChaptersList = ({
                       )}
                       <Badge
                         className={cn(
-                          'border bg-transparent text-muted-foreground',
+                          'pointer-events-none border border-border bg-transparent text-muted-foreground',
                           chapter.isPublished &&
                             'pointer-events-none border-brand bg-transparent text-brand',
                         )}

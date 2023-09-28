@@ -3,6 +3,7 @@ import { CheckCircledIcon, ClockIcon } from '@ui/index';
 import { redirect } from 'next/navigation';
 
 import { getDashboardCourses } from '@/actions/get-dashboard-courses';
+import { Container } from '@/components/container';
 import { CoursesList } from '@/components/courses-list';
 
 import { InfoCard } from './_components/info-card';
@@ -18,21 +19,23 @@ export default async function Dashboard() {
     await getDashboardCourses(userId);
 
   return (
-    <div className="space-y-8 p-6">
-      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-        <InfoCard
-          icon={ClockIcon}
-          label="In Progress"
-          numberOfItems={coursesInProgress.length}
-        />
-        <InfoCard
-          icon={CheckCircledIcon}
-          label="Completed"
-          numberOfItems={completedCourses.length}
-          variant="default"
-        />
+    <Container>
+      <div className="space-y-8 p-6">
+        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+          <InfoCard
+            icon={ClockIcon}
+            label="In Progress"
+            numberOfItems={coursesInProgress.length}
+          />
+          <InfoCard
+            icon={CheckCircledIcon}
+            label="Completed"
+            numberOfItems={completedCourses.length}
+            variant="default"
+          />
+        </div>
+        <CoursesList items={[...coursesInProgress, ...completedCourses]} />
       </div>
-      <CoursesList items={[...coursesInProgress, ...completedCourses]} />
-    </div>
+    </Container>
   );
 }

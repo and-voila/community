@@ -9,6 +9,7 @@ import { formatPrice } from '@/lib/format';
 interface CourseCardProps {
   id: string;
   title: string;
+  description: string;
   imageUrl: string;
   chaptersLength: number;
   price: number;
@@ -19,6 +20,7 @@ interface CourseCardProps {
 export const CourseCard = ({
   id,
   title,
+  description,
   imageUrl,
   chaptersLength,
   price,
@@ -41,9 +43,12 @@ export const CourseCard = ({
               </span>
             </div>
           </div>
-          <div className="line-clamp-2 font-display text-lg leading-6 transition group-hover:text-brand md:h-12">
+          <div className="line-clamp-2 font-display text-lg leading-6 transition group-hover:text-brand md:h-14">
             {title}
           </div>
+          <p className="my-2 line-clamp-2 text-muted-foreground">
+            {description}
+          </p>
           {progress !== null ? (
             <CourseProgress
               variant={progress === 100 ? 'success' : 'default'}
@@ -51,7 +56,7 @@ export const CourseCard = ({
               value={progress}
             />
           ) : (
-            <p className="text-md mt-2 font-display text-brand">
+            <p className="my-2 max-w-[60px] rounded-md bg-brand px-2 text-center text-base font-semibold text-foreground">
               {formatPrice(price) === '$0' ? 'Free' : formatPrice(price)}
             </p>
           )}

@@ -48,7 +48,7 @@ const CreatePage = () => {
   };
 
   return (
-    <div className="mx-auto mt-24 flex rounded-xl border bg-white p-6 shadow-md dark:bg-background md:mt-32 md:max-w-4xl md:justify-center md:p-12">
+    <div className="mx-auto mt-24 flex rounded-xl border bg-white p-6 shadow-md dark:bg-background md:mt-32 md:max-w-3xl md:justify-center md:p-12">
       <div>
         <H3 as="h1">Course title</H3>
         <p className="text-base text-muted-foreground">
