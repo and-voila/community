@@ -56,7 +56,7 @@ export const CourseCard = ({
               value={progress}
             />
           ) : (
-            <p className="my-2 max-w-[60px] rounded-md bg-brand px-2 text-center text-base font-semibold text-foreground">
+            <p className="my-2 text-base font-semibold text-brand">
               {formatPrice(price) === '$0' ? 'Free' : formatPrice(price)}
             </p>
           )}

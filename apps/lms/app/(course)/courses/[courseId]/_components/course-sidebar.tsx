@@ -1,9 +1,10 @@
 import { auth } from '@clerk/nextjs';
 import { Chapter, Course, UserProgress } from '@prisma/client';
-import { Logo, ModeToggle } from '@ui/index';
+import { Logo } from '@ui/index';
 import { redirect } from 'next/navigation';
 
 import { CourseProgress } from '@/components/course-progress';
+import SidebarQuickLinks from '@/components/sidebar-quick-links';
 import { db } from '@/lib/db';
 
 import { CourseSidebarItem } from './course-sidebar-item';
@@ -60,9 +61,7 @@ export const CourseSidebar = async ({
             isLocked={!chapter.isFree && !purchase}
           />
         ))}
-      </div>
-      <div className="absolute bottom-0 p-4">
-        <ModeToggle />
+        <SidebarQuickLinks />
       </div>
     </div>
   );
