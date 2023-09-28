@@ -1,6 +1,7 @@
 import { auth } from '@clerk/nextjs';
 import { redirect } from 'next/navigation';
 
+import { Container } from '@/components/container';
 import { db } from '@/lib/db';
 
 import { columns } from './_components/columns';
@@ -23,9 +24,9 @@ const CoursesPage = async () => {
   });
 
   return (
-    <div className="p-6">
+    <Container className="py-12">
       <DataTable columns={columns} data={courses} />
-    </div>
+    </Container>
   );
 };
 
