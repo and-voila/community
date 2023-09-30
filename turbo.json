@@ -10,6 +10,7 @@
     "@community/lms#build": {
       "dependsOn": ["^build"],
       "env": [
+        "BLOB_READ_WRITE_TOKEN",
         "CLERK_SECRET_KEY",
         "DATABASE_URL",
         "MUX_TOKEN_ID",
@@ -23,6 +24,13 @@
         "NEXT_PUBLIC_TEACHER_ID",
         "NEXT_PUBLIC_VERCEL_URL",
         "NODE_ENV",
+        "POSTGRES_URL",
+        "POSTGRES_PRISMA_URL",
+        "POSTGRES_URL_NON_POOLING",
+        "POSTGRES_USER",
+        "POSTGRES_HOST",
+        "POSTGRES_PASSWORD",
+        "POSTGRES_DATABASE",
         "STRIPE_API_KEY",
         "STRIPE_WEBHOOK_SECRET",
         "UPLOADTHING_APP_ID",

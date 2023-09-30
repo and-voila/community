@@ -54,7 +54,9 @@ export const CourseProgressButton = ({
     }
   };
 
-  const Icon = isCompleted ? CrossCircledIcon : CheckCircledIcon;
+  const Icon: React.ElementType = isCompleted
+    ? CrossCircledIcon
+    : CheckCircledIcon;
 
   return (
     <Button

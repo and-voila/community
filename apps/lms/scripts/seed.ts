@@ -7,20 +7,14 @@ async function main() {
   try {
     await database.category.createMany({
       data: [
-        { name: 'Acquisition' },
         { name: 'AI' },
-        { name: 'Business' },
-        { name: 'Content' },
         { name: 'Design' },
-        { name: 'Expansion' },
+        { name: 'Growth' },
         { name: 'Hot' },
-        { name: 'Marketing' },
-        { name: 'Operations' },
-        { name: 'Productivity' },
-        { name: 'Retention' },
-        { name: 'Social Media' },
-        { name: 'Technology' },
-        { name: 'Tools' },
+        { name: 'Hustle' },
+        { name: 'Flow' },
+        { name: 'Tech' },
+        { name: 'Stack' },
       ],
     });
 
