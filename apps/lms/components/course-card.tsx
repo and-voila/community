@@ -50,7 +50,7 @@ export const CourseCard = ({
           <div className="line-clamp-1 font-display text-lg leading-7 transition group-hover:text-brand">
             {title}
           </div>
-          <p className="my-2 line-clamp-4 text-muted-foreground">
+          <p className="my-2 line-clamp-3 text-sm text-muted-foreground">
             {description}
           </p>
           {progress !== null ? (

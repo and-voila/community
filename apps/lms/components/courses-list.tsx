@@ -12,24 +12,44 @@ interface CoursesListProps {
   items: CourseWithProgressWithCategory[];
 }
 
+const getLayoutType = (index: number, layoutPattern: string[][]) => {
+  const row = Math.floor(index / 3);
+  const col = index % 3;
+  return layoutPattern[row % layoutPattern.length][col];
+};
+
 export const CoursesList = ({ items }: CoursesListProps) => {
+  const layoutPattern = [
+    ['default', 'default', 'half', 'half'],
+    ['half', 'half', 'default', 'default'],
+    ['half', 'half', 'half', 'half'],
+    ['default', 'default', 'default', 'default'],
+  ];
+
   return (
     <div>
-      <div className="grid gap-4 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3">
-        {items.map((item) => (
-          <CourseCard
-            key={item.id}
-            id={item.id}
-            title={item.title}
-            description={item.description!}
-            imageUrl={item.imageUrl!}
-            chaptersLength={item.chapters.length}
-            price={item.price!}
-            progress={item.progress}
-            // eslint-disable-next-line @typescript-eslint/no-non-null-asserted-optional-chain
-            category={item?.category?.name!}
-          />
-        ))}
+      <div className="grid grid-cols-1 gap-3 md:grid-cols-2 lg:grid-cols-3">
+        {items.map((item, index) => {
+          const layoutType = getLayoutType(index, layoutPattern);
+          const displayImage = layoutType === 'default';
+          const cardClasses = displayImage ? 'row-span-2' : 'row-span-1';
+
+          return (
+            <div key={item.id} className={cardClasses}>
+              <CourseCard
+                id={item.id}
+                title={item.title}
+                description={item.description}
+                imageUrl={item.imageUrl}
+                chaptersLength={item.chapters.length}
+                price={item.price}
+                progress={item.progress}
+                category={item.category.name}
+                displayImage={displayImage}
+              />
+            </div>
+          );
+        })}
       </div>
       {items.length === 0 && (
         <div className="mt-10 text-center text-sm text-muted-foreground">
