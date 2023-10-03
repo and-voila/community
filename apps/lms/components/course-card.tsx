@@ -11,6 +11,7 @@ interface CourseCardProps {
   title: string;
   description: string;
   imageUrl: string;
+  displayImage?: boolean;
   chaptersLength: number;
   price: number;
   progress: number | null;
@@ -22,6 +23,7 @@ export const CourseCard = ({
   title,
   description,
   imageUrl,
+  displayImage = true,
   chaptersLength,
   price,
   progress,
@@ -30,10 +32,12 @@ export const CourseCard = ({
   return (
     <Link href={`/courses/${id}`}>
       <div className="group h-full overflow-hidden rounded-xl border bg-white transition hover:shadow-sm dark:bg-background">
-        <div className="relative aspect-video w-full overflow-hidden md:grayscale md:group-hover:grayscale-0">
-          <Image fill className="object-cover" alt={title} src={imageUrl} />
-        </div>
-        <div className="flex flex-col p-3 pt-2">
+        {displayImage && (
+          <div className="relative aspect-video w-full overflow-hidden md:grayscale md:group-hover:grayscale-0">
+            <Image fill className="object-cover" alt={title} src={imageUrl} />
+          </div>
+        )}
+        <div className="mt-1 flex flex-col p-6">
           <div className="mb-2 flex items-center justify-between text-sm text-muted-foreground">
             <p>{category}</p>
             <div className="flex items-center gap-x-1 text-foreground">
@@ -43,10 +47,10 @@ export const CourseCard = ({
               </span>
             </div>
           </div>
-          <div className="line-clamp-2 font-display text-lg leading-6 transition group-hover:text-brand md:h-14">
+          <div className="line-clamp-1 font-display text-lg leading-7 transition group-hover:text-brand">
             {title}
           </div>
-          <p className="my-2 line-clamp-2 text-muted-foreground">
+          <p className="my-2 line-clamp-4 text-muted-foreground">
             {description}
           </p>
           {progress !== null ? (
@@ -56,7 +60,7 @@ export const CourseCard = ({
               value={progress}
             />
           ) : (
-            <p className="my-2 text-base font-semibold text-brand">
+            <p className="mt-2 text-lg font-semibold text-brand">
               {formatPrice(price) === '$0' ? 'Free' : formatPrice(price)}
             </p>
           )}
