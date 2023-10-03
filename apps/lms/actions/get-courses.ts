@@ -50,9 +50,11 @@ export const getCourses = async ({
       },
     });
 
+    const shuffledCourses = [...courses].sort(() => Math.random() - 0.5);
+
     const coursesWithProgress: CourseWithProgressWithCategory[] =
       await Promise.all(
-        courses.map(async (course) => {
+        shuffledCourses.map(async (course) => {
           if (course.purchases.length === 0) {
             return {
               ...course,
