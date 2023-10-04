@@ -30,3 +30,4 @@ export * from './components/ui/sheet';
 export * from './components/ui/table';
 export * from './components/ui/textarea';
 export * from './lib/utils';
+export * from './components/ui/alert';

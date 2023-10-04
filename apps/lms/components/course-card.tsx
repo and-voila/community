@@ -37,7 +37,7 @@ export const CourseCard = ({
             <Image fill className="object-cover" alt={title} src={imageUrl} />
           </div>
         )}
-        <div className="mt-1 flex flex-col p-6">
+        <div className="mt-1 flex flex-col p-4">
           <div className="mb-2 flex items-center justify-between text-sm text-muted-foreground">
             <p>{category}</p>
             <div className="flex items-center gap-x-1 text-foreground">
@@ -50,7 +50,7 @@ export const CourseCard = ({
           <div className="line-clamp-1 font-display text-lg leading-7 transition group-hover:text-brand">
             {title}
           </div>
-          <p className="my-2 line-clamp-3 text-sm text-muted-foreground">
+          <p className="my-2 line-clamp-2 text-sm text-muted-foreground">
             {description}
           </p>
           {progress !== null ? (
