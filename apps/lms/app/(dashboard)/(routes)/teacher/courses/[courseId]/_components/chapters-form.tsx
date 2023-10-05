@@ -11,15 +11,14 @@ import {
   FormMessage,
 } from '@ui/components/ui/form';
 import { Input } from '@ui/components/ui/input';
+import { cn } from '@ui/index';
+import { LucideReact } from '@ui/index';
 import axios from 'axios';
-import { Loader2, PlusCircle } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
 import * as z from 'zod';
-
-import { cn } from '@/lib/utils';
 
 import { ChaptersList } from './chapters-list';
 
@@ -86,7 +85,7 @@ export const ChaptersForm = ({ initialData, courseId }: ChaptersFormProps) => {
     <div className="relative mt-6 rounded-md border bg-white p-4 dark:bg-background">
       {isUpdating && (
         <div className="rounded-m absolute right-0 top-0 flex h-full w-full items-center justify-center bg-slate-500/20">
-          <Loader2 className="h-6 w-6 animate-spin text-sky-700" />
+          <LucideReact.Loader2 className="h-6 w-6 animate-spin text-sky-700" />
         </div>
       )}
       <div className="flex items-center justify-between font-display">
@@ -96,7 +95,7 @@ export const ChaptersForm = ({ initialData, courseId }: ChaptersFormProps) => {
             <>Cancel</>
           ) : (
             <>
-              <PlusCircle className="mr-2 h-4 w-4" />
+              <LucideReact.PlusCircle className="mr-2 h-4 w-4" />
               Add a chapter
             </>
           )}

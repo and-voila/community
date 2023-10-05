@@ -1,14 +1,13 @@
 'use client';
 
 import MuxPlayer from '@mux/mux-player-react';
-import { LockClosedIcon, ReloadIcon } from '@ui/index';
+import { cn, LockClosedIcon, ReloadIcon } from '@ui/index';
 import axios from 'axios';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 import { toast } from 'react-hot-toast';
 
 import { useConfettiStore } from '@/hooks/use-confetti-store';
-import { cn } from '@/lib/utils';
 
 interface VideoPlayerProps {
   playbackId: string;

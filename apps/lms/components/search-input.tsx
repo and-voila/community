@@ -1,7 +1,7 @@
 'use client';
 
 import { Input } from '@ui/components/ui/input';
-import { Search } from 'lucide-react';
+import { LucideReact } from '@ui/index';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import qs from 'query-string';
 import { useEffect, useState } from 'react';
@@ -35,7 +35,7 @@ export const SearchInput = () => {
 
   return (
     <div className="relative flex items-center pl-4">
-      <Search className="absolute left-6 h-4 w-4 text-muted-foreground" />
+      <LucideReact.Search className="absolute left-6 h-4 w-4 text-muted-foreground" />
       <Input
         onChange={(e) => setValue(e.target.value)}
         value={value}

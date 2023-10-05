@@ -1,7 +1,4 @@
-import { cva, type VariantProps } from 'class-variance-authority';
-import { LucideIcon } from 'lucide-react';
-
-import { cn } from '@/lib/utils';
+import { cn, cva, LucideIcon, VariantProps } from '@ui/index';
 
 const backgroundVariants = cva('rounded-xl flex items-center justify-center', {
   variants: {

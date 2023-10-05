@@ -1,4 +1,4 @@
-import { BookOpen } from 'lucide-react';
+import { LucideReact } from '@ui/index';
 import Image from 'next/image';
 import Link from 'next/link';
 
@@ -41,7 +41,7 @@ export const CourseCard = ({
           <div className="mb-2 flex items-center justify-between text-sm text-muted-foreground">
             <p>{category}</p>
             <div className="flex items-center gap-x-1 text-foreground">
-              <IconBadge size="sm" icon={BookOpen} />
+              <IconBadge size="sm" icon={LucideReact.BookOpen} />
               <span>
                 {chaptersLength} {chaptersLength === 1 ? 'Chapter' : 'Chapters'}
               </span>

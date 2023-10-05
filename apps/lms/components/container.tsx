@@ -1,4 +1,4 @@
-import clsx from 'clsx';
+import { clsx } from '@ui/index';
 import { ElementType, ReactNode } from 'react';
 
 interface ContainerProps {

@@ -2,8 +2,8 @@
 
 import { Course } from '@prisma/client';
 import { Button } from '@ui/components/ui/button';
+import { LucideReact } from '@ui/index';
 import axios from 'axios';
-import { ImageIcon, Pencil, PlusCircle } from 'lucide-react';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
@@ -49,13 +49,13 @@ export const ImageForm = ({ initialData, courseId }: ImageFormProps) => {
           {isEditing && <>Cancel</>}
           {!isEditing && !initialData.imageUrl && (
             <>
-              <PlusCircle className="mr-2 h-4 w-4" />
+              <LucideReact.PlusCircle className="mr-2 h-4 w-4" />
               Add an image
             </>
           )}
           {!isEditing && initialData.imageUrl && (
             <>
-              <Pencil className="mr-2 h-4 w-4" />
+              <LucideReact.Pencil className="mr-2 h-4 w-4" />
               Edit image
             </>
           )}
@@ -64,7 +64,7 @@ export const ImageForm = ({ initialData, courseId }: ImageFormProps) => {
       {!isEditing &&
         (!initialData.imageUrl ? (
           <div className="flex h-60 items-center justify-center rounded-md bg-muted">
-            <ImageIcon className="h-10 w-10 text-brand" />
+            <LucideReact.ImageIcon className="h-10 w-10 text-brand" />
           </div>
         ) : (
           <div className="relative mt-2 aspect-video">

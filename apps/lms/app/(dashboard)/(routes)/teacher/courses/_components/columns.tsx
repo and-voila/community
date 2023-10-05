@@ -10,10 +10,9 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from '@ui/components/ui/dropdown-menu';
-import { ArrowUpDown, MoreHorizontal, Pencil } from 'lucide-react';
+import { cn } from '@ui/index';
+import { LucideReact } from '@ui/index';
 import Link from 'next/link';
-
-import { cn } from '@/lib/utils';
 
 export const columns: ColumnDef<Course>[] = [
   {
@@ -25,7 +24,7 @@ export const columns: ColumnDef<Course>[] = [
           onClick={() => column.toggleSorting(column.getIsSorted() === 'asc')}
         >
           Title
-          <ArrowUpDown className="ml-2 h-4 w-4" />
+          <LucideReact.ArrowUpDown className="ml-2 h-4 w-4" />
         </Button>
       );
     },
@@ -39,7 +38,7 @@ export const columns: ColumnDef<Course>[] = [
           onClick={() => column.toggleSorting(column.getIsSorted() === 'asc')}
         >
           Price
-          <ArrowUpDown className="ml-2 h-4 w-4" />
+          <LucideReact.ArrowUpDown className="ml-2 h-4 w-4" />
         </Button>
       );
     },
@@ -64,7 +63,7 @@ export const columns: ColumnDef<Course>[] = [
           onClick={() => column.toggleSorting(column.getIsSorted() === 'asc')}
         >
           Published
-          <ArrowUpDown className="ml-2 h-4 w-4" />
+          <LucideReact.ArrowUpDown className="ml-2 h-4 w-4" />
         </Button>
       );
     },
@@ -94,13 +93,13 @@ export const columns: ColumnDef<Course>[] = [
           <DropdownMenuTrigger asChild>
             <Button variant="ghost" className="h-4 w-8 p-0">
               <span className="sr-only">Open menu</span>
-              <MoreHorizontal className="h-4 w-4" />
+              <LucideReact.MoreHorizontal className="h-4 w-4" />
             </Button>
           </DropdownMenuTrigger>
           <DropdownMenuContent align="end">
             <Link href={`/teacher/courses/${id}`}>
               <DropdownMenuItem>
-                <Pencil className="mr-2 h-4 w-4" />
+                <LucideReact.Pencil className="mr-2 h-4 w-4" />
                 Edit
               </DropdownMenuItem>
             </Link>

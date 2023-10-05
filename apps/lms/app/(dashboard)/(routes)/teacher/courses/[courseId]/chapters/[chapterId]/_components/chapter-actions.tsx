@@ -1,8 +1,8 @@
 'use client';
 
 import { Button } from '@ui/components/ui/button';
+import { LucideReact } from '@ui/index';
 import axios from 'axios';
-import { Trash } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 import toast from 'react-hot-toast';
@@ -77,7 +77,7 @@ export const ChapterActions = ({
       </Button>
       <ConfirmModal onConfirm={onDelete}>
         <Button size="sm" disabled={isLoading}>
-          <Trash className="h-4 w-4" />
+          <LucideReact.Trash className="h-4 w-4" />
         </Button>
       </ConfirmModal>
     </div>
