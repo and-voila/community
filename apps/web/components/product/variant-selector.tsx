@@ -1,6 +1,6 @@
 'use client';
 
-import clsx from 'clsx';
+import { clsx } from '@ui/index';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 
 import { ProductOption, ProductVariant } from '@/lib/shopify/types';

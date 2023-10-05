@@ -1,7 +1,6 @@
+import { FadeIn, FadeInStagger } from '@ui/index';
+import { GradientHeading } from '@ui/index';
 import { FC, ReactElement } from 'react';
-
-import { FadeIn, FadeInStagger } from '@/components/fade-in';
-import { GradientHeading } from '@/components/gradient-headings';
 
 const stats = [
   { label: 'Commission on first signup', value: '50%' },

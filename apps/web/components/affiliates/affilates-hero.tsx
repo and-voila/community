@@ -1,11 +1,11 @@
+import { cn } from '@ui/index';
+import { FadeIn, FadeInStagger } from '@ui/index';
 import Link from 'next/link';
 import { FC, ReactElement } from 'react';
 import { buttonVariants } from 'ui';
 
 import AffiliatesHeroBackground from '@/components/affiliates/affiliates-hero-background';
-import { FadeIn, FadeInStagger } from '@/components/fade-in';
 import PageIntro from '@/components/page-intro';
-import { cn } from '@/lib/utils';
 
 const AffiliatesHero: FC = (): ReactElement => {
   return (

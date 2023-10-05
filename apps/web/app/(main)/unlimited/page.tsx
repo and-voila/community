@@ -1,6 +1,6 @@
+import { Container } from '@ui/index';
 import { Metadata } from 'next';
 
-import { Container } from '@/components/container';
 import Unlimited from '@/components/unlimited/unlimited';
 import { SITE_URL } from '@/lib/utils';
 

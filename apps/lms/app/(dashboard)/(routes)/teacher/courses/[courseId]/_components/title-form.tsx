@@ -10,8 +10,8 @@ import {
   FormMessage,
 } from '@ui/components/ui/form';
 import { Input } from '@ui/components/ui/input';
+import { LucideReact } from '@ui/index';
 import axios from 'axios';
-import { Pencil } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
@@ -65,7 +65,7 @@ export const TitleForm = ({ initialData, courseId }: TitleFormProps) => {
             <>Cancel</>
           ) : (
             <>
-              <Pencil className="mr-2 h-4 w-4" />
+              <LucideReact.Pencil className="mr-2 h-4 w-4" />
               Edit title
             </>
           )}

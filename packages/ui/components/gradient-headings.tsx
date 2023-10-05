@@ -7,11 +7,12 @@ interface GradientHeadingProps {
 }
 
 const sizeMap = {
-  h1: 'text-3xl sm:text-5xl',
-  h2: 'text-2xl sm:text-4xl',
-  h3: 'text-2xl sm:text-3xl',
-  h4: 'text-xl sm:text-2xl',
-  h5: 'text-lg sm:text-xl',
+  h1: 'text-3xl sm:text-7xl',
+  h2: 'text-2xl sm:text-6xl',
+  h3: 'text-2xl sm:text-5xl',
+  h4: 'text-xl sm:text-4xl',
+  h5: 'text-lg sm:text-3xl',
+  h6: 'text-base sm:text-2xl',
 };
 
 export const GradientHeading: FC<GradientHeadingProps> = ({

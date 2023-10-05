@@ -1,3 +1,5 @@
+import { cn, H4 } from '@ui/index';
+import { FadeIn } from '@ui/index';
 import Link from 'next/link';
 import {
   buttonVariants,
@@ -11,11 +13,8 @@ import {
   RocketIcon,
 } from 'ui';
 
-import { FadeIn } from '@/components/fade-in';
 import Highlighter, { HighlighterItem } from '@/components/highlighter';
 import SectionIntro from '@/components/section-intro';
-import { H4 } from '@/components/typography';
-import { cn } from '@/lib/utils';
 
 type CardData = {
   title: string;

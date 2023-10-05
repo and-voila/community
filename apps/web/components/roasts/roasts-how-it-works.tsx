@@ -1,8 +1,8 @@
+import { FadeIn } from '@ui/index';
 import Image from 'next/image';
 import { FC } from 'react';
 import { BackpackIcon, BarChartIcon, Crosshair1Icon } from 'ui';
 
-import { FadeIn } from '@/components/fade-in';
 import SectionIntro from '@/components/section-intro';
 
 interface Item {

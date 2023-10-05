@@ -2,8 +2,8 @@
 
 import { Attachment, Course } from '@prisma/client';
 import { Button } from '@ui/components/ui/button';
+import { LucideReact } from '@ui/index';
 import axios from 'axios';
-import { File, Loader2, PlusCircle, X } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 import toast from 'react-hot-toast';
@@ -63,7 +63,7 @@ export const AttachmentForm = ({
           {isEditing && <>Cancel</>}
           {!isEditing && (
             <>
-              <PlusCircle className="mr-2 h-4 w-4" />
+              <LucideReact.PlusCircle className="mr-2 h-4 w-4" />
               Add a file
             </>
           )}
@@ -83,11 +83,11 @@ export const AttachmentForm = ({
                   key={attachment.id}
                   className="flex w-full items-center rounded-md border bg-white p-3 text-foreground dark:bg-background"
                 >
-                  <File className="mr-2 h-4 w-4 flex-shrink-0" />
+                  <LucideReact.File className="mr-2 h-4 w-4 flex-shrink-0" />
                   <p className="line-clamp-1 text-xs">{attachment.name}</p>
                   {deletingId === attachment.id && (
                     <div>
-                      <Loader2 className="h-4 w-4 animate-spin" />
+                      <LucideReact.Loader2 className="h-4 w-4 animate-spin" />
                     </div>
                   )}
                   {deletingId !== attachment.id && (
@@ -95,7 +95,7 @@ export const AttachmentForm = ({
                       onClick={() => onDelete(attachment.id)}
                       className="ml-auto transition hover:opacity-75"
                     >
-                      <X className="h-4 w-4" />
+                      <LucideReact.X className="h-4 w-4" />
                     </button>
                   )}
                 </div>

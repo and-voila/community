@@ -1,3 +1,5 @@
+import { FadeIn, FadeInStagger } from '@ui/index';
+import { GradientHeading } from '@ui/index';
 import { FC, ReactElement } from 'react';
 import {
   BarChartIcon,
@@ -7,9 +9,6 @@ import {
   RulerSquareIcon,
   SunIcon,
 } from 'ui';
-
-import { FadeIn, FadeInStagger } from '@/components/fade-in';
-import { GradientHeading } from '@/components/gradient-headings';
 
 const benefits = [
   {

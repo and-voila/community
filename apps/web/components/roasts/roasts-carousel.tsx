@@ -3,6 +3,7 @@
 
 import 'swiper/css';
 
+import { FadeIn } from '@ui/index';
 import Link from 'next/link';
 import React, { useEffect, useState } from 'react';
 import Swiper from 'swiper';
@@ -26,7 +27,6 @@ import {
   LinkBreak1Icon,
 } from 'ui';
 
-import { FadeIn } from '@/components/fade-in';
 import Highlighter, { HighlighterItem } from '@/components/highlighter';
 import Particles from '@/components/particles';
 import SectionIntro from '@/components/section-intro';

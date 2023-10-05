@@ -1,4 +1,4 @@
-import clsx from 'clsx';
+import { clsx } from '@ui/index';
 
 const BetterHomesLogo = (props: React.ComponentProps<'svg'>) => {
   return (

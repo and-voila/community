@@ -1,9 +1,9 @@
+import { Container } from '@ui/index';
+import { FadeIn } from '@ui/index';
+import { GradientHeading } from '@ui/index';
 import { allPosts } from 'contentlayer/generated';
 import { Metadata } from 'next';
 
-import { Container } from '@/components/container';
-import { FadeIn } from '@/components/fade-in';
-import { GradientHeading } from '@/components/gradient-headings';
 import { Mdx } from '@/components/mdx-components';
 import { formatDate, SITE_URL } from '@/lib/utils';
 

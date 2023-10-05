@@ -4,9 +4,9 @@ import { compareDesc } from 'date-fns';
 import { Metadata } from 'next';
 import Link from 'next/link';
 
-import { FadeIn, FadeInStagger } from '@/components/fade-in';
-import { GradientHeading } from '@/components/gradient-headings';
+import { GradientHeading } from '@ui/index';
 import { SITE_URL, formatDate } from '@/lib/utils';
+import { FadeIn, FadeInStagger } from '@ui/index';
 
 export const runtime = 'edge';
 

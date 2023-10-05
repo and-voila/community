@@ -10,8 +10,9 @@ import {
   FormItem,
   FormMessage,
 } from '@ui/components/ui/form';
+import { cn } from '@ui/index';
+import { LucideReact } from '@ui/index';
 import axios from 'axios';
-import { Pencil } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
@@ -20,7 +21,6 @@ import * as z from 'zod';
 
 import { Editor } from '@/components/editor';
 import { Preview } from '@/components/preview';
-import { cn } from '@/lib/utils';
 
 interface ChapterDescriptionFormProps {
   initialData: Chapter;
@@ -75,7 +75,7 @@ export const ChapterDescriptionForm = ({
             <>Cancel</>
           ) : (
             <>
-              <Pencil className="mr-2 h-4 w-4" />
+              <LucideReact.Pencil className="mr-2 h-4 w-4" />
               Edit description
             </>
           )}

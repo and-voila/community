@@ -24,18 +24,6 @@ module.exports = {
         sans: ['var(--font-mona-sans)', ...defaultTheme.fontFamily.sans],
         display: ['var(--font-cal-sans)', ...defaultTheme.fontFamily.sans],
       },
-      fontSize: {
-        xs: ['0.75rem'],
-        sm: ['0.875rem'],
-        base: ['1rem', { letterSpacing: '-0.017em' }],
-        lg: ['1.333rem', { letterSpacing: '-0.017em' }],
-        xl: ['1.777rem', { letterSpacing: '-0.017em' }],
-        '2xl': ['2.369rem'],
-        '3xl': ['3.157rem'],
-        '4xl': ['4.209rem'],
-        '5xl': ['5.61rem'],
-        '6xl': ['7.478rem'],
-      },
       transitionTimingFunction: {
         'custom-ease': 'cubic-bezier(0.68, -0.3, 0.32, 1)',
       },

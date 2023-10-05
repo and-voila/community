@@ -1,4 +1,4 @@
-import clsx from 'clsx';
+import { clsx } from '@ui/index';
 import Image from 'next/image';
 
 import Label from '@/components/label';

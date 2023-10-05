@@ -3,8 +3,8 @@
 import MuxPlayer from '@mux/mux-player-react';
 import { Chapter, MuxData } from '@prisma/client';
 import { Button } from '@ui/components/ui/button';
+import { LucideReact } from '@ui/index';
 import axios from 'axios';
-import { Pencil, PlusCircle, Video } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 import toast from 'react-hot-toast';
@@ -55,13 +55,13 @@ export const ChapterVideoForm = ({
           {isEditing && <>Cancel</>}
           {!isEditing && !initialData.videoUrl && (
             <>
-              <PlusCircle className="mr-2 h-4 w-4" />
+              <LucideReact.PlusCircle className="mr-2 h-4 w-4" />
               Add a video
             </>
           )}
           {!isEditing && initialData.videoUrl && (
             <>
-              <Pencil className="mr-2 h-4 w-4" />
+              <LucideReact.Pencil className="mr-2 h-4 w-4" />
               Edit video
             </>
           )}
@@ -70,7 +70,7 @@ export const ChapterVideoForm = ({
       {!isEditing &&
         (!initialData.videoUrl ? (
           <div className="flex h-60 items-center justify-center rounded-md bg-slate-200">
-            <Video className="h-10 w-10 text-slate-500" />
+            <LucideReact.Video className="h-10 w-10 text-slate-500" />
           </div>
         ) : (
           <div className="relative mt-2 aspect-video">

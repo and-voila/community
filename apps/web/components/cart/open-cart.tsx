@@ -1,4 +1,4 @@
-import clsx from 'clsx';
+import { clsx } from '@ui/index';
 import { BackpackIcon } from 'ui';
 
 export default function OpenCart({

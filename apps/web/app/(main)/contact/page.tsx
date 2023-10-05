@@ -1,7 +1,7 @@
+import { Container } from '@ui/index';
 import { Metadata } from 'next';
 
 import ContactDetails from '@/components/contact/contact-details';
-import { Container } from '@/components/container';
 import { SITE_URL } from '@/lib/utils';
 
 export function generateMetadata(): Metadata {

@@ -1,12 +1,12 @@
+import { cn } from '@ui/index';
+import { FadeIn } from '@ui/index';
+import { GradientHeading } from '@ui/index';
 import Image from 'next/image';
 import Link from 'next/link';
 import { buttonVariants } from 'ui';
 
-import { FadeIn } from '@/components/fade-in';
-import { GradientHeading } from '@/components/gradient-headings';
 import Highlighter, { HighlighterItem } from '@/components/highlighter';
 import SectionIntro from '@/components/section-intro';
-import { cn } from '@/lib/utils';
 import ChartImg from '@/public/images/roasts/chart.png';
 import GrillImg from '@/public/images/roasts/grill.png';
 import TeamImg from '@/public/images/roasts/team-brilla.png';

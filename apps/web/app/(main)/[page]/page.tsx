@@ -1,9 +1,9 @@
-import Prose from 'components/prose';
+import Prose from '@ui/components/prose';
+import { GradientHeading } from '@ui/index';
 import { getPage } from 'lib/shopify';
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 
-import { GradientHeading } from '@/components/gradient-headings';
 import { SITE_URL } from '@/lib/utils';
 
 export const runtime = 'edge';

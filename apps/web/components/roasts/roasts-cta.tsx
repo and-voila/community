@@ -1,12 +1,12 @@
 'use client';
 
+import { cn } from '@ui/index';
+import { FadeIn } from '@ui/index';
+import { GradientHeading } from '@ui/index';
 import Link from 'next/link';
 import { buttonVariants } from 'ui';
 
-import { FadeIn } from '@/components/fade-in';
-import { GradientHeading } from '@/components/gradient-headings';
 import Highlighter, { HighlighterItem } from '@/components/highlighter';
-import { cn } from '@/lib/utils';
 
 export default function LandingCta() {
   return (

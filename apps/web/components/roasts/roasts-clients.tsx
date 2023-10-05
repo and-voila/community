@@ -1,4 +1,5 @@
-import { FadeIn, FadeInStagger } from '@/components/fade-in';
+import { FadeIn, FadeInStagger } from '@ui/index';
+
 import Highlighter, { HighlighterItem } from '@/components/highlighter';
 import AdobeLogo from '@/components/roasts/clients/adobe-logo';
 import AirbnbLogo from '@/components/roasts/clients/airbnb-logo';

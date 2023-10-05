@@ -1,6 +1,6 @@
 'use client';
 
-import clsx from 'clsx';
+import { clsx } from '@ui/index';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { useTransition } from 'react';
 import { PlusIcon } from 'ui';

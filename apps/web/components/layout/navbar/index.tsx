@@ -1,12 +1,11 @@
 import Link from 'next/link';
 import { Suspense } from 'react';
-import { DiscordLogoIcon } from 'ui';
+import { DiscordLogoIcon, Logo, Logomark } from 'ui';
 
 import Cart from '@/components/cart';
 import OpenCart from '@/components/cart/open-cart';
 import MobileMenu from '@/components/layout/navbar/mobile-menu';
 import Search from '@/components/layout/navbar/search';
-import { Logo, Logomark } from '@/components/logo-square';
 import { getMenu } from '@/lib/shopify';
 import { Menu } from '@/lib/shopify/types';
 

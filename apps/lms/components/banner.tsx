@@ -1,7 +1,4 @@
-import { cva, type VariantProps } from 'class-variance-authority';
-import { AlertTriangle, CheckCircleIcon } from 'lucide-react';
-
-import { cn } from '@/lib/utils';
+import { cn, cva, LucideReact, VariantProps } from '@ui/index';
 
 const bannerVariants = cva(
   'border text-center p-4 text-sm flex items-center w-full',
@@ -23,8 +20,8 @@ interface BannerProps extends VariantProps<typeof bannerVariants> {
 }
 
 const iconMap = {
-  warning: AlertTriangle,
-  success: CheckCircleIcon,
+  warning: LucideReact.AlertTriangle,
+  success: LucideReact.CheckCircleIcon,
 };
 
 export const Banner = ({ label, variant }: BannerProps) => {

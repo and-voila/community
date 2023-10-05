@@ -1,3 +1,5 @@
+import FaqComponent from '@ui/components/faq';
+import { Container } from '@ui/index';
 import { Metadata } from 'next';
 
 import Community from '@/components/community/community';
@@ -9,8 +11,6 @@ import CommunityLargeCta from '@/components/community/community-large-cta';
 import CommunityProblems from '@/components/community/community-problems';
 import CommunitySummary from '@/components/community/community-summary';
 import CommunityTeam from '@/components/community/community-team';
-import { Container } from '@/components/container';
-import FaqComponent from '@/components/faq';
 import { SITE_URL } from '@/lib/utils';
 
 export function generateMetadata(): Metadata {

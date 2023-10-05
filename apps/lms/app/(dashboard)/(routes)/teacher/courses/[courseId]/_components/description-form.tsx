@@ -12,15 +12,14 @@ import {
   FormMessage,
 } from '@ui/components/ui/form';
 import { Textarea } from '@ui/components/ui/textarea';
+import { cn } from '@ui/index';
+import { LucideReact } from '@ui/index';
 import axios from 'axios';
-import { Pencil } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
 import * as z from 'zod';
-
-import { cn } from '@/lib/utils';
 
 interface DescriptionFormProps {
   initialData: Course;
@@ -72,7 +71,7 @@ export const DescriptionForm = ({
             <>Cancel</>
           ) : (
             <>
-              <Pencil className="mr-2 h-4 w-4" />
+              <LucideReact.Pencil className="mr-2 h-4 w-4" />
               Edit description
             </>
           )}

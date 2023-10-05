@@ -1,3 +1,6 @@
+import FaqComponent from '@ui/components/faq';
+import { cn } from '@ui/index';
+import { FadeIn, FadeInStagger } from '@ui/index';
 import Link from 'next/link';
 import {
   buttonVariants,
@@ -8,11 +11,8 @@ import {
   Cross2Icon,
 } from 'ui';
 
-import { FadeIn, FadeInStagger } from '@/components/fade-in';
-import FaqComponent from '@/components/faq';
 import PageIntro from '@/components/page-intro';
 import { unlimitedFaqs } from '@/components/unlimited/unlimited-faq-data';
-import { cn } from '@/lib/utils';
 
 interface Tier {
   name: string;

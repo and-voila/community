@@ -4,12 +4,12 @@ import {
   DiscordLogoIcon,
   GitHubLogoIcon,
   LinkedInLogoIcon,
+  Logo,
+  Logomark,
+  ModeToggle,
   NotionLogoIcon,
   PlayIcon,
 } from 'ui';
-
-import { Logo, Logomark } from '@/components/logo-square';
-import { ModeToggle } from '@/components/mode-toggle';
 
 const { COMPANY_NAME, SITE_NAME } = process.env;
 

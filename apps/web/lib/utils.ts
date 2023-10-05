@@ -1,7 +1,5 @@
 // eslint-disable-next-line simple-import-sort/imports
-import { clsx, type ClassValue } from 'clsx';
 import { ReadonlyURLSearchParams } from 'next/navigation';
-import { twMerge } from 'tailwind-merge';
 
 export const createUrl = (
   pathname: string,
@@ -17,10 +15,6 @@ export const ensureStartsWith = (stringToCheck: string, startsWith: string) =>
   stringToCheck.startsWith(startsWith)
     ? stringToCheck
     : `${startsWith}${stringToCheck}`;
-
-export function cn(...inputs: ClassValue[]) {
-  return twMerge(clsx(inputs));
-}
 
 export function formatDate(input: string | number): string {
   const date = new Date(input);

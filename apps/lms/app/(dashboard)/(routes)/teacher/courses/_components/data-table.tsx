@@ -21,7 +21,7 @@ import {
   TableHeader,
   TableRow,
 } from '@ui/components/ui/table';
-import { PlusCircle } from 'lucide-react';
+import { LucideReact } from '@ui/index';
 import Link from 'next/link';
 import * as React from 'react';
 
@@ -67,7 +67,7 @@ export function DataTable<TData, TValue>({
         />
         <Link href="/teacher/create">
           <Button variant="custom">
-            <PlusCircle className="mr-2 h-4 w-4" />
+            <LucideReact.PlusCircle className="mr-2 h-4 w-4" />
             New course
           </Button>
         </Link>

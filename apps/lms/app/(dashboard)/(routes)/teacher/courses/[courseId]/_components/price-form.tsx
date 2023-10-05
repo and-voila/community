@@ -11,8 +11,9 @@ import {
   FormMessage,
 } from '@ui/components/ui/form';
 import { Input } from '@ui/components/ui/input';
+import { cn } from '@ui/index';
+import { LucideReact } from '@ui/index';
 import axios from 'axios';
-import { Pencil } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
@@ -20,7 +21,6 @@ import toast from 'react-hot-toast';
 import * as z from 'zod';
 
 import { formatPrice } from '@/lib/format';
-import { cn } from '@/lib/utils';
 
 interface PriceFormProps {
   initialData: Course;
@@ -67,7 +67,7 @@ export const PriceForm = ({ initialData, courseId }: PriceFormProps) => {
             <>Cancel</>
           ) : (
             <>
-              <Pencil className="mr-2 h-4 w-4" />
+              <LucideReact.Pencil className="mr-2 h-4 w-4" />
               Edit price
             </>
           )}

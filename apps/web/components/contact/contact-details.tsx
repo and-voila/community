@@ -1,3 +1,4 @@
+import { FadeIn, FadeInStagger, H4 } from '@ui/index';
 import Link from 'next/link';
 import {
   ArrowRightIcon,
@@ -7,9 +8,7 @@ import {
   QuestionMarkCircledIcon,
 } from 'ui';
 
-import { FadeIn, FadeInStagger } from '@/components/fade-in';
 import PageIntro from '@/components/page-intro';
-import { H4 } from '@/components/typography';
 
 interface ContentProps {
   icon: (props: { className?: string }) => JSX.Element;

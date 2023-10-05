@@ -1,10 +1,7 @@
 'use client';
 
-import { LockClosedIcon, PlayIcon } from '@ui/index';
-import { CheckCircleIcon } from 'lucide-react';
+import { cn, LucideReact, PlayIcon } from '@ui/index';
 import { usePathname, useRouter } from 'next/navigation';
-
-import { cn } from '@/lib/utils';
 
 interface CourseSidebarItemProps {
   label: string;
@@ -25,9 +22,9 @@ export const CourseSidebarItem = ({
   const router = useRouter();
 
   const Icon = isLocked
-    ? LockClosedIcon
+    ? LucideReact.Lock
     : isCompleted
-    ? CheckCircleIcon
+    ? LucideReact.CheckCircleIcon
     : PlayIcon;
   const isActive = pathname?.includes(id);
 

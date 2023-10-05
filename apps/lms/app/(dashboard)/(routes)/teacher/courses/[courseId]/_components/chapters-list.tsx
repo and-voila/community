@@ -8,10 +8,9 @@ import {
 } from '@hello-pangea/dnd';
 import { Chapter } from '@prisma/client';
 import { Badge } from '@ui/components/ui/badge';
-import { Grip, Pencil } from 'lucide-react';
+import { cn } from '@ui/index';
+import { LucideReact } from '@ui/index';
 import { useEffect, useState } from 'react';
-
-import { cn } from '@/lib/utils';
 
 interface ChaptersListProps {
   items: Chapter[];
@@ -90,7 +89,7 @@ export const ChaptersList = ({
                       )}
                       {...provided.dragHandleProps}
                     >
-                      <Grip className="h-5 w-5" />
+                      <LucideReact.Grip className="h-5 w-5" />
                     </div>
                     {chapter.title}
                     <div className="ml-auto flex items-center gap-x-2 pr-2">
@@ -108,7 +107,7 @@ export const ChaptersList = ({
                       >
                         {chapter.isPublished ? 'Published' : 'Draft'}
                       </Badge>
-                      <Pencil
+                      <LucideReact.Pencil
                         onClick={() => onEdit(chapter.id)}
                         className="ml-2 h-4 w-4 cursor-pointer transition hover:opacity-75"
                       />
