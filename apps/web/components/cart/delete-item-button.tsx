@@ -1,4 +1,4 @@
-import clsx from 'clsx';
+import { clsx } from '@ui/index';
 import { useRouter } from 'next/navigation';
 import { useTransition } from 'react';
 import { Cross2Icon } from 'ui';

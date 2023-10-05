@@ -1,4 +1,4 @@
-import clsx from 'clsx';
+import { clsx } from '@ui/index';
 
 const CanvaLogo = (props: React.ComponentProps<'svg'>) => {
   return (

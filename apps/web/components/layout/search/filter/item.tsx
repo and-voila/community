@@ -1,6 +1,6 @@
 'use client';
 
-import clsx from 'clsx';
+import { clsx } from '@ui/index';
 import Link from 'next/link';
 import { usePathname, useSearchParams } from 'next/navigation';
 

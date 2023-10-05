@@ -1,4 +1,4 @@
-import clsx from 'clsx';
+import { clsx } from '@ui/index';
 
 const dots = 'mx-[1px] inline-block h-1 w-1 animate-blink rounded-md';
 

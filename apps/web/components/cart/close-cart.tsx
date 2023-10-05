@@ -1,4 +1,4 @@
-import clsx from 'clsx';
+import { clsx } from '@ui/index';
 import { Cross1Icon } from 'ui';
 
 export default function CloseCart({ className }: { className?: string }) {

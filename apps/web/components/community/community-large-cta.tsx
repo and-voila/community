@@ -1,11 +1,10 @@
+import { cn } from '@ui/index';
+import { FadeIn } from '@ui/index';
+import { GradientHeading } from '@ui/index';
 import Image from 'next/image';
 import Link from 'next/link';
 import { FC } from 'react';
 import { buttonVariants, MagicWandIcon } from 'ui';
-
-import { FadeIn } from '@/components/fade-in';
-import { GradientHeading } from '@/components/gradient-headings';
-import { cn } from '@/lib/utils';
 
 const CommunityLargeCta: FC = () => {
   return (

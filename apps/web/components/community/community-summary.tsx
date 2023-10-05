@@ -1,8 +1,8 @@
+import { FadeIn, FadeInStagger } from '@ui/index';
 import Image from 'next/image';
 import { FC } from 'react';
 import { HeartIcon } from 'ui';
 
-import { FadeIn, FadeInStagger } from '@/components/fade-in';
 import SectionIntro from '@/components/section-intro';
 
 type Feature = {

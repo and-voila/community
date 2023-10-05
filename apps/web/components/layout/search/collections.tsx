@@ -1,4 +1,4 @@
-import clsx from 'clsx';
+import { clsx } from '@ui/index';
 import { Suspense } from 'react';
 
 import FilterList from '@/components/layout/search/filter/index';

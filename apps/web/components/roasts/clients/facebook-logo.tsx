@@ -1,4 +1,4 @@
-import clsx from 'clsx';
+import { clsx } from '@ui/index';
 
 const FacebookLogo = (props: React.ComponentProps<'svg'>) => {
   return (

@@ -1,10 +1,9 @@
+import { cn, H5 } from '@ui/index';
+import { FadeIn } from '@ui/index';
 import Link from 'next/link';
 import { buttonVariants, CheckIcon } from 'ui';
 
-import { FadeIn } from '@/components/fade-in';
 import Highlighter, { HighlighterItem } from '@/components/highlighter';
-import { H5 } from '@/components/typography';
-import { cn } from '@/lib/utils';
 
 const includedFeatures = [
   'Shape the community',

@@ -15,10 +15,12 @@
     "resolveJsonModule": true,
     "strict": false,
     "target": "es5",
+    "baseUrl": ".",
     "paths": {
       "@/*": ["./*"],
+      "@public/*": ["public/*"],
       "@ui/*": ["../../packages/ui/*"],
-      "@ui/components/*": ["../../packages/ui/components/ui/*"],
+      "@ui/components/*": ["../../packages/ui/components/*"],
       "@ui/components/ui/*": ["../../packages/ui/components/ui/*"],
       "contentlayer/generated": ["../../apps/web/.contentlayer/generated"]
     }

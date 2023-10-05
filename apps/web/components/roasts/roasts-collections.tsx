@@ -1,7 +1,7 @@
+import { FadeIn } from '@ui/index';
 import Image from 'next/image';
 import Link from 'next/link';
 
-import { FadeIn } from '@/components/fade-in';
 import SectionIntro from '@/components/section-intro';
 import { getCollections } from '@/lib/shopify';
 

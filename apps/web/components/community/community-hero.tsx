@@ -1,11 +1,11 @@
+import { cn } from '@ui/index';
+import { FadeIn } from '@ui/index';
 import Image from 'next/image';
 import Link from 'next/link';
 import { FC } from 'react';
 import { buttonVariants, MagicWandIcon } from 'ui';
 
-import { FadeIn } from '@/components/fade-in';
 import SectionIntro from '@/components/section-intro';
-import { cn } from '@/lib/utils';
 
 const CommunityHero: FC = () => {
   return (

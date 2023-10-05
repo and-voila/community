@@ -1,6 +1,6 @@
+import { Container } from '@ui/index';
 import { Metadata } from 'next';
 
-import { Container } from '@/components/container';
 import LandingCarousel from '@/components/roasts/roasts-carousel';
 import LandingClients from '@/components/roasts/roasts-clients';
 import Collections from '@/components/roasts/roasts-collections';

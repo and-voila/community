@@ -1,8 +1,9 @@
+import Prose from '@ui/components/prose';
+import { GradientHeading } from '@ui/index';
+
 import { AddToCart } from '@/components/cart/add-to-cart';
-import { GradientHeading } from '@/components/gradient-headings';
 import Price from '@/components/price';
 import { VariantSelector } from '@/components/product/variant-selector';
-import Prose from '@/components/prose';
 import { Product } from '@/lib/shopify/types';
 
 export function ProductDescription({ product }: { product: Product }) {

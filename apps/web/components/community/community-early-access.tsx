@@ -1,7 +1,7 @@
+import { FadeIn, FadeInStagger } from '@ui/index';
 import { FC } from 'react';
 import { PlusIcon } from 'ui';
 
-import { FadeIn, FadeInStagger } from '@/components/fade-in';
 import SectionIntro from '@/components/section-intro';
 
 interface Feature {

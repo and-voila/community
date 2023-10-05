@@ -1,4 +1,4 @@
-import clsx from 'clsx';
+import { clsx } from '@ui/index';
 
 function Grid(props: React.ComponentProps<'ul'>) {
   return (
