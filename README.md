@@ -1,109 +1,89 @@
-# Turborepo starter with shadcn/ui#
+# And Voila Community TurboRepo Starter with Shadcn/UI
 
-![Static Badge](https://img.shields.io/badge/shadcn%2Fui-latest-blue?link=https%3A%2F%2Fgithub.com%2Fshadcn%2Fui)
+This project is a TurboRepo monorepo that uses Next.js, TypeScript, and other technologies to build a web application. It's organized into several packages and applications, each with its own responsibilities. This README is a stub after realizing that cursor.so could probably help with this too. Not a bad start.
 
-This is Turborepo starter with shadcn/ui pre-configured.
+## Environment Details
 
-> **Note**
-> This example uses `pnpm` as package manager.
+- NextJS Version: 13.x.x
+- Router Type: App Router
+- Package Manager: PNPM
+- Repo Manager: Turbo Repo
+- Database ORM: Prisma
+- Database: Planetscale
+- Auth: Clerk Auth
+- CSS Framework: Tailwind CSS
+- UI Library: Shadcn
+- Language: TypeScript
 
-[npm version](https://github.com/dan5py/turborepo-shadcn-ui/tree/npm)
+## Project Structure
 
-## Using this example
+The project is organized into several packages and applications:
 
-Clone the repository:
+- `web`: A Next.js application that serves as the main web interface.
+- `lms`: Another Next.js application that serves as the Learning Management System.
+- `ui`: A shared React component library used by both `web` and `lms` applications.
+- `eslint-config-custom`: Contains custom ESLint configurations.
+- `tsconfig`: Contains TypeScript configurations used throughout the monorepo.
+
+All packages and applications are written in TypeScript.
+
+## Getting Started
+
+To get started with the project, clone the repository and install the dependencies using PNPM:
 
 ```sh
-git clone https://github.com/dan5py/turborepo-shadcn-ui.git
-```
-
-Install dependencies:
-
-```sh
-cd turborepo-shadcn-ui
+git clone https://github.com/and-voila/community.git
+cd community
 pnpm install
 ```
 
-### Add ui components
-
-Use the pre-made script:
+To add UI components, use the pre-made script:
 
 ```sh
 pnpm ui:add <component-name>
 ```
 
-> This works just like the add command in the `shadcn/ui` CLI.
-
-## What's inside?
-
-This Turborepo includes the following packages/apps:
-
-### Apps and Packages
-
-- `docs`: a [Next.js](https://nextjs.org/) app
-- `web`: another [Next.js](https://nextjs.org/) app
-- `ui`: a stub React component library shared by both `web` and `docs` applications (🚀 powered by **shadcn/ui**)
-- `eslint-config-custom`: `eslint` configurations (includes `eslint-config-next` and `eslint-config-prettier`)
-- `tsconfig`: `tsconfig.json`s used throughout the monorepo
-
-Each package/app is 100% [TypeScript](https://www.typescriptlang.org/).
-
-### Utilities
-
-This Turborepo has some additional tools already setup for you:
-
-- [TypeScript](https://www.typescriptlang.org/) for static type checking
-- [ESLint](https://eslint.org/) for code linting
-- [Prettier](https://prettier.io) for code formatting
-
-### Build
-
-To build all apps and packages, run the following command:
+To build all apps and packages, run:
 
 ```sh
-cd turborepo-shadcn-ui
+cd community
 pnpm build
 ```
 
-### Develop
-
-To develop all apps and packages, run the following command:
+To develop all apps and packages, run:
 
 ```sh
-cd turborepo-shadcn-ui
+cd community
 pnpm dev
 ```
 
-### Remote Caching
+## TurboRepo
 
-Turborepo can use a technique known as [Remote Caching](https://turbo.build/repo/docs/core-concepts/remote-caching) to share cache artifacts across machines, enabling you to share build caches with your team and CI/CD pipelines.
+TurboRepo is used to manage the monorepo. It provides features like task running, caching, and remote caching. To enable remote caching, you need to authenticate with your Vercel account:
 
-By default, Turborepo will cache locally. To enable Remote Caching you will need an account with Vercel. If you don't have an account you can [create one](https://vercel.com/signup), then enter the following commands:
-
-```
-cd turborepo-shadcn-ui
+```sh
+cd community
 npx turbo login
 ```
 
-This will authenticate the Turborepo CLI with your [Vercel account](https://vercel.com/docs/concepts/personal-accounts/overview).
-
-Next, you can link your Turborepo to your Remote Cache by running the following command from the root of your Turborepo:
+Then, link your TurboRepo to your Remote Cache:
 
 ```sh
 npx turbo link
 ```
 
-## Useful Links
+## Dependabot
 
-Learn more about the power of Turborepo:
+Dependabot is configured to check for updates in the npm package ecosystem on a weekly basis.
 
-- [Tasks](https://turbo.build/repo/docs/core-concepts/monorepos/running-tasks)
-- [Caching](https://turbo.build/repo/docs/core-concepts/caching)
-- [Remote Caching](https://turbo.build/repo/docs/core-concepts/remote-caching)
-- [Filtering](https://turbo.build/repo/docs/core-concepts/monorepos/filtering)
-- [Configuration Options](https://turbo.build/repo/docs/reference/configuration)
-- [CLI Usage](https://turbo.build/repo/docs/reference/command-line-reference)
+## Code Quality
 
-Learn more about shadcn/ui:
+The project uses ESLint for code linting and Prettier for code formatting. The configurations for these tools are located in the `eslint-config-custom` package.
 
-- [Documentation](https://ui.shadcn.com/docs)
+## UI Library
+
+The `ui` package contains a shared React component library powered by Shadcn/UI. It exports various components and utilities that can be used in the `web` and `lms` applications.
+
+## Shoutouts
+
+We'd like to thank **[Daniele Luisetto @dan5py](https://github.com/dan5py)** for making our life so much easier with their OSS contributions including where we cloned this Turborepo from, their project **[turborepo-shadcn-ui](https://github.com/dan5py/turborepo-shadcn-ui)**.
