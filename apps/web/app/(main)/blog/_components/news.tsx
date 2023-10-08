@@ -1,5 +1,6 @@
-import { allPosts } from "contentlayer/generated";
-import PostItem from "./post-item";
+import { allPosts } from 'contentlayer/generated';
+
+import PostItem from './post-item';
 
 export default function News() {
   // Sort posts by date
@@ -11,18 +12,16 @@ export default function News() {
 
   return (
     <section>
-      <div className="max-w-6xl mx-auto px-4 sm:px-6">
-        <div className="py-12 md:py-20 border-t border-gray-800">
+      <div className="mx-auto max-w-6xl px-4 sm:px-6">
+        <div className="border-t border-brand py-12 md:py-20">
           {/* Section header */}
-          <div className="max-w-3xl mx-auto text-center pb-12 md:pb-20">
-            <h2 className="h2" data-aos="fade-up">
-              Refreshing news for developers and designers
-            </h2>
+          <div className="mx-auto max-w-3xl pb-12 text-center md:pb-20">
+            <h2 className="h2">Refreshing news for developers and designers</h2>
           </div>
 
           {/* Articles list */}
-          <div className="max-w-sm mx-auto md:max-w-none">
-            <div className="grid gap-12 md:grid-cols-3 md:gap-x-6 md:gap-y-8 items-start">
+          <div className="mx-auto max-w-sm md:max-w-none">
+            <div className="grid items-start gap-12 md:grid-cols-3 md:gap-x-6 md:gap-y-8">
               {posts.map((post, postIndex) => (
                 <PostItem key={postIndex} {...post} />
               ))}

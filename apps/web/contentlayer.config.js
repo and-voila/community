@@ -31,8 +31,10 @@ const Post = defineDocumentType(() => ({
     },
     image: {
       type: 'string',
+      required: true,
     },
   },
+  disableImportAliasWarning: true,
   computedFields: {
     slug: {
       type: 'string',

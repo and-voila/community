@@ -24,7 +24,7 @@ export const GradientHeading: FC<GradientHeadingProps> = ({
 
   return (
     <HeadingTag
-      className={`my-2 bg-gradient-to-r from-foreground via-muted-foreground to-foreground bg-clip-text font-display text-transparent dark:bg-gradient-to-r dark:from-muted-foreground dark:via-foreground dark:to-muted-foreground md:leading-snug ${sizeMap[level]}`}
+      className={`my-2 bg-gradient-to-r from-foreground via-muted-foreground to-foreground bg-clip-text font-display leading-snug text-transparent dark:bg-gradient-to-r dark:from-muted-foreground dark:via-foreground dark:to-muted-foreground ${sizeMap[level]}`}
     >
       {children}
     </HeadingTag>
