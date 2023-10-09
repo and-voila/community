@@ -15,7 +15,7 @@ import { SITE_URL } from '@/lib/utils';
 
 import { Author } from '../_components/author';
 import { PostMdx } from '../_components/mdx/post-mdx';
-import RelatedPosts02 from '../_components/related-posts';
+import RelatedPosts from '../_components/related-posts';
 
 export async function generateStaticParams() {
   return allPosts.map((post) => ({
@@ -138,7 +138,7 @@ export default async function SinglePost({
         </section>
       </Container>
 
-      <RelatedPosts02 />
+      <RelatedPosts />
     </>
   );
 }

@@ -31,7 +31,6 @@ const Article = ({ post, color }) => (
 );
 
 export default function RelatedPosts() {
-  // Fetch the 2 most recent posts excluding the current
   const posts = allPosts.slice(0, 2);
 
   return (
