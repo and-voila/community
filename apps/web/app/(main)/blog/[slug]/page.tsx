@@ -5,7 +5,7 @@ import { notFound } from 'next/navigation';
 
 import { PostMdx } from '../_components/mdx/post-mdx';
 import PostDate from '../_components/post-date';
-import RelatedPosts02 from '../_components/related-posts-02';
+import RelatedPosts02 from '../_components/related-posts';
 
 export async function generateStaticParams() {
   return allPosts.map((post) => ({

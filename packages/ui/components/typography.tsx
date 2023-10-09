@@ -1,7 +1,7 @@
 import { clsx } from 'clsx';
 import { ElementType, ReactNode } from 'react';
 
-const commonClasses = 'font-display leading-snug';
+const commonClasses = 'font-display lg:leading-tight';
 
 interface TypographyProps {
   children: ReactNode;
