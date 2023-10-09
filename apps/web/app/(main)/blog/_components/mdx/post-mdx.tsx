@@ -16,7 +16,7 @@ export function PostMdx({ code }: PostMdxProps) {
   const Component = useMDXComponent(code);
 
   return (
-    <article className="prose prose-lg prose-invert max-w-none text-muted-foreground prose-headings:text-foreground prose-p:leading-normal prose-a:font-normal prose-a:text-brand prose-a:underline hover:prose-a:no-underline prose-blockquote:border-l-2 prose-blockquote:border-brand prose-blockquote:pl-4 prose-blockquote:font-normal prose-blockquote:italic prose-blockquote:text-muted-foreground prose-strong:font-medium prose-strong:text-foreground">
+    <article className="prose prose-lg prose-invert mx-auto text-muted-foreground prose-headings:text-foreground prose-h2:text-5xl prose-h3:text-4xl prose-h4:text-3xl prose-h5:text-2xl prose-h6:text-xl prose-p:leading-relaxed prose-a:font-bold prose-a:text-brand prose-a:underline prose-a:underline-offset-4 hover:prose-a:no-underline prose-blockquote:border-l-2 prose-blockquote:border-brand prose-blockquote:pl-4 prose-blockquote:font-normal prose-blockquote:italic prose-blockquote:text-muted-foreground prose-strong:font-bold prose-strong:text-foreground">
       <Component components={{ ...mdxComponents }} />
     </article>
   );

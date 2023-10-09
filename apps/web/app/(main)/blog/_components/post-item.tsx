@@ -12,7 +12,7 @@ export default function PostItem({ ...props }) {
         <header>
           {props.image && (
             <Link href={`/blog/${props.slug}`} className="mb-6 block">
-              <figure className="pb-9/16 relative -mx-4 -mt-4 overflow-hidden pb-[56.25%]">
+              <figure className="pb-9/16 relative -mx-4 -mt-4 overflow-hidden">
                 <Image
                   className="absolute inset-0 h-full w-full transform rounded-t-lg object-cover grayscale transition duration-700 ease-out hover:scale-105 hover:grayscale-0"
                   src={props.image}

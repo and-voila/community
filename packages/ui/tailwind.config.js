@@ -104,6 +104,12 @@ module.exports = {
         'accordion-up': 'accordion-up 0.2s ease-out',
         endless: 'endless 20s linear infinite',
       },
+      spacing: {
+        128: '32rem',
+        '9/16': '56.25%',
+        '3/4': '75%',
+        '1/1': '100%',
+      },
     },
   },
   future: {
