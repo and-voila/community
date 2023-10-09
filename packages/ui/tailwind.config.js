@@ -110,6 +110,9 @@ module.exports = {
         '3/4': '75%',
         '1/1': '100%',
       },
+      lineHeight: {
+        tighter: '1.1',
+      },
     },
   },
   future: {

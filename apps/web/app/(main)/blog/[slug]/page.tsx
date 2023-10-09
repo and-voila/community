@@ -1,9 +1,17 @@
-import { Button, CaretLeftIcon, Container } from '@ui/index';
+import {
+  Button,
+  CaretLeftIcon,
+  Container,
+  FadeIn,
+  GradientHeading,
+} from '@ui/index';
 import { allPosts } from 'contentlayer/generated';
 import type { Metadata } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
+
+import { SITE_URL } from '@/lib/utils';
 
 import { Author } from '../_components/author';
 import { PostMdx } from '../_components/mdx/post-mdx';
@@ -19,16 +27,46 @@ export async function generateMetadata({
   params,
 }: {
   params: { slug: string };
-}): Promise<Metadata | undefined> {
+}): Promise<Metadata> {
   const post = allPosts.find((post) => post.slug === params.slug);
 
-  if (!post) return;
+  if (!post) {
+    throw new Error('Post not found');
+  }
 
-  const { title, summary: description } = post;
+  const seoTitle = post.title;
+  const seoMetaDescription = post.summary;
+  const postUrl = `${SITE_URL}/blog/${params.slug}`;
 
   return {
-    title,
-    description,
+    title: seoTitle,
+    description: seoMetaDescription,
+    openGraph: {
+      type: 'article',
+      title: seoTitle,
+      description: seoMetaDescription,
+      url: postUrl,
+      images: [
+        {
+          url: '/open-graph.gif',
+          width: 1200,
+          height: 630,
+          alt: 'An open graph image that appears to look like a Loading screen with the And Voila logo.',
+        },
+      ],
+    },
+    twitter: {
+      title: seoTitle,
+      description: seoMetaDescription,
+      images: [
+        {
+          url: '/open-graph.gif',
+          width: 1200,
+          height: 630,
+          alt: 'An open graph image that appears to look like a Loading screen with the And Voila logo.',
+        },
+      ],
+    },
   };
 }
 
@@ -45,7 +83,7 @@ export default async function SinglePost({
     <>
       {/* Background image */}
       {post.image && (
-        <div className="h-128 absolute inset-0 box-content pt-16">
+        <div className="absolute inset-0 box-content h-128 pt-16">
           <Image
             className="absolute inset-0 h-full w-full object-cover opacity-25"
             src={post.image}
@@ -60,46 +98,38 @@ export default async function SinglePost({
           />
         </div>
       )}
+      <div className="relative z-10 mx-auto max-w-7xl px-6 pt-16 lg:px-8 lg:pt-24 xl:px-10">
+        <Link href="/blog">
+          {' '}
+          <Button variant="link">
+            <CaretLeftIcon className="mr-2 h-4 w-4" /> Back to blog
+          </Button>
+        </Link>
+        <FadeIn className="text-center [text-wrap:balance]">
+          <GradientHeading level="h1">{post.title}</GradientHeading>
+        </FadeIn>
+      </div>
+
       <Container>
         <section className="relative">
           <div className="relative mx-auto">
-            <div className="pb-12 pt-16 md:pb-20 md:pt-32">
-              <Link href="/blog">
-                {' '}
-                <Button variant="link">
-                  <CaretLeftIcon className="mr-2 h-4 w-4" /> Back to blog
-                </Button>
-              </Link>
-              <div className="text-center">
-                <h1 className="py-6 font-display text-7xl [text-wrap:balance] md:text-8xl">
-                  {post.title}
-                </h1>
-              </div>
+            <div className="pb-12 pt-4 md:pb-20 md:pt-8">
               <div className="mx-auto max-w-3xl">
                 <article>
-                  {/* Article header */}
                   <header className="mb-8">
-                    {/* Title and excerpt */}
-
-                    {/* Article meta */}
                     <div className="mt-8 md:flex md:items-center md:justify-between">
-                      {/* Author meta */}
-                      <div className="mx-auto flex items-center justify-center border-y py-2">
+                      <FadeIn className="mx-auto flex items-center justify-center border-y py-2">
                         <Author
                           img={post.authorImg}
                           name={post.author}
                           date={post.publishedAt}
                         />
-                      </div>
+                      </FadeIn>
                     </div>
                   </header>
-
-                  {/* Article content */}
                   <div className="py-8">
                     <PostMdx code={post.body.code} />
                   </div>
-
-                  {/* Article footer */}
                   <footer />
                 </article>
               </div>
