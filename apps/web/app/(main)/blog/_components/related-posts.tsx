@@ -30,8 +30,14 @@ const Article = ({ post, color }) => (
   </article>
 );
 
-export default function RelatedPosts() {
-  const posts = allPosts.slice(0, 2);
+interface RelatedPostsProps {
+  currentSlug: string;
+}
+
+export default function RelatedPosts({ currentSlug }: RelatedPostsProps) {
+  const posts = allPosts
+    .filter((post) => post.slug !== currentSlug)
+    .slice(0, 2);
 
   return (
     <aside>
@@ -40,8 +46,6 @@ export default function RelatedPosts() {
           <h3 className="h4 mb-10 border-b pb-6 font-display text-sm uppercase tracking-widest text-brand">
             Recommended reading
           </h3>
-
-          {/* Articles container */}
           <FadeInStagger className="grid gap-4 sm:grid-cols-2 sm:gap-6">
             {posts.map((post, index) => (
               <FadeIn key={post.slug}>

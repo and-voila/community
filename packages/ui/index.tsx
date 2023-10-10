@@ -40,3 +40,4 @@ export * from 'class-variance-authority';
 export { clsx } from 'clsx';
 export * as LucideReact from 'lucide-react';
 export type LucideIcon = FunctionComponent<LucideIconProps>;
+export * from './components/ui/skeleton';

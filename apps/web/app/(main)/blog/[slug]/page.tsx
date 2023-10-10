@@ -138,7 +138,7 @@ export default async function SinglePost({
         </section>
       </Container>
 
-      <RelatedPosts />
+      <RelatedPosts currentSlug={params.slug} />
     </>
   );
 }

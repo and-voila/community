@@ -2,7 +2,7 @@
 
 import { Dialog, Transition } from '@headlessui/react';
 import Link from 'next/link';
-import { usePathname, useSearchParams } from 'next/navigation';
+import { usePathname } from 'next/navigation';
 import { Fragment, useEffect, useState } from 'react';
 import { Cross1Icon, DiscordLogoIcon, HamburgerMenuIcon } from 'ui';
 
@@ -15,7 +15,6 @@ const menu = [
 
 export default function MobileMenu() {
   const pathname = usePathname();
-  const searchParams = useSearchParams();
   const [isOpen, setIsOpen] = useState(false);
   const openMobileMenu = () => setIsOpen(true);
   const closeMobileMenu = () => setIsOpen(false);
@@ -32,7 +31,7 @@ export default function MobileMenu() {
 
   useEffect(() => {
     setIsOpen(false);
-  }, [pathname, searchParams]);
+  }, [pathname]);
 
   return (
     <>

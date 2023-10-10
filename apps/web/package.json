@@ -21,9 +21,9 @@
     "ui": "workspace:*"
   },
   "devDependencies": {
-    "@types/node": "^20.8.2",
-    "@types/react": "^18.2.25",
-    "@types/react-dom": "^18.2.10",
+    "@types/node": "^20.8.4",
+    "@types/react": "^18.2.27",
+    "@types/react-dom": "^18.2.12",
     "@vercel/git-hooks": "^1.0.0",
     "autoprefixer": "^10.4.16",
     "eslint-config-custom": "workspace:*",
