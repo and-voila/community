@@ -11,7 +11,7 @@ import { Menu } from '@/lib/shopify/types';
 
 export default async function Navbar() {
   return (
-    <nav className="relative flex items-center justify-between p-4 lg:px-6">
+    <nav className="relative z-50 flex items-center justify-between p-4 lg:px-6">
       <div className="block flex-none md:hidden">
         <MobileMenu />
       </div>
@@ -22,7 +22,7 @@ export default async function Navbar() {
             aria-label="Home"
             className="mr-2 flex w-full items-center justify-center md:w-auto lg:mr-6"
           >
-            <Logomark className="h-10 sm:hidden" />
+            <Logomark className="relative h-10 sm:hidden" />
             <Logo
               className="ml-2 hidden h-10 flex-none pb-2 font-display text-lg sm:block md:hidden lg:block"
               fillOnHover
