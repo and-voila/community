@@ -51,9 +51,10 @@ const navigation: Navigation = {
     },
   ],
   legal: [
-    { name: 'Terms', href: '/terms' },
-    { name: 'Privacy', href: '/privacy' },
+    { name: 'Guarantee', href: '/guarantee' },
     { name: 'Accessibility', href: '/accessibility' },
+    { name: 'Privacy', href: '/privacy' },
+    { name: 'Terms', href: '/terms' },
   ],
   social: [
     {
