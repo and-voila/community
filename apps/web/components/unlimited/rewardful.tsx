@@ -5,16 +5,18 @@ import Script from 'next/script';
 export default function Rewardful() {
   return (
     <div className="hidden">
-      <Script id="rewardful-custom-script" strategy="afterInteractive">
+      <Script id="rewardful-custom-script">
         {`
-          $(document).ready(function(){
+          document.addEventListener('DOMContentLoaded', function(){
             setTimeout(function() {
-              $('a[href^="https://buy.stripe.com/"]').each(function(){
-                const oldBuyUrl = $(this).attr("href"); // Get current url
-                const referralId = Rewardful.referral;
-                const newBuyUrl = oldBuyUrl + "?client_reference_id=" + referralId; // Create new url
-                $(this).attr("href", newBuyUrl); // Set href value
-              });
+              if (typeof Rewardful !== 'undefined') {
+                document.querySelectorAll('a[href^="https://pay.bril.la/"]').forEach(function(link){
+                  const oldBuyUrl = link.getAttribute("href");
+                  const referralId = Rewardful.referral;
+                  const newBuyUrl = oldBuyUrl + "?client_reference_id=" + referralId;
+                  link.setAttribute("href", newBuyUrl);
+                });
+              }
             }, 2000);
           });
         `}
