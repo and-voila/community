@@ -112,6 +112,14 @@ const pricing: Pricing = {
           tiers: { Hot: true, Hotter: true, Hottest: true },
         },
         {
+          name: 'Custom AI tools and integrations',
+          tiers: { Hot: true, Hotter: true, Hottest: true },
+        },
+        {
+          name: 'Cybersecurity systems',
+          tiers: { Hot: true, Hotter: true, Hottest: true },
+        },
+        {
           name: 'Branding & identity',
           tiers: { Hot: true, Hotter: true, Hottest: true },
         },
@@ -265,7 +273,7 @@ export default function Unlimited() {
                             tier.featured
                               ? 'text-foreground'
                               : 'text-muted-foreground',
-                            'font-display text-3xl',
+                            'font-display text-6xl',
                           )}
                         >
                           {tier.price[tier.frequency]}
