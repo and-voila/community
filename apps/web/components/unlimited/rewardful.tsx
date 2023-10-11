@@ -1,10 +1,8 @@
-'use client';
-
 import Script from 'next/script';
 
 export default function Rewardful() {
   return (
-    <div className="hidden">
+    <>
       <Script id="rewardful-custom-script">
         {`
           document.addEventListener('DOMContentLoaded', function(){
@@ -21,6 +19,6 @@ export default function Rewardful() {
           });
         `}
       </Script>
-    </div>
+    </>
   );
 }
