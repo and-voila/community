@@ -2,6 +2,7 @@ import 'ui/styles/globals.css';
 
 import { ThemeProvider } from '@ui/index';
 import localFont from 'next/font/local';
+import Script from 'next/script';
 import { ReactNode } from 'react';
 
 import Footer from '@/components/layout/footer';
@@ -138,6 +139,23 @@ export default async function RootLayout({
           <Footer />
         </ThemeProvider>
       </body>
+      <Script id="rewardful-script-1">
+        {
+          "(function(w,r){w._rwq=r;w[r]=w[r]||function(){(w[r].q=w[r].q||[]).push(arguments)}})(window,'rewardful');"
+        }
+      </Script>
+      <Script
+        id="rewardful-script-2"
+        src="https://r.wdfl.co/rw.js"
+        data-rewardful="4f2b8a"
+        strategy="afterInteractive"
+        async
+      />
+      <Script
+        id="rewardful-jquery"
+        src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"
+        strategy="afterInteractive"
+      />
     </html>
   );
 }

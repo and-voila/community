@@ -14,6 +14,8 @@ import {
 import PageIntro from '@/components/page-intro';
 import { unlimitedFaqs } from '@/components/unlimited/unlimited-faq-data';
 
+import Rewardful from './rewardful';
+
 interface Tier {
   name: string;
   id: string;
@@ -46,7 +48,7 @@ const pricing: Pricing = {
     {
       name: 'Hot',
       id: 'tier-hot',
-      href: 'https://buy.stripe.com/3cs9DLg7n76H37yaEG',
+      href: 'https://pay.bril.la/b/3cs9DLg7n76H37yaEG',
       featured: false,
       description:
         'Turn up the heat on your marketing. Get sizzling strategies and execution, one request at a time, all in a 2-day blaze. Flexibility and delight, guaranteed.',
@@ -71,7 +73,7 @@ const pricing: Pricing = {
     {
       name: 'Hotter',
       id: 'tier-hotter',
-      href: 'https://buy.stripe.com/bIYdU108pgHh4bC5kl',
+      href: 'https://pay.bril.la/b/bIYdU108pgHh4bC5kl',
       featured: true,
       description:
         'Your marketing red-hot. Double the requests, half the wait. Same exceptional strategy and execution, turbocharged for your needs.',
@@ -88,7 +90,7 @@ const pricing: Pricing = {
     {
       name: 'Hottest',
       id: 'tier-hottest',
-      href: 'https://buy.stripe.com/aEUg2908pcr1gYo7ss',
+      href: 'https://pay.bril.la/b/aEUg2908pcr1gYo7ss',
       featured: false,
       description:
         "Double the action, double the results. Enjoy all the benefits of 'Hotter', but with the ability to submit two requests at a time. Ideal for scaling businesses that need more attention, more quickly.",
@@ -109,6 +111,14 @@ const pricing: Pricing = {
       features: [
         {
           name: 'Design and build anything',
+          tiers: { Hot: true, Hotter: true, Hottest: true },
+        },
+        {
+          name: 'Custom AI tools and integrations',
+          tiers: { Hot: true, Hotter: true, Hottest: true },
+        },
+        {
+          name: 'Cybersecurity systems',
           tiers: { Hot: true, Hotter: true, Hottest: true },
         },
         {
@@ -265,7 +275,7 @@ export default function Unlimited() {
                             tier.featured
                               ? 'text-foreground'
                               : 'text-muted-foreground',
-                            'font-display text-3xl',
+                            'font-display text-6xl',
                           )}
                         >
                           {tier.price[tier.frequency]}
@@ -303,6 +313,7 @@ export default function Unlimited() {
                       >
                         {tier.buttonCta}{' '}
                       </Link>
+                      <Rewardful />
                     </div>
                     <div className="mt-8 flow-root sm:mt-10">
                       <ul
