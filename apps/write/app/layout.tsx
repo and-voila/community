@@ -3,6 +3,7 @@ import 'ui/styles/globals.css';
 import { cn } from '@ui/index';
 import { Analytics } from '@vercel/analytics/react';
 import { Metadata } from 'next';
+import { ReactNode } from 'react';
 
 import { cal, inter } from '@/styles/fonts';
 
@@ -32,11 +33,7 @@ export const metadata: Metadata = {
   metadataBase: new URL('https://vercel.pub'),
 };
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="en" suppressHydrationWarning>
       <body className={cn(cal.variable, inter.variable)}>
