@@ -1,23 +1,26 @@
-"use server";
+/* eslint-disable @typescript-eslint/no-explicit-any */
+'use server';
 
-import prisma from "@/lib/prisma";
-import { Post, Site } from "@prisma/client";
-import { revalidateTag } from "next/cache";
-import { withPostAuth, withSiteAuth } from "./auth";
-import { getSession } from "@/lib/auth";
+import { Post, Site } from '@prisma/client';
+import { put } from '@vercel/blob';
+import { customAlphabet } from 'nanoid';
+import { revalidateTag } from 'next/cache';
+
+import { getSession } from '@/lib/auth';
 import {
   addDomainToVercel,
   // getApexDomain,
   removeDomainFromVercelProject,
   // removeDomainFromVercelTeam,
   validDomainRegex,
-} from "@/lib/domains";
-import { put } from "@vercel/blob";
-import { customAlphabet } from "nanoid";
-import { getBlurDataURL } from "@/lib/utils";
+} from '@/lib/domains';
+import prisma from '@/lib/prisma';
+import { getBlurDataURL } from '@/lib/utils';
+
+import { withPostAuth, withSiteAuth } from './auth';
 
 const nanoid = customAlphabet(
-  "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz",
+  '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz',
   7,
 ); // 7-character random string
 
@@ -25,12 +28,12 @@ export const createSite = async (formData: FormData) => {
   const session = await getSession();
   if (!session?.user.id) {
     return {
-      error: "Not authenticated",
+      error: 'Not authenticated',
     };
   }
-  const name = formData.get("name") as string;
-  const description = formData.get("description") as string;
-  const subdomain = formData.get("subdomain") as string;
+  const name = formData.get('name') as string;
+  const description = formData.get('description') as string;
+  const subdomain = formData.get('subdomain') as string;
 
   try {
     const response = await prisma.site.create({
@@ -50,9 +53,9 @@ export const createSite = async (formData: FormData) => {
     );
     return response;
   } catch (error: any) {
-    if (error.code === "P2002") {
+    if (error.code === 'P2002') {
       return {
-        error: `This subdomain is already taken`,
+        error: 'This subdomain is already taken',
       };
     } else {
       return {
@@ -69,10 +72,10 @@ export const updateSite = withSiteAuth(
     try {
       let response;
 
-      if (key === "customDomain") {
-        if (value.includes("vercel.pub")) {
+      if (key === 'customDomain') {
+        if (value.includes('vercel.pub')) {
           return {
-            error: "Cannot use vercel.pub subdomain as your custom domain",
+            error: 'Cannot use vercel.pub subdomain as your custom domain',
           };
 
           // if the custom domain is valid, we need to add it to Vercel
@@ -92,7 +95,7 @@ export const updateSite = withSiteAuth(
           ]);
 
           // empty value means the user wants to remove the custom domain
-        } else if (value === "") {
+        } else if (value === '') {
           response = await prisma.site.update({
             where: {
               id: site.id,
@@ -140,22 +143,22 @@ export const updateSite = withSiteAuth(
           
           */
         }
-      } else if (key === "image" || key === "logo") {
+      } else if (key === 'image' || key === 'logo') {
         if (!process.env.BLOB_READ_WRITE_TOKEN) {
           return {
             error:
-              "Missing BLOB_READ_WRITE_TOKEN token. Note: Vercel Blob is currently in beta – please fill out this form for access: https://tally.so/r/nPDMNd",
+              'Missing BLOB_READ_WRITE_TOKEN token. Note: Vercel Blob is currently in beta – please fill out this form for access: https://tally.so/r/nPDMNd',
           };
         }
 
         const file = formData.get(key) as File;
-        const filename = `${nanoid()}.${file.type.split("/")[1]}`;
+        const filename = `${nanoid()}.${file.type.split('/')[1]}`;
 
         const { url } = await put(filename, file, {
-          access: "public",
+          access: 'public',
         });
 
-        const blurhash = key === "image" ? await getBlurDataURL(url) : null;
+        const blurhash = key === 'image' ? await getBlurDataURL(url) : null;
 
         response = await prisma.site.update({
           where: {
@@ -176,8 +179,9 @@ export const updateSite = withSiteAuth(
           },
         });
       }
+      // eslint-disable-next-line no-console
       console.log(
-        "Updated site data! Revalidating tags: ",
+        'Updated site data! Revalidating tags: ',
         `${site.subdomain}.${process.env.NEXT_PUBLIC_ROOT_DOMAIN}-metadata`,
         `${site.customDomain}-metadata`,
       );
@@ -189,7 +193,7 @@ export const updateSite = withSiteAuth(
 
       return response;
     } catch (error: any) {
-      if (error.code === "P2002") {
+      if (error.code === 'P2002') {
         return {
           error: `This ${key} is already taken`,
         };
@@ -238,7 +242,7 @@ export const createPost = withSiteAuth(async (_: FormData, site: Site) => {
   const session = await getSession();
   if (!session?.user.id) {
     return {
-      error: "Not authenticated",
+      error: 'Not authenticated',
     };
   }
   const response = await prisma.post.create({
@@ -261,7 +265,7 @@ export const updatePost = async (data: Post) => {
   const session = await getSession();
   if (!session?.user.id) {
     return {
-      error: "Not authenticated",
+      error: 'Not authenticated',
     };
   }
   const post = await prisma.post.findUnique({
@@ -274,7 +278,7 @@ export const updatePost = async (data: Post) => {
   });
   if (!post || post.userId !== session.user.id) {
     return {
-      error: "Post not found",
+      error: 'Post not found',
     };
   }
   try {
@@ -321,12 +325,12 @@ export const updatePostMetadata = withPostAuth(
 
     try {
       let response;
-      if (key === "image") {
-        const file = formData.get("image") as File;
-        const filename = `${nanoid()}.${file.type.split("/")[1]}`;
+      if (key === 'image') {
+        const file = formData.get('image') as File;
+        const filename = `${nanoid()}.${file.type.split('/')[1]}`;
 
         const { url } = await put(filename, file, {
-          access: "public",
+          access: 'public',
         });
 
         const blurhash = await getBlurDataURL(url);
@@ -346,7 +350,7 @@ export const updatePostMetadata = withPostAuth(
             id: post.id,
           },
           data: {
-            [key]: key === "published" ? value === "true" : value,
+            [key]: key === 'published' ? value === 'true' : value,
           },
         });
       }
@@ -365,9 +369,9 @@ export const updatePostMetadata = withPostAuth(
 
       return response;
     } catch (error: any) {
-      if (error.code === "P2002") {
+      if (error.code === 'P2002') {
         return {
-          error: `This slug is already in use`,
+          error: 'This slug is already in use',
         };
       } else {
         return {
@@ -404,7 +408,7 @@ export const editUser = async (
   const session = await getSession();
   if (!session?.user.id) {
     return {
-      error: "Not authenticated",
+      error: 'Not authenticated',
     };
   }
   const value = formData.get(key) as string;
@@ -420,7 +424,7 @@ export const editUser = async (
     });
     return response;
   } catch (error: any) {
-    if (error.code === "P2002") {
+    if (error.code === 'P2002') {
       return {
         error: `This ${key} is already in use`,
       };

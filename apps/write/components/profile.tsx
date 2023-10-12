@@ -1,13 +1,15 @@
-import { getSession } from "@/lib/auth";
-import { redirect } from "next/navigation";
-import Link from "next/link";
-import Image from "next/image";
-import LogoutButton from "./logout-button";
+import Image from 'next/image';
+import Link from 'next/link';
+import { redirect } from 'next/navigation';
+
+import { getSession } from '@/lib/auth';
+
+import LogoutButton from './logout-button';
 
 export default async function Profile() {
   const session = await getSession();
   if (!session?.user) {
-    redirect("/login");
+    redirect('/login');
   }
 
   return (
@@ -23,7 +25,7 @@ export default async function Profile() {
           }
           width={40}
           height={40}
-          alt={session.user.name ?? "User avatar"}
+          alt={session.user.name ?? 'User avatar'}
           className="h-6 w-6 rounded-full"
         />
         <span className="truncate text-sm font-medium">

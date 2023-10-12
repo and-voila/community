@@ -1,7 +1,9 @@
-import { getServerSession, type NextAuthOptions } from "next-auth";
-import GitHubProvider from "next-auth/providers/github";
-import { PrismaAdapter } from "@next-auth/prisma-adapter";
-import prisma from "@/lib/prisma";
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import { PrismaAdapter } from '@next-auth/prisma-adapter';
+import { getServerSession, type NextAuthOptions } from 'next-auth';
+import GitHubProvider from 'next-auth/providers/github';
+
+import prisma from '@/lib/prisma';
 
 const VERCEL_DEPLOYMENT = !!process.env.VERCEL_URL;
 
@@ -22,19 +24,19 @@ export const authOptions: NextAuthOptions = {
     }),
   ],
   pages: {
-    signIn: `/login`,
-    verifyRequest: `/login`,
-    error: "/login", // Error code passed in query string as ?error=
+    signIn: '/login',
+    verifyRequest: '/login',
+    error: '/login', // Error code passed in query string as ?error=
   },
   adapter: PrismaAdapter(prisma),
-  session: { strategy: "jwt" },
+  session: { strategy: 'jwt' },
   cookies: {
     sessionToken: {
-      name: `${VERCEL_DEPLOYMENT ? "__Secure-" : ""}next-auth.session-token`,
+      name: `${VERCEL_DEPLOYMENT ? '__Secure-' : ''}next-auth.session-token`,
       options: {
         httpOnly: true,
-        sameSite: "lax",
-        path: "/",
+        sameSite: 'lax',
+        path: '/',
         // When working on localhost, the cookie domain must be omitted entirely (https://stackoverflow.com/a/1188145)
         domain: VERCEL_DEPLOYMENT
           ? `.${process.env.NEXT_PUBLIC_ROOT_DOMAIN}`
@@ -53,9 +55,9 @@ export const authOptions: NextAuthOptions = {
     session: async ({ session, token }) => {
       session.user = {
         ...session.user,
-        // @ts-expect-error
+        // @ts-expect-error exists but not recognized by TS
         id: token.sub,
-        // @ts-expect-error
+        // @ts-expect-error exists but not recognized by TS
         username: token?.user?.username || token?.user?.gh_username,
       };
       return session;
@@ -84,7 +86,7 @@ export function withSiteAuth(action: any) {
     const session = await getSession();
     if (!session) {
       return {
-        error: "Not authenticated",
+        error: 'Not authenticated',
       };
     }
     const site = await prisma.site.findUnique({
@@ -94,7 +96,7 @@ export function withSiteAuth(action: any) {
     });
     if (!site || site.userId !== session.user.id) {
       return {
-        error: "Not authorized",
+        error: 'Not authorized',
       };
     }
 
@@ -111,7 +113,7 @@ export function withPostAuth(action: any) {
     const session = await getSession();
     if (!session?.user.id) {
       return {
-        error: "Not authenticated",
+        error: 'Not authenticated',
       };
     }
     const post = await prisma.post.findUnique({
@@ -124,7 +126,7 @@ export function withPostAuth(action: any) {
     });
     if (!post || post.userId !== session.user.id) {
       return {
-        error: "Post not found",
+        error: 'Post not found',
       };
     }
 

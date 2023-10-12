@@ -1,9 +1,10 @@
-"use client";
+'use client';
 
-import { useState, useCallback, useMemo, ChangeEvent } from "react";
-import { toast } from "sonner";
-import LoadingDots from "@/components/icons/loading-dots";
-import { BlobResult } from "@vercel/blob";
+import { PutBlobResult } from '@vercel/blob';
+import { ChangeEvent, useCallback, useMemo, useState } from 'react';
+import { toast } from 'sonner';
+
+import LoadingDots from '@/components/icons/loading-dots';
 
 export default function Uploader() {
   const [data, setData] = useState<{
@@ -20,7 +21,7 @@ export default function Uploader() {
       const file = event.currentTarget.files && event.currentTarget.files[0];
       if (file) {
         if (file.size / 1024 / 1024 > 50) {
-          toast.error("File size too big (max 50MB)");
+          toast.error('File size too big (max 50MB)');
         } else {
           setFile(file);
           const reader = new FileReader();
@@ -46,19 +47,19 @@ export default function Uploader() {
       onSubmit={async (e) => {
         e.preventDefault();
         setSaving(true);
-        fetch("/api/upload", {
-          method: "POST",
-          headers: { "content-type": file?.type || "application/octet-stream" },
+        fetch('/api/upload', {
+          method: 'POST',
+          headers: { 'content-type': file?.type || 'application/octet-stream' },
           body: file,
         }).then(async (res) => {
           if (res.status === 200) {
-            const { url } = (await res.json()) as BlobResult;
+            const { url } = (await res.json()) as PutBlobResult;
             toast(
               <div className="relative">
                 <div className="p-2">
                   <p className="font-semibold text-gray-900">File uploaded!</p>
                   <p className="mt-1 text-sm text-gray-500">
-                    Your file has been uploaded to{" "}
+                    Your file has been uploaded to{' '}
                     <a
                       className="font-medium text-gray-900 underline"
                       href={url}
@@ -115,7 +116,7 @@ export default function Uploader() {
               const file = e.dataTransfer.files && e.dataTransfer.files[0];
               if (file) {
                 if (file.size / 1024 / 1024 > 50) {
-                  toast.error("File size too big (max 50MB)");
+                  toast.error('File size too big (max 50MB)');
                 } else {
                   setFile(file);
                   const reader = new FileReader();
@@ -132,16 +133,16 @@ export default function Uploader() {
           />
           <div
             className={`${
-              dragActive ? "border-2 border-black" : ""
+              dragActive ? 'border-2 border-black' : ''
             } absolute z-[3] flex h-full w-full flex-col items-center justify-center rounded-md px-10 transition-all ${
               data.image
-                ? "bg-white/80 opacity-0 hover:opacity-100 hover:backdrop-blur-md"
-                : "bg-white opacity-100 hover:bg-gray-50"
+                ? 'bg-white/80 opacity-0 hover:opacity-100 hover:backdrop-blur-md'
+                : 'bg-white opacity-100 hover:bg-gray-50'
             }`}
           >
             <svg
               className={`${
-                dragActive ? "scale-110" : "scale-100"
+                dragActive ? 'scale-110' : 'scale-100'
               } h-7 w-7 text-gray-500 transition-all duration-75 group-hover:scale-110 group-active:scale-95`}
               xmlns="http://www.w3.org/2000/svg"
               width="24"
@@ -153,9 +154,9 @@ export default function Uploader() {
               strokeLinecap="round"
               strokeLinejoin="round"
             >
-              <path d="M4 14.899A7 7 0 1 1 15.71 8h1.79a4.5 4.5 0 0 1 2.5 8.242"></path>
-              <path d="M12 12v9"></path>
-              <path d="m16 16-4-4-4 4"></path>
+              <path d="M4 14.899A7 7 0 1 1 15.71 8h1.79a4.5 4.5 0 0 1 2.5 8.242" />
+              <path d="M12 12v9" />
+              <path d="m16 16-4-4-4 4" />
             </svg>
             <p className="mt-2 text-center text-sm text-gray-500">
               Drag and drop or click to upload.
@@ -190,8 +191,8 @@ export default function Uploader() {
         disabled={saveDisabled}
         className={`${
           saveDisabled
-            ? "cursor-not-allowed border-gray-200 bg-gray-100 text-gray-400"
-            : "border-black bg-black text-white hover:bg-white hover:text-black"
+            ? 'cursor-not-allowed border-gray-200 bg-gray-100 text-gray-400'
+            : 'border-black bg-black text-white hover:bg-white hover:text-black'
         } flex h-10 w-full items-center justify-center rounded-md border text-sm transition-all focus:outline-none`}
       >
         {saving ? (

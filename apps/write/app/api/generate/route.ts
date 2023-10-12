@@ -1,25 +1,25 @@
-import { Configuration, OpenAIApi } from "openai-edge";
-import { OpenAIStream, StreamingTextResponse } from "ai";
-import { kv } from "@vercel/kv";
-import { Ratelimit } from "@upstash/ratelimit";
+import { Ratelimit } from '@upstash/ratelimit';
+import { kv } from '@vercel/kv';
+import { OpenAIStream, StreamingTextResponse } from 'ai';
+import { Configuration, OpenAIApi } from 'openai-edge';
 
 const config = new Configuration({
   apiKey: process.env.OPENAI_API_KEY,
 });
 const openai = new OpenAIApi(config);
 
-export const runtime = "edge";
+export const runtime = 'edge';
 
 export async function POST(req: Request): Promise<Response> {
   if (
-    process.env.NODE_ENV != "development" &&
+    process.env.NODE_ENV != 'development' &&
     process.env.KV_REST_API_URL &&
     process.env.KV_REST_API_TOKEN
   ) {
-    const ip = req.headers.get("x-forwarded-for");
+    const ip = req.headers.get('x-forwarded-for');
     const ratelimit = new Ratelimit({
       redis: kv,
-      limiter: Ratelimit.slidingWindow(50, "1 d"),
+      limiter: Ratelimit.slidingWindow(50, '1 d'),
     });
 
     const { success, limit, reset, remaining } = await ratelimit.limit(
@@ -27,12 +27,12 @@ export async function POST(req: Request): Promise<Response> {
     );
 
     if (!success) {
-      return new Response("You have reached your request limit for the day.", {
+      return new Response('You have reached your request limit for the day.', {
         status: 429,
         headers: {
-          "X-RateLimit-Limit": limit.toString(),
-          "X-RateLimit-Remaining": remaining.toString(),
-          "X-RateLimit-Reset": reset.toString(),
+          'X-RateLimit-Limit': limit.toString(),
+          'X-RateLimit-Remaining': remaining.toString(),
+          'X-RateLimit-Reset': reset.toString(),
         },
       });
     }
@@ -42,21 +42,21 @@ export async function POST(req: Request): Promise<Response> {
 
   // remove trailing slash,
   // slice the content from the end to prioritize later characters
-  content = content.replace(/\/$/, "").slice(-5000);
+  content = content.replace(/\/$/, '').slice(-5000);
 
   const response = await openai.createChatCompletion({
-    model: "gpt-3.5-turbo",
+    model: 'gpt-3.5-turbo',
     messages: [
       {
-        role: "system",
+        role: 'system',
         content:
-          "You are an expert ghost writer. Extend the existing text by adding new insights or continuing the narrative. " +
-          "Do not restate or paraphrase the existing content. " +
-          "You must mimic the tone and style of the provided content to maintain consistency." +
-          "Your response should be concise, NOT EXCEEDING 300 characters, yet it should form complete and coherent sentences. ",
+          'You are an expert ghost writer. Extend the existing text by adding new insights or continuing the narrative. ' +
+          'Do not restate or paraphrase the existing content. ' +
+          'You must mimic the tone and style of the provided content to maintain consistency.' +
+          'Your response should be concise, NOT EXCEEDING 300 characters, yet it should form complete and coherent sentences. ',
       },
       {
-        role: "user",
+        role: 'user',
         content,
       },
     ],

@@ -1,21 +1,21 @@
 import {
-  DomainResponse,
   DomainConfigResponse,
+  DomainResponse,
   DomainVerificationResponse,
-} from "@/lib/types";
+} from '@/lib/types';
 
 export const addDomainToVercel = async (domain: string) => {
   return await fetch(
     `https://api.vercel.com/v10/projects/${
       process.env.PROJECT_ID_VERCEL
     }/domains${
-      process.env.TEAM_ID_VERCEL ? `?teamId=${process.env.TEAM_ID_VERCEL}` : ""
+      process.env.TEAM_ID_VERCEL ? `?teamId=${process.env.TEAM_ID_VERCEL}` : ''
     }`,
     {
-      method: "POST",
+      method: 'POST',
       headers: {
         Authorization: `Bearer ${process.env.AUTH_BEARER_TOKEN}`,
-        "Content-Type": "application/json",
+        'Content-Type': 'application/json',
       },
       body: JSON.stringify({
         name: domain,
@@ -33,13 +33,13 @@ export const removeDomainFromVercelProject = async (domain: string) => {
     `https://api.vercel.com/v9/projects/${
       process.env.PROJECT_ID_VERCEL
     }/domains/${domain}${
-      process.env.TEAM_ID_VERCEL ? `?teamId=${process.env.TEAM_ID_VERCEL}` : ""
+      process.env.TEAM_ID_VERCEL ? `?teamId=${process.env.TEAM_ID_VERCEL}` : ''
     }`,
     {
       headers: {
         Authorization: `Bearer ${process.env.AUTH_BEARER_TOKEN}`,
       },
-      method: "DELETE",
+      method: 'DELETE',
     },
   ).then((res) => res.json());
 };
@@ -47,13 +47,13 @@ export const removeDomainFromVercelProject = async (domain: string) => {
 export const removeDomainFromVercelTeam = async (domain: string) => {
   return await fetch(
     `https://api.vercel.com/v6/domains/${domain}${
-      process.env.TEAM_ID_VERCEL ? `?teamId=${process.env.TEAM_ID_VERCEL}` : ""
+      process.env.TEAM_ID_VERCEL ? `?teamId=${process.env.TEAM_ID_VERCEL}` : ''
     }`,
     {
       headers: {
         Authorization: `Bearer ${process.env.AUTH_BEARER_TOKEN}`,
       },
-      method: "DELETE",
+      method: 'DELETE',
     },
   ).then((res) => res.json());
 };
@@ -65,13 +65,13 @@ export const getDomainResponse = async (
     `https://api.vercel.com/v9/projects/${
       process.env.PROJECT_ID_VERCEL
     }/domains/${domain}${
-      process.env.TEAM_ID_VERCEL ? `?teamId=${process.env.TEAM_ID_VERCEL}` : ""
+      process.env.TEAM_ID_VERCEL ? `?teamId=${process.env.TEAM_ID_VERCEL}` : ''
     }`,
     {
-      method: "GET",
+      method: 'GET',
       headers: {
         Authorization: `Bearer ${process.env.AUTH_BEARER_TOKEN}`,
-        "Content-Type": "application/json",
+        'Content-Type': 'application/json',
       },
     },
   ).then((res) => {
@@ -84,13 +84,13 @@ export const getConfigResponse = async (
 ): Promise<DomainConfigResponse> => {
   return await fetch(
     `https://api.vercel.com/v6/domains/${domain}/config${
-      process.env.TEAM_ID_VERCEL ? `?teamId=${process.env.TEAM_ID_VERCEL}` : ""
+      process.env.TEAM_ID_VERCEL ? `?teamId=${process.env.TEAM_ID_VERCEL}` : ''
     }`,
     {
-      method: "GET",
+      method: 'GET',
       headers: {
         Authorization: `Bearer ${process.env.AUTH_BEARER_TOKEN}`,
-        "Content-Type": "application/json",
+        'Content-Type': 'application/json',
       },
     },
   ).then((res) => res.json());
@@ -103,13 +103,13 @@ export const verifyDomain = async (
     `https://api.vercel.com/v9/projects/${
       process.env.PROJECT_ID_VERCEL
     }/domains/${domain}/verify${
-      process.env.TEAM_ID_VERCEL ? `?teamId=${process.env.TEAM_ID_VERCEL}` : ""
+      process.env.TEAM_ID_VERCEL ? `?teamId=${process.env.TEAM_ID_VERCEL}` : ''
     }`,
     {
-      method: "POST",
+      method: 'POST',
       headers: {
         Authorization: `Bearer ${process.env.AUTH_BEARER_TOKEN}`,
-        "Content-Type": "application/json",
+        'Content-Type': 'application/json',
       },
     },
   ).then((res) => res.json());
@@ -125,12 +125,12 @@ export const getApexDomain = (url: string) => {
   try {
     domain = new URL(url).hostname;
   } catch (e) {
-    return "";
+    return '';
   }
-  const parts = domain.split(".");
+  const parts = domain.split('.');
   if (parts.length > 2) {
     // if it's a subdomain (e.g. dub.vercel.app), return the last 2 parts
-    return parts.slice(-2).join(".");
+    return parts.slice(-2).join('.');
   }
   // if it's a normal domain (e.g. dub.sh), we return the domain
   return domain;

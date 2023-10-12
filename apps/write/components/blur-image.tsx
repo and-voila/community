@@ -1,12 +1,13 @@
 'use client';
 
-import cn from 'clsx';
+import { cn } from '@ui/index';
 import Image from 'next/image';
+import { ImageProps } from 'next/image';
 import { useState } from 'react';
 
-import type { ComponentProps } from 'react';
+interface BlurImageProps extends ImageProps {}
 
-export default function BlurImage(props: ComponentProps<typeof Image>) {
+export default function BlurImage(props: BlurImageProps) {
   const [isLoading, setLoading] = useState(true);
 
   return (

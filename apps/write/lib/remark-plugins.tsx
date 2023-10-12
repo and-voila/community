@@ -1,7 +1,8 @@
-import Link from "next/link";
-import { visit } from "unist-util-visit";
-import type { Example, PrismaClient } from "@prisma/client";
-import { ReactNode } from "react";
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import type { Example, PrismaClient } from '@prisma/client';
+import Link from 'next/link';
+import { ReactNode } from 'react';
+import { visit } from 'unist-util-visit';
 
 export function replaceLinks({
   href,
@@ -13,7 +14,7 @@ export function replaceLinks({
   // this is technically not a remark plugin but it
   // replaces internal links with <Link /> component
   // and external links with <a target="_blank" />
-  return href?.startsWith("/") || href === "" ? (
+  return href?.startsWith('/') || href === '' ? (
     <Link href={href} className="cursor-pointer">
       {children}
     </Link>
@@ -27,9 +28,9 @@ export function replaceLinks({
 export function replaceTweets() {
   return (tree: any) =>
     new Promise<void>(async (resolve, reject) => {
-      const nodesToChange = new Array();
+      const nodesToChange = [];
 
-      visit(tree, "link", (node: any) => {
+      visit(tree, 'link', (node: any) => {
         if (
           node.url.match(
             /https?:\/\/twitter\.com\/(?:#!\/)?(\w+)\/status(?:es)?\/(\d+)([^\?])(\?.*)?/g,
@@ -49,17 +50,18 @@ export function replaceTweets() {
 
           const id = matches[1];
 
-          node.type = "mdxJsxFlowElement";
-          node.name = "Tweet";
+          node.type = 'mdxJsxFlowElement';
+          node.name = 'Tweet';
           node.attributes = [
             {
-              type: "mdxJsxAttribute",
-              name: "id",
+              type: 'mdxJsxAttribute',
+              name: 'id',
               value: id,
             },
           ];
         } catch (e) {
-          console.log("ERROR", e);
+          // eslint-disable-next-line no-console
+          console.log('ERROR', e);
           return reject(e);
         }
       }
@@ -71,10 +73,10 @@ export function replaceTweets() {
 export function replaceExamples(prisma: PrismaClient) {
   return (tree: any) =>
     new Promise<void>(async (resolve, reject) => {
-      const nodesToChange = new Array();
+      const nodesToChange = [];
 
-      visit(tree, "mdxJsxFlowElement", (node: any) => {
-        if (node.name == "Examples") {
+      visit(tree, 'mdxJsxFlowElement', (node: any) => {
+        if (node.name == 'Examples') {
           nodesToChange.push({
             node,
           });
@@ -85,8 +87,8 @@ export function replaceExamples(prisma: PrismaClient) {
           const data = await getExamples(node, prisma);
           node.attributes = [
             {
-              type: "mdxJsxAttribute",
-              name: "data",
+              type: 'mdxJsxAttribute',
+              name: 'data',
               value: data,
             },
           ];
@@ -100,7 +102,7 @@ export function replaceExamples(prisma: PrismaClient) {
 }
 
 async function getExamples(node: any, prisma: PrismaClient) {
-  const names = node?.attributes[0].value.split(",");
+  const names = node?.attributes[0].value.split(',');
 
   const data = new Array<Example | null>();
 

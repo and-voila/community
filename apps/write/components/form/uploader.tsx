@@ -1,17 +1,17 @@
-"use client";
+'use client';
 
-import { cn } from "@/lib/utils";
-import { useRef, useState } from "react";
-import { toast } from "sonner";
+import { cn } from '@ui/index';
+import { useRef, useState } from 'react';
+import { toast } from 'sonner';
 
 export default function Uploader({
   defaultValue,
   name,
 }: {
   defaultValue: string | null;
-  name: "image" | "logo";
+  name: 'image' | 'logo';
 }) {
-  const aspectRatio = name === "image" ? "aspect-video" : "aspect-square";
+  const aspectRatio = name === 'image' ? 'aspect-video' : 'aspect-square';
 
   const inputRef = useRef<HTMLInputElement>(null);
   const [data, setData] = useState({
@@ -23,13 +23,13 @@ export default function Uploader({
   const handleUpload = (file: File | null) => {
     if (file) {
       if (file.size / 1024 / 1024 > 50) {
-        toast.error("File size too big (max 50MB)");
+        toast.error('File size too big (max 50MB)');
       } else if (
-        !file.type.includes("png") &&
-        !file.type.includes("jpg") &&
-        !file.type.includes("jpeg")
+        !file.type.includes('png') &&
+        !file.type.includes('jpg') &&
+        !file.type.includes('jpeg')
       ) {
-        toast.error("Invalid file type (must be .png, .jpg, or .jpeg)");
+        toast.error('Invalid file type (must be .png, .jpg, or .jpeg)');
       } else {
         const reader = new FileReader();
         reader.onload = (e) => {
@@ -45,11 +45,11 @@ export default function Uploader({
       <label
         htmlFor={`${name}-upload`}
         className={cn(
-          "group relative mt-2 flex cursor-pointer flex-col items-center justify-center rounded-md border border-gray-300 bg-white shadow-sm transition-all hover:bg-gray-50",
+          'group relative mt-2 flex cursor-pointer flex-col items-center justify-center rounded-md border border-gray-300 bg-white shadow-sm transition-all hover:bg-gray-50',
           aspectRatio,
           {
-            "max-w-screen-md": aspectRatio === "aspect-video",
-            "max-w-xs": aspectRatio === "aspect-square",
+            'max-w-screen-md': aspectRatio === 'aspect-video',
+            'max-w-xs': aspectRatio === 'aspect-square',
           },
         )}
       >
@@ -82,16 +82,16 @@ export default function Uploader({
         />
         <div
           className={`${
-            dragActive ? "border-2 border-black" : ""
+            dragActive ? 'border-2 border-black' : ''
           } absolute z-[3] flex h-full w-full flex-col items-center justify-center rounded-md px-10 transition-all ${
             data[name]
-              ? "bg-white/80 opacity-0 hover:opacity-100 hover:backdrop-blur-md"
-              : "bg-white opacity-100 hover:bg-gray-50"
+              ? 'bg-white/80 opacity-0 hover:opacity-100 hover:backdrop-blur-md'
+              : 'bg-white opacity-100 hover:bg-gray-50'
           }`}
         >
           <svg
             className={`${
-              dragActive ? "scale-110" : "scale-100"
+              dragActive ? 'scale-110' : 'scale-100'
             } h-7 w-7 text-gray-500 transition-all duration-75 group-hover:scale-110 group-active:scale-95`}
             xmlns="http://www.w3.org/2000/svg"
             width="24"
@@ -103,9 +103,9 @@ export default function Uploader({
             strokeLinecap="round"
             strokeLinejoin="round"
           >
-            <path d="M4 14.899A7 7 0 1 1 15.71 8h1.79a4.5 4.5 0 0 1 2.5 8.242"></path>
-            <path d="M12 12v9"></path>
-            <path d="m16 16-4-4-4 4"></path>
+            <path d="M4 14.899A7 7 0 1 1 15.71 8h1.79a4.5 4.5 0 0 1 2.5 8.242" />
+            <path d="M12 12v9" />
+            <path d="m16 16-4-4-4 4" />
           </svg>
           <p className="mt-2 text-center text-sm text-gray-500">
             Drag and drop or click to upload.

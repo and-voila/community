@@ -1,23 +1,26 @@
-"use client";
+'use client';
 
-import { toast } from "sonner";
-import { createSite } from "@/lib/actions";
-import { useRouter } from "next/navigation";
-import { experimental_useFormStatus as useFormStatus } from "react-dom";
-import { cn } from "@/lib/utils";
-import LoadingDots from "@/components/icons/loading-dots";
-import { useModal } from "./provider";
-import va from "@vercel/analytics";
-import { useEffect, useState } from "react";
+import { cn } from '@ui/index';
+import va from '@vercel/analytics';
+import { useRouter } from 'next/navigation';
+import { useEffect, useState } from 'react';
+// @ts-expect-error This exists but TS doesn't recognize it.
+import { experimental_useFormStatus as useFormStatus } from 'react-dom';
+import { toast } from 'sonner';
+
+import LoadingDots from '@/components/icons/loading-dots';
+import { createSite } from '@/lib/actions';
+
+import { useModal } from './provider';
 
 export default function CreateSiteModal() {
   const router = useRouter();
   const modal = useModal();
 
   const [data, setData] = useState({
-    name: "",
-    subdomain: "",
-    description: "",
+    name: '',
+    subdomain: '',
+    description: '',
   });
 
   useEffect(() => {
@@ -26,23 +29,24 @@ export default function CreateSiteModal() {
       subdomain: prev.name
         .toLowerCase()
         .trim()
-        .replace(/[\W_]+/g, "-"),
+        .replace(/[\W_]+/g, '-'),
     }));
   }, [data.name]);
 
   return (
     <form
       action={async (data: FormData) =>
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         createSite(data).then((res: any) => {
           if (res.error) {
             toast.error(res.error);
           } else {
-            va.track("Created Site");
+            va.track('Created Site');
             const { id } = res;
             router.refresh();
             router.push(`/site/${id}`);
             modal?.hide();
-            toast.success(`Successfully created site!`);
+            toast.success('Successfully created site!');
           }
         })
       }
@@ -126,10 +130,10 @@ function CreateSiteFormButton() {
   return (
     <button
       className={cn(
-        "flex h-10 w-full items-center justify-center space-x-2 rounded-md border text-sm transition-all focus:outline-none",
+        'flex h-10 w-full items-center justify-center space-x-2 rounded-md border text-sm transition-all focus:outline-none',
         pending
-          ? "cursor-not-allowed border-stone-200 bg-stone-100 text-stone-400 dark:border-stone-700 dark:bg-stone-800 dark:text-stone-300"
-          : "border-black bg-black text-white hover:bg-white hover:text-black dark:border-stone-700 dark:hover:border-stone-200 dark:hover:bg-black dark:hover:text-white dark:active:bg-stone-800",
+          ? 'cursor-not-allowed border-stone-200 bg-stone-100 text-stone-400 dark:border-stone-700 dark:bg-stone-800 dark:text-stone-300'
+          : 'border-black bg-black text-white hover:bg-white hover:text-black dark:border-stone-700 dark:hover:border-stone-200 dark:hover:bg-black dark:hover:text-white dark:active:bg-stone-800',
       )}
       disabled={pending}
     >

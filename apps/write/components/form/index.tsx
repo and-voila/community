@@ -1,15 +1,19 @@
-"use client";
+/* eslint-disable @typescript-eslint/no-explicit-any */
+'use client';
 
-import LoadingDots from "@/components/icons/loading-dots";
-import { cn } from "@/lib/utils";
-import { useSession } from "next-auth/react";
-import { useParams, useRouter } from "next/navigation";
-import { experimental_useFormStatus as useFormStatus } from "react-dom";
-import { toast } from "sonner";
-import DomainStatus from "./domain-status";
-import DomainConfiguration from "./domain-configuration";
-import Uploader from "./uploader";
-import va from "@vercel/analytics";
+import { cn } from '@ui/index';
+import va from '@vercel/analytics';
+import { useParams, useRouter } from 'next/navigation';
+import { useSession } from 'next-auth/react';
+// @ts-expect-error This exists but TS doesn't recognize it.
+import { experimental_useFormStatus as useFormStatus } from 'react-dom';
+import { toast } from 'sonner';
+
+import LoadingDots from '@/components/icons/loading-dots';
+
+import DomainConfiguration from './domain-configuration';
+import DomainStatus from './domain-status';
+import Uploader from './uploader';
 
 export default function Form({
   title,
@@ -38,10 +42,10 @@ export default function Form({
     <form
       action={async (data: FormData) => {
         if (
-          inputAttrs.name === "customDomain" &&
+          inputAttrs.name === 'customDomain' &&
           inputAttrs.defaultValue &&
-          data.get("customDomain") !== inputAttrs.defaultValue &&
-          !confirm("Are you sure you want to change your custom domain?")
+          data.get('customDomain') !== inputAttrs.defaultValue &&
+          !confirm('Are you sure you want to change your custom domain?')
         ) {
           return;
         }
@@ -67,12 +71,12 @@ export default function Form({
         <p className="text-sm text-stone-500 dark:text-stone-400">
           {description}
         </p>
-        {inputAttrs.name === "image" || inputAttrs.name === "logo" ? (
+        {inputAttrs.name === 'image' || inputAttrs.name === 'logo' ? (
           <Uploader
             defaultValue={inputAttrs.defaultValue}
             name={inputAttrs.name}
           />
-        ) : inputAttrs.name === "font" ? (
+        ) : inputAttrs.name === 'font' ? (
           <div className="flex max-w-sm items-center overflow-hidden rounded-lg border border-stone-600">
             <select
               name="font"
@@ -84,7 +88,7 @@ export default function Form({
               <option value="font-work">Work Sans</option>
             </select>
           </div>
-        ) : inputAttrs.name === "subdomain" ? (
+        ) : inputAttrs.name === 'subdomain' ? (
           <div className="flex w-full max-w-md">
             <input
               {...inputAttrs}
@@ -95,7 +99,7 @@ export default function Form({
               {process.env.NEXT_PUBLIC_ROOT_DOMAIN}
             </div>
           </div>
-        ) : inputAttrs.name === "customDomain" ? (
+        ) : inputAttrs.name === 'customDomain' ? (
           <div className="relative flex w-full max-w-md">
             <input
               {...inputAttrs}
@@ -107,7 +111,7 @@ export default function Form({
               </div>
             )}
           </div>
-        ) : inputAttrs.name === "description" ? (
+        ) : inputAttrs.name === 'description' ? (
           <textarea
             {...inputAttrs}
             rows={3}
@@ -122,7 +126,7 @@ export default function Form({
           />
         )}
       </div>
-      {inputAttrs.name === "customDomain" && inputAttrs.defaultValue && (
+      {inputAttrs.name === 'customDomain' && inputAttrs.defaultValue && (
         <DomainConfiguration domain={inputAttrs.defaultValue} />
       )}
       <div className="flex flex-col items-center justify-center space-y-2 rounded-b-lg border-t border-stone-200 bg-stone-50 p-3 dark:border-stone-700 dark:bg-stone-800 sm:flex-row sm:justify-between sm:space-y-0 sm:px-10">
@@ -138,10 +142,10 @@ function FormButton() {
   return (
     <button
       className={cn(
-        "flex h-8 w-32 items-center justify-center space-x-2 rounded-md border text-sm transition-all focus:outline-none sm:h-10",
+        'flex h-8 w-32 items-center justify-center space-x-2 rounded-md border text-sm transition-all focus:outline-none sm:h-10',
         pending
-          ? "cursor-not-allowed border-stone-200 bg-stone-100 text-stone-400 dark:border-stone-700 dark:bg-stone-800 dark:text-stone-300"
-          : "border-black bg-black text-white hover:bg-white hover:text-black dark:border-stone-700 dark:hover:border-stone-200 dark:hover:bg-black dark:hover:text-white dark:active:bg-stone-800",
+          ? 'cursor-not-allowed border-stone-200 bg-stone-100 text-stone-400 dark:border-stone-700 dark:bg-stone-800 dark:text-stone-300'
+          : 'border-black bg-black text-white hover:bg-white hover:text-black dark:border-stone-700 dark:hover:border-stone-200 dark:hover:bg-black dark:hover:text-white dark:active:bg-stone-800',
       )}
       disabled={pending}
     >

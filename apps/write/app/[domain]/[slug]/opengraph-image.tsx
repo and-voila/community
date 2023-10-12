@@ -1,10 +1,11 @@
 /* eslint-disable @next/next/no-img-element */
 
-import { truncate } from "@/lib/utils";
-import { ImageResponse } from "next/server";
-import { sql } from "@vercel/postgres";
+import { sql } from '@vercel/postgres';
+import { ImageResponse } from 'next/server';
 
-export const runtime = "edge";
+import { truncate } from '@/lib/utils';
+
+export const runtime = 'edge';
 
 export default async function PostOG({
   params,
@@ -15,7 +16,7 @@ export default async function PostOG({
   const slug = decodeURIComponent(params.slug);
 
   const subdomain = domain.endsWith(`.${process.env.NEXT_PUBLIC_ROOT_DOMAIN}`)
-    ? domain.replace(`.${process.env.NEXT_PUBLIC_ROOT_DOMAIN}`, "")
+    ? domain.replace(`.${process.env.NEXT_PUBLIC_ROOT_DOMAIN}`, '')
     : null;
 
   const response = await sql`
@@ -35,11 +36,11 @@ export default async function PostOG({
   const data = response.rows[0];
 
   if (!data) {
-    return new Response("Not found", { status: 404 });
+    return new Response('Not found', { status: 404 });
   }
 
   const clashData = await fetch(
-    new URL("@/styles/CalSans-SemiBold.otf", import.meta.url),
+    new URL('@/styles/CalSans-SemiBold.otf', import.meta.url),
   ).then((res) => res.arrayBuffer());
 
   return new ImageResponse(
@@ -73,11 +74,11 @@ export default async function PostOG({
       height: 600,
       fonts: [
         {
-          name: "Clash",
+          name: 'Clash',
           data: clashData,
         },
       ],
-      emoji: "blobmoji",
+      emoji: 'blobmoji',
     },
   );
 }

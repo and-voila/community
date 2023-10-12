@@ -1,33 +1,35 @@
-import "@/styles/globals.css";
-import { cal, inter } from "@/styles/fonts";
-import { Analytics } from "@vercel/analytics/react";
-import { Providers } from "./providers";
-import { Metadata } from "next";
-import { cn } from "@/lib/utils";
+import 'ui/styles/globals.css';
 
-const title =
-  "Write by And Voila – The all-in-one starter kit for building multi-tenant applications.";
+import { cn } from '@ui/index';
+import { Analytics } from '@vercel/analytics/react';
+import { Metadata } from 'next';
+
+import { cal, inter } from '@/styles/fonts';
+
+import { Providers } from './providers';
+
+const title = 'Write by And Voila';
 const description =
-  "The Platforms Starter Kit is a full-stack Next.js app with multi-tenancy and custom domain support. Built with Next.js App Router, Vercel Postgres and the Vercel Domains API.";
-const image = "https://vercel.pub/thumbnail.png";
+  'The Platforms Starter Kit is a full-stack Next.js app with multi-tenancy and custom domain support. Built with Next.js App Router, Vercel Postgres and the Vercel Domains API.';
+const image = '/images/open-graph.gif';
 
 export const metadata: Metadata = {
   title,
   description,
-  icons: ["https://vercel.pub/favicon.ico"],
+  icons: ['https://vercel.pub/favicon.ico'],
   openGraph: {
     title,
     description,
     images: [image],
   },
   twitter: {
-    card: "summary_large_image",
+    card: 'summary_large_image',
     title,
     description,
     images: [image],
-    creator: "@vercel",
+    creator: '@vercel',
   },
-  metadataBase: new URL("https://vercel.pub"),
+  metadataBase: new URL('https://vercel.pub'),
 };
 
 export default function RootLayout({

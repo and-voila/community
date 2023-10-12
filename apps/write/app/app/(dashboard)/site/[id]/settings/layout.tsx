@@ -1,8 +1,10 @@
-import { ReactNode } from "react";
-import { getSession } from "@/lib/auth";
-import prisma from "@/lib/prisma";
-import { notFound, redirect } from "next/navigation";
-import SiteSettingsNav from "./nav";
+import { notFound, redirect } from 'next/navigation';
+import { ReactNode } from 'react';
+
+import { getSession } from '@/lib/auth';
+import prisma from '@/lib/prisma';
+
+import SiteSettingsNav from './nav';
 
 export default async function SiteAnalyticsLayout({
   params,
@@ -13,7 +15,7 @@ export default async function SiteAnalyticsLayout({
 }) {
   const session = await getSession();
   if (!session) {
-    redirect("/login");
+    redirect('/login');
   }
   const data = await prisma.site.findUnique({
     where: {
