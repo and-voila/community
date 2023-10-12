@@ -1,26 +1,20 @@
-import Image from 'next/image';
+import { Logo } from '@ui/index';
 import { Suspense } from 'react';
 
 import LoginButton from './login-button';
 
 export default function LoginPage() {
   return (
-    <div className="mx-5 border border-stone-200 py-10 dark:border-stone-700 sm:mx-auto sm:w-full sm:max-w-md sm:rounded-lg sm:shadow-md">
-      <Image
-        alt="Platforms Starter Kit"
-        width={100}
-        height={100}
-        className="relative mx-auto h-12 w-auto dark:scale-110 dark:rounded-full dark:border dark:border-stone-400"
-        src="/logo.png"
-      />
+    <div className="mx-5 border bg-primary-foreground p-6 py-10 sm:mx-auto sm:w-full sm:max-w-md sm:rounded-lg sm:shadow-md">
+      <Logo fillOnHover className="mx-auto h-6 md:h-8" />
       <h1 className="font-cal mt-6 text-center text-3xl dark:text-white">
-        Platforms Starter Kit
+        AI Assisted Blog
       </h1>
-      <p className="mt-2 text-center text-sm text-stone-600 dark:text-stone-400">
-        Build multi-tenant applications with custom domains. <br />
+      <p className="py-4 text-center text-base text-muted-foreground">
+        Set-up your own personal blog in 3 minutes or less.{' '}
         <a
-          className="font-medium text-black hover:text-stone-800 dark:text-stone-300 dark:hover:text-stone-100"
-          href="https://vercel.com/blog/platforms-starter-kit"
+          className="font-medium text-foreground hover:text-brand"
+          href="https://andvoila.gg/blog/announcing-and-voila-writing-assistant"
           rel="noreferrer"
           target="_blank"
         >
