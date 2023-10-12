@@ -6,9 +6,10 @@ import plugin from 'tailwindcss/plugin';
 module.exports = {
   darkMode: ['class'],
   content: [
-    './pages/**/*.{ts,tsx}',
+    '../apps/lms/**/*.{js,ts,jsx,tsx}',
+    '../apps/web/**/*.{js,ts,jsx,tsx}',
+    '../apps/write/**/*.{js,ts,jsx,tsx}',
     './components/**/*.{ts,tsx}',
-    './app/**/*.{ts,tsx}',
     '../../packages/ui/components/**/*.{ts,tsx}',
   ],
   theme: {

@@ -1,8 +1,11 @@
+const sharedConfig = require("ui/tailwind.config");
 const { fontFamily } = require("tailwindcss/defaultTheme");
 
 /** @type {import('tailwindcss').Config} */
 module.exports = {
+  ...sharedConfig, 
   content: [
+    ...sharedConfig.content,
     "./pages/**/*.{js,ts,jsx,tsx,mdx}",
     "./components/**/*.{js,ts,jsx,tsx,mdx}",
     "./app/**/*.{js,ts,jsx,tsx,mdx}",
@@ -10,7 +13,9 @@ module.exports = {
     "./node_modules/@tremor/**/*.{js,ts,jsx,tsx}", // Tremor module
   ],
   theme: {
+    ...sharedConfig.theme,
     extend: {
+      ...sharedConfig.theme.extend,
       colors: {
         // light mode
         tremor: {
@@ -178,6 +183,7 @@ module.exports = {
     },
   ],
   plugins: [
+    ...sharedConfig.plugins,
     require("@tailwindcss/typography"),
     require("@tailwindcss/forms"),
     require("tailwindcss-animate"),
