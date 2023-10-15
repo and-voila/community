@@ -1,4 +1,3 @@
-// eslint-disable-next-line simple-import-sort/exports
 import { FunctionComponent, SVGProps } from 'react';
 
 export interface LucideIconProps extends SVGProps<SVGSVGElement> {

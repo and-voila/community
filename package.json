@@ -12,6 +12,7 @@
     "ui:add": "pnpm --filter ui ui:add"
   },
   "devDependencies": {
+    "@ianvs/prettier-plugin-sort-imports": "^4.1.1",
     "@turbo/gen": "^1.10.15",
     "@typescript-eslint/eslint-plugin": "^6.7.5",
     "@typescript-eslint/parser": "^6.7.5",
@@ -19,7 +20,6 @@
     "eslint-config-custom": "workspace:*",
     "eslint-import-resolver-typescript": "^3.6.1",
     "eslint-plugin-prettier": "^5.0.0",
-    "eslint-plugin-simple-import-sort": "^10.0.0",
     "eslint-plugin-unicorn": "^48.0.1",
     "prettier": "^3.0.3",
     "prettier-plugin-tailwindcss": "^0.5.5",
