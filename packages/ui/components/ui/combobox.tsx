@@ -1,5 +1,6 @@
 'use client';
 
+import * as React from 'react';
 import { Button } from '@ui/components/ui/button';
 import {
   Command,
@@ -15,7 +16,6 @@ import {
 } from '@ui/components/ui/popover';
 import { cn } from '@ui/lib/utils';
 import { Check, ChevronsUpDown } from 'lucide-react';
-import * as React from 'react';
 
 interface ComboboxProps {
   options: { label: string; value: string }[];

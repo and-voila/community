@@ -1,10 +1,9 @@
-"use client"
+'use client';
 
-import * as React from "react"
-import Link from "next/link"
-import { useRouter } from "next/navigation"
-import { Post } from "@prisma/client"
-
+import * as React from 'react';
+import Link from 'next/link';
+import { useRouter } from 'next/navigation';
+import { Post } from '@prisma/client';
 import {
   AlertDialog,
   AlertDialogAction,
@@ -14,41 +13,42 @@ import {
   AlertDialogFooter,
   AlertDialogHeader,
   AlertDialogTitle,
-} from "@/components/ui/alert-dialog"
+} from '@ui/components/ui/alert-dialog';
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu"
-import { toast } from "@/components/ui/use-toast"
-import { Icons } from "@/components/icons"
+} from '@ui/components/ui/dropdown-menu';
+import { toast } from '@ui/components/ui/use-toast';
+
+import { Icons } from '@/components/icons';
 
 async function deletePost(postId: string) {
   const response = await fetch(`/api/posts/${postId}`, {
-    method: "DELETE",
-  })
+    method: 'DELETE',
+  });
 
   if (!response?.ok) {
     toast({
-      title: "Something went wrong.",
-      description: "Your post was not deleted. Please try again.",
-      variant: "destructive",
-    })
+      title: 'Something went wrong.',
+      description: 'Your post was not deleted. Please try again.',
+      variant: 'destructive',
+    });
   }
 
-  return true
+  return true;
 }
 
 interface PostOperationsProps {
-  post: Pick<Post, "id" | "title">
+  post: Pick<Post, 'id' | 'title'>;
 }
 
 export function PostOperations({ post }: PostOperationsProps) {
-  const router = useRouter()
-  const [showDeleteAlert, setShowDeleteAlert] = React.useState<boolean>(false)
-  const [isDeleteLoading, setIsDeleteLoading] = React.useState<boolean>(false)
+  const router = useRouter();
+  const [showDeleteAlert, setShowDeleteAlert] = React.useState<boolean>(false);
+  const [isDeleteLoading, setIsDeleteLoading] = React.useState<boolean>(false);
 
   return (
     <>
@@ -86,15 +86,15 @@ export function PostOperations({ post }: PostOperationsProps) {
             <AlertDialogCancel>Cancel</AlertDialogCancel>
             <AlertDialogAction
               onClick={async (event) => {
-                event.preventDefault()
-                setIsDeleteLoading(true)
+                event.preventDefault();
+                setIsDeleteLoading(true);
 
-                const deleted = await deletePost(post.id)
+                const deleted = await deletePost(post.id);
 
                 if (deleted) {
-                  setIsDeleteLoading(false)
-                  setShowDeleteAlert(false)
-                  router.refresh()
+                  setIsDeleteLoading(false);
+                  setShowDeleteAlert(false);
+                  router.refresh();
                 }
               }}
               className="bg-red-600 focus:ring-red-600"
@@ -110,5 +110,5 @@ export function PostOperations({ post }: PostOperationsProps) {
         </AlertDialogContent>
       </AlertDialog>
     </>
-  )
+  );
 }
