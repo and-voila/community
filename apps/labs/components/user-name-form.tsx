@@ -5,12 +5,6 @@ import { useRouter } from 'next/navigation';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { User } from '@prisma/client';
 import { buttonVariants } from '@ui/components/ui/button';
-import { useForm } from 'react-hook-form';
-import * as z from 'zod';
-
-import { cn } from '@/lib/utils';
-import { userNameSchema } from '@/lib/validations/user';
-import { buttonVariants } from '@ui/components/ui/button';
 import {
   Card,
   CardContent,
@@ -22,10 +16,15 @@ import {
 import { Input } from '@ui/components/ui/input';
 import { Label } from '@ui/components/ui/label';
 import { toast } from '@ui/components/ui/use-toast';
+import { cn } from '@ui/lib/utils';
+import { useForm } from 'react-hook-form';
+import * as z from 'zod';
+
+import { userNameSchema } from '@/lib/validations/user';
 import { Icons } from '@/components/icons';
 
 interface UserNameFormProps extends React.HTMLAttributes<HTMLFormElement> {
-  user: Pick<User, 'id' | 'name'>
+  user: Pick<User, 'id' | 'name'>;
 }
 
 type FormData = z.infer<typeof userNameSchema>;

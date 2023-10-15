@@ -1,5 +1,5 @@
-import { clsx } from 'clsx';
 import { ElementType, ReactNode } from 'react';
+import { clsx } from 'clsx';
 
 const commonClasses = 'font-display lg:leading-tight';
 

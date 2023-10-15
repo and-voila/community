@@ -1,5 +1,5 @@
-import { Logo } from '@ui/index';
 import { Suspense } from 'react';
+import { Logo } from '@ui/index';
 
 import LoginButton from './login-button';
 

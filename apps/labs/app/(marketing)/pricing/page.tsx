@@ -1,9 +1,7 @@
 import Link from 'next/link';
-
-import { cn } from '@/lib/utils';
 import { buttonVariants } from '@ui/components/ui/button';
+import { cn } from '@ui/lib/utils';
 
-import { cn } from '@/lib/utils';
 import { Icons } from '@/components/icons';
 
 export const metadata = {

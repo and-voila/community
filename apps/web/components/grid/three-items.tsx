@@ -1,8 +1,8 @@
 import Link from 'next/link';
 
-import { GridTileImage } from '@/components/grid/tile';
 import { getCollectionProducts } from '@/lib/shopify';
 import type { Product } from '@/lib/shopify/types';
+import { GridTileImage } from '@/components/grid/tile';
 
 function ThreeItemGridItem({
   item,

@@ -1,7 +1,6 @@
-import FaqComponent from '@ui/components/faq';
-import { cn } from '@ui/index';
-import { FadeIn, FadeInStagger } from '@ui/index';
 import Link from 'next/link';
+import FaqComponent from '@ui/components/faq';
+import { cn, FadeIn, FadeInStagger } from '@ui/index';
 import {
   buttonVariants,
   Card,

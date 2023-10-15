@@ -1,6 +1,6 @@
-import { FadeIn, FadeInStagger, H3 } from '@ui/index';
 import Image from 'next/image';
 import Link from 'next/link';
+import { FadeIn, FadeInStagger, H3 } from '@ui/index';
 
 import { Author } from './author';
 import PostTags from './post-tags';

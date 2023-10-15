@@ -1,7 +1,8 @@
+import { Metadata } from 'next';
 import FaqComponent from '@ui/components/faq';
 import { Container } from '@ui/index';
-import { Metadata } from 'next';
 
+import { SITE_URL } from '@/lib/utils';
 import Community from '@/components/community/community';
 import CommunityEarlyAccess from '@/components/community/community-early-access';
 import { communityFaqs } from '@/components/community/community-faq-data';
@@ -11,7 +12,6 @@ import CommunityLargeCta from '@/components/community/community-large-cta';
 import CommunityProblems from '@/components/community/community-problems';
 import CommunitySummary from '@/components/community/community-summary';
 import CommunityTeam from '@/components/community/community-team';
-import { SITE_URL } from '@/lib/utils';
 
 export function generateMetadata(): Metadata {
   const title = 'Digital Marketing Community';

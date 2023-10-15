@@ -4,10 +4,11 @@ import localFont from 'next/font/local';
 import '../../../packages/ui/styles/globals.css';
 
 import { Toaster } from '@ui/components/ui/toaster';
+import { cn } from '@ui/lib/utils';
 
 import { siteConfig } from '@/config/site';
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-import { absoluteUrl, cn } from '@/lib/utils';
+import { absoluteUrl } from '@/lib/utils';
 import { Analytics } from '@/components/analytics';
 import { TailwindIndicator } from '@/components/tailwind-indicator';
 import { ThemeProvider } from '@/components/theme-provider';

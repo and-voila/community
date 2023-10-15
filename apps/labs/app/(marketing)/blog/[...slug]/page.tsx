@@ -9,10 +9,10 @@ import { Metadata } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
 import { buttonVariants } from '@ui/components/ui/button';
+import { cn } from '@ui/lib/utils';
 
 import { env } from '@/env.mjs';
-import { absoluteUrl, cn, formatDate } from '@/lib/utils';
-import { buttonVariants } from '@ui/components/ui/button';
+import { absoluteUrl, formatDate } from '@/lib/utils';
 import { Icons } from '@/components/icons';
 
 interface PostPageProps {

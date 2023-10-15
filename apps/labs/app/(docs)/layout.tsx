@@ -1,15 +1,15 @@
-import Link from "next/link"
+import Link from 'next/link';
 
-import { docsConfig } from "@/config/docs"
-import { siteConfig } from "@/config/site"
-import { Icons } from "@/components/icons"
-import { MainNav } from "@/components/main-nav"
-import { DocsSearch } from "@/components/search"
-import { DocsSidebarNav } from "@/components/sidebar-nav"
-import { SiteFooter } from "@/components/site-footer"
+import { docsConfig } from '@/config/docs';
+import { siteConfig } from '@/config/site';
+import { Icons } from '@/components/icons';
+import { MainNav } from '@/components/main-nav';
+import { DocsSearch } from '@/components/search';
+import { DocsSidebarNav } from '@/components/sidebar-nav';
+import { SiteFooter } from '@/components/site-footer';
 
 interface DocsLayoutProps {
-  children: React.ReactNode
+  children: React.ReactNode;
 }
 
 export default function DocsLayout({ children }: DocsLayoutProps) {
@@ -40,5 +40,5 @@ export default function DocsLayout({ children }: DocsLayoutProps) {
       <div className="container flex-1">{children}</div>
       <SiteFooter className="border-t" />
     </div>
-  )
+  );
 }

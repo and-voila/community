@@ -1,7 +1,7 @@
 'use client';
 
-import { cn, LucideReact } from '@ui/index';
 import { useState } from 'react';
+import { cn, LucideReact } from '@ui/index';
 
 import { getSubdomain } from '@/lib/domains';
 

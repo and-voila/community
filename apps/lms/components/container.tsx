@@ -1,5 +1,5 @@
-import { clsx } from '@ui/index';
 import { ElementType, ReactNode } from 'react';
+import { clsx } from '@ui/index';
 
 interface ContainerProps {
   as?: ElementType;

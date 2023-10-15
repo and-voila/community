@@ -1,8 +1,8 @@
-import { Container } from '@ui/index';
 import { Metadata } from 'next';
+import { Container } from '@ui/index';
 
-import ContactDetails from '@/components/contact/contact-details';
 import { SITE_URL } from '@/lib/utils';
+import ContactDetails from '@/components/contact/contact-details';
 
 export function generateMetadata(): Metadata {
   const title = 'Contact';

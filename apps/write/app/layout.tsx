@@ -1,9 +1,9 @@
 import 'ui/styles/globals.css';
 
+import { ReactNode } from 'react';
+import { Metadata } from 'next';
 import { cn } from '@ui/index';
 import { Analytics } from '@vercel/analytics/react';
-import { Metadata } from 'next';
-import { ReactNode } from 'react';
 
 import { cal, inter } from '@/styles/fonts';
 

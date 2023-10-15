@@ -8,7 +8,7 @@ import { signIn } from 'next-auth/react';
 import { useForm } from 'react-hook-form';
 import * as z from 'zod';
 
-import { cn } from '@/lib/utils';
+import { cn } from '@ui/lib/utils';
 import { userAuthSchema } from '@/lib/validations/auth';
 import { buttonVariants } from '@ui/components/ui/button';
 import { Input } from '@ui/components/ui/input';

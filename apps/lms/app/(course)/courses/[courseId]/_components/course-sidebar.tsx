@@ -1,11 +1,11 @@
+import { redirect } from 'next/navigation';
 import { auth } from '@clerk/nextjs';
 import { Chapter, Course, UserProgress } from '@prisma/client';
 import { Logo } from '@ui/index';
-import { redirect } from 'next/navigation';
 
+import { db } from '@/lib/db';
 import { CourseProgress } from '@/components/course-progress';
 import SidebarQuickLinks from '@/components/sidebar-quick-links';
-import { db } from '@/lib/db';
 
 import { CourseSidebarItem } from './course-sidebar-item';
 

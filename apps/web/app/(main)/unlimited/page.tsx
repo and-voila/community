@@ -1,8 +1,8 @@
-import { Container } from '@ui/index';
 import { Metadata } from 'next';
+import { Container } from '@ui/index';
 
-import Unlimited from '@/components/unlimited/unlimited';
 import { SITE_URL } from '@/lib/utils';
+import Unlimited from '@/components/unlimited/unlimited';
 
 export const runtime = 'edge';
 

@@ -12,9 +12,10 @@ import '@/styles/mdx.css';
 
 import { Metadata } from 'next';
 import { buttonVariants } from '@ui/components/ui/button';
+import { cn } from '@ui/lib/utils';
 
 import { env } from '@/env.mjs';
-import { absoluteUrl, cn } from '@/lib/utils';
+import { absoluteUrl } from '@/lib/utils';
 
 interface GuidePageProps {
   params: {

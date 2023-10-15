@@ -1,15 +1,15 @@
 'use client';
 
+import { useEffect, useState } from 'react';
+import { useRouter } from 'next/navigation';
 import { cn } from '@ui/index';
 import va from '@vercel/analytics';
-import { useRouter } from 'next/navigation';
-import { useEffect, useState } from 'react';
 // @ts-expect-error This exists but TS doesn't recognize it.
 import { experimental_useFormStatus as useFormStatus } from 'react-dom';
 import { toast } from 'sonner';
 
-import LoadingDots from '@/components/icons/loading-dots';
 import { createSite } from '@/lib/actions';
+import LoadingDots from '@/components/icons/loading-dots';
 
 import { useModal } from './provider';
 

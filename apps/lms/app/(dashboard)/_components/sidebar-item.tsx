@@ -1,7 +1,7 @@
 'use client';
 
-import { cn, LucideIcon } from '@ui/index';
 import { usePathname, useRouter } from 'next/navigation';
+import { cn, LucideIcon } from '@ui/index';
 
 interface SidebarItemProps {
   icon: LucideIcon;

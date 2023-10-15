@@ -13,15 +13,14 @@ import * as z from 'zod';
 import '@/styles/editor.css';
 
 import { buttonVariants } from '@ui/components/ui/button';
-
-import { cn } from '@/lib/utils';
-import { postPatchSchema } from '@/lib/validations/post';
-import { buttonVariants } from '@ui/components/ui/button';
 import { toast } from '@ui/components/ui/use-toast';
+import { cn } from '@ui/lib/utils';
+
+import { postPatchSchema } from '@/lib/validations/post';
 import { Icons } from '@/components/icons';
 
 interface EditorProps {
-  post: Pick<Post, 'id' | 'title' | 'content' | 'published'>
+  post: Pick<Post, 'id' | 'title' | 'content' | 'published'>;
 }
 
 type FormData = z.infer<typeof postPatchSchema>;

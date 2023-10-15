@@ -1,11 +1,11 @@
-import { Container } from '@ui/index';
 import { Metadata } from 'next';
+import { Container } from '@ui/index';
 
+import { SITE_URL } from '@/lib/utils';
 import AffiliatesHero from '@/components/affiliates/affilates-hero';
 import AffiliatesBenefits from '@/components/affiliates/affiliates-benefits';
 import AffiliatesContent from '@/components/affiliates/affiliates-content';
 import AffiliatesFeatures from '@/components/affiliates/affiliates-features';
-import { SITE_URL } from '@/lib/utils';
 
 export const runtime = 'edge';
 

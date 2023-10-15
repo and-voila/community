@@ -1,5 +1,5 @@
-import { currentUser } from '@clerk/nextjs';
 import { NextResponse } from 'next/server';
+import { currentUser } from '@clerk/nextjs';
 import Stripe from 'stripe';
 
 import { db } from '@/lib/db';

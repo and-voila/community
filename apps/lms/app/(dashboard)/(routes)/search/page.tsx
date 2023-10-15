@@ -1,10 +1,10 @@
-import { auth } from '@clerk/nextjs';
 import { redirect } from 'next/navigation';
-
 import { getCourses } from '@/actions/get-courses';
+import { auth } from '@clerk/nextjs';
+
+import { db } from '@/lib/db';
 import { CoursesList } from '@/components/courses-list';
 import { SearchInput } from '@/components/search-input';
-import { db } from '@/lib/db';
 
 import { Categories } from './_components/categories';
 

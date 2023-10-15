@@ -1,10 +1,10 @@
 'use client';
 
+import { useEffect, useState } from 'react';
+import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import { Input } from '@ui/components/ui/input';
 import { LucideReact } from '@ui/index';
-import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import qs from 'query-string';
-import { useEffect, useState } from 'react';
 
 import { useDebounce } from '@/hooks/use-debounce';
 

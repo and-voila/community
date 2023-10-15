@@ -1,11 +1,12 @@
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-nocheck
 // TODO: Fix this when we turn strict mode on.
-import { UserSubscriptionPlan } from "types"
-import { freePlan, proPlan } from "@/config/subscriptions"
-import { db } from "@/lib/db"
+import { UserSubscriptionPlan } from 'types';
+import { freePlan, proPlan } from '@/config/subscriptions';
+import { db } from '@/lib/db';
 
 export async function getUserSubscriptionPlan(
-  userId: string
+  userId: string,
 ): Promise<UserSubscriptionPlan> {
   const user = await db.user.findFirst({
     where: {
@@ -17,23 +18,23 @@ export async function getUserSubscriptionPlan(
       stripeCustomerId: true,
       stripePriceId: true,
     },
-  })
+  });
 
   if (!user) {
-    throw new Error("User not found")
+    throw new Error('User not found');
   }
 
   // Check if user is on a pro plan.
   const isPro =
     user.stripePriceId &&
-    user.stripeCurrentPeriodEnd?.getTime() + 86_400_000 > Date.now()
+    user.stripeCurrentPeriodEnd?.getTime() + 86_400_000 > Date.now();
 
-  const plan = isPro ? proPlan : freePlan
+  const plan = isPro ? proPlan : freePlan;
 
   return {
     ...plan,
     ...user,
     stripeCurrentPeriodEnd: user.stripeCurrentPeriodEnd?.getTime(),
     isPro,
-  }
+  };
 }

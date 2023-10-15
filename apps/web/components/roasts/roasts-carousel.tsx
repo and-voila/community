@@ -3,9 +3,9 @@
 
 import 'swiper/css';
 
-import { FadeIn } from '@ui/index';
-import Link from 'next/link';
 import React, { useEffect, useState } from 'react';
+import Link from 'next/link';
+import { FadeIn } from '@ui/index';
 import Swiper from 'swiper';
 import { Navigation } from 'swiper/modules';
 import {
@@ -30,6 +30,7 @@ import {
 import Highlighter, { HighlighterItem } from '@/components/highlighter';
 import Particles from '@/components/particles';
 import SectionIntro from '@/components/section-intro';
+
 Swiper.use([Navigation]);
 
 interface CarouselItem {

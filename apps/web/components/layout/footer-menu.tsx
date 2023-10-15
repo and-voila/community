@@ -1,9 +1,9 @@
 'use client';
 
-import { clsx } from '@ui/index';
+import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { useEffect, useState } from 'react';
+import { clsx } from '@ui/index';
 
 import { Menu } from '@/lib/shopify/types';
 

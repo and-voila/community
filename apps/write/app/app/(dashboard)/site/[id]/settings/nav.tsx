@@ -1,8 +1,8 @@
 'use client';
 
-import { cn } from '@ui/index';
 import Link from 'next/link';
 import { useParams, useSelectedLayoutSegment } from 'next/navigation';
+import { cn } from '@ui/index';
 
 export default function SiteSettingsNav() {
   const { id } = useParams() as { id?: string };

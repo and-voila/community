@@ -1,9 +1,9 @@
 'use client';
 
+import { useEffect, useState, useTransition } from 'react';
 import { Post } from '@prisma/client';
 import { cn, LucideReact } from '@ui/index';
 import { Editor as NovelEditor } from 'novel';
-import { useEffect, useState, useTransition } from 'react';
 import TextareaAutosize from 'react-textarea-autosize';
 import { toast } from 'sonner';
 

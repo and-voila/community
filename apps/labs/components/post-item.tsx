@@ -1,14 +1,12 @@
 import Link from 'next/link';
 import { Post } from '@prisma/client';
-
-import { formatDate } from '@/lib/utils';
 import { Skeleton } from '@ui/components/ui/skeleton';
 
 import { formatDate } from '@/lib/utils';
 import { PostOperations } from '@/components/post-operations';
 
 interface PostItemProps {
-  post: Pick<Post, 'id' | 'title' | 'published' | 'createdAt'>
+  post: Pick<Post, 'id' | 'title' | 'published' | 'createdAt'>;
 }
 
 export function PostItem({ post }: PostItemProps) {

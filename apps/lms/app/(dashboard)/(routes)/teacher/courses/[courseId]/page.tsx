@@ -1,10 +1,10 @@
+import { redirect } from 'next/navigation';
 import { auth } from '@clerk/nextjs';
 import { LucideReact } from '@ui/index';
-import { redirect } from 'next/navigation';
 
+import { db } from '@/lib/db';
 import { Banner } from '@/components/banner';
 import { IconBadge } from '@/components/icon-badge';
-import { db } from '@/lib/db';
 
 import { Actions } from './_components/actions';
 import { AttachmentForm } from './_components/attachment-form';

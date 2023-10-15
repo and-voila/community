@@ -1,8 +1,8 @@
+import type { Metadata } from 'next';
+import { notFound } from 'next/navigation';
 import Prose from '@ui/components/prose';
 import { GradientHeading } from '@ui/index';
 import { getPage } from 'lib/shopify';
-import type { Metadata } from 'next';
-import { notFound } from 'next/navigation';
 
 import { SITE_URL } from '@/lib/utils';
 

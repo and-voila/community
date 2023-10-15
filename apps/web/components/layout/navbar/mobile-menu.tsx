@@ -1,9 +1,9 @@
 'use client';
 
-import { Dialog, Transition } from '@headlessui/react';
+import { Fragment, useEffect, useState } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { Fragment, useEffect, useState } from 'react';
+import { Dialog, Transition } from '@headlessui/react';
 import { Cross1Icon, DiscordLogoIcon, HamburgerMenuIcon } from 'ui';
 
 const menu = [

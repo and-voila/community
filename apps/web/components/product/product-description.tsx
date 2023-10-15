@@ -1,10 +1,10 @@
 import Prose from '@ui/components/prose';
 import { GradientHeading } from '@ui/index';
 
+import { Product } from '@/lib/shopify/types';
 import { AddToCart } from '@/components/cart/add-to-cart';
 import Price from '@/components/price';
 import { VariantSelector } from '@/components/product/variant-selector';
-import { Product } from '@/lib/shopify/types';
 
 export function ProductDescription({ product }: { product: Product }) {
   return (

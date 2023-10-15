@@ -1,3 +1,4 @@
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 import { Card } from '@ui/components/ui/card';
 
 import { CardSkeleton } from '@/components/card-skeleton';

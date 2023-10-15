@@ -1,6 +1,7 @@
-import { Container } from '@ui/index';
 import { Metadata } from 'next';
+import { Container } from '@ui/index';
 
+import { SITE_URL } from '@/lib/utils';
 import LandingCarousel from '@/components/roasts/roasts-carousel';
 import LandingClients from '@/components/roasts/roasts-clients';
 import Collections from '@/components/roasts/roasts-collections';
@@ -12,7 +13,6 @@ import LandingIdentity from '@/components/roasts/roasts-identity';
 import LandingProgress from '@/components/roasts/roasts-progress';
 import LandingRelief from '@/components/roasts/roasts-relief';
 import LandingSummary from '@/components/roasts/roasts-summary';
-import { SITE_URL } from '@/lib/utils';
 
 export function generateMetadata(): Metadata {
   const title = 'Roasts';

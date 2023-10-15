@@ -1,7 +1,7 @@
 'use client';
 
-import { cn } from '@ui/index';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
+import { cn } from '@ui/index';
 import qs from 'query-string';
 import { IconType } from 'react-icons';
 

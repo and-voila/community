@@ -1,9 +1,7 @@
 'use client';
 
-import { cn } from '@ui/index';
-import { FadeIn } from '@ui/index';
-import { GradientHeading } from '@ui/index';
 import Link from 'next/link';
+import { cn, FadeIn, GradientHeading } from '@ui/index';
 import { buttonVariants } from 'ui';
 
 import Highlighter, { HighlighterItem } from '@/components/highlighter';

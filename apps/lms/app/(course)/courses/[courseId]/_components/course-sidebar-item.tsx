@@ -1,7 +1,7 @@
 'use client';
 
-import { cn, LucideReact, PlayIcon } from '@ui/index';
 import { usePathname, useRouter } from 'next/navigation';
+import { cn, LucideReact, PlayIcon } from '@ui/index';
 
 interface CourseSidebarItemProps {
   label: string;

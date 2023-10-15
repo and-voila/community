@@ -1,5 +1,5 @@
-import { FadeIn, FadeInStagger, H4 } from '@ui/index';
 import Link from 'next/link';
+import { FadeIn, FadeInStagger, H4 } from '@ui/index';
 import {
   ArrowRightIcon,
   EnvelopeOpenIcon,

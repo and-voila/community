@@ -1,6 +1,5 @@
-import { FadeIn, FadeInStagger } from '@ui/index';
-import { GradientHeading } from '@ui/index';
 import { FC, ReactElement } from 'react';
+import { FadeIn, FadeInStagger, GradientHeading } from '@ui/index';
 import {
   BarChartIcon,
   HeartIcon,

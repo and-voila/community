@@ -3,8 +3,8 @@
 import 'react-quill/dist/quill.bubble.css';
 import './quill.css';
 
-import dynamic from 'next/dynamic';
 import { useMemo } from 'react';
+import dynamic from 'next/dynamic';
 
 interface PreviewProps {
   value: string;

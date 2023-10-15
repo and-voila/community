@@ -1,12 +1,12 @@
 'use client';
 
+import { usePathname } from 'next/navigation';
 import {
   BarChartIcon,
   HomeIcon,
   ListBulletIcon,
   MagnifyingGlassIcon,
 } from '@ui/index';
-import { usePathname } from 'next/navigation';
 
 import { SidebarItem } from './sidebar-item';
 

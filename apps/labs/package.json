@@ -32,8 +32,6 @@
     "@t3-oss/env-nextjs": "^0.2.2",
     "@vercel/analytics": "^1.0.0",
     "@vercel/og": "^0.0.21",
-    "class-variance-authority": "^0.4.0",
-    "clsx": "^1.2.1",
     "cmdk": "^0.1.22",
     "concurrently": "^8.0.1",
     "contentlayer": "^0.3.1",

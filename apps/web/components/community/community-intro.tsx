@@ -1,6 +1,6 @@
-import { FadeIn } from '@ui/index';
-import Link from 'next/link';
 import React, { FC } from 'react';
+import Link from 'next/link';
+import { FadeIn } from '@ui/index';
 import { ArrowRightIcon, DiscordLogoIcon, RocketIcon, StarIcon } from 'ui';
 
 import Highlighter, { HighlighterItem } from '@/components/highlighter';

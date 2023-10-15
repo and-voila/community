@@ -1,5 +1,5 @@
-import { Container } from '@ui/index';
 import React from 'react';
+import { Container } from '@ui/index';
 
 export default function Loading() {
   return (

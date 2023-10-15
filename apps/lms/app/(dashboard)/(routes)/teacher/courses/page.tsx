@@ -1,8 +1,8 @@
-import { auth } from '@clerk/nextjs';
 import { redirect } from 'next/navigation';
+import { auth } from '@clerk/nextjs';
 
-import { Container } from '@/components/container';
 import { db } from '@/lib/db';
+import { Container } from '@/components/container';
 
 import { columns } from './_components/columns';
 import { DataTable } from './_components/data-table';

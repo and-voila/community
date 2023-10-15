@@ -1,9 +1,9 @@
-import { FadeIn } from '@ui/index';
 import Image from 'next/image';
 import Link from 'next/link';
+import { FadeIn } from '@ui/index';
 
-import SectionIntro from '@/components/section-intro';
 import { getCollections } from '@/lib/shopify';
+import SectionIntro from '@/components/section-intro';
 
 interface Collection {
   title: string;

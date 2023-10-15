@@ -1,11 +1,11 @@
-import { auth } from '@clerk/nextjs';
-import { LucideReact } from '@ui/index';
 import Link from 'next/link';
 import { redirect } from 'next/navigation';
+import { auth } from '@clerk/nextjs';
+import { LucideReact } from '@ui/index';
 
+import { db } from '@/lib/db';
 import { Banner } from '@/components/banner';
 import { IconBadge } from '@/components/icon-badge';
-import { db } from '@/lib/db';
 
 import { ChapterAccessForm } from './_components/chapter-access-form';
 import { ChapterActions } from './_components/chapter-actions';

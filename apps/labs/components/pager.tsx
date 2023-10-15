@@ -1,10 +1,9 @@
 import Link from 'next/link';
 import { buttonVariants } from '@ui/components/ui/button';
+import { cn } from '@ui/lib/utils';
 import { Doc } from 'contentlayer/generated';
 
 import { docsConfig } from '@/config/docs';
-import { cn } from '@/lib/utils';
-import { buttonVariants } from '@ui/components/ui/button';
 import { Icons } from '@/components/icons';
 
 interface DocsPagerProps {

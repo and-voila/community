@@ -1,9 +1,9 @@
+import { redirect } from 'next/navigation';
+import { getChapter } from '@/actions/get-chapter';
 import { auth } from '@clerk/nextjs';
 import { Separator } from '@ui/components/ui/separator';
 import { FileIcon } from '@ui/index';
-import { redirect } from 'next/navigation';
 
-import { getChapter } from '@/actions/get-chapter';
 import { Banner } from '@/components/banner';
 import { Container } from '@/components/container';
 import { Preview } from '@/components/preview';

@@ -1,7 +1,7 @@
 'use client';
 
-import { motion, MotionProps, useReducedMotion } from 'framer-motion';
 import { createContext, ReactNode, useContext } from 'react';
+import { motion, MotionProps, useReducedMotion } from 'framer-motion';
 
 interface FadeInProps extends MotionProps {
   children?: ReactNode;

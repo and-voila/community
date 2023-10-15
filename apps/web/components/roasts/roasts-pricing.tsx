@@ -1,6 +1,5 @@
-import { FadeIn } from '@ui/index';
-import { GradientHeading } from '@ui/index';
 import Link from 'next/link';
+import { FadeIn, GradientHeading } from '@ui/index';
 import { Button, CheckIcon } from 'ui';
 
 interface Tier {

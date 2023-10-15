@@ -1,5 +1,17 @@
 'use client';
 
+import React, { useState } from 'react';
+import {
+  Alert,
+  AlertDescription,
+  AlertTitle,
+  ArrowDownIcon,
+  Button,
+  ExclamationTriangleIcon,
+} from '@ui/index';
+
+import PostItem from './post-item';
+
 interface PostType {
   title: string;
   publishedAt: string;
@@ -14,18 +26,6 @@ interface PostType {
 interface LoadMoreButtonProps {
   posts: PostType[];
 }
-
-import {
-  Alert,
-  AlertDescription,
-  AlertTitle,
-  ArrowDownIcon,
-  Button,
-  ExclamationTriangleIcon,
-} from '@ui/index';
-import React, { useState } from 'react';
-
-import PostItem from './post-item';
 
 const LoadMoreButton: React.FC<LoadMoreButtonProps> = ({ posts }) => {
   const [postCount, setPostCount] = useState(9);

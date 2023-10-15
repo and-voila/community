@@ -1,10 +1,10 @@
-import { LucideReact } from '@ui/index';
 import Image from 'next/image';
 import Link from 'next/link';
+import { LucideReact } from '@ui/index';
 
+import { formatPrice } from '@/lib/format';
 import { CourseProgress } from '@/components/course-progress';
 import { IconBadge } from '@/components/icon-badge';
-import { formatPrice } from '@/lib/format';
 
 interface CourseCardProps {
   id: string;
