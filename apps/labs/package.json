@@ -7,7 +7,7 @@
     "url": "https://andvoila.gg"
   },
   "scripts": {
-    "dev": "concurrently \"contentlayer dev\" \"next dev\"",
+    "dev": "concurrently \"contentlayer dev\" \"next dev --port 3003\"",
     "build": "contentlayer build && next build",
     "turbo": "next dev --turbo",
     "start": "next start",

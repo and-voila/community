@@ -1,8 +1,13 @@
 {
   "extends": "../../packages/tsconfig/nextjs.json",
   "compilerOptions": {
-    "plugins": [{ "name": "next" }],
-    "baseUrl": "."
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ],
+    "baseUrl": ".",
+    "strictNullChecks": true
   },
   "include": [
     "next-env.d.ts",
@@ -11,5 +16,7 @@
     ".next/types/**/*.ts",
     "./contentlayer/generated"
   ],
-  "exclude": ["node_modules"]
+  "exclude": [
+    "node_modules"
+  ]
 }
