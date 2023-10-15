@@ -1,7 +1,7 @@
 import { Inter as FontSans } from 'next/font/google';
 import localFont from 'next/font/local';
 
-import '../../../packages/ui/styles/globals.css';
+import 'ui/styles/globals.css';
 
 import { Toaster } from '@ui/components/ui/toaster';
 import { cn } from '@ui/lib/utils';
@@ -86,7 +86,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
           fontHeading.variable,
         )}
       >
-        <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+        <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>
           {children}
           <Analytics />
           <Toaster />
