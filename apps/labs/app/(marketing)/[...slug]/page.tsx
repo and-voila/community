@@ -1,7 +1,8 @@
 import { notFound } from 'next/navigation';
-import { allPages } from 'contentlayer/generated';
 
 import { Mdx } from '@/components/mdx-components';
+
+import { allPages } from '.contentlayer/generated';
 
 import '@/styles/mdx.css';
 

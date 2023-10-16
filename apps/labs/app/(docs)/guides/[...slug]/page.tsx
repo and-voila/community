@@ -1,12 +1,13 @@
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
-import { allGuides } from 'contentlayer/generated';
 
 import { getTableOfContents } from '@/lib/toc';
 import { Icons } from '@/components/icons';
 import { Mdx } from '@/components/mdx-components';
 import { DocsPageHeader } from '@/components/page-header';
 import { DashboardTableOfContents } from '@/components/toc';
+
+import { allGuides } from '.contentlayer/generated';
 
 import '@/styles/mdx.css';
 
