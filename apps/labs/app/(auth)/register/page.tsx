@@ -1,7 +1,7 @@
 import Link from 'next/link';
-import { buttonVariants } from '@ui/components/ui/button';
 import { cn } from '@ui/lib/utils';
 
+import { buttonVariants } from '@/components/ui/button';
 import { Icons } from '@/components/icons';
 import { UserAuthForm } from '@/components/user-auth-form';
 

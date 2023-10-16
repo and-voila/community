@@ -1,8 +1,8 @@
 import Link from 'next/link';
-import { buttonVariants } from '@ui/components/ui/button';
 import { cn } from '@ui/lib/utils';
 
 import { docsConfig } from '@/config/docs';
+import { buttonVariants } from '@/components/ui/button';
 import { Icons } from '@/components/icons';
 
 import { Doc } from '.contentlayer/generated';

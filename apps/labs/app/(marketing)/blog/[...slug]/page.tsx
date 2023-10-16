@@ -9,11 +9,11 @@ import '@/styles/mdx.css';
 import { Metadata } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
-import { buttonVariants } from '@ui/components/ui/button';
 import { cn } from '@ui/lib/utils';
 
 import { env } from '@/env.mjs';
 import { absoluteUrl, formatDate } from '@/lib/utils';
+import { buttonVariants } from '@/components/ui/button';
 import { Icons } from '@/components/icons';
 
 interface PostPageProps {
@@ -118,7 +118,7 @@ export default async function PostPage({ params }: PostPageProps) {
             Published on {formatDate(post.date)}
           </time>
         )}
-        <h1 className="mt-2 inline-block font-heading text-4xl leading-tight lg:text-5xl">
+        <h1 className="mt-2 inline-block font-display text-4xl leading-tight lg:text-5xl">
           {post.title}
         </h1>
         {authors?.length ? (

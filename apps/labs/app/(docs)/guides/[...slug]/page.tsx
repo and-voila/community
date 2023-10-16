@@ -12,11 +12,11 @@ import { allGuides } from '.contentlayer/generated';
 import '@/styles/mdx.css';
 
 import { Metadata } from 'next';
-import { buttonVariants } from '@ui/components/ui/button';
 import { cn } from '@ui/lib/utils';
 
 import { env } from '@/env.mjs';
 import { absoluteUrl } from '@/lib/utils';
+import { buttonVariants } from '@/components/ui/button';
 
 interface GuidePageProps {
   params: {

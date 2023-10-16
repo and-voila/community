@@ -1,9 +1,10 @@
 'use client';
 
 import * as React from 'react';
-import { Input } from '@ui/components/ui/input';
-import { toast } from '@ui/components/ui/use-toast';
 import { cn } from '@ui/lib/utils';
+
+import { Input } from '@/components/ui/input';
+import { toast } from '@/components/ui/use-toast';
 
 interface DocsSearchProps extends React.HTMLAttributes<HTMLFormElement> {}
 

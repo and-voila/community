@@ -2,10 +2,10 @@
 
 import * as React from 'react';
 import { useRouter } from 'next/navigation';
-import { ButtonProps, buttonVariants } from '@ui/components/ui/button';
-import { toast } from '@ui/components/ui/use-toast';
 import { cn } from '@ui/lib/utils';
 
+import { ButtonProps, buttonVariants } from '@/components/ui/button';
+import { toast } from '@/components/ui/use-toast';
 import { Icons } from '@/components/icons';
 
 interface PostCreateButtonProps extends ButtonProps {}

@@ -10,7 +10,6 @@ const nextConfig = {
   },
   experimental: {
     serverComponentsExternalPackages: ['@prisma/client'],
-    serverActions: true,
   },
   async headers() {
     return [

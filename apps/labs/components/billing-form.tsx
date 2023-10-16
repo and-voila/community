@@ -1,7 +1,11 @@
 'use client';
 
 import * as React from 'react';
-import { buttonVariants } from '@ui/components/ui/button';
+import { cn } from '@ui/lib/utils';
+
+import { UserSubscriptionPlan } from 'types';
+import { formatDate } from '@/lib/utils';
+import { buttonVariants } from '@/components/ui/button';
 import {
   Card,
   CardContent,
@@ -9,12 +13,8 @@ import {
   CardFooter,
   CardHeader,
   CardTitle,
-} from '@ui/components/ui/card';
-import { toast } from '@ui/components/ui/use-toast';
-import { cn } from '@ui/lib/utils';
-
-import { UserSubscriptionPlan } from 'types';
-import { formatDate } from '@/lib/utils';
+} from '@/components/ui/card';
+import { toast } from '@/components/ui/use-toast';
 import { Icons } from '@/components/icons';
 
 interface BillingFormProps extends React.HTMLAttributes<HTMLFormElement> {

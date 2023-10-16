@@ -1,11 +1,11 @@
 import { User } from '@prisma/client';
+
 import {
   Avatar,
   AvatarFallback,
   AvatarImage,
   AvatarProps,
-} from '@ui/components/ui/avatar';
-
+} from '@/components/ui/avatar';
 import { Icons } from '@/components/icons';
 
 interface UserAvatarProps extends AvatarProps {

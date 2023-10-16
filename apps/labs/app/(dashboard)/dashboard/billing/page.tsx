@@ -1,18 +1,18 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { redirect } from 'next/navigation';
-import { Alert, AlertDescription, AlertTitle } from '@ui/components/ui/alert';
+
+import { authOptions } from '@/lib/auth';
+import { getCurrentUser } from '@/lib/session';
+import { stripe } from '@/lib/stripe';
+import { getUserSubscriptionPlan } from '@/lib/subscription';
+import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
 import {
   Card,
   CardContent,
   CardDescription,
   CardHeader,
   CardTitle,
-} from '@ui/components/ui/card';
-
-import { authOptions } from '@/lib/auth';
-import { getCurrentUser } from '@/lib/session';
-import { stripe } from '@/lib/stripe';
-import { getUserSubscriptionPlan } from '@/lib/subscription';
+} from '@/components/ui/card';
 import { BillingForm } from '@/components/billing-form';
 import { DashboardHeader } from '@/components/header';
 import { Icons } from '@/components/icons';

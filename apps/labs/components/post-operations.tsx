@@ -4,6 +4,7 @@ import * as React from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { Post } from '@prisma/client';
+
 import {
   AlertDialog,
   AlertDialogAction,
@@ -13,16 +14,15 @@ import {
   AlertDialogFooter,
   AlertDialogHeader,
   AlertDialogTitle,
-} from '@ui/components/ui/alert-dialog';
+} from '@/components/ui/alert-dialog';
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from '@ui/components/ui/dropdown-menu';
-import { toast } from '@ui/components/ui/use-toast';
-
+} from '@/components/ui/dropdown-menu';
+import { toast } from '@/components/ui/use-toast';
 import { Icons } from '@/components/icons';
 
 async function deletePost(postId: string) {

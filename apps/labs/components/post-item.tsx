@@ -1,8 +1,8 @@
 import Link from 'next/link';
 import { Post } from '@prisma/client';
-import { Skeleton } from '@ui/components/ui/skeleton';
 
 import { formatDate } from '@/lib/utils';
+import { Skeleton } from '@/components/ui/skeleton';
 import { PostOperations } from '@/components/post-operations';
 
 interface PostItemProps {
