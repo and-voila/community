@@ -1,8 +1,6 @@
-import { Inter as FontSans } from 'next/font/google';
+import 'ui/styles/globals.css';
+
 import localFont from 'next/font/local';
-
-import '@/styles/globals.css';
-
 import { Toaster } from '@ui/components/ui/toaster';
 import { cn } from '@ui/lib/utils';
 
@@ -13,15 +11,16 @@ import { Analytics } from '@/components/analytics';
 import { TailwindIndicator } from '@/components/tailwind-indicator';
 import { ThemeProvider } from '@/components/theme-provider';
 
-const fontSans = FontSans({
-  subsets: ['latin'],
-  variable: '--font-sans',
+const monaSans = localFont({
+  src: '../../../public/fonts/mona-sans.woff2',
+  display: 'swap',
+  variable: '--font-mona-sans',
 });
-
-// Font files can be colocated inside of `pages`
-const fontHeading = localFont({
-  src: '../assets/fonts/CalSans-SemiBold.woff2',
-  variable: '--font-heading',
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+const calSans = localFont({
+  src: '../../../public/fonts/cal-sans.woff2',
+  display: 'swap',
+  variable: '--font-cal-sans',
 });
 
 interface RootLayoutProps {
@@ -82,8 +81,8 @@ export default function RootLayout({ children }: RootLayoutProps) {
       <body
         className={cn(
           'min-h-screen bg-background font-sans antialiased',
-          fontSans.variable,
-          fontHeading.variable,
+          monaSans.variable,
+          calSans.variable,
         )}
       >
         <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>

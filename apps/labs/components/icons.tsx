@@ -1,56 +1,28 @@
-import {
-  AlertTriangle,
-  ArrowRight,
-  Check,
-  ChevronLeft,
-  ChevronRight,
-  Command,
-  CreditCard,
-  File,
-  FileText,
-  HelpCircle,
-  Image,
-  Laptop,
-  Loader2,
-  LucideProps,
-  Moon,
-  MoreVertical,
-  Pizza,
-  Plus,
-  Settings,
-  SunMedium,
-  Trash,
-  Twitter,
-  User,
-  X,
-  type Icon as LucideIcon,
-} from 'lucide-react';
-
-export type Icon = LucideIcon;
+import { LucideIconProps, LucideReact } from '@ui/index';
 
 export const Icons = {
-  logo: Command,
-  close: X,
-  spinner: Loader2,
-  chevronLeft: ChevronLeft,
-  chevronRight: ChevronRight,
-  trash: Trash,
-  post: FileText,
-  page: File,
-  media: Image,
-  settings: Settings,
-  billing: CreditCard,
-  ellipsis: MoreVertical,
-  add: Plus,
-  warning: AlertTriangle,
-  user: User,
-  arrowRight: ArrowRight,
-  help: HelpCircle,
-  pizza: Pizza,
-  sun: SunMedium,
-  moon: Moon,
-  laptop: Laptop,
-  gitHub: ({ ...props }: LucideProps) => (
+  logo: LucideReact.Command,
+  close: LucideReact.X,
+  spinner: LucideReact.Loader2,
+  chevronLeft: LucideReact.ChevronLeft,
+  chevronRight: LucideReact.ChevronRight,
+  trash: LucideReact.Trash,
+  post: LucideReact.FileText,
+  page: LucideReact.File,
+  media: LucideReact.Image,
+  settings: LucideReact.Settings,
+  billing: LucideReact.CreditCard,
+  ellipsis: LucideReact.MoreVertical,
+  add: LucideReact.Plus,
+  warning: LucideReact.AlertTriangle,
+  user: LucideReact.User,
+  arrowRight: LucideReact.ArrowRight,
+  help: LucideReact.HelpCircle,
+  pizza: LucideReact.Pizza,
+  sun: LucideReact.SunMedium,
+  moon: LucideReact.Moon,
+  laptop: LucideReact.Laptop,
+  gitHub: ({ ...props }: LucideIconProps) => (
     <svg
       aria-hidden="true"
       focusable="false"
@@ -67,6 +39,6 @@ export const Icons = {
       />
     </svg>
   ),
-  twitter: Twitter,
-  check: Check,
+  twitter: LucideReact.Twitter,
+  check: LucideReact.Check,
 };
