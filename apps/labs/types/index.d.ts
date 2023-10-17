@@ -66,3 +66,10 @@ export type UserSubscriptionPlan = SubscriptionPlan &
     stripeCurrentPeriodEnd: number;
     isPro: boolean;
   };
+
+export type MarketingBenefitsProps = {
+  id: string;
+  title: string;
+  description: string;
+  emoji: string;
+};
