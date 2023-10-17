@@ -46,16 +46,17 @@ export function MainNav({ items, children }: MainNavProps) {
         </span>
       </Link>
       {items?.length ? (
-        <nav className="hidden gap-6 md:flex">
-          {items?.map((item, index) => (
+        <nav className="hidden gap-6 md:flex" aria-label="Main navigation">
+          {items?.map((item) => (
             <Link
-              key={index}
+              key={item.id}
               href={item.disabled ? '#' : item.href}
+              aria-label={`Navigate to ${item.title}`}
               className={cn(
-                'flex items-center text-lg font-medium transition-colors hover:text-foreground/80 sm:text-sm',
+                'flex items-center text-lg font-medium transition-colors hover:text-foreground/80 sm:text-base',
                 item.href.startsWith(`/${segment}`)
-                  ? 'text-foreground'
-                  : 'text-foreground/60',
+                  ? 'text-alternate underline underline-offset-4'
+                  : 'text-muted-foreground',
                 item.disabled && 'cursor-not-allowed opacity-80',
               )}
             >
@@ -67,6 +68,7 @@ export function MainNav({ items, children }: MainNavProps) {
       <button
         className="flex items-center space-x-2 md:hidden"
         onClick={toggleMobileMenu}
+        aria-label="Toggle mobile menu"
       >
         {showMobileMenu ? (
           <Icons.close className="text-brand" />

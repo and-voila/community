@@ -3,22 +3,12 @@ import { MarketingConfig } from 'types';
 export const marketingConfig: MarketingConfig = {
   mainNav: [
     {
-      title: 'Benefits',
-      href: '/#benefits',
-    },
-    {
-      title: 'Community',
+      id: 'discord',
+      title: 'Discord',
       href: 'https://discord.com/servers/and-voila-1151749282806910976',
     },
     {
-      title: 'Blog',
-      href: '/blog',
-    },
-    {
-      title: 'Documentation',
-      href: '/docs',
-    },
-    {
+      id: 'pricing',
       title: 'Pricing',
       href: '/pricing',
     },
