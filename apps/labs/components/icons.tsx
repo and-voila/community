@@ -1,27 +1,50 @@
-import { LucideIconProps, LucideReact } from '@ui/index';
+import {
+  ArrowRightIcon,
+  CheckIcon,
+  ChevronLeftIcon,
+  ChevronRightIcon,
+  Cross1Icon,
+  DotsVerticalIcon,
+  ExclamationTriangleIcon,
+  FileIcon,
+  FileTextIcon,
+  GearIcon,
+  IdCardIcon,
+  ImageIcon,
+  LaptopIcon,
+  MoonIcon,
+  PersonIcon,
+  PlusIcon,
+  QuestionMarkCircledIcon,
+  SunIcon,
+  TrashIcon,
+  TwitterLogoIcon,
+  UpdateIcon,
+} from '@radix-ui/react-icons';
+
+export type RadixIconProps = React.SVGProps<SVGSVGElement>;
 
 export const Icons = {
-  close: LucideReact.X,
-  spinner: LucideReact.Loader2,
-  chevronLeft: LucideReact.ChevronLeft,
-  chevronRight: LucideReact.ChevronRight,
-  trash: LucideReact.Trash,
-  post: LucideReact.FileText,
-  page: LucideReact.File,
-  media: LucideReact.Image,
-  settings: LucideReact.Settings,
-  billing: LucideReact.CreditCard,
-  ellipsis: LucideReact.MoreVertical,
-  add: LucideReact.Plus,
-  warning: LucideReact.AlertTriangle,
-  user: LucideReact.User,
-  arrowRight: LucideReact.ArrowRight,
-  help: LucideReact.HelpCircle,
-  pizza: LucideReact.Pizza,
-  sun: LucideReact.SunMedium,
-  moon: LucideReact.Moon,
-  laptop: LucideReact.Laptop,
-  gitHub: ({ ...props }: LucideIconProps) => (
+  close: Cross1Icon,
+  spinner: UpdateIcon,
+  chevronLeft: ChevronLeftIcon,
+  chevronRight: ChevronRightIcon,
+  trash: TrashIcon,
+  post: FileTextIcon,
+  page: FileIcon,
+  media: ImageIcon,
+  settings: GearIcon,
+  billing: IdCardIcon,
+  ellipsis: DotsVerticalIcon,
+  add: PlusIcon,
+  warning: ExclamationTriangleIcon,
+  user: PersonIcon,
+  arrowRight: ArrowRightIcon,
+  help: QuestionMarkCircledIcon,
+  sun: SunIcon,
+  moon: MoonIcon,
+  laptop: LaptopIcon,
+  gitHub: ({ ...props }: RadixIconProps) => (
     <svg
       aria-hidden="true"
       focusable="false"
@@ -38,7 +61,9 @@ export const Icons = {
       />
     </svg>
   ),
-  logo: ({ ...props }: LucideIconProps) => (
+  twitter: TwitterLogoIcon,
+  check: CheckIcon,
+  logo: ({ ...props }: RadixIconProps) => (
     <svg
       aria-hidden="true"
       focusable="false"
@@ -56,6 +81,4 @@ export const Icons = {
       />
     </svg>
   ),
-  twitter: LucideReact.Twitter,
-  check: LucideReact.Check,
 };

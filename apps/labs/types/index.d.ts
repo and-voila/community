@@ -1,8 +1,9 @@
 import { User } from '@prisma/client';
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-import type { Icon } from 'lucide-react';
 
 import { Icons } from '@/components/icons';
+
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+export type RadixIconProps = React.SVGProps<SVGSVGElement>;
 
 export type NavItem = {
   id: string;
