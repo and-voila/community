@@ -1,8 +1,8 @@
 import * as React from 'react';
 import Image from 'next/image';
-import { cn } from '@ui/lib/utils';
 import { useMDXComponent } from 'next-contentlayer/hooks';
 
+import { cn } from '@/lib/utils';
 import { Callout } from '@/components/callout';
 import { MdxCard } from '@/components/mdx-card';
 

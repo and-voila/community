@@ -1,8 +1,8 @@
 import Link from 'next/link';
-import { cn } from '@ui/lib/utils';
 
 import { env } from '@/env.mjs';
 import { siteConfig } from '@/config/site';
+import { cn } from '@/lib/utils';
 import { buttonVariants } from '@/components/ui/button';
 
 async function getGitHubStars(): Promise<string | null> {
@@ -37,7 +37,7 @@ export default async function IndexPage() {
 
   return (
     <>
-      <section className="space-y-6 pb-8 pt-6 md:pb-12 md:pt-10 lg:py-32">
+      <section className="space-y-6 pb-8 pt-6 md:pb-12 md:pt-10 lg:py-32 min-h-64">
         <div className="container flex max-w-[64rem] flex-col items-center gap-4 text-center">
           <Link
             href={siteConfig.links.twitter}

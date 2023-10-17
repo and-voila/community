@@ -9,10 +9,9 @@ import '@/styles/mdx.css';
 import { Metadata } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
-import { cn } from '@ui/lib/utils';
 
 import { env } from '@/env.mjs';
-import { absoluteUrl, formatDate } from '@/lib/utils';
+import { absoluteUrl, cn, formatDate } from '@/lib/utils';
 import { buttonVariants } from '@/components/ui/button';
 import { Icons } from '@/components/icons';
 

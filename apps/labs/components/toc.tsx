@@ -1,9 +1,9 @@
 'use client';
 
 import * as React from 'react';
-import { cn } from '@ui/lib/utils';
 
 import { TableOfContents } from '@/lib/toc';
+import { cn } from '@/lib/utils';
 import { useMounted } from '@/hooks/use-mounted';
 
 interface TocProps {

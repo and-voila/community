@@ -12,8 +12,7 @@ import * as z from 'zod';
 
 import '@/styles/editor.css';
 
-import { cn } from '@ui/lib/utils';
-
+import { cn } from '@/lib/utils';
 import { postPatchSchema } from '@/lib/validations/post';
 import { buttonVariants } from '@/components/ui/button';
 import { toast } from '@/components/ui/use-toast';

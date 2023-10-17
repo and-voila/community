@@ -4,10 +4,10 @@ import * as React from 'react';
 import { useRouter } from 'next/navigation';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { User } from '@prisma/client';
-import { cn } from '@ui/lib/utils';
 import { useForm } from 'react-hook-form';
 import * as z from 'zod';
 
+import { cn } from '@/lib/utils';
 import { userNameSchema } from '@/lib/validations/user';
 import { buttonVariants } from '@/components/ui/button';
 import {

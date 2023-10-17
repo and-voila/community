@@ -3,10 +3,10 @@
 import * as React from 'react';
 import Link from 'next/link';
 import { useSelectedLayoutSegment } from 'next/navigation';
-import { cn } from '@ui/lib/utils';
 
 import { MainNavItem } from 'types';
 import { siteConfig } from '@/config/site';
+import { cn } from '@/lib/utils';
 import { Icons } from '@/components/icons';
 import { MobileNav } from '@/components/mobile-nav';
 

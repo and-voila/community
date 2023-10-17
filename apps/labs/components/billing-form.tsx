@@ -1,10 +1,9 @@
 'use client';
 
 import * as React from 'react';
-import { cn } from '@ui/lib/utils';
 
 import { UserSubscriptionPlan } from 'types';
-import { formatDate } from '@/lib/utils';
+import { cn, formatDate } from '@/lib/utils';
 import { buttonVariants } from '@/components/ui/button';
 import {
   Card,

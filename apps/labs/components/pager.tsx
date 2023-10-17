@@ -1,7 +1,7 @@
 import Link from 'next/link';
-import { cn } from '@ui/lib/utils';
 
 import { docsConfig } from '@/config/docs';
+import { cn } from '@/lib/utils';
 import { buttonVariants } from '@/components/ui/button';
 import { Icons } from '@/components/icons';
 

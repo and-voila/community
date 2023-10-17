@@ -16,7 +16,5 @@
     ".next/types/**/*.ts",
     "./contentlayer/generated"
   ],
-  "exclude": [
-    "node_modules"
-  ]
+  "exclude": ["node_modules"]
 }

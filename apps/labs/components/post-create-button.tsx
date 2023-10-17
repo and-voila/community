@@ -2,8 +2,8 @@
 
 import * as React from 'react';
 import { useRouter } from 'next/navigation';
-import { cn } from '@ui/lib/utils';
 
+import { cn } from '@/lib/utils';
 import { ButtonProps, buttonVariants } from '@/components/ui/button';
 import { toast } from '@/components/ui/use-toast';
 import { Icons } from '@/components/icons';

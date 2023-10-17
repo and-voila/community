@@ -1,7 +1,7 @@
 import * as React from 'react';
-import { cn } from '@ui/lib/utils';
 
 import { siteConfig } from '@/config/site';
+import { cn } from '@/lib/utils';
 import { Icons } from '@/components/icons';
 import { ModeToggle } from '@/components/mode-toggle';
 
