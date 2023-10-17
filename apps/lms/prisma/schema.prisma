@@ -1,12 +1,11 @@
 datasource db {
-  provider = "postgresql"
-  url = env("DATABASE_URL") // uses prisma accelerate
+  provider  = "postgresql"
+  url       = env("DATABASE_URL") // uses prisma accelerate
   directUrl = env("POSTGRES_URL_NON_POOLING") // uses a direct connection
-  shadowDatabaseUrl = env("POSTGRES_URL_NON_POOLING") // used for migrations
 }
 
 generator client {
-  provider = "prisma-client-js"
+  provider        = "prisma-client-js"
   previewFeatures = ["fullTextSearch", "fullTextIndex"]
 }
 
@@ -16,43 +15,65 @@ model User {
   email         String?   @unique
   emailVerified DateTime?
   image         String?
-  createdAt     DateTime  @default(now())
-  updatedAt     DateTime  @updatedAt
-  discordId           String?   @unique
-  discordUsername     String?
-  discordAvatar       String?
+  createdAt     DateTime  @default(now()) @map(name: "created_at")
+  updatedAt     DateTime  @updatedAt @map(name: "updated_at")
+
+  // Fields from Labs
+  stripeCustomerId       String?   @unique @map(name: "stripe_customer_id")
+  stripeSubscriptionId   String?   @unique @map(name: "stripe_subscription_id")
+  stripePriceId          String?   @map(name: "stripe_price_id")
+  stripeCurrentPeriodEnd DateTime? @map(name: "stripe_current_period_end")
+
+  // Fields from LMS
+  discordId            String?  @unique
+  discordUsername      String?
+  discordAvatar        String?
   discordDiscriminator String?
-  discordPremiumType  Int?
-  discordServerMember Boolean?  @default(false)
-  discordPremium      Boolean?  @default(false)
-  discordMod          Boolean?  @default(false)
-  accounts      Account[]
-  sessions      Session[]
-  sites         Site[]
-  posts         Post[]
+  discordPremiumType   Int?
+  discordServerMember  Boolean? @default(false)
+  discordPremium       Boolean? @default(false)
+  discordMod           Boolean? @default(false)
+
+  // Relations
+  accounts Account[] // Common
+  sessions Session[] // Common
+  sites    Site[] // From LMS
+  Post     Post[]    @relation(name: "PostAuthor") // From Labs
+  posts    Post[]    @relation(name: "PostUser") // From LMS
+
+  @@map(name: "users")
 }
 
 model Account {
-  id                       String  @id @default(cuid())
-  userId                   String
-  type                     String
-  provider                 String
-  providerAccountId        String
-  refresh_token            String?
+  // Common Fields
+  id                String  @id @default(cuid())
+  userId            String
+  type              String
+  provider          String
+  providerAccountId String
+  refresh_token     String? @db.Text
+  access_token      String? @db.Text
+  expires_at        Int?
+  token_type        String?
+  scope             String?
+  id_token          String? @db.Text
+  session_state     String?
+
+  // Fields from Labs
+  createdAt DateTime @default(now()) @map(name: "created_at")
+  updatedAt DateTime @default(now()) @map(name: "updated_at")
+
+  // Fields from LMS
   refresh_token_expires_in Int?
-  access_token             String?
-  expires_at               Int?
-  token_type               String?
-  scope                    String?
-  id_token                 String?
-  session_state            String?
   oauth_token_secret       String?
   oauth_token              String?
 
+  // Relations
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@unique([provider, providerAccountId])
   @@index([userId])
+  @@map(name: "accounts")
 }
 
 model Session {
@@ -63,6 +84,7 @@ model Session {
   user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@index([userId])
+  @@map(name: "sessions")
 }
 
 model VerificationToken {
@@ -71,27 +93,37 @@ model VerificationToken {
   expires    DateTime
 
   @@unique([identifier, token])
+  @@map(name: "verification_tokens")
 }
 
 model Post {
-  id            String   @id @default(cuid())
-  title         String?  @db.Text
-  description   String?  @db.Text
-  content       String?  @db.Text
-  slug          String   @default(cuid())
-  image         String?  @default("https://public.blob.vercel-storage.com/eEZHAoPTOBSYGBE3/hxfcV5V-eInX3jbVUhjAt1suB7zB88uGd1j20b.png")
-  imageBlurhash String?  
-  createdAt     DateTime @default(now())
-  updatedAt     DateTime @updatedAt
-  published     Boolean  @default(false)
-  site          Site?    @relation(fields: [siteId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+  id        String  @id @default(cuid())
+  title     String
+  content   Json? // From Labs, String? from LMS
+  published Boolean @default(false)
+
+  // Fields from Labs
+  authorId  String
+  createdAt DateTime @default(now()) @map(name: "created_at")
+  updatedAt DateTime @default(now()) @map(name: "updated_at")
+
+  // Fields from LMS
+  description   String? @db.Text
+  slug          String  @default(cuid())
+  image         String? @default("https://public.blob.vercel-storage.com/eEZHAoPTOBSYGBE3/hxfcV5V-eInX3jbVUhjAt1suB7zB88uGd1j20b.png")
+  imageBlurhash String?
   siteId        String?
-  user          User?    @relation(fields: [userId], references: [id], onDelete: Cascade, onUpdate: Cascade)
   userId        String?
+
+  // Relations
+  author User? @relation(name: "PostAuthor", fields: [authorId], references: [id]) // From Labs
+  user   User? @relation(name: "PostUser", fields: [userId], references: [id]) // From LMS
+  site   Site? @relation(fields: [siteId], references: [id], onDelete: Cascade) // From LMS
 
   @@unique([slug, siteId])
   @@index([siteId])
   @@index([userId])
+  @@map(name: "posts")
 }
 
 model Site {
@@ -117,49 +149,49 @@ model Site {
 model Example {
   id            Int     @id @default(autoincrement())
   name          String?
-  description   String?  @db.Text
+  description   String? @db.Text
   domainCount   Int?
   url           String?
-  image         String?  @db.Text
-  imageBlurhash String?  @db.Text
+  image         String? @db.Text
+  imageBlurhash String? @db.Text
 }
 
 model Course {
-  id String @id @default(cuid())
-  userId String
-  title String @db.Text
+  id          String  @id @default(cuid())
+  userId      String
+  title       String  @db.Text
   description String? @db.Text
-  imageUrl String? @db.Text
-  price Float?
+  imageUrl    String? @db.Text
+  price       Float?
   isPublished Boolean @default(false)
 
   categoryId String?
-  category Category? @relation(fields: [categoryId], references: [id])
+  category   Category? @relation(fields: [categoryId], references: [id])
 
-  chapters Chapter[]
+  chapters    Chapter[]
   attachments Attachment[]
-  purchases Purchase[]
+  purchases   Purchase[]
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+  //@@fulltext([title])
 
   @@index([categoryId])
-  //@@fulltext([title])
 }
 
 model Category {
-  id String @id @default(cuid())
-  name String @unique
+  id      String   @id @default(cuid())
+  name    String   @unique
   courses Course[]
 }
 
 model Attachment {
-  id String @id @default(cuid())
+  id   String @id @default(cuid())
   name String
-  url String @db.Text
+  url  String @db.Text
 
   courseId String
-  course Course @relation(fields: [courseId], references: [id], onDelete: Cascade)
+  course   Course @relation(fields: [courseId], references: [id], onDelete: Cascade)
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -168,18 +200,18 @@ model Attachment {
 }
 
 model Chapter {
-  id String @id @default(cuid())
-  title String
+  id          String  @id @default(cuid())
+  title       String
   description String? @db.Text
-  videoUrl String? @db.Text
-  position Int
+  videoUrl    String? @db.Text
+  position    Int
   isPublished Boolean @default(false)
-  isFree Boolean @default(false)
+  isFree      Boolean @default(false)
 
   muxData MuxData?
 
   courseId String
-  course Course @relation(fields: [courseId], references: [id], onDelete: Cascade)
+  course   Course @relation(fields: [courseId], references: [id], onDelete: Cascade)
 
   userProgress UserProgress[]
 
@@ -190,36 +222,36 @@ model Chapter {
 }
 
 model MuxData {
-  id String @id @default(cuid())
-  assetId String
+  id         String  @id @default(cuid())
+  assetId    String
   playbackId String?
 
-  chapterId String @unique
-  chapter Chapter @relation(fields: [chapterId], references: [id], onDelete: Cascade)
+  chapterId String  @unique
+  chapter   Chapter @relation(fields: [chapterId], references: [id], onDelete: Cascade)
 }
 
 model UserProgress {
-  id String @id @default(cuid())
+  id     String @id @default(cuid())
   userId String
 
   chapterId String
-  chapter Chapter @relation(fields: [chapterId], references: [id], onDelete: Cascade)
+  chapter   Chapter @relation(fields: [chapterId], references: [id], onDelete: Cascade)
 
   isCompleted Boolean @default(false)
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  @@index([chapterId])
   @@unique([userId, chapterId])
+  @@index([chapterId])
 }
 
 model Purchase {
-  id String @id @default(cuid())
+  id     String @id @default(cuid())
   userId String
 
   courseId String
-  course Course @relation(fields: [courseId], references: [id], onDelete: Cascade)
+  course   Course @relation(fields: [courseId], references: [id], onDelete: Cascade)
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt()
@@ -229,8 +261,8 @@ model Purchase {
 }
 
 model StripeCustomer {
-  id String @id @default(cuid())
-  userId String @unique
+  id               String @id @default(cuid())
+  userId           String @unique
   stripeCustomerId String @unique
 
   createdAt DateTime @default(now())
