@@ -22,7 +22,7 @@ export default async function DashboardPage() {
 
   const posts = await db.post.findMany({
     where: {
-      authorId: user.id,
+      userId: user.id,
     },
     select: {
       id: true,

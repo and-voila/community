@@ -1,6 +1,7 @@
 'use client';
 
 import * as React from 'react';
+import { CaretSortIcon, CheckIcon } from '@radix-ui/react-icons';
 import { Button } from '@ui/components/ui/button';
 import {
   Command,
@@ -15,7 +16,6 @@ import {
   PopoverTrigger,
 } from '@ui/components/ui/popover';
 import { cn } from '@ui/lib/utils';
-import { Check, ChevronsUpDown } from 'lucide-react';
 
 interface ComboboxProps {
   options: { label: string; value: string }[];
@@ -38,7 +38,7 @@ export const Combobox = ({ options, value, onChange }: ComboboxProps) => {
           {value
             ? options.find((option) => option.value === value)?.label
             : 'Select category...'}
-          <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
+          <CaretSortIcon className="ml-2 h-4 w-4 shrink-0 opacity-50" />
         </Button>
       </PopoverTrigger>
       <PopoverContent className="w-full p-0">
@@ -57,7 +57,7 @@ export const Combobox = ({ options, value, onChange }: ComboboxProps) => {
                   setOpen(false);
                 }}
               >
-                <Check
+                <CheckIcon
                   className={cn(
                     'mr-2 h-4 w-4',
                     value === option.value ? 'opacity-100' : 'opacity-0',
