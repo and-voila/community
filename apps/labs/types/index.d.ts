@@ -46,6 +46,10 @@ export type DocsConfig = {
   sidebarNav: SidebarNavItem[];
 };
 
+export type FooterConfig = {
+  footerNav: MainNavItem[];
+};
+
 export type MarketingConfig = {
   mainNav: MainNavItem[];
 };
@@ -72,4 +76,16 @@ export type MarketingBenefitsProps = {
   title: string;
   description: string;
   emoji: string;
+};
+
+export type SocialIcon = keyof typeof Icons;
+
+export type SocialItem = {
+  name: string;
+  href: string;
+  icon: SocialIcon;
+};
+
+export type SocialConfig = {
+  social: SocialItem[];
 };
