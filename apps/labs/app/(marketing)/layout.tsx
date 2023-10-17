@@ -35,7 +35,7 @@ export default async function MarketingLayout({
               <Link
                 href="/login"
                 className={cn(
-                  buttonVariants({ variant: 'ghost' }),
+                  buttonVariants({ variant: 'ghost', size: 'sm' }),
                   'px-4 mr-4',
                 )}
                 aria-label="Navigate to Login page"
@@ -44,7 +44,10 @@ export default async function MarketingLayout({
               </Link>
               <Link
                 href="/register"
-                className={cn(buttonVariants({ variant: 'custom' }), 'px-4')}
+                className={cn(
+                  buttonVariants({ variant: 'custom', size: 'sm' }),
+                  'px-4',
+                )}
                 aria-label="Navigate to sign up page"
               >
                 Sign Up
