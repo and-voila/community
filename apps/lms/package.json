@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "prisma generate && next dev --port 3001",
+    "dev": "prisma generate --no-engine && next dev --port 3001",
     "build": "prisma generate --no-engine && next build",
     "start": "next start",
     "lint": "next lint",

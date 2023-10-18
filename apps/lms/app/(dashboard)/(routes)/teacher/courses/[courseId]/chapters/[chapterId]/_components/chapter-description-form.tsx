@@ -18,8 +18,8 @@ import { useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
 import * as z from 'zod';
 
-import { Editor } from '@/components/editor';
 import { Preview } from '@/components/preview';
+import { QuillEditor } from '@/components/quill-editor';
 
 interface ChapterDescriptionFormProps {
   initialData: Chapter;
@@ -105,7 +105,7 @@ export const ChapterDescriptionForm = ({
               render={({ field }) => (
                 <FormItem>
                   <FormControl>
-                    <Editor {...field} />
+                    <QuillEditor {...field} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>

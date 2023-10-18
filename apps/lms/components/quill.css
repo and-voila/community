@@ -2,4 +2,38 @@
   @apply prose;
   @apply dark:prose-invert;
   @apply lg:prose-lg;
+  @apply prose-headings:font-display;
+  @apply prose-a:text-brand;
+  @apply prose-a:underline-offset-4;
+  @apply prose-a:font-bold;
+}
+
+/* Light Mode Styles */
+.ql-snow.ql-container h1,
+.ql-snow.ql-container h2,
+.ql-snow.ql-container h3,
+.ql-snow.ql-container h4,
+.ql-snow.ql-container h5,
+.ql-snow.ql-container h6 {
+  color: #1f2937;
+}
+.ql-snow.ql-container p {
+  color: #4b5563;
+}
+
+.ql-snow.ql-container a {
+  color: #6847c2;
+}
+
+.ql-snow .ql-editor {
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+.ql-snow .ql-toolbar .ql-formats {
+  border-color: #000000;
+}
+
+.ql-snow .ql-toolbar .ql-formats .ql-picker-label {
+  color: #000000;
 }
