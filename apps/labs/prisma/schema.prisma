@@ -101,11 +101,11 @@ model VerificationToken {
 model Post {
   id        String  @id @default(cuid())
   title     String
-  content   Json? // From Labs, String? from LMS
+  content       String?  @db.Text
   published Boolean @default(false)
 
   // Fields from Labs
-  authorId  String
+  authorId  String?
   createdAt DateTime @default(now()) @map(name: "created_at")
   updatedAt DateTime @default(now()) @map(name: "updated_at")
 
@@ -115,7 +115,7 @@ model Post {
   image         String? @default("https://public.blob.vercel-storage.com/eEZHAoPTOBSYGBE3/hxfcV5V-eInX3jbVUhjAt1suB7zB88uGd1j20b.png")
   imageBlurhash String?
   siteId        String?
-  userId        String?
+  userId        String
 
   // Relations
   author User? @relation(name: "PostAuthor", fields: [authorId], references: [id]) // From Labs
