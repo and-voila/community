@@ -11,7 +11,7 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from '@ui/components/ui/dropdown-menu';
-import { cn, LucideReact } from '@ui/index';
+import { CaretSortIcon, cn, DotsHorizontalIcon, Pencil1Icon } from '@ui/index';
 
 export const columns: ColumnDef<Course>[] = [
   {
@@ -23,7 +23,7 @@ export const columns: ColumnDef<Course>[] = [
           onClick={() => column.toggleSorting(column.getIsSorted() === 'asc')}
         >
           Title
-          <LucideReact.ArrowUpDown className="ml-2 h-4 w-4" />
+          <CaretSortIcon className="ml-2 h-4 w-4" />
         </Button>
       );
     },
@@ -37,7 +37,7 @@ export const columns: ColumnDef<Course>[] = [
           onClick={() => column.toggleSorting(column.getIsSorted() === 'asc')}
         >
           Price
-          <LucideReact.ArrowUpDown className="ml-2 h-4 w-4" />
+          <CaretSortIcon className="ml-2 h-4 w-4" />
         </Button>
       );
     },
@@ -62,7 +62,7 @@ export const columns: ColumnDef<Course>[] = [
           onClick={() => column.toggleSorting(column.getIsSorted() === 'asc')}
         >
           Published
-          <LucideReact.ArrowUpDown className="ml-2 h-4 w-4" />
+          <CaretSortIcon className="ml-2 h-4 w-4" />
         </Button>
       );
     },
@@ -92,13 +92,13 @@ export const columns: ColumnDef<Course>[] = [
           <DropdownMenuTrigger asChild>
             <Button variant="ghost" className="h-4 w-8 p-0">
               <span className="sr-only">Open menu</span>
-              <LucideReact.MoreHorizontal className="h-4 w-4" />
+              <DotsHorizontalIcon className="h-4 w-4" />
             </Button>
           </DropdownMenuTrigger>
           <DropdownMenuContent align="end">
             <Link href={`/teacher/courses/${id}`}>
               <DropdownMenuItem>
-                <LucideReact.Pencil className="mr-2 h-4 w-4" />
+                <Pencil1Icon className="mr-2 h-4 w-4" />
                 Edit
               </DropdownMenuItem>
             </Link>

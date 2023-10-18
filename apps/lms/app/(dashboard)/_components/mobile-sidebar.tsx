@@ -1,4 +1,4 @@
-import { LucideReact } from '@ui/index';
+import { HamburgerMenuIcon } from '@ui/index';
 import { Sheet, SheetContent, SheetTrigger } from 'ui';
 
 import { Sidebar } from './sidebar';
@@ -7,7 +7,7 @@ export const MobileSidebar = () => {
   return (
     <Sheet>
       <SheetTrigger className="pr-4 transition hover:opacity-75 md:hidden">
-        <LucideReact.Menu />
+        <HamburgerMenuIcon />
       </SheetTrigger>
       <SheetContent side="left" className="bg-white p-0">
         <Sidebar />

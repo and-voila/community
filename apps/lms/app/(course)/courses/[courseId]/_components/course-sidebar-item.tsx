@@ -1,7 +1,7 @@
 'use client';
 
 import { usePathname, useRouter } from 'next/navigation';
-import { cn, LucideReact, PlayIcon } from '@ui/index';
+import { CheckCircledIcon, cn, LockClosedIcon, PlayIcon } from '@ui/index';
 
 interface CourseSidebarItemProps {
   label: string;
@@ -22,9 +22,9 @@ export const CourseSidebarItem = ({
   const router = useRouter();
 
   const Icon = isLocked
-    ? LucideReact.Lock
+    ? LockClosedIcon
     : isCompleted
-    ? LucideReact.CheckCircleIcon
+    ? CheckCircledIcon
     : PlayIcon;
   const isActive = pathname?.includes(id);
 
@@ -46,9 +46,8 @@ export const CourseSidebarItem = ({
     >
       <div className="flex items-center gap-x-2 py-4">
         <Icon
-          size={22}
           className={cn(
-            'text-muted-foreground',
+            'text-muted-foreground h-4 w-4 md:h-5 md:w-5',
             isActive && 'text-brand',
             isCompleted && 'text-alternate',
           )}

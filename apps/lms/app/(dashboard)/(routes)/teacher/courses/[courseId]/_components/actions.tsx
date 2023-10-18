@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { Button } from '@ui/components/ui/button';
-import { LucideReact } from '@ui/index';
+import { TrashIcon } from '@ui/index';
 import axios from 'axios';
 import toast from 'react-hot-toast';
 
@@ -70,7 +70,7 @@ export const Actions = ({ disabled, courseId, isPublished }: ActionsProps) => {
       </Button>
       <ConfirmModal onConfirm={onDelete}>
         <Button size="sm" disabled={isLoading}>
-          <LucideReact.Trash className="h-4 w-4" />
+          <TrashIcon className="h-4 w-4" />
         </Button>
       </ConfirmModal>
     </div>

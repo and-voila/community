@@ -12,7 +12,7 @@ import {
   FormMessage,
 } from '@ui/components/ui/form';
 import { Input } from '@ui/components/ui/input';
-import { LucideReact } from '@ui/index';
+import { Pencil1Icon } from '@ui/index';
 import axios from 'axios';
 import { useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
@@ -65,7 +65,7 @@ export const TitleForm = ({ initialData, courseId }: TitleFormProps) => {
             <>Cancel</>
           ) : (
             <>
-              <LucideReact.Pencil className="mr-2 h-4 w-4" />
+              <Pencil1Icon className="mr-2 h-4 w-4" />
               Edit title
             </>
           )}

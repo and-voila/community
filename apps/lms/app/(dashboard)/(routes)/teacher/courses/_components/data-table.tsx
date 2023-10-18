@@ -23,7 +23,7 @@ import {
   TableHeader,
   TableRow,
 } from '@ui/components/ui/table';
-import { LucideReact } from '@ui/index';
+import { PlusCircledIcon } from '@ui/index';
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
@@ -67,7 +67,7 @@ export function DataTable<TData, TValue>({
         />
         <Link href="/teacher/create">
           <Button variant="custom">
-            <LucideReact.PlusCircle className="mr-2 h-4 w-4" />
+            <PlusCircledIcon className="mr-2 h-4 w-4" />
             New course
           </Button>
         </Link>

@@ -1,7 +1,12 @@
 import Link from 'next/link';
 import { redirect } from 'next/navigation';
 import { auth } from '@clerk/nextjs';
-import { LucideReact } from '@ui/index';
+import {
+  ArrowLeftIcon,
+  EyeOpenIcon,
+  MagicWandIcon,
+  VideoIcon,
+} from '@ui/index';
 
 import { db } from '@/lib/db';
 import { Banner } from '@/components/banner';
@@ -62,7 +67,7 @@ const ChapterIdPage = async ({
               href={`/teacher/courses/${params.courseId}`}
               className="mb-6 flex items-center text-sm transition hover:opacity-75"
             >
-              <LucideReact.ArrowLeft className="mr-2 h-4 w-4" />
+              <ArrowLeftIcon className="mr-2 h-4 w-4" />
               Back to course setup
             </Link>
             <div className="flex w-full items-center justify-between">
@@ -85,7 +90,7 @@ const ChapterIdPage = async ({
           <div className="space-y-4">
             <div>
               <div className="flex items-center gap-x-2">
-                <IconBadge icon={LucideReact.LayoutDashboard} />
+                <IconBadge icon={MagicWandIcon} />
                 <h2 className="font-display text-xl">Customize your chapter</h2>
               </div>
               <ChapterTitleForm
@@ -101,7 +106,7 @@ const ChapterIdPage = async ({
             </div>
             <div>
               <div className="mt-16 flex items-center gap-x-2">
-                <IconBadge icon={LucideReact.Eye} />
+                <IconBadge icon={EyeOpenIcon} />
                 <h2 className="font-display text-xl">Access Settings</h2>
               </div>
               <ChapterAccessForm
@@ -113,7 +118,7 @@ const ChapterIdPage = async ({
           </div>
           <div>
             <div className="mt-16 flex items-center gap-x-2">
-              <IconBadge icon={LucideReact.Video} />
+              <IconBadge icon={VideoIcon} />
               <h2 className="font-display text-xl">Add a video</h2>
             </div>
             <ChapterVideoForm
