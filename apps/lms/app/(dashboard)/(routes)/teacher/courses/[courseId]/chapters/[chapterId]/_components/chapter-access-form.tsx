@@ -13,7 +13,7 @@ import {
   FormField,
   FormItem,
 } from '@ui/components/ui/form';
-import { cn, LucideReact } from '@ui/index';
+import { cn, Pencil1Icon } from '@ui/index';
 import axios from 'axios';
 import { useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
@@ -72,7 +72,7 @@ export const ChapterAccessForm = ({
             <>Cancel</>
           ) : (
             <>
-              <LucideReact.Pencil className="mr-2 h-4 w-4" />
+              <Pencil1Icon className="mr-2 h-4 w-4" />
               Edit access
             </>
           )}

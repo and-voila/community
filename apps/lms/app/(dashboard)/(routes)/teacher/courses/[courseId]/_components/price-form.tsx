@@ -14,7 +14,7 @@ import {
   FormMessage,
 } from '@ui/components/ui/form';
 import { Input } from '@ui/components/ui/input';
-import { Checkbox, cn, LucideReact } from '@ui/index';
+import { Checkbox, cn, Pencil1Icon } from '@ui/index';
 import axios from 'axios';
 import { useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
@@ -81,7 +81,7 @@ export const PriceForm = ({ initialData, courseId }: PriceFormProps) => {
             <>Cancel</>
           ) : (
             <>
-              <LucideReact.Pencil className="mr-2 h-4 w-4" />
+              <Pencil1Icon className="mr-2 h-4 w-4" />
               Edit price
             </>
           )}

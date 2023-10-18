@@ -1,6 +1,11 @@
 import { redirect } from 'next/navigation';
 import { auth } from '@clerk/nextjs';
-import { LucideReact } from '@ui/index';
+import {
+  ActivityLogIcon,
+  FileTextIcon,
+  MagicWandIcon,
+  RocketIcon,
+} from '@ui/index';
 
 import { db } from '@/lib/db';
 import { Banner } from '@/components/banner';
@@ -89,7 +94,7 @@ const CourseIdPage = async ({ params }: { params: { courseId: string } }) => {
         <div className="mt-16">
           <div>
             <div className="flex items-center gap-x-2">
-              <IconBadge icon={LucideReact.LayoutDashboard} />
+              <IconBadge icon={MagicWandIcon} />
               <h2 className="font-display text-lg">Customize your course</h2>
             </div>
             <TitleForm initialData={course} courseId={course.id} />
@@ -107,21 +112,21 @@ const CourseIdPage = async ({ params }: { params: { courseId: string } }) => {
           <div className="mt-16 space-y-6">
             <div>
               <div className="flex items-center gap-x-2">
-                <IconBadge icon={LucideReact.ListChecks} />
+                <IconBadge icon={ActivityLogIcon} />
                 <h2 className="font-display text-lg">Course chapters</h2>
               </div>
               <ChaptersForm initialData={course} courseId={course.id} />
             </div>
             <div>
               <div className="mt-16 flex items-center gap-x-2">
-                <IconBadge icon={LucideReact.CircleDollarSign} />
+                <IconBadge icon={RocketIcon} />
                 <h2 className="font-display text-lg">Course pricing</h2>
               </div>
               <PriceForm initialData={course} courseId={course.id} />
             </div>
             <div>
               <div className="mt-16 flex items-center gap-x-2">
-                <IconBadge icon={LucideReact.File} />
+                <IconBadge icon={FileTextIcon} />
                 <h2 className="font-display text-lg">
                   Resources & Attachments
                 </h2>

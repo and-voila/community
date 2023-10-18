@@ -9,7 +9,7 @@ import {
 } from '@hello-pangea/dnd';
 import { Chapter } from '@prisma/client';
 import { Badge } from '@ui/components/ui/badge';
-import { cn, LucideReact } from '@ui/index';
+import { cn, DragHandleDots2Icon, Pencil1Icon } from '@ui/index';
 
 interface ChaptersListProps {
   items: Chapter[];
@@ -88,7 +88,7 @@ export const ChaptersList = ({
                       )}
                       {...provided.dragHandleProps}
                     >
-                      <LucideReact.Grip className="h-5 w-5" />
+                      <DragHandleDots2Icon className="h-5 w-5" />
                     </div>
                     {chapter.title}
                     <div className="ml-auto flex items-center gap-x-2 pr-2">
@@ -106,7 +106,7 @@ export const ChaptersList = ({
                       >
                         {chapter.isPublished ? 'Published' : 'Draft'}
                       </Badge>
-                      <LucideReact.Pencil
+                      <Pencil1Icon
                         onClick={() => onEdit(chapter.id)}
                         className="ml-2 h-4 w-4 cursor-pointer transition hover:opacity-75"
                       />

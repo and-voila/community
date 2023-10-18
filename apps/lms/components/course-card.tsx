@@ -1,6 +1,6 @@
 import Image from 'next/image';
 import Link from 'next/link';
-import { LucideReact } from '@ui/index';
+import { ListBulletIcon } from '@ui/index';
 
 import { formatPrice } from '@/lib/format';
 import { CourseProgress } from '@/components/course-progress';
@@ -41,7 +41,7 @@ export const CourseCard = ({
           <div className="mb-2 flex items-center justify-between text-sm text-muted-foreground">
             <p>{category}</p>
             <div className="flex items-center gap-x-1 text-foreground">
-              <IconBadge size="sm" icon={LucideReact.BookOpen} />
+              <IconBadge size="sm" icon={ListBulletIcon} />
               <span>
                 {chaptersLength} {chaptersLength === 1 ? 'Chapter' : 'Chapters'}
               </span>
