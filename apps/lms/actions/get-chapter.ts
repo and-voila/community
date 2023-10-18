@@ -30,6 +30,7 @@ export const getChapter = async ({
       },
       select: {
         price: true,
+        isFree: true,
       },
     });
 
