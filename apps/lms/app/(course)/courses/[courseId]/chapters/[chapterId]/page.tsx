@@ -41,7 +41,7 @@ const ChapterIdPage = async ({
     return redirect('/');
   }
 
-  const isLocked = !chapter.isFree && !purchase;
+  const isLocked = !chapter.isFree && !course.isFree && !purchase;
   const completeOnEnd = !!purchase && !userProgress?.isCompleted;
 
   return (
@@ -85,10 +85,12 @@ const ChapterIdPage = async ({
                   isCompleted={!!userProgress?.isCompleted}
                 />
               ) : (
-                <CourseEnrollButton
-                  courseId={params.courseId}
-                  price={course.price!}
-                />
+                !course.isFree && (
+                  <CourseEnrollButton
+                    courseId={params.courseId}
+                    price={course.price!}
+                  />
+                )
               )}
             </div>
             <Separator />

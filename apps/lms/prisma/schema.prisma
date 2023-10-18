@@ -164,6 +164,7 @@ model Course {
   description String? @db.Text
   imageUrl    String? @db.Text
   price       Float?
+  isFree      Boolean @default(false)
   isPublished Boolean @default(false)
 
   categoryId String?

@@ -8,12 +8,13 @@ import { Button } from '@ui/components/ui/button';
 import {
   Form,
   FormControl,
+  FormDescription,
   FormField,
   FormItem,
   FormMessage,
 } from '@ui/components/ui/form';
 import { Input } from '@ui/components/ui/input';
-import { cn, LucideReact } from '@ui/index';
+import { Checkbox, cn, LucideReact } from '@ui/index';
 import axios from 'axios';
 import { useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
@@ -26,9 +27,15 @@ interface PriceFormProps {
   courseId: string;
 }
 
-const formSchema = z.object({
-  price: z.coerce.number(),
-});
+const formSchema = z
+  .object({
+    price: z.number().optional(),
+    isFree: z.boolean().default(false),
+  })
+  .refine((data) => data.isFree || data.price !== undefined, {
+    message: 'Price is required when the course is not free',
+    path: ['price'], // specify the field the error is attached to
+  });
 
 export const PriceForm = ({ initialData, courseId }: PriceFormProps) => {
   const [isEditing, setIsEditing] = useState(false);
@@ -41,6 +48,7 @@ export const PriceForm = ({ initialData, courseId }: PriceFormProps) => {
     resolver: zodResolver(formSchema),
     defaultValues: {
       price: initialData?.price || undefined,
+      isFree: initialData?.isFree || false,
     },
   });
 
@@ -48,10 +56,17 @@ export const PriceForm = ({ initialData, courseId }: PriceFormProps) => {
 
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
     try {
-      await axios.patch(`/api/courses/${courseId}`, values);
-      toast.success('Course updated');
-      toggleEdit();
-      router.refresh();
+      if (values.isFree) {
+        values.price = 0;
+      }
+      form.clearErrors('price');
+      await form.trigger();
+      if (form.formState.isValid) {
+        await axios.patch(`/api/courses/${courseId}`, values);
+        toast.success('Course updated');
+        toggleEdit();
+        router.refresh();
+      }
     } catch {
       toast.error('Something went wrong');
     }
@@ -79,7 +94,11 @@ export const PriceForm = ({ initialData, courseId }: PriceFormProps) => {
             !initialData.price && 'italic text-muted-foreground',
           )}
         >
-          {initialData.price ? formatPrice(initialData.price) : 'No price'}
+          {initialData.isFree
+            ? 'Free'
+            : initialData.price
+            ? formatPrice(initialData.price)
+            : 'No price set'}
         </p>
       )}
       {isEditing && (
@@ -88,6 +107,25 @@ export const PriceForm = ({ initialData, courseId }: PriceFormProps) => {
             onSubmit={form.handleSubmit(onSubmit)}
             className="mt-4 space-y-4"
           >
+            <FormField
+              control={form.control}
+              name="isFree"
+              render={({ field }) => (
+                <FormItem className="flex flex-row items-start space-x-3 space-y-0 rounded-md border p-4">
+                  <FormControl>
+                    <Checkbox
+                      checked={field.value}
+                      onCheckedChange={field.onChange}
+                    />
+                  </FormControl>
+                  <div className="space-y-1 leading-none">
+                    <FormDescription>
+                      Check this box if you want to make this course free
+                    </FormDescription>
+                  </div>
+                </FormItem>
+              )}
+            />
             <FormField
               control={form.control}
               name="price"
@@ -109,7 +147,9 @@ export const PriceForm = ({ initialData, courseId }: PriceFormProps) => {
             <div className="flex items-center gap-x-2">
               <Button
                 variant="custom"
-                disabled={!isValid || isSubmitting}
+                disabled={
+                  isSubmitting || (!form.getValues().isFree && !isValid)
+                }
                 type="submit"
               >
                 Save
