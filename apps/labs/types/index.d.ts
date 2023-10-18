@@ -32,6 +32,7 @@ export type SidebarNavItem = {
 );
 
 export type SiteConfig = {
+  company: string;
   name: string;
   description: string;
   url: string;
@@ -77,6 +78,7 @@ export type MarketingBenefitsProps = {
   title: string;
   description: string;
   emoji: string;
+  emojiDescription: string;
 };
 
 export type SocialIcon = keyof typeof Icons;
