@@ -40,6 +40,7 @@ model User {
   sites    Site[] // From LMS
   Post     Post[]    @relation(name: "PostAuthor") // From Labs
   posts    Post[]    @relation(name: "PostUser") // From LMS
+  teacher  Teacher?
 
   @@map(name: "users")
 }
@@ -99,7 +100,7 @@ model VerificationToken {
 model Post {
   id        String  @id @default(cuid())
   title     String
-  content       String?  @db.Text
+  content   String? @db.Text
   published Boolean @default(false)
 
   // Fields from Labs
@@ -267,4 +268,13 @@ model StripeCustomer {
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+}
+
+model Teacher {
+  id     String @id @default(cuid())
+  userId String @unique
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
 }
