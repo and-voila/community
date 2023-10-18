@@ -6,7 +6,8 @@
     "dev": "next dev --port 3000",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "type-check": "next lint --no-cache"
   },
   "dependencies": {
     "@headlessui/react": "^1.7.17",

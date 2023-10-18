@@ -15,6 +15,7 @@ export type NavItem = {
 export type MainNavItem = NavItem;
 
 export type SidebarNavItem = {
+  id: string;
   title: string;
   disabled?: boolean;
   external?: boolean;

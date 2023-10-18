@@ -3,16 +3,19 @@ import { DocsConfig } from 'types';
 export const docsConfig: DocsConfig = {
   mainNav: [
     {
+      id: 'documentation',
       title: 'Documentation',
       href: '/docs',
     },
     {
+      id: 'guides',
       title: 'Guides',
       href: '/guides',
     },
   ],
   sidebarNav: [
     {
+      id: 'getting-started',
       title: 'Getting Started',
       items: [
         {
@@ -22,6 +25,7 @@ export const docsConfig: DocsConfig = {
       ],
     },
     {
+      id: 'documentation',
       title: 'Documentation',
       items: [
         {
@@ -53,6 +57,7 @@ export const docsConfig: DocsConfig = {
       ],
     },
     {
+      id: 'blog',
       title: 'Blog',
       items: [
         {
@@ -73,6 +78,7 @@ export const docsConfig: DocsConfig = {
       ],
     },
     {
+      id: 'dashboard',
       title: 'Dashboard',
       items: [
         {
@@ -108,6 +114,7 @@ export const docsConfig: DocsConfig = {
       ],
     },
     {
+      id: 'marketing-site',
       title: 'Marketing Site',
       items: [
         {

@@ -28,7 +28,7 @@ export async function GET() {
         createdAt: true,
       },
       where: {
-        authorId: user.id,
+        userId: user.id,
       },
     });
 
@@ -54,7 +54,7 @@ export async function POST(req: Request) {
     if (!subscriptionPlan?.isPro) {
       const count = await db.post.count({
         where: {
-          authorId: user.id,
+          userId: user.id,
         },
       });
 
@@ -70,7 +70,7 @@ export async function POST(req: Request) {
       data: {
         title: body.title,
         content: body.content,
-        authorId: session.user.id,
+        userId: session.user.id,
       },
       select: {
         id: true,

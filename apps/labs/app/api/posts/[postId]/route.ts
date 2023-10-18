@@ -85,7 +85,7 @@ async function verifyCurrentUserHasAccessToPost(postId: string) {
   const count = await db.post.count({
     where: {
       id: postId,
-      authorId: session?.user.id,
+      userId: session?.user.id,
     },
   });
 
