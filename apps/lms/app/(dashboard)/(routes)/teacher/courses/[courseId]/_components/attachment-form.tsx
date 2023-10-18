@@ -1,11 +1,11 @@
 'use client';
 
+import { useState } from 'react';
+import { useRouter } from 'next/navigation';
 import { Attachment, Course } from '@prisma/client';
 import { Button } from '@ui/components/ui/button';
 import { LucideReact } from '@ui/index';
 import axios from 'axios';
-import { useRouter } from 'next/navigation';
-import { useState } from 'react';
 import toast from 'react-hot-toast';
 import * as z from 'zod';
 

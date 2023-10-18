@@ -1,5 +1,5 @@
-import { FadeIn, FadeInStagger } from '@ui/index';
 import { FC } from 'react';
+import { FadeIn, FadeInStagger } from '@ui/index';
 import { LightningBoltIcon } from 'ui';
 
 import SectionIntro from '@/components/section-intro';

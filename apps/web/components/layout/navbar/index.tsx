@@ -1,13 +1,13 @@
-import Link from 'next/link';
 import { Suspense } from 'react';
+import Link from 'next/link';
 import { DiscordLogoIcon, Logo, Logomark } from 'ui';
 
+import { getMenu } from '@/lib/shopify';
+import { Menu } from '@/lib/shopify/types';
 import Cart from '@/components/cart';
 import OpenCart from '@/components/cart/open-cart';
 import MobileMenu from '@/components/layout/navbar/mobile-menu';
 import Search from '@/components/layout/navbar/search';
-import { getMenu } from '@/lib/shopify';
-import { Menu } from '@/lib/shopify/types';
 
 export default async function Navbar() {
   return (

@@ -1,8 +1,8 @@
 import { redirect } from 'next/navigation';
 
-import Form from '@/components/form';
 import { editUser } from '@/lib/actions';
 import { getSession } from '@/lib/auth';
+import Form from '@/components/form';
 
 export default async function SettingsPage() {
   const session = await getSession();

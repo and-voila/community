@@ -1,6 +1,5 @@
-import { FadeIn } from '@ui/index';
-import { GradientHeading } from '@ui/index';
 import { FC, ReactNode } from 'react';
+import { FadeIn, GradientHeading } from '@ui/index';
 
 interface PageIntroProps {
   heading: ReactNode;

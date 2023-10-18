@@ -1,7 +1,7 @@
-import { cn } from '@ui/lib/utils';
 import React, { useId } from 'react';
+import { cn } from '@ui/lib/utils';
 
-interface LogomarkProps extends React.SVGProps<SVGSVGElement> {
+export interface LogomarkProps extends React.SVGProps<SVGSVGElement> {
   invert?: boolean;
   filled?: boolean;
   sidebar?: boolean;
@@ -41,7 +41,7 @@ export function Logomark({ invert, filled, sidebar, ...props }: LogomarkProps) {
   );
 }
 
-interface LogoProps extends React.SVGProps<SVGSVGElement> {
+export interface LogoProps extends React.SVGProps<SVGSVGElement> {
   invert?: boolean;
   filled?: boolean;
   fillOnHover?: boolean;

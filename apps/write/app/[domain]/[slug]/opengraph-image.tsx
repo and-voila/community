@@ -1,7 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 
-import { sql } from '@vercel/postgres';
 import { ImageResponse } from 'next/server';
+import { sql } from '@vercel/postgres';
 
 import { truncate } from '@/lib/utils';
 

@@ -1,9 +1,9 @@
 import '@/styles/base.css';
 
-import { ThemeProvider } from '@ui/index';
+import { ReactNode } from 'react';
 import localFont from 'next/font/local';
 import Script from 'next/script';
-import { ReactNode } from 'react';
+import { ThemeProvider } from '@ui/index';
 
 import Footer from '@/components/layout/footer';
 import { ShopNavbar } from '@/components/layout/navbar';

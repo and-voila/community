@@ -1,14 +1,14 @@
 'use client';
 
+import { useParams, useRouter } from 'next/navigation';
 import { cn } from '@ui/index';
 import va from '@vercel/analytics';
-import { useParams, useRouter } from 'next/navigation';
 // @ts-expect-error This exists but TS doesn't recognize it.
 import { experimental_useFormStatus as useFormStatus } from 'react-dom';
 import { toast } from 'sonner';
 
-import LoadingDots from '@/components/icons/loading-dots';
 import { deletePost } from '@/lib/actions';
+import LoadingDots from '@/components/icons/loading-dots';
 
 export default function DeletePostForm({ postName }: { postName: string }) {
   const { id } = useParams() as { id: string };

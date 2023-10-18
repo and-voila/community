@@ -3,3 +3,4 @@ pnpm-workspace.yaml
 node_modules
 .next
 apps/web/.contentlayer
+apps/labs/.contentlayer

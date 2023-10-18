@@ -1,8 +1,8 @@
 'use client';
 
+import { useEffect, useState } from 'react';
 import { useSearchParams } from 'next/navigation';
 import { signIn } from 'next-auth/react';
-import { useEffect, useState } from 'react';
 import { toast } from 'sonner';
 
 import LoadingDots from '@/components/icons/loading-dots';

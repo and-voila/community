@@ -1,10 +1,10 @@
 import { Metadata } from 'next';
 
-import Grid from '@/components/grid';
-import ProductGridItems from '@/components/layout/product-grid-items';
 import { defaultSort, sorting } from '@/lib/constants';
 import { getProducts } from '@/lib/shopify';
 import { SITE_URL } from '@/lib/utils';
+import Grid from '@/components/grid';
+import ProductGridItems from '@/components/layout/product-grid-items';
 
 export const runtime = 'edge';
 

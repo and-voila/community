@@ -12,7 +12,8 @@
     "moduleResolution": "node",
     "preserveWatchOutput": true,
     "skipLibCheck": true,
-    "strict": true
+    "strict": true,
+    "strictNullChecks": false
   },
   "exclude": ["node_modules"]
 }

@@ -5,8 +5,8 @@ import Link from 'next/link';
 import { usePathname, useSearchParams } from 'next/navigation';
 import { ArrowLeftIcon, ArrowRightIcon } from 'ui';
 
-import { GridTileImage } from '@/components/grid/tile';
 import { createUrl } from '@/lib/utils';
+import { GridTileImage } from '@/components/grid/tile';
 
 export function Gallery({
   images,

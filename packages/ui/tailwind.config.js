@@ -1,15 +1,15 @@
+import plugin from 'tailwindcss/plugin';
+
 /* eslint-disable @typescript-eslint/no-var-requires */
 /** @type {import('tailwindcss').Config} */
 const defaultTheme = require('tailwindcss/defaultTheme');
-import plugin from 'tailwindcss/plugin';
 
 module.exports = {
   darkMode: ['class'],
   content: [
-    '../apps/lms/**/*.{js,ts,jsx,tsx}',
-    '../apps/web/**/*.{js,ts,jsx,tsx}',
-    '../apps/write/**/*.{js,ts,jsx,tsx}',
+    './pages/**/*.{ts,tsx}',
     './components/**/*.{ts,tsx}',
+    './app/**/*.{ts,tsx}',
     '../../packages/ui/components/**/*.{ts,tsx}',
   ],
   theme: {

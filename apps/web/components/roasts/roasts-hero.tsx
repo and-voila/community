@@ -1,7 +1,6 @@
-import { cn } from '@ui/index';
-import { FadeIn } from '@ui/index';
-import Link from 'next/link';
 import { FC } from 'react';
+import Link from 'next/link';
+import { cn, FadeIn } from '@ui/index';
 import { buttonVariants } from 'ui';
 
 import PageIntro from '@/components/page-intro';

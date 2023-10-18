@@ -1,6 +1,5 @@
-import { cn, H5 } from '@ui/index';
-import { FadeIn } from '@ui/index';
 import Link from 'next/link';
+import { cn, FadeIn, H5 } from '@ui/index';
 import { buttonVariants, CheckIcon } from 'ui';
 
 import Highlighter, { HighlighterItem } from '@/components/highlighter';

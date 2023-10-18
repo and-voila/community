@@ -1,5 +1,6 @@
 'use client';
 
+import { useEffect, useState } from 'react';
 import {
   DragDropContext,
   Draggable,
@@ -8,9 +9,7 @@ import {
 } from '@hello-pangea/dnd';
 import { Chapter } from '@prisma/client';
 import { Badge } from '@ui/components/ui/badge';
-import { cn } from '@ui/index';
-import { LucideReact } from '@ui/index';
-import { useEffect, useState } from 'react';
+import { cn, LucideReact } from '@ui/index';
 
 interface ChaptersListProps {
   items: Chapter[];

@@ -1,7 +1,7 @@
 'use client';
 
-import { usePathname, useSearchParams } from 'next/navigation';
 import { useEffect, useRef, useState } from 'react';
+import { usePathname, useSearchParams } from 'next/navigation';
 import { ChevronDownIcon } from 'ui';
 
 import type { ListItem } from '@/components/layout/search/filter/index';

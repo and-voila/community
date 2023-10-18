@@ -1,15 +1,13 @@
-import { cn } from '@ui/index';
-import { FadeIn } from '@ui/index';
-import { GradientHeading } from '@ui/index';
 import Image from 'next/image';
 import Link from 'next/link';
+import ChartImg from '@/public/images/roasts/chart.png';
+import GrillImg from '@/public/images/roasts/grill.png';
+import TeamImg from '@/public/images/roasts/team-brilla.png';
+import { cn, FadeIn, GradientHeading } from '@ui/index';
 import { buttonVariants } from 'ui';
 
 import Highlighter, { HighlighterItem } from '@/components/highlighter';
 import SectionIntro from '@/components/section-intro';
-import ChartImg from '@/public/images/roasts/chart.png';
-import GrillImg from '@/public/images/roasts/grill.png';
-import TeamImg from '@/public/images/roasts/team-brilla.png';
 
 export default function LandingSummary() {
   return (

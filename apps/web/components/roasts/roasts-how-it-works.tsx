@@ -1,6 +1,6 @@
-import { FadeIn } from '@ui/index';
-import Image from 'next/image';
 import { FC } from 'react';
+import Image from 'next/image';
+import { FadeIn } from '@ui/index';
 import { BackpackIcon, BarChartIcon, Crosshair1Icon } from 'ui';
 
 import SectionIntro from '@/components/section-intro';

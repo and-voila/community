@@ -1,10 +1,10 @@
 'use client';
 
+import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import { useAuth, UserButton } from '@clerk/nextjs';
 import { Button } from '@ui/components/ui/button';
 import { ExitIcon } from '@ui/index';
-import Link from 'next/link';
-import { usePathname } from 'next/navigation';
 
 import { isTeacher } from '@/lib/teacher';
 

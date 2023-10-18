@@ -1,4 +1,3 @@
-// eslint-disable-next-line simple-import-sort/imports
 import { ReadonlyURLSearchParams } from 'next/navigation';
 
 export const createUrl = (

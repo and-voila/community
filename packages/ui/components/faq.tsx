@@ -1,5 +1,5 @@
-import Link from 'next/link';
 import React from 'react';
+import Link from 'next/link';
 
 import { FadeIn, FadeInStagger } from './fade-in';
 import { GradientHeading } from './gradient-headings';

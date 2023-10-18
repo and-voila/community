@@ -1,5 +1,6 @@
 'use client';
 
+import Image from 'next/image';
 import {
   AreaChart,
   BarList,
@@ -10,7 +11,6 @@ import {
   Text,
   Title,
 } from '@tremor/react';
-import Image from 'next/image';
 
 const chartdata = [
   {

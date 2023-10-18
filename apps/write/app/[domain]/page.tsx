@@ -2,11 +2,11 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 
-import BlogCard from '@/components/blog-card';
-import BlurImage from '@/components/blur-image';
 import { getPostsForSite, getSiteData } from '@/lib/fetchers';
 import prisma from '@/lib/prisma';
 import { placeholderBlurhash, toDateString } from '@/lib/utils';
+import BlogCard from '@/components/blog-card';
+import BlurImage from '@/components/blur-image';
 
 export async function generateStaticParams() {
   const allSites = await prisma.site.findMany({

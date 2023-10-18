@@ -1,10 +1,10 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 'use server';
 
+import { revalidateTag } from 'next/cache';
 import { Post, Site } from '@prisma/client';
 import { put } from '@vercel/blob';
 import { customAlphabet } from 'nanoid';
-import { revalidateTag } from 'next/cache';
 
 import { getSession } from '@/lib/auth';
 import {

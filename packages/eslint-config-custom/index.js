@@ -16,7 +16,6 @@ module.exports = {
   plugins: [
     'react',
     '@typescript-eslint',
-    'simple-import-sort',
     'unicorn',
     'prettier',
   ],
@@ -59,8 +58,6 @@ module.exports = {
     'react/prop-types': 'off',
     'react/self-closing-comp': 'error',
     semi: ['error', 'always'],
-    'simple-import-sort/exports': 'warn',
-    'simple-import-sort/imports': 'warn',
     'unicorn/filename-case': [
       'error',
       {

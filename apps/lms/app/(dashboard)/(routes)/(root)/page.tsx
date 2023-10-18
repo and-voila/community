@@ -1,8 +1,8 @@
+import { redirect } from 'next/navigation';
+import { getDashboardCourses } from '@/actions/get-dashboard-courses';
 import { auth } from '@clerk/nextjs';
 import { CheckCircledIcon, ClockIcon } from '@ui/index';
-import { redirect } from 'next/navigation';
 
-import { getDashboardCourses } from '@/actions/get-dashboard-courses';
 import { Container } from '@/components/container';
 import { CoursesList } from '@/components/courses-list';
 

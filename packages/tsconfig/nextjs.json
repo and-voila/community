@@ -22,7 +22,10 @@
       "@ui/*": ["../../packages/ui/*"],
       "@ui/components/*": ["../../packages/ui/components/*"],
       "@ui/components/ui/*": ["../../packages/ui/components/ui/*"],
-      "contentlayer/generated": ["../../apps/web/.contentlayer/generated"]
+      "contentlayer/generated": [
+        "../../apps/web/.contentlayer/generated",
+        "../../apps/labs/.contentlayer/generated"
+      ]
     }
   },
   "include": ["apps", "next-env.d.ts", ".contentlayer/generated"],

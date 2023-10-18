@@ -1,9 +1,9 @@
 import 'ui/styles/globals.css';
 
-import { ClerkProvider } from '@clerk/nextjs';
-import { ThemeProvider } from '@ui/index';
 import type { Metadata } from 'next';
 import localFont from 'next/font/local';
+import { ClerkProvider } from '@clerk/nextjs';
+import { ThemeProvider } from '@ui/index';
 
 import { ConfettiProvider } from '@/components/providers/confetti-provider';
 import { ToastProvider } from '@/components/providers/toaster-provider';

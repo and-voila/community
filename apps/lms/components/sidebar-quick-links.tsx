@@ -1,5 +1,5 @@
-import { ModeToggle, Separator } from '@ui/index';
 import Link from 'next/link';
+import { ModeToggle, Separator } from '@ui/index';
 
 interface ExternalLink {
   name: string;

@@ -1,6 +1,6 @@
-import { FadeIn, FadeInStagger } from '@ui/index';
-import Image from 'next/image';
 import { FC } from 'react';
+import Image from 'next/image';
+import { FadeIn, FadeInStagger } from '@ui/index';
 import { CheckIcon } from 'ui';
 
 import SectionIntro from '@/components/section-intro';

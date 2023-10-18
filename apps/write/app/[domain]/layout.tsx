@@ -1,12 +1,12 @@
+import { ReactNode } from 'react';
 import { Metadata } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
 import { notFound, redirect } from 'next/navigation';
-import { ReactNode } from 'react';
 
+import { getSiteData } from '@/lib/fetchers';
 import CTA from '@/components/cta';
 import ReportAbuse from '@/components/report-abuse';
-import { getSiteData } from '@/lib/fetchers';
 import { fontMapper } from '@/styles/fonts';
 
 export async function generateMetadata({

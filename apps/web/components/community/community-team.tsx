@@ -1,8 +1,7 @@
-import { FadeIn, FadeInStagger } from '@ui/index';
-import { GradientHeading } from '@ui/index';
+import { FC } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { FC } from 'react';
+import { FadeIn, FadeInStagger, GradientHeading } from '@ui/index';
 import { LinkedInLogoIcon } from 'ui';
 
 interface Person {

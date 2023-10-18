@@ -1,6 +1,5 @@
-import { cn, H4 } from '@ui/index';
-import { FadeIn } from '@ui/index';
 import Link from 'next/link';
+import { cn, FadeIn, H4 } from '@ui/index';
 import {
   buttonVariants,
   Card,

@@ -1,9 +1,8 @@
 'use client';
 
-import { cn } from '@ui/index';
-import Image from 'next/image';
-import { ImageProps } from 'next/image';
 import { useState } from 'react';
+import Image, { ImageProps } from 'next/image';
+import { cn } from '@ui/index';
 
 interface BlurImageProps extends ImageProps {}
 

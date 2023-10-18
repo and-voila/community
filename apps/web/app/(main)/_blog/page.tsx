@@ -1,10 +1,10 @@
+import React from 'react';
+import { Metadata } from 'next';
 import { Container } from '@ui/index';
 import { allPosts } from 'contentlayer/generated';
-import { Metadata } from 'next';
-import React from 'react';
 
-import SectionIntro from '@/components/section-intro';
 import { SITE_URL } from '@/lib/utils';
+import SectionIntro from '@/components/section-intro';
 
 import FeaturedPost from './_components/featured-post';
 import LoadMoreButton from './_components/load-more';

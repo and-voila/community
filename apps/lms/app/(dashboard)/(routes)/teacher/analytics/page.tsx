@@ -1,7 +1,7 @@
-import { auth } from '@clerk/nextjs';
 import { redirect } from 'next/navigation';
-
 import { getAnalytics } from '@/actions/get-analytics';
+import { auth } from '@clerk/nextjs';
+
 import { Container } from '@/components/container';
 
 import { Chart } from './_components/chart';

@@ -1,3 +1,7 @@
+import type { Metadata } from 'next';
+import Image from 'next/image';
+import Link from 'next/link';
+import { notFound } from 'next/navigation';
 import {
   Button,
   CaretLeftIcon,
@@ -6,10 +10,6 @@ import {
   GradientHeading,
 } from '@ui/index';
 import { allPosts } from 'contentlayer/generated';
-import type { Metadata } from 'next';
-import Image from 'next/image';
-import Link from 'next/link';
-import { notFound } from 'next/navigation';
 
 import { SITE_URL } from '@/lib/utils';
 

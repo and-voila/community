@@ -1,7 +1,7 @@
-import { FadeIn, FadeInStagger } from '@ui/index';
-import { allPosts } from 'contentlayer/generated';
 import Image from 'next/image';
 import Link from 'next/link';
+import { FadeIn, FadeInStagger } from '@ui/index';
+import { allPosts } from 'contentlayer/generated';
 
 const Article = ({ post, color }) => (
   <article className="group relative p-6 text-white">

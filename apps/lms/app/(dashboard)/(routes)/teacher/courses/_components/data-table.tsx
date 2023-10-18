@@ -1,5 +1,7 @@
 'use client';
 
+import * as React from 'react';
+import Link from 'next/link';
 import {
   ColumnDef,
   ColumnFiltersState,
@@ -22,8 +24,6 @@ import {
   TableRow,
 } from '@ui/components/ui/table';
 import { LucideReact } from '@ui/index';
-import Link from 'next/link';
-import * as React from 'react';
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];

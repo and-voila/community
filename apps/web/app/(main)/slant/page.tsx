@@ -1,10 +1,10 @@
-import { Container, FadeIn } from '@ui/index';
-import { Metadata } from 'next';
 import React, { Suspense } from 'react';
-
+import { Metadata } from 'next';
 import { allPages } from '@/.contentlayer/generated';
-import PageIntro from '@/components/page-intro';
+import { Container, FadeIn } from '@ui/index';
+
 import { SITE_URL } from '@/lib/utils';
+import PageIntro from '@/components/page-intro';
 
 import { PostMdx } from '../_blog/_components/mdx/post-mdx';
 

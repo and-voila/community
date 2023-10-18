@@ -1,6 +1,6 @@
+import { NextResponse } from 'next/server';
 import { put } from '@vercel/blob';
 import { nanoid } from 'nanoid';
-import { NextResponse } from 'next/server';
 
 export const runtime = 'edge';
 

@@ -1,7 +1,6 @@
-import { cn } from '@ui/index';
-import { FadeIn, FadeInStagger } from '@ui/index';
-import Link from 'next/link';
 import { FC, ReactElement } from 'react';
+import Link from 'next/link';
+import { cn, FadeIn, FadeInStagger } from '@ui/index';
 import { buttonVariants } from 'ui';
 
 import AffiliatesHeroBackground from '@/components/affiliates/affiliates-hero-background';
