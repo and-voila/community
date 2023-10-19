@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { zodResolver } from '@hookform/resolvers/zod';
+import { valibotResolver } from '@hookform/resolvers/valibot';
 import { Course } from '@prisma/client';
 import { Button } from '@ui/components/ui/button';
 import {
@@ -11,62 +11,42 @@ import {
   FormDescription,
   FormField,
   FormItem,
-  FormMessage,
 } from '@ui/components/ui/form';
-import { Input } from '@ui/components/ui/input';
-import { Checkbox, cn, Pencil1Icon } from '@ui/index';
+import { Checkbox, Pencil1Icon } from '@ui/index';
 import axios from 'axios';
 import { useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
-import * as z from 'zod';
+import { boolean, object, Output } from 'valibot';
 
-import { formatPrice } from '@/lib/format';
+const formSchema = object({
+  isFree: boolean(),
+});
+
+type FormValues = Output<typeof formSchema>;
 
 interface PriceFormProps {
   initialData: Course;
   courseId: string;
 }
 
-const formSchema = z
-  .object({
-    price: z.number().optional(),
-    isFree: z.boolean().default(false),
-  })
-  .refine((data) => data.isFree || data.price !== undefined, {
-    message: 'Price is required when the course is not free',
-    path: ['price'], // specify the field the error is attached to
-  });
-
 export const PriceForm = ({ initialData, courseId }: PriceFormProps) => {
   const [isEditing, setIsEditing] = useState(false);
-
   const toggleEdit = () => setIsEditing((current) => !current);
-
   const router = useRouter();
 
-  const form = useForm<z.infer<typeof formSchema>>({
-    resolver: zodResolver(formSchema),
-    defaultValues: {
-      price: initialData?.price || undefined,
-      isFree: initialData?.isFree || false,
-    },
+  const form = useForm<FormValues>({
+    resolver: valibotResolver(formSchema),
+    defaultValues: { isFree: !!initialData.isFree },
   });
 
-  const { isSubmitting, isValid } = form.formState;
+  const { isSubmitting } = form.formState;
 
-  const onSubmit = async (values: z.infer<typeof formSchema>) => {
+  const onSubmit = async (values: FormValues) => {
     try {
-      if (values.isFree) {
-        values.price = 0;
-      }
-      form.clearErrors('price');
-      await form.trigger();
-      if (form.formState.isValid) {
-        await axios.patch(`/api/courses/${courseId}`, values);
-        toast.success('Course updated');
-        toggleEdit();
-        router.refresh();
-      }
+      await axios.patch(`/api/courses/${courseId}`, { isFree: values.isFree });
+      toast.success('Course updated');
+      toggleEdit();
+      router.refresh();
     } catch {
       toast.error('Something went wrong');
     }
@@ -75,7 +55,7 @@ export const PriceForm = ({ initialData, courseId }: PriceFormProps) => {
   return (
     <div className="mt-6 rounded-md border bg-white p-4 dark:bg-background">
       <div className="flex items-center justify-between font-medium mb-4">
-        Course price
+        Course access
         <Button onClick={toggleEdit} variant="ghost">
           {isEditing ? (
             <>Cancel</>
@@ -88,17 +68,8 @@ export const PriceForm = ({ initialData, courseId }: PriceFormProps) => {
         </Button>
       </div>
       {!isEditing && (
-        <p
-          className={cn(
-            'mt-2 text-sm',
-            !initialData.price && 'italic text-muted-foreground',
-          )}
-        >
-          {initialData.isFree
-            ? 'Free'
-            : initialData.price
-            ? formatPrice(initialData.price)
-            : 'No price set'}
+        <p className="mt-2 text-sm">
+          {initialData.isFree ? 'Free' : 'Premium'}
         </p>
       )}
       {isEditing && (
@@ -126,32 +97,11 @@ export const PriceForm = ({ initialData, courseId }: PriceFormProps) => {
                 </FormItem>
               )}
             />
-            <FormField
-              control={form.control}
-              name="price"
-              render={({ field }) => (
-                <FormItem>
-                  <FormControl>
-                    <Input
-                      type="number"
-                      min="0"
-                      step="1"
-                      disabled={isSubmitting}
-                      placeholder="Set a price for the course."
-                      {...field}
-                    />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
             <div className="flex items-center gap-x-2">
               <Button
                 size="sm"
                 variant="custom"
-                disabled={
-                  isSubmitting || (!form.getValues().isFree && !isValid)
-                }
+                disabled={isSubmitting}
                 type="submit"
               >
                 Save
