@@ -12,7 +12,7 @@ import {
 } from '@ui/index';
 import axios from 'axios';
 import toast from 'react-hot-toast';
-import * as z from 'zod';
+import { minLength, object, Output, parse, string } from 'valibot';
 
 import { FileUpload } from '@/components/file-upload';
 
@@ -21,9 +21,11 @@ interface AttachmentFormProps {
   courseId: string;
 }
 
-const formSchema = z.object({
-  url: z.string().min(1),
+const formSchema = object({
+  url: string([minLength(1)]),
 });
+
+type FormData = Output<typeof formSchema>;
 
 export const AttachmentForm = ({
   initialData,
@@ -36,14 +38,15 @@ export const AttachmentForm = ({
 
   const router = useRouter();
 
-  const onSubmit = async (values: z.infer<typeof formSchema>) => {
+  const onSubmit = async (values: { url: string }) => {
     try {
-      await axios.post(`/api/courses/${courseId}/attachments`, values);
-      toast.success('Course updated');
+      const data: FormData = parse(formSchema, values);
+      await axios.post(`/api/courses/${courseId}/attachments`, data);
+      toast.success('Upload attached');
       toggleEdit();
       router.refresh();
     } catch {
-      toast.error('Something went wrong');
+      toast.error('Ugh, problem with attachment. Try again.');
     }
   };
 
@@ -54,7 +57,7 @@ export const AttachmentForm = ({
       toast.success('Attachment deleted');
       router.refresh();
     } catch {
-      toast.error('Something went wrong');
+      toast.error('Something went wrong, try again.');
     } finally {
       setDeletingId(null);
     }
@@ -62,13 +65,13 @@ export const AttachmentForm = ({
 
   return (
     <div className="mt-6 rounded-md border bg-white p-4 dark:bg-background">
-      <div className="flex items-center justify-between font-display">
+      <div className="flex items-center justify-between font-medium mb-4">
         Course attachments
         <Button onClick={toggleEdit} variant="ghost">
           {isEditing && <>Cancel</>}
           {!isEditing && (
             <>
-              <PlusCircledIcon className="mr-2 h-4 w-4" />
+              <PlusCircledIcon className="mr-2 h-4 w-4 text-brand" />
               Add a file
             </>
           )}
@@ -92,7 +95,7 @@ export const AttachmentForm = ({
                   <p className="line-clamp-1 text-xs">{attachment.name}</p>
                   {deletingId === attachment.id && (
                     <div>
-                      <ReloadIcon className="h-4 w-4 animate-spin" />
+                      <ReloadIcon className="ml-2 h-3 w-3 animate-pulse" />
                     </div>
                   )}
                   {deletingId !== attachment.id && (

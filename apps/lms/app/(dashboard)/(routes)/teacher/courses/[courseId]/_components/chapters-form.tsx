@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { zodResolver } from '@hookform/resolvers/zod';
+import { valibotResolver } from '@hookform/resolvers/valibot';
 import { Chapter, Course } from '@prisma/client';
 import { Button } from '@ui/components/ui/button';
 import {
@@ -17,7 +17,7 @@ import { cn, PlusCircledIcon, ReloadIcon } from '@ui/index';
 import axios from 'axios';
 import { useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
-import * as z from 'zod';
+import { minLength, object, Output, parse, string } from 'valibot';
 
 import { ChaptersList } from './chapters-list';
 
@@ -26,9 +26,11 @@ interface ChaptersFormProps {
   courseId: string;
 }
 
-const formSchema = z.object({
-  title: z.string().min(1),
+const formSchema = object({
+  title: string([minLength(1)]),
 });
+
+type FormData = Output<typeof formSchema>;
 
 export const ChaptersForm = ({ initialData, courseId }: ChaptersFormProps) => {
   const [isCreating, setIsCreating] = useState(false);
@@ -40,8 +42,8 @@ export const ChaptersForm = ({ initialData, courseId }: ChaptersFormProps) => {
 
   const router = useRouter();
 
-  const form = useForm<z.infer<typeof formSchema>>({
-    resolver: zodResolver(formSchema),
+  const form = useForm<FormData>({
+    resolver: valibotResolver(formSchema),
     defaultValues: {
       title: '',
     },
@@ -49,14 +51,15 @@ export const ChaptersForm = ({ initialData, courseId }: ChaptersFormProps) => {
 
   const { isSubmitting, isValid } = form.formState;
 
-  const onSubmit = async (values: z.infer<typeof formSchema>) => {
+  const onSubmit = async (values: { title: string }) => {
     try {
-      await axios.post(`/api/courses/${courseId}/chapters`, values);
+      const data: FormData = parse(formSchema, values);
+      await axios.post(`/api/courses/${courseId}/chapters`, data);
       toast.success('Chapter created');
       toggleCreating();
       router.refresh();
     } catch {
-      toast.error('Something went wrong');
+      toast.error('OMG, you broke something. Try again.');
     }
   };
 
@@ -87,14 +90,14 @@ export const ChaptersForm = ({ initialData, courseId }: ChaptersFormProps) => {
           <ReloadIcon className="h-6 w-6 animate-spin text-sky-700" />
         </div>
       )}
-      <div className="flex items-center justify-between font-display">
+      <div className="flex items-center justify-between font-medium mb-4">
         Chapter list
         <Button onClick={toggleCreating} variant="ghost">
           {isCreating ? (
             <>Cancel</>
           ) : (
             <>
-              <PlusCircledIcon className="mr-2 h-4 w-4" />
+              <PlusCircledIcon className="mr-2 h-4 w-4 text-brand" />
               Add a chapter
             </>
           )}
@@ -123,6 +126,7 @@ export const ChaptersForm = ({ initialData, courseId }: ChaptersFormProps) => {
               )}
             />
             <Button
+              size="sm"
               variant="custom"
               disabled={!isValid || isSubmitting}
               type="submit"

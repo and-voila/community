@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { zodResolver } from '@hookform/resolvers/zod';
+import { valibotResolver } from '@hookform/resolvers/valibot';
 import { Course } from '@prisma/client';
 import { Button } from '@ui/components/ui/button';
 import { Combobox } from '@ui/components/ui/combobox';
@@ -17,7 +17,7 @@ import { cn, Pencil1Icon } from '@ui/index';
 import axios from 'axios';
 import { useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
-import * as z from 'zod';
+import { minLength, object, Output, parse, string } from 'valibot';
 
 interface CategoryFormProps {
   initialData: Course;
@@ -25,9 +25,11 @@ interface CategoryFormProps {
   options: { label: string; value: string }[];
 }
 
-const formSchema = z.object({
-  categoryId: z.string().min(1),
+const formSchema = object({
+  categoryId: string([minLength(1)]),
 });
+
+type FormData = Output<typeof formSchema>;
 
 export const CategoryForm = ({
   initialData,
@@ -40,8 +42,8 @@ export const CategoryForm = ({
 
   const router = useRouter();
 
-  const form = useForm<z.infer<typeof formSchema>>({
-    resolver: zodResolver(formSchema),
+  const form = useForm<FormData>({
+    resolver: valibotResolver(formSchema),
     defaultValues: {
       categoryId: initialData?.categoryId || '',
     },
@@ -49,14 +51,15 @@ export const CategoryForm = ({
 
   const { isSubmitting, isValid } = form.formState;
 
-  const onSubmit = async (values: z.infer<typeof formSchema>) => {
+  const onSubmit = async (values: { categoryId: string }) => {
     try {
-      await axios.patch(`/api/courses/${courseId}`, values);
-      toast.success('Course updated');
+      const data: FormData = parse(formSchema, values);
+      await axios.patch(`/api/courses/${courseId}`, data);
+      toast.success('Category updated');
       toggleEdit();
       router.refresh();
     } catch {
-      toast.error('Something went wrong');
+      toast.error('Oops, something went wrong, try again.');
     }
   };
 
@@ -66,14 +69,14 @@ export const CategoryForm = ({
 
   return (
     <div className="mt-6 rounded-md border bg-white p-4 dark:bg-background">
-      <div className="flex items-center justify-between font-display">
+      <div className="flex items-center justify-between font-medium mb-4">
         Course category
         <Button onClick={toggleEdit} variant="ghost">
           {isEditing ? (
             <>Cancel</>
           ) : (
             <>
-              <Pencil1Icon className="mr-2 h-4 w-4" />
+              <Pencil1Icon className="mr-2 h-4 w-4 text-brand" />
               Edit category
             </>
           )}
@@ -113,6 +116,7 @@ export const CategoryForm = ({
             />
             <div className="flex items-center gap-x-2">
               <Button
+                size="sm"
                 variant="custom"
                 disabled={!isValid || isSubmitting}
                 type="submit"

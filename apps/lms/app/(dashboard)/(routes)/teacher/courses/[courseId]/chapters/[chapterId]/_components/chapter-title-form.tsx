@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { zodResolver } from '@hookform/resolvers/zod';
+import { valibotResolver } from '@hookform/resolvers/valibot';
 import { Button } from '@ui/components/ui/button';
 import {
   Form,
@@ -16,7 +16,7 @@ import { Pencil1Icon } from '@ui/index';
 import axios from 'axios';
 import { useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
-import * as z from 'zod';
+import { minLength, object, Output, string } from 'valibot';
 
 interface ChapterTitleFormProps {
   initialData: {
@@ -26,9 +26,11 @@ interface ChapterTitleFormProps {
   chapterId: string;
 }
 
-const formSchema = z.object({
-  title: z.string().min(1),
+const formSchema = object({
+  title: string('Title is required', [minLength(1)]),
 });
+
+type FormValues = Output<typeof formSchema>;
 
 export const ChapterTitleForm = ({
   initialData,
@@ -41,14 +43,14 @@ export const ChapterTitleForm = ({
 
   const router = useRouter();
 
-  const form = useForm<z.infer<typeof formSchema>>({
-    resolver: zodResolver(formSchema),
+  const form = useForm<FormValues>({
+    resolver: valibotResolver(formSchema),
     defaultValues: initialData,
   });
 
   const { isSubmitting, isValid } = form.formState;
 
-  const onSubmit = async (values: z.infer<typeof formSchema>) => {
+  const onSubmit = async (values: FormValues) => {
     try {
       await axios.patch(
         `/api/courses/${courseId}/chapters/${chapterId}`,
@@ -64,14 +66,14 @@ export const ChapterTitleForm = ({
 
   return (
     <div className="mt-6 rounded-md border bg-white p-4 dark:bg-background">
-      <div className="flex items-center justify-between font-display">
+      <div className="flex items-center justify-between font-medium mb-4">
         Chapter title
         <Button onClick={toggleEdit} variant="ghost">
           {isEditing ? (
             <>Cancel</>
           ) : (
             <>
-              <Pencil1Icon className="mr-2 h-4 w-4" />
+              <Pencil1Icon className="mr-2 h-4 w-4 text-brand" />
               Edit title
             </>
           )}
@@ -102,6 +104,7 @@ export const ChapterTitleForm = ({
             />
             <div className="flex items-center gap-x-2">
               <Button
+                size="sm"
                 variant="custom"
                 disabled={!isValid || isSubmitting}
                 type="submit"

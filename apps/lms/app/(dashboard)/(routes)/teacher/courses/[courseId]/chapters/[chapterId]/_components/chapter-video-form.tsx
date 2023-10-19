@@ -8,7 +8,7 @@ import { Button } from '@ui/components/ui/button';
 import { Pencil1Icon, PlusCircledIcon, VideoIcon } from '@ui/index';
 import axios from 'axios';
 import toast from 'react-hot-toast';
-import * as z from 'zod';
+import { minLength, object, Output, string } from 'valibot';
 
 import { FileUpload } from '@/components/file-upload';
 
@@ -18,9 +18,11 @@ interface ChapterVideoFormProps {
   chapterId: string;
 }
 
-const formSchema = z.object({
-  videoUrl: z.string().min(1),
+const formSchema = object({
+  videoUrl: string('Video URL is required', [minLength(1)]),
 });
+
+type FormValues = Output<typeof formSchema>;
 
 export const ChapterVideoForm = ({
   initialData,
@@ -33,7 +35,7 @@ export const ChapterVideoForm = ({
 
   const router = useRouter();
 
-  const onSubmit = async (values: z.infer<typeof formSchema>) => {
+  const onSubmit = async (values: FormValues) => {
     try {
       await axios.patch(
         `/api/courses/${courseId}/chapters/${chapterId}`,
@@ -49,19 +51,19 @@ export const ChapterVideoForm = ({
 
   return (
     <div className="mt-6 rounded-md border bg-white p-4 dark:bg-background">
-      <div className="flex items-center justify-between font-display">
+      <div className="flex items-center justify-between font-medium mb-4">
         Chapter video
         <Button onClick={toggleEdit} variant="ghost">
           {isEditing && <>Cancel</>}
           {!isEditing && !initialData.videoUrl && (
             <>
-              <PlusCircledIcon className="mr-2 h-4 w-4" />
+              <PlusCircledIcon className="mr-2 h-4 w-4 text-brand" />
               Add a video
             </>
           )}
           {!isEditing && initialData.videoUrl && (
             <>
-              <Pencil1Icon className="mr-2 h-4 w-4" />
+              <Pencil1Icon className="mr-2 h-4 w-4 text-brand" />
               Edit video
             </>
           )}
@@ -69,8 +71,8 @@ export const ChapterVideoForm = ({
       </div>
       {!isEditing &&
         (!initialData.videoUrl ? (
-          <div className="flex h-60 items-center justify-center rounded-md bg-slate-200">
-            <VideoIcon className="h-10 w-10 text-slate-500" />
+          <div className="flex h-60 items-center justify-center rounded-md bg-primary-foreground">
+            <VideoIcon className="h-10 w-10 text-brand" />
           </div>
         ) : (
           <div className="relative mt-2 aspect-video">
@@ -87,15 +89,15 @@ export const ChapterVideoForm = ({
               }
             }}
           />
-          <div className="mt-4 text-xs text-muted-foreground">
+          <div className="mt-4 text-sm text-muted-foreground">
             Upload this chapter&apos;s video
           </div>
         </div>
       )}
       {initialData.videoUrl && !isEditing && (
         <div className="mt-2 text-xs text-muted-foreground">
-          Videos can take a few minutes to process. Refresh the page if video
-          does not appear.
+          Videos can take a few minutes to process. Refresh the page if it
+          doesn&apos;t show up.
         </div>
       )}
     </div>

@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
-import { zodResolver } from '@hookform/resolvers/zod';
+import { valibotResolver } from '@hookform/resolvers/valibot';
 import { Button } from '@ui/components/ui/button';
 import {
   Form,
@@ -14,30 +14,28 @@ import {
   FormMessage,
 } from '@ui/components/ui/form';
 import { Input } from '@ui/components/ui/input';
-import { H3 } from '@ui/index';
+import { H5 } from '@ui/index';
 import axios from 'axios';
 import { useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
-import * as z from 'zod';
+import { minLength, object, Output, string } from 'valibot';
 
-const formSchema = z.object({
-  title: z.string().min(1, {
-    message: 'Title is required',
-  }),
+const formSchema = object({
+  title: string('Title is required', [minLength(1)]),
 });
+
+type FormValues = Output<typeof formSchema>;
 
 const CreatePage = () => {
   const router = useRouter();
-  const form = useForm<z.infer<typeof formSchema>>({
-    resolver: zodResolver(formSchema),
-    defaultValues: {
-      title: '',
-    },
+  const form = useForm<FormValues>({
+    resolver: valibotResolver(formSchema),
+    defaultValues: { title: '' },
   });
 
   const { isSubmitting, isValid } = form.formState;
 
-  const onSubmit = async (values: z.infer<typeof formSchema>) => {
+  const onSubmit = async (values: FormValues) => {
     try {
       const response = await axios.post('/api/courses', values);
       router.push(`/teacher/courses/${response.data.id}`);
@@ -50,7 +48,7 @@ const CreatePage = () => {
   return (
     <div className="mx-auto mt-24 flex rounded-xl border bg-white p-6 shadow-md dark:bg-background md:mt-32 md:max-w-3xl md:justify-center md:p-12">
       <div>
-        <H3 as="h1">Course title</H3>
+        <H5 as="h1">Course title</H5>
         <p className="text-base text-muted-foreground">
           Choose a short and SEO friendly title for your course.
         </p>

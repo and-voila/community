@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { zodResolver } from '@hookform/resolvers/zod';
+import { valibotResolver } from '@hookform/resolvers/valibot';
 import { Chapter } from '@prisma/client';
 import { Button } from '@ui/components/ui/button';
 import { Checkbox } from '@ui/components/ui/checkbox';
@@ -17,7 +17,7 @@ import { cn, Pencil1Icon } from '@ui/index';
 import axios from 'axios';
 import { useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
-import * as z from 'zod';
+import { boolean, object, Output } from 'valibot';
 
 interface ChapterAccessFormProps {
   initialData: Chapter;
@@ -25,9 +25,11 @@ interface ChapterAccessFormProps {
   chapterId: string;
 }
 
-const formSchema = z.object({
-  isFree: z.boolean().default(false),
+const formSchema = object({
+  isFree: boolean(),
 });
+
+type FormValues = Output<typeof formSchema>;
 
 export const ChapterAccessForm = ({
   initialData,
@@ -40,16 +42,14 @@ export const ChapterAccessForm = ({
 
   const router = useRouter();
 
-  const form = useForm<z.infer<typeof formSchema>>({
-    resolver: zodResolver(formSchema),
-    defaultValues: {
-      isFree: !!initialData.isFree,
-    },
+  const form = useForm<FormValues>({
+    resolver: valibotResolver(formSchema),
+    defaultValues: { isFree: !!initialData.isFree },
   });
 
   const { isSubmitting, isValid } = form.formState;
 
-  const onSubmit = async (values: z.infer<typeof formSchema>) => {
+  const onSubmit = async (values: FormValues) => {
     try {
       await axios.patch(
         `/api/courses/${courseId}/chapters/${chapterId}`,
@@ -82,7 +82,7 @@ export const ChapterAccessForm = ({
         <p
           className={cn(
             'mt-2 text-sm',
-            !initialData.isFree && 'italic text-slate-500',
+            !initialData.isFree && 'italic text-muted-foreground',
           )}
         >
           {initialData.isFree ? (

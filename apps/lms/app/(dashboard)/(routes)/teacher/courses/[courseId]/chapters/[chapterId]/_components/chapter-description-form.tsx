@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { zodResolver } from '@hookform/resolvers/zod';
+import { valibotResolver } from '@hookform/resolvers/valibot';
 import { Chapter } from '@prisma/client';
 import { Button } from '@ui/components/ui/button';
 import {
@@ -16,7 +16,7 @@ import { cn, Pencil1Icon } from '@ui/index';
 import axios from 'axios';
 import { useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
-import * as z from 'zod';
+import { minLength, object, Output, string } from 'valibot';
 
 import { Preview } from '@/components/preview';
 import { QuillEditor } from '@/components/quill-editor';
@@ -27,9 +27,11 @@ interface ChapterDescriptionFormProps {
   chapterId: string;
 }
 
-const formSchema = z.object({
-  description: z.string().min(1),
+const formSchema = object({
+  description: string('Description is required', [minLength(1)]),
 });
+
+type FormValues = Output<typeof formSchema>;
 
 export const ChapterDescriptionForm = ({
   initialData,
@@ -42,8 +44,8 @@ export const ChapterDescriptionForm = ({
 
   const router = useRouter();
 
-  const form = useForm<z.infer<typeof formSchema>>({
-    resolver: zodResolver(formSchema),
+  const form = useForm<FormValues>({
+    resolver: valibotResolver(formSchema),
     defaultValues: {
       description: initialData?.description || '',
     },
@@ -51,30 +53,30 @@ export const ChapterDescriptionForm = ({
 
   const { isSubmitting, isValid } = form.formState;
 
-  const onSubmit = async (values: z.infer<typeof formSchema>) => {
+  const onSubmit = async (values: FormValues) => {
     try {
       await axios.patch(
         `/api/courses/${courseId}/chapters/${chapterId}`,
         values,
       );
-      toast.success('Chapter updated');
+      toast.success('Chapter description updated');
       toggleEdit();
       router.refresh();
     } catch {
-      toast.error('Something went wrong');
+      toast.error('Yikes, something broke. Try again.');
     }
   };
 
   return (
     <div className="mt-6 rounded-md border bg-white p-4 dark:bg-background">
-      <div className="flex items-center justify-between font-display">
+      <div className="flex items-center justify-between font-medium mb-4">
         Chapter description
         <Button onClick={toggleEdit} variant="ghost">
           {isEditing ? (
             <>Cancel</>
           ) : (
             <>
-              <Pencil1Icon className="mr-2 h-4 w-4" />
+              <Pencil1Icon className="mr-2 h-4 w-4 text-brand" />
               Edit description
             </>
           )}
@@ -84,7 +86,7 @@ export const ChapterDescriptionForm = ({
         <div
           className={cn(
             'mt-2 text-sm',
-            !initialData.description && 'italic text-slate-500',
+            !initialData.description && 'italic text-muted-foreground',
           )}
         >
           {!initialData.description && 'No description'}
@@ -113,6 +115,7 @@ export const ChapterDescriptionForm = ({
             />
             <div className="flex items-center gap-x-2">
               <Button
+                size="sm"
                 variant="custom"
                 disabled={!isValid || isSubmitting}
                 type="submit"
