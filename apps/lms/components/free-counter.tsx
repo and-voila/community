@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { MAX_FREE_COUNTS } from '@/constants';
+import { MAX_FREE_TOKENS } from '@/constants';
 import { useAuth } from '@clerk/nextjs';
 import { useProModal } from 'hooks/use-pro-modal';
 import { Button, Card, CardContent, MagicWandIcon, Progress } from 'ui';
@@ -43,10 +43,10 @@ export const FreeCounter = ({
         <CardContent className="py-6">
           <div className="mb-4 space-y-2 text-center text-sm text-foreground">
             <p>
-              You&apos;ve used {apiLimitCount} / {MAX_FREE_COUNTS} AI tokens.
+              You&apos;ve used {apiLimitCount} / {MAX_FREE_TOKENS} AI tokens.
             </p>
             <Progress
-              value={(apiLimitCount / MAX_FREE_COUNTS) * 100}
+              value={(apiLimitCount / MAX_FREE_TOKENS) * 100}
               className="h3"
             />
           </div>

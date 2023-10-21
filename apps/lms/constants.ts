@@ -1,1 +1,1 @@
-export const MAX_FREE_COUNTS = 30;
+export const MAX_FREE_TOKENS = 30;

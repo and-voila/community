@@ -1,4 +1,4 @@
-import { MAX_FREE_COUNTS } from '@/constants';
+import { MAX_FREE_TOKENS } from '@/constants';
 import { auth } from '@clerk/nextjs';
 
 import { db } from './db';
@@ -44,7 +44,7 @@ export const checkApiLimit = async () => {
     },
   });
 
-  if (!userApiLimit || userApiLimit.count < MAX_FREE_COUNTS) {
+  if (!userApiLimit || userApiLimit.count < MAX_FREE_TOKENS) {
     return true;
   } else {
     return false;
