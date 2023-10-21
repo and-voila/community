@@ -29,7 +29,6 @@ export const getChapter = async ({
         id: courseId,
       },
       select: {
-        price: true,
         isFree: true,
       },
     });

@@ -11,31 +11,23 @@ import {
   FormDescription,
   FormField,
   FormItem,
-  FormMessage,
 } from '@ui/components/ui/form';
-import { Input } from '@ui/components/ui/input';
 import { Checkbox, cn, Pencil1Icon } from '@ui/index';
 import axios from 'axios';
 import { useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
 import * as z from 'zod';
 
-import { formatPrice } from '@/lib/format';
+type CourseData = Pick<Course, 'isFree'>;
 
 interface PriceFormProps {
-  initialData: Course;
+  initialData: CourseData;
   courseId: string;
 }
 
-const formSchema = z
-  .object({
-    price: z.number().optional(),
-    isFree: z.boolean().default(false),
-  })
-  .refine((data) => data.isFree || data.price !== undefined, {
-    message: 'Price is required when the course is not free',
-    path: ['price'], // specify the field the error is attached to
-  });
+const formSchema = z.object({
+  isFree: z.boolean().default(false),
+});
 
 export const PriceForm = ({ initialData, courseId }: PriceFormProps) => {
   const [isEditing, setIsEditing] = useState(false);
@@ -47,19 +39,15 @@ export const PriceForm = ({ initialData, courseId }: PriceFormProps) => {
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      price: initialData?.price || undefined,
       isFree: initialData?.isFree || false,
     },
   });
 
-  const { isSubmitting, isValid } = form.formState;
+  const { isSubmitting } = form.formState;
 
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
     try {
-      if (values.isFree) {
-        values.price = 0;
-      }
-      form.clearErrors('price');
+      form.clearErrors();
       await form.trigger();
       if (form.formState.isValid) {
         await axios.patch(`/api/courses/${courseId}`, values);
@@ -88,17 +76,8 @@ export const PriceForm = ({ initialData, courseId }: PriceFormProps) => {
         </Button>
       </div>
       {!isEditing && (
-        <p
-          className={cn(
-            'mt-2 text-sm',
-            !initialData.price && 'italic text-muted-foreground',
-          )}
-        >
-          {initialData.isFree
-            ? 'Free'
-            : initialData.price
-            ? formatPrice(initialData.price)
-            : 'No price set'}
+        <p className={cn('mt-2 text-sm')}>
+          {initialData.isFree ? 'Free' : 'For Members'}
         </p>
       )}
       {isEditing && (
@@ -126,32 +105,8 @@ export const PriceForm = ({ initialData, courseId }: PriceFormProps) => {
                 </FormItem>
               )}
             />
-            <FormField
-              control={form.control}
-              name="price"
-              render={({ field }) => (
-                <FormItem>
-                  <FormControl>
-                    <Input
-                      type="number"
-                      step="1"
-                      disabled={isSubmitting}
-                      placeholder="Set a price for the course."
-                      {...field}
-                    />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
             <div className="flex items-center gap-x-2">
-              <Button
-                variant="custom"
-                disabled={
-                  isSubmitting || (!form.getValues().isFree && !isValid)
-                }
-                type="submit"
-              >
+              <Button variant="custom" disabled={isSubmitting} type="submit">
                 Save
               </Button>
             </div>
