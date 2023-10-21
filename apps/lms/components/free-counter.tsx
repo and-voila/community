@@ -2,8 +2,11 @@
 
 import { useEffect, useState } from 'react';
 import { MAX_FREE_COUNTS } from '@/constants';
+import { useAuth } from '@clerk/nextjs';
 import { useProModal } from 'hooks/use-pro-modal';
 import { Button, Card, CardContent, MagicWandIcon, Progress } from 'ui';
+
+import { isTeacher } from '@/lib/teacher';
 
 interface FreeCounterProps {
   apiLimitCount: number;
@@ -16,6 +19,7 @@ export const FreeCounter = ({
 }: FreeCounterProps) => {
   const proModal = useProModal();
   const [mounted, setMounted] = useState(false);
+  const { userId } = useAuth();
 
   useEffect(() => {
     setMounted(true);
@@ -28,14 +32,18 @@ export const FreeCounter = ({
   if (isPro) {
     return null;
   }
+  // eslint-disable-next-line no-console
+  if (isTeacher(userId)) {
+    return null;
+  }
 
   return (
-    <div className="px-3 absolute bottom-0 mb-2">
-      <Card className="border bg-sidebar">
+    <div className="px-3">
+      <Card className="border bg-primary-foreground">
         <CardContent className="py-6">
           <div className="mb-4 space-y-2 text-center text-sm text-foreground">
             <p>
-              You&apos;ve used {apiLimitCount} / {MAX_FREE_COUNTS} free tricks
+              You&apos;ve used {apiLimitCount} / {MAX_FREE_COUNTS} AI tokens.
             </p>
             <Progress
               value={(apiLimitCount / MAX_FREE_COUNTS) * 100}

@@ -1,11 +1,15 @@
 import { Logo } from '@ui/index';
 
 import { FreeCounter } from '@/components/free-counter';
-import SidebarQuickLinks from '@/components/sidebar-quick-links';
 
 import { SidebarRoutes } from './sidebar-routes';
 
-export const Sidebar = () => {
+interface SidebarProps {
+  apiLimitCount: number;
+  isPro: boolean;
+}
+
+export const Sidebar = ({ apiLimitCount, isPro = false }: SidebarProps) => {
   return (
     <div className="flex h-full flex-col overflow-y-auto bg-[#d0d5dd] shadow-sm dark:bg-[#010101]">
       <div className="p-6">
@@ -13,8 +17,9 @@ export const Sidebar = () => {
       </div>
       <div className="flex w-full flex-col">
         <SidebarRoutes />
-        <FreeCounter apiLimitCount={0} isPro={false} />
-        <SidebarQuickLinks />
+      </div>
+      <div className="absolute bottom-6 w-full">
+        <FreeCounter isPro={isPro} apiLimitCount={apiLimitCount} />
       </div>
     </div>
   );

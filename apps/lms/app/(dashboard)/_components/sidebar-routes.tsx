@@ -1,42 +1,52 @@
 'use client';
 
 import { usePathname } from 'next/navigation';
-import {
-  BarChartIcon,
-  GearIcon,
-  HomeIcon,
-  ListBulletIcon,
-  MagnifyingGlassIcon,
-} from '@ui/index';
+
+import { Icons } from '@/components/icons';
 
 import { SidebarItem } from './sidebar-item';
 
 const guestRoutes = [
   {
-    icon: HomeIcon,
+    icon: Icons.home,
     label: 'Dashboard',
     href: '/',
   },
   {
-    icon: MagnifyingGlassIcon,
+    icon: Icons.search,
     label: 'Browse',
     href: '/search',
   },
   {
-    icon: GearIcon,
+    icon: Icons.settings,
     label: 'Settings',
     href: '/settings',
+  },
+  {
+    icon: Icons.discord,
+    label: 'Community',
+    href: 'https://discord.com/channels/1151749282806910976/1164902538731069542',
+  },
+  {
+    icon: Icons.docs,
+    label: 'Documentation',
+    href: '/docs',
+  },
+  {
+    icon: Icons.help,
+    label: 'Support',
+    href: '/support',
   },
 ];
 
 const teacherRoutes = [
   {
-    icon: ListBulletIcon,
+    icon: Icons.courses,
     label: 'Courses',
     href: '/teacher/courses',
   },
   {
-    icon: BarChartIcon,
+    icon: Icons.analytics,
     label: 'Analytics',
     href: '/teacher/analytics',
   },

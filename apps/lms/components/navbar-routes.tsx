@@ -4,7 +4,7 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useAuth, UserButton } from '@clerk/nextjs';
 import { Button } from '@ui/components/ui/button';
-import { ExitIcon } from '@ui/index';
+import { ExitIcon, ModeToggle } from '@ui/index';
 
 import { isTeacher } from '@/lib/teacher';
 
@@ -25,7 +25,7 @@ export const NavbarRoutes = () => {
           <SearchInput />
         </div>
       )}
-      <div className="ml-auto flex gap-x-2 pr-6">
+      <div className="ml-auto flex pr-6">
         {isTeacherPage || isCoursePage ? (
           <Link href="/">
             <Button size="sm" variant="ghost">
@@ -35,11 +35,14 @@ export const NavbarRoutes = () => {
           </Link>
         ) : isTeacher(userId) ? (
           <Link href="/teacher/courses">
-            <Button size="sm" variant="custom">
+            <Button size="sm" variant="outline">
               Teacher mode
             </Button>
           </Link>
         ) : null}
+      </div>
+      <div className="flex gap-x-2 mx-6">
+        <ModeToggle />
         <UserButton afterSignOutUrl="/sign-in" />
       </div>
     </>
