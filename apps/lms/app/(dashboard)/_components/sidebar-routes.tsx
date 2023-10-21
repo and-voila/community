@@ -3,6 +3,7 @@
 import { usePathname } from 'next/navigation';
 import {
   BarChartIcon,
+  GearIcon,
   HomeIcon,
   ListBulletIcon,
   MagnifyingGlassIcon,
@@ -20,6 +21,11 @@ const guestRoutes = [
     icon: MagnifyingGlassIcon,
     label: 'Browse',
     href: '/search',
+  },
+  {
+    icon: GearIcon,
+    label: 'Settings',
+    href: '/settings',
   },
 ];
 

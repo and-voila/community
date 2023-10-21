@@ -5,6 +5,7 @@ import localFont from 'next/font/local';
 import { ClerkProvider } from '@clerk/nextjs';
 import { ThemeProvider } from '@ui/index';
 
+import { ModalProvider } from '@/components/modal-provider';
 import { ConfettiProvider } from '@/components/providers/confetti-provider';
 import { ToastProvider } from '@/components/providers/toaster-provider';
 
@@ -40,6 +41,7 @@ export default function RootLayout({
       >
         <body className="bg-background dark:bg-[#242629]">
           <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>
+            <ModalProvider />
             <ConfettiProvider />
             <ToastProvider />
             {children}

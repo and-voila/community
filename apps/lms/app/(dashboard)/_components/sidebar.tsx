@@ -1,5 +1,6 @@
 import { Logo } from '@ui/index';
 
+import { FreeCounter } from '@/components/free-counter';
 import SidebarQuickLinks from '@/components/sidebar-quick-links';
 
 import { SidebarRoutes } from './sidebar-routes';
@@ -12,6 +13,7 @@ export const Sidebar = () => {
       </div>
       <div className="flex w-full flex-col">
         <SidebarRoutes />
+        <FreeCounter apiLimitCount={0} isPro={false} />
         <SidebarQuickLinks />
       </div>
     </div>
