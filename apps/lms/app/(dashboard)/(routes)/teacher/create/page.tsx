@@ -53,7 +53,7 @@ const CreatePage = () => {
         <H4 as="h1" className="mb-4">
           Name the course
         </H4>
-        <p className="text-base text-muted-foreground">
+        <p className="text-sm lg:text-base text-muted-foreground">
           Choose a short and SEO friendly title for your course.
         </p>
         <Form {...form}>
