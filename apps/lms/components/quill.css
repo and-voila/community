@@ -21,6 +21,11 @@
   color: #4b5563;
 }
 
+.ql-snow.ql-container ul,
+.ql-snow.ql-container ol {
+  color: #4b5563;
+}
+
 .ql-snow.ql-container a {
   color: #6847c2;
 }

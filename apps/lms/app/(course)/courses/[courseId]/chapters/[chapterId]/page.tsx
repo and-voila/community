@@ -4,6 +4,7 @@ import { auth } from '@clerk/nextjs';
 import { Separator } from '@ui/components/ui/separator';
 import { FileIcon } from '@ui/index';
 
+import { checkSubscription } from '@/lib/subscription';
 import { Banner } from '@/components/banner';
 import { Container } from '@/components/container';
 import { Preview } from '@/components/preview';
@@ -23,26 +24,21 @@ const ChapterIdPage = async ({
     return redirect('/');
   }
 
-  const {
-    chapter,
-    course,
-    muxData,
-    attachments,
-    nextChapter,
-    userProgress,
-    purchase,
-  } = await getChapter({
-    userId,
-    chapterId: params.chapterId,
-    courseId: params.courseId,
-  });
+  const { chapter, course, muxData, attachments, nextChapter, userProgress } =
+    await getChapter({
+      userId,
+      chapterId: params.chapterId,
+      courseId: params.courseId,
+    });
+
+  const hasSubscription = await checkSubscription();
 
   if (!chapter || !course) {
     return redirect('/');
   }
 
-  const isLocked = !chapter.isFree && !course.isFree && !purchase;
-  const completeOnEnd = !!purchase && !userProgress?.isCompleted;
+  const isLocked = !chapter.isFree && !course.isFree && !hasSubscription;
+  const completeOnEnd = !!hasSubscription && !userProgress?.isCompleted;
 
   return (
     <div>
@@ -57,7 +53,7 @@ const ChapterIdPage = async ({
           {isLocked && (
             <Banner
               variant="warning"
-              label="You need to purchase this course to watch this chapter."
+              label="This program is only available with a premium membership."
             />
           )}
           <div className="p-4">
@@ -77,7 +73,7 @@ const ChapterIdPage = async ({
               <h2 className="mb-2 flex-grow font-display text-lg">
                 {chapter.title}
               </h2>
-              {purchase ? (
+              {hasSubscription ? (
                 <CourseProgressButton
                   chapterId={params.chapterId}
                   courseId={params.courseId}
@@ -88,7 +84,7 @@ const ChapterIdPage = async ({
                 !course.isFree && (
                   <CourseEnrollButton
                     courseId={params.courseId}
-                    price={course.price!}
+                    isFree={course.isFree}
                   />
                 )
               )}

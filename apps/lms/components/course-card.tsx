@@ -2,7 +2,6 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { ListBulletIcon } from '@ui/index';
 
-import { formatPrice } from '@/lib/format';
 import { CourseProgress } from '@/components/course-progress';
 import { IconBadge } from '@/components/icon-badge';
 
@@ -13,7 +12,7 @@ interface CourseCardProps {
   imageUrl: string;
   displayImage?: boolean;
   chaptersLength: number;
-  price: number;
+  isFree: boolean;
   progress: number | null;
   category: string;
 }
@@ -25,7 +24,7 @@ export const CourseCard = ({
   imageUrl,
   displayImage = true,
   chaptersLength,
-  price,
+  isFree,
   progress,
   category,
 }: CourseCardProps) => {
@@ -61,7 +60,7 @@ export const CourseCard = ({
             />
           ) : (
             <p className="mt-2 text-lg font-semibold text-brand">
-              {formatPrice(price) === '$0' ? 'Free' : formatPrice(price)}
+              {isFree ? 'Free' : 'For Members'}
             </p>
           )}
         </div>

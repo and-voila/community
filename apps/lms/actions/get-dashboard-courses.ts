@@ -18,27 +18,16 @@ export const getDashboardCourses = async (
   userId: string,
 ): Promise<DashboardCourses> => {
   try {
-    const purchasedCourses = await db.purchase.findMany({
-      where: {
-        userId: userId,
-      },
-      select: {
-        course: {
-          include: {
-            category: true,
-            chapters: {
-              where: {
-                isPublished: true,
-              },
-            },
+    const courses = (await db.course.findMany({
+      include: {
+        category: true,
+        chapters: {
+          where: {
+            isPublished: true,
           },
         },
       },
-    });
-
-    const courses = purchasedCourses.map(
-      (purchase) => purchase.course,
-    ) as CourseWithProgressWithCategory[];
+    })) as CourseWithProgressWithCategory[];
 
     for (const course of courses) {
       const progress = await getProgress(userId, course.id);
