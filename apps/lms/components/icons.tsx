@@ -6,6 +6,7 @@ import {
   GearIcon,
   GitHubLogoIcon,
   HomeIcon,
+  ImageIcon,
   LinkedInLogoIcon,
   ListBulletIcon,
   LockClosedIcon,
@@ -74,4 +75,5 @@ export const Icons = {
   activity: ActivityLogIcon,
   pencil: Pencil1Icon,
   plusCircled: PlusCircledIcon,
+  image: ImageIcon,
 };

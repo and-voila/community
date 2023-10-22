@@ -5,12 +5,12 @@ import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import { Course } from '@prisma/client';
 import { Button } from '@ui/components/ui/button';
-import { ImageIcon, Pencil1Icon, PlusCircledIcon } from '@ui/index';
 import axios from 'axios';
 import toast from 'react-hot-toast';
 import * as z from 'zod';
 
 import { FileUpload } from '@/components/file-upload';
+import { Icons } from '@/components/icons';
 
 interface ImageFormProps {
   initialData: Course;
@@ -42,20 +42,20 @@ export const ImageForm = ({ initialData, courseId }: ImageFormProps) => {
   };
 
   return (
-    <div className="mt-6 rounded-md border bg-white p-4 dark:bg-background">
-      <div className="flex items-center justify-between font-display">
+    <div className="mt-6 rounded-md border bg-white px-4 py-6 dark:bg-background">
+      <div className="flex items-center justify-between font-semibold mb-4">
         Course image
         <Button onClick={toggleEdit} variant="ghost">
           {isEditing && <>Cancel</>}
           {!isEditing && !initialData.imageUrl && (
             <>
-              <PlusCircledIcon className="mr-2 h-4 w-4" />
+              <Icons.plusCircled className="mr-2 h-4 w-4 text-brand" />
               Add an image
             </>
           )}
           {!isEditing && initialData.imageUrl && (
             <>
-              <Pencil1Icon className="mr-2 h-4 w-4" />
+              <Icons.pencil className="mr-2 h-4 w-4 text-brand" />
               Edit image
             </>
           )}
@@ -64,7 +64,7 @@ export const ImageForm = ({ initialData, courseId }: ImageFormProps) => {
       {!isEditing &&
         (!initialData.imageUrl ? (
           <div className="flex h-60 items-center justify-center rounded-md bg-muted">
-            <ImageIcon className="h-10 w-10 text-brand" />
+            <Icons.image className="h-10 w-10 text-brand" />
           </div>
         ) : (
           <div className="relative mt-2 aspect-video">
@@ -87,7 +87,7 @@ export const ImageForm = ({ initialData, courseId }: ImageFormProps) => {
             }}
           />
           <div className="mt-4 text-sm text-muted-foreground">
-            16:9 aspect ratio recommended
+            Upload a 2400px x 1260px image.
           </div>
         </div>
       )}
