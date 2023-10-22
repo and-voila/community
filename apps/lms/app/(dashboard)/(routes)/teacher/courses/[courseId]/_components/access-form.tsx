@@ -63,7 +63,7 @@ export const AccessForm = ({ initialData, courseId }: AccessFormProps) => {
   };
 
   return (
-    <div className="mt-6 rounded-md border bg-white p-4 dark:bg-background">
+    <div className="mt-6 rounded-md border bg-white px-4 py-6 dark:bg-background">
       <div className="flex items-center justify-between font-semibold mb-4">
         Available to
         <Button onClick={toggleEdit} variant="ghost">

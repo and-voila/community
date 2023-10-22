@@ -45,7 +45,7 @@ export const Combobox = ({ options, value, onChange }: ComboboxProps) => {
         <Command>
           <CommandInput
             placeholder="Search categories..."
-            className="my-2 h-9 pl-1"
+            className="my-2 h-8 pl-1"
           />
           <CommandEmpty>No category found.</CommandEmpty>
           <CommandGroup>

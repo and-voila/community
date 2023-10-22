@@ -14,7 +14,7 @@ import {
   FormMessage,
 } from '@ui/components/ui/form';
 import { Input } from '@ui/components/ui/input';
-import { H3 } from '@ui/index';
+import { H4 } from '@ui/index';
 import axios from 'axios';
 import { useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
@@ -50,8 +50,10 @@ const CreatePage = () => {
   return (
     <div className="mx-auto mt-24 flex rounded-xl border bg-white p-6 shadow-md dark:bg-background md:mt-32 md:max-w-3xl md:justify-center md:p-12">
       <div>
-        <H3 as="h1">Course title</H3>
-        <p className="text-base text-muted-foreground">
+        <H4 as="h1" className="mb-4">
+          Name the course
+        </H4>
+        <p className="text-sm lg:text-base text-muted-foreground">
           Choose a short and SEO friendly title for your course.
         </p>
         <Form {...form}>
@@ -81,11 +83,15 @@ const CreatePage = () => {
             />
             <div className="flex items-center gap-x-2">
               <Link href="/">
-                <Button type="button" variant="ghost">
+                <Button type="button" variant="ghost" size="sm">
                   Cancel
                 </Button>
               </Link>
-              <Button type="submit" disabled={!isValid || isSubmitting}>
+              <Button
+                type="submit"
+                size="sm"
+                disabled={!isValid || isSubmitting}
+              >
                 Continue
               </Button>
             </div>
