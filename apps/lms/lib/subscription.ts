@@ -1,11 +1,16 @@
 import { auth } from '@clerk/nextjs';
 
 import { db } from './db';
+import { isTeacher } from './teacher';
 
 const DAY_IN_MS = 86_400_000;
 
 export const checkSubscription = async () => {
   const { userId } = auth();
+
+  if (isTeacher(userId)) {
+    return true;
+  }
 
   if (!userId) {
     return false;

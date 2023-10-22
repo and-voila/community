@@ -2,7 +2,6 @@ import { getProgress } from '@/actions/get-progress';
 import { Category, Chapter, Course } from '@prisma/client';
 
 import { db } from '@/lib/db';
-import { checkSubscription } from '@/lib/subscription';
 
 type CourseWithProgressWithCategory = Course & {
   category: Category;
@@ -19,12 +18,7 @@ export const getDashboardCourses = async (
   userId: string,
 ): Promise<DashboardCourses> => {
   try {
-    const hasSubscription = await checkSubscription();
-
     const courses = (await db.course.findMany({
-      where: {
-        isFree: !hasSubscription,
-      },
       include: {
         category: true,
         chapters: {

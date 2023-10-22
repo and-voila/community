@@ -29,13 +29,14 @@ model User {
   discordMod           Boolean? @default(false)
 
   // Relations
-  accounts         Account[] // Common
-  sessions         Session[] // Common
-  sites            Site[] // From LMS
-  Post             Post[]            @relation(name: "PostAuthor") // From Labs
-  posts            Post[]            @relation(name: "PostUser") // From LMS
-  teacher          Teacher?
-  UserApiLimit     UserApiLimit?
+  accounts     Account[] // Common
+  sessions     Session[] // Common
+  sites        Site[] // From LMS
+  Post         Post[]        @relation(name: "PostAuthor") // From Labs
+  posts        Post[]        @relation(name: "PostUser") // From LMS
+  teacher      Teacher?
+  UserApiLimit UserApiLimit?
+  courses      UserCourse[]
 
   @@map(name: "users")
 }
@@ -167,6 +168,7 @@ model Course {
 
   chapters    Chapter[]
   attachments Attachment[]
+  users       UserCourse[]
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -271,4 +273,16 @@ model UserSubscription {
   stripeCurrentPeriodEnd DateTime? @map(name: "stripe_current_period_end")
 
   @@map(name: "user_subscriptions")
+}
+
+model UserCourse {
+  id         String  @id @default(cuid())
+  userId     String
+  courseId   String
+  isEnrolled Boolean @default(false)
+
+  user   User?   @relation(fields: [userId], references: [id])
+  course Course? @relation(fields: [courseId], references: [id])
+
+  @@unique([userId, courseId])
 }
