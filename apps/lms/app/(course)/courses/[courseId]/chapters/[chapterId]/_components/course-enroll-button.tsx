@@ -10,10 +10,7 @@ interface CourseEnrollButtonProps {
   courseId: string;
 }
 
-export const CourseEnrollButton = ({
-  isFree,
-  courseId,
-}: CourseEnrollButtonProps) => {
+export const CourseEnrollButton = ({ isFree }: CourseEnrollButtonProps) => {
   const [isLoading, setLoading] = useState(false);
 
   const onClick = async () => {
