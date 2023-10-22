@@ -13,6 +13,7 @@ import {
   MagnifyingGlassIcon,
   NotionLogoIcon,
   Pencil1Icon,
+  PlusCircledIcon,
   QuestionMarkCircledIcon,
   ReaderIcon,
   TwitterLogoIcon,
@@ -72,4 +73,5 @@ export const Icons = {
   locked: LockClosedIcon,
   activity: ActivityLogIcon,
   pencil: Pencil1Icon,
+  plusCircled: PlusCircledIcon,
 };

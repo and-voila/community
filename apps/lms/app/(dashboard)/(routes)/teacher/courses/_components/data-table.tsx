@@ -23,7 +23,8 @@ import {
   TableHeader,
   TableRow,
 } from '@ui/components/ui/table';
-import { PlusCircledIcon } from '@ui/index';
+
+import { Icons } from '@/components/icons';
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
@@ -67,7 +68,7 @@ export function DataTable<TData, TValue>({
         />
         <Link href="/teacher/create">
           <Button variant="custom">
-            <PlusCircledIcon className="mr-2 h-4 w-4" />
+            <Icons.plusCircled className="mr-2 h-4 w-4" />
             New course
           </Button>
         </Link>
