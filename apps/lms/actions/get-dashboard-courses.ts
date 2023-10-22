@@ -2,6 +2,7 @@ import { getProgress } from '@/actions/get-progress';
 import { Category, Chapter, Course } from '@prisma/client';
 
 import { db } from '@/lib/db';
+import { checkSubscription } from '@/lib/subscription';
 
 type CourseWithProgressWithCategory = Course & {
   category: Category;
@@ -18,27 +19,21 @@ export const getDashboardCourses = async (
   userId: string,
 ): Promise<DashboardCourses> => {
   try {
-    const purchasedCourses = await db.purchase.findMany({
+    const hasSubscription = await checkSubscription();
+
+    const courses = (await db.course.findMany({
       where: {
-        userId: userId,
+        isFree: !hasSubscription,
       },
-      select: {
-        course: {
-          include: {
-            category: true,
-            chapters: {
-              where: {
-                isPublished: true,
-              },
-            },
+      include: {
+        category: true,
+        chapters: {
+          where: {
+            isPublished: true,
           },
         },
       },
-    });
-
-    const courses = purchasedCourses.map(
-      (purchase) => purchase.course,
-    ) as CourseWithProgressWithCategory[];
+    })) as CourseWithProgressWithCategory[];
 
     for (const course of courses) {
       const progress = await getProgress(userId, course.id);

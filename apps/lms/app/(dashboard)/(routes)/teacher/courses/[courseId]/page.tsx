@@ -1,23 +1,18 @@
 import { redirect } from 'next/navigation';
 import { auth } from '@clerk/nextjs';
-import {
-  ActivityLogIcon,
-  FileTextIcon,
-  MagicWandIcon,
-  RocketIcon,
-} from '@ui/index';
 
 import { db } from '@/lib/db';
 import { Banner } from '@/components/banner';
 import { IconBadge } from '@/components/icon-badge';
+import { Icons } from '@/components/icons';
 
+import { AccessForm } from './_components/access-form';
 import { Actions } from './_components/actions';
 import { AttachmentForm } from './_components/attachment-form';
 import { CategoryForm } from './_components/category-form';
 import { ChaptersForm } from './_components/chapters-form';
 import { DescriptionForm } from './_components/description-form';
 import { ImageForm } from './_components/image-form';
-import { PriceForm } from './_components/price-form';
 import { TitleForm } from './_components/title-form';
 
 const CourseIdPage = async ({ params }: { params: { courseId: string } }) => {
@@ -74,7 +69,7 @@ const CourseIdPage = async ({ params }: { params: { courseId: string } }) => {
   return (
     <div className="mx-auto max-w-3xl bg-background pb-24 dark:bg-[#242629] lg:pb-32">
       {!course.isPublished && (
-        <Banner label="This course is unpublished. It will not be visible to the students." />
+        <Banner label="This course is not published yet." />
       )}
       <div className="p-6">
         <div className="flex items-center justify-between">
@@ -93,7 +88,7 @@ const CourseIdPage = async ({ params }: { params: { courseId: string } }) => {
         <div className="mt-16">
           <div>
             <div className="flex items-center gap-x-2">
-              <IconBadge icon={MagicWandIcon} />
+              <IconBadge icon={Icons.magic} />
               <h2 className="font-display text-lg">Customize your course</h2>
             </div>
             <TitleForm initialData={course} courseId={course.id} />
@@ -111,21 +106,21 @@ const CourseIdPage = async ({ params }: { params: { courseId: string } }) => {
           <div className="mt-16 space-y-6">
             <div>
               <div className="flex items-center gap-x-2">
-                <IconBadge icon={ActivityLogIcon} />
+                <IconBadge icon={Icons.activity} />
                 <h2 className="font-display text-lg">Course chapters</h2>
               </div>
               <ChaptersForm initialData={course} courseId={course.id} />
             </div>
             <div>
               <div className="mt-16 flex items-center gap-x-2">
-                <IconBadge icon={RocketIcon} />
-                <h2 className="font-display text-lg">Course pricing</h2>
+                <IconBadge icon={Icons.locked} />
+                <h2 className="font-display text-lg">Course access</h2>
               </div>
-              <PriceForm initialData={course} courseId={course.id} />
+              <AccessForm initialData={course} courseId={course.id} />
             </div>
             <div>
               <div className="mt-16 flex items-center gap-x-2">
-                <IconBadge icon={FileTextIcon} />
+                <IconBadge icon={Icons.file} />
                 <h2 className="font-display text-lg">
                   Resources & Attachments
                 </h2>

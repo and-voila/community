@@ -3,6 +3,7 @@ import { auth, currentUser } from '@clerk/nextjs';
 import { stripe } from 'lib/stripe';
 import { absoluteUrl } from 'lib/utils';
 
+import { bestPlan } from '@/config/subscriptions';
 import { db } from '@/lib/db';
 
 const settingsUrl = absoluteUrl('/settings');
@@ -42,17 +43,7 @@ export async function GET() {
       customer_email: user.emailAddresses[0].emailAddress,
       line_items: [
         {
-          price_data: {
-            currency: 'USD',
-            product_data: {
-              name: 'And Voila Pro',
-              description: 'And Voila Pro Subscription',
-            },
-            unit_amount: 4900,
-            recurring: {
-              interval: 'month',
-            },
-          },
+          price: bestPlan.stripePriceId,
           quantity: 1,
         },
       ],
@@ -60,6 +51,9 @@ export async function GET() {
         userId,
       },
     });
+
+    // eslint-disable-next-line no-console
+    console.log(stripeSession);
 
     return new NextResponse(JSON.stringify({ url: stripeSession.url }));
   } catch (error) {

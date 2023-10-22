@@ -31,7 +31,7 @@ export const CourseEnrollButton = ({ isFree }: CourseEnrollButtonProps) => {
     <Button
       onClick={onClick}
       disabled={isLoading}
-      size="sm"
+      size="lg"
       variant="custom"
       className="w-full flex-shrink-0 md:w-auto"
     >

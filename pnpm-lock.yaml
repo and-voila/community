@@ -322,7 +322,7 @@ importers:
   apps/lms:
     dependencies:
       '@clerk/nextjs':
-        specifier: ^4.25.3
+        specifier: ^4.25.6
         version: 4.25.6(next@13.5.4)(react-dom@18.2.0)(react@18.2.0)
       '@hello-pangea/dnd':
         specifier: ^16.3.0

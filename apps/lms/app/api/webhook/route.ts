@@ -29,13 +29,19 @@ export async function POST(req: Request) {
       session.subscription as string,
     );
 
-    if (!session?.metadata?.userId) {
+    const userId = session?.metadata?.userId;
+    if (!userId) {
       return new NextResponse('User id is required', { status: 400 });
+    }
+
+    const user = await db.user.findUnique({ where: { id: userId } });
+    if (!user) {
+      return new NextResponse('User not found', { status: 400 });
     }
 
     await db.userSubscription.create({
       data: {
-        userId: session?.metadata?.userId,
+        userId: userId,
         stripeSubscriptionId: subscription.id,
         stripeCustomerId: subscription.customer as string,
         stripePriceId: subscription.items.data[0].price.id,
@@ -51,17 +57,33 @@ export async function POST(req: Request) {
       session.subscription as string,
     );
 
-    await db.userSubscription.update({
-      where: {
-        stripeSubscriptionId: subscription.id,
-      },
-      data: {
-        stripePriceId: subscription.items.data[0].price.id,
-        stripeCurrentPeriodEnd: new Date(
-          subscription.current_period_end * 1000,
-        ),
-      },
+    const userSubscription = await db.userSubscription.findUnique({
+      where: { stripeSubscriptionId: subscription.id },
     });
+
+    if (!userSubscription) {
+      await db.userSubscription.create({
+        data: {
+          userId: session?.metadata?.userId,
+          stripeSubscriptionId: subscription.id,
+          stripeCustomerId: subscription.customer as string,
+          stripePriceId: subscription.items.data[0].price.id,
+          stripeCurrentPeriodEnd: new Date(
+            subscription.current_period_end * 1000,
+          ),
+        },
+      });
+    } else {
+      await db.userSubscription.update({
+        where: { stripeSubscriptionId: subscription.id },
+        data: {
+          stripePriceId: subscription.items.data[0].price.id,
+          stripeCurrentPeriodEnd: new Date(
+            subscription.current_period_end * 1000,
+          ),
+        },
+      });
+    }
   }
 
   return new NextResponse(null, { status: 200 });

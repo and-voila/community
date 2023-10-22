@@ -1,14 +1,15 @@
 import { SubscriptionPlan } from 'types';
 
-export const freePlan: SubscriptionPlan = {
-  name: 'Free',
+export const goodPlan: SubscriptionPlan = {
+  name: 'Good',
   description:
-    'The free plan is limited to 3 posts. Upgrade to the PRO plan for unlimited posts.',
+    'The Good plan is free for everyone. It includes limited access to our premium Discord community, a curated list of free clasess, and 30 AI-assist tokens.',
   stripePriceId: '',
 };
 
-export const proPlan: SubscriptionPlan = {
-  name: 'PRO',
-  description: 'The PRO plan has unlimited posts.',
-  stripePriceId: process.env.STRIPE_PRO_MONTHLY_PRICE_ID || '',
+export const bestPlan: SubscriptionPlan = {
+  name: 'Best',
+  description:
+    'The Best plan includes full-acess to our premium Discord community, priority support from the mods, all of our classes, and 7,500 AI-assist tokens.',
+  stripePriceId: process.env.STRIPE_BEST_MONTHLY_PRICE_ID || '',
 };

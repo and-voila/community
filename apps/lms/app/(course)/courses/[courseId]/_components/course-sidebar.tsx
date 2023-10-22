@@ -3,7 +3,7 @@ import { auth } from '@clerk/nextjs';
 import { Chapter, Course, UserProgress } from '@prisma/client';
 import { Logo } from '@ui/index';
 
-import { db } from '@/lib/db';
+import { checkSubscription } from '@/lib/subscription';
 import { CourseProgress } from '@/components/course-progress';
 import SidebarQuickLinks from '@/components/sidebar-quick-links';
 
@@ -28,14 +28,7 @@ export const CourseSidebar = async ({
     return redirect('/');
   }
 
-  const purchase = await db.purchase.findUnique({
-    where: {
-      userId_courseId: {
-        userId,
-        courseId: course.id,
-      },
-    },
-  });
+  const hasSubscription = await checkSubscription();
 
   return (
     <div className="flex h-full flex-col overflow-y-auto bg-[#d0d5dd] shadow-sm dark:bg-[#010101]">
@@ -44,7 +37,7 @@ export const CourseSidebar = async ({
       </div>
       <div className="flex flex-col border-y p-8">
         <h1 className="font-display text-lg">{course.title}</h1>
-        {purchase && (
+        {hasSubscription && (
           <div className="mt-10">
             <CourseProgress variant="success" value={progressCount} />
           </div>
@@ -58,7 +51,7 @@ export const CourseSidebar = async ({
             label={chapter.title}
             isCompleted={!!chapter.userProgress?.[0]?.isCompleted}
             courseId={course.id}
-            isLocked={!chapter.isFree && !purchase}
+            isLocked={!chapter.isFree && !hasSubscription}
           />
         ))}
         <SidebarQuickLinks />

@@ -10,7 +10,7 @@
     "type-check": "next lint --no-cache"
   },
   "dependencies": {
-    "@clerk/nextjs": "^4.25.3",
+    "@clerk/nextjs": "^4.25.6",
     "@hello-pangea/dnd": "^16.3.0",
     "@hookform/resolvers": "^3.3.1",
     "@mux/mux-node": "^7.3.2",

@@ -12,15 +12,17 @@ import {
   FormField,
   FormItem,
 } from '@ui/components/ui/form';
-import { Checkbox, cn, Pencil1Icon } from '@ui/index';
+import { cn, Switch } from '@ui/index';
 import axios from 'axios';
 import { useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
 import * as z from 'zod';
 
+import { Icons } from '@/components/icons';
+
 type CourseData = Pick<Course, 'isFree'>;
 
-interface PriceFormProps {
+interface AccessFormProps {
   initialData: CourseData;
   courseId: string;
 }
@@ -29,7 +31,7 @@ const formSchema = z.object({
   isFree: z.boolean().default(false),
 });
 
-export const PriceForm = ({ initialData, courseId }: PriceFormProps) => {
+export const AccessForm = ({ initialData, courseId }: AccessFormProps) => {
   const [isEditing, setIsEditing] = useState(false);
 
   const toggleEdit = () => setIsEditing((current) => !current);
@@ -39,7 +41,7 @@ export const PriceForm = ({ initialData, courseId }: PriceFormProps) => {
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      isFree: initialData?.isFree || false,
+      isFree: !!initialData.isFree,
     },
   });
 
@@ -62,22 +64,22 @@ export const PriceForm = ({ initialData, courseId }: PriceFormProps) => {
 
   return (
     <div className="mt-6 rounded-md border bg-white p-4 dark:bg-background">
-      <div className="flex items-center justify-between font-display">
-        Course price
+      <div className="flex items-center justify-between font-semibold mb-4">
+        Available to
         <Button onClick={toggleEdit} variant="ghost">
           {isEditing ? (
             <>Cancel</>
           ) : (
             <>
-              <Pencil1Icon className="mr-2 h-4 w-4" />
-              Edit price
+              <Icons.pencil className="mr-2 h-4 w-4 text-brand" />
+              Edit access
             </>
           )}
         </Button>
       </div>
       {!isEditing && (
         <p className={cn('mt-2 text-sm')}>
-          {initialData.isFree ? 'Free' : 'For Members'}
+          {initialData.isFree ? 'Everyone' : 'Members only'}
         </p>
       )}
       {isEditing && (
@@ -90,23 +92,28 @@ export const PriceForm = ({ initialData, courseId }: PriceFormProps) => {
               control={form.control}
               name="isFree"
               render={({ field }) => (
-                <FormItem className="flex flex-row items-start space-x-3 space-y-0 rounded-md border p-4">
+                <FormItem className="flex flex-row items-center space-x-3 space-y-0 rounded-md border p-4">
                   <FormControl>
-                    <Checkbox
+                    <Switch
                       checked={field.value}
                       onCheckedChange={field.onChange}
                     />
                   </FormControl>
                   <div className="space-y-1 leading-none">
                     <FormDescription>
-                      Check this box if you want to make this course free
+                      {field.value ? 'Everyone for free' : 'Members only'}
                     </FormDescription>
                   </div>
                 </FormItem>
               )}
             />
             <div className="flex items-center gap-x-2">
-              <Button variant="custom" disabled={isSubmitting} type="submit">
+              <Button
+                size="sm"
+                variant="custom"
+                disabled={isSubmitting}
+                type="submit"
+              >
                 Save
               </Button>
             </div>
