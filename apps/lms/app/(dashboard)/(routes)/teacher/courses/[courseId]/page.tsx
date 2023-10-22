@@ -74,7 +74,7 @@ const CourseIdPage = async ({ params }: { params: { courseId: string } }) => {
       <div className="p-6">
         <div className="flex items-center justify-between">
           <div className="flex flex-col gap-y-2">
-            <h1 className="font-display text-2xl">Course setup</h1>
+            <h1 className="font-display text-3xl">Course setup</h1>
             <span className="text-base text-muted-foreground">
               Complete all fields {completionText}
             </span>
