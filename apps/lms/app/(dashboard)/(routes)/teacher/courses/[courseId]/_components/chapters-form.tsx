@@ -13,11 +13,13 @@ import {
   FormMessage,
 } from '@ui/components/ui/form';
 import { Input } from '@ui/components/ui/input';
-import { cn, PlusCircledIcon, ReloadIcon } from '@ui/index';
+import { cn } from '@ui/index';
 import axios from 'axios';
 import { useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
 import * as z from 'zod';
+
+import { Icons } from '@/components/icons';
 
 import { ChaptersList } from './chapters-list';
 
@@ -81,20 +83,20 @@ export const ChaptersForm = ({ initialData, courseId }: ChaptersFormProps) => {
   };
 
   return (
-    <div className="relative mt-6 rounded-md border bg-white p-4 dark:bg-background">
+    <div className="relative mt-6 rounded-md border bg-white px-4 py-6 dark:bg-background">
       {isUpdating && (
         <div className="rounded-m absolute right-0 top-0 flex h-full w-full items-center justify-center bg-slate-500/20">
-          <ReloadIcon className="h-6 w-6 animate-spin text-sky-700" />
+          <Icons.spinner className="h-4 w-4 animate-spin text-muted-foreground" />
         </div>
       )}
-      <div className="flex items-center justify-between font-display">
+      <div className="flex items-center justify-between font-semibold mb-4">
         Chapter list
         <Button onClick={toggleCreating} variant="ghost">
           {isCreating ? (
             <>Cancel</>
           ) : (
             <>
-              <PlusCircledIcon className="mr-2 h-4 w-4" />
+              <Icons.pencil className="mr-2 h-4 w-4 text-brand" />
               Add a chapter
             </>
           )}
@@ -123,6 +125,7 @@ export const ChaptersForm = ({ initialData, courseId }: ChaptersFormProps) => {
               )}
             />
             <Button
+              size="sm"
               variant="custom"
               disabled={!isValid || isSubmitting}
               type="submit"

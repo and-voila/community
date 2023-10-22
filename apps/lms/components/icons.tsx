@@ -1,7 +1,9 @@
 import {
   ActivityLogIcon,
   BarChartIcon,
+  Cross1Icon,
   DiscordLogoIcon,
+  DragHandleDots2Icon,
   FileTextIcon,
   GearIcon,
   GitHubLogoIcon,
@@ -76,4 +78,6 @@ export const Icons = {
   pencil: Pencil1Icon,
   plusCircled: PlusCircledIcon,
   image: ImageIcon,
+  crossLarge: Cross1Icon,
+  drag: DragHandleDots2Icon,
 };
