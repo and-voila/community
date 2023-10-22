@@ -29,28 +29,32 @@ export const columns: ColumnDef<Course>[] = [
     },
   },
   {
-    accessorKey: 'price',
+    accessorKey: 'isFree',
     header: ({ column }) => {
       return (
         <Button
           variant="ghost"
           onClick={() => column.toggleSorting(column.getIsSorted() === 'asc')}
         >
-          Price
+          Access
           <CaretSortIcon className="ml-2 h-4 w-4" />
         </Button>
       );
     },
     cell: ({ row }) => {
-      const price = parseFloat(row.getValue('price') || '0');
-      const formatted = new Intl.NumberFormat('en-US', {
-        style: 'currency',
-        currency: 'USD',
-        minimumFractionDigits: 0,
-        maximumFractionDigits: 0,
-      }).format(price);
+      const isFree = row.getValue('isFree') || false;
 
-      return <div>{formatted}</div>;
+      return (
+        <Badge
+          className={cn(
+            'border bg-transparent text-muted-foreground',
+            isFree &&
+              'pointer-events-none border-alternate bg-transparent text-alternate',
+          )}
+        >
+          {isFree ? 'Free' : 'Paid'}
+        </Badge>
+      );
     },
   },
   {
