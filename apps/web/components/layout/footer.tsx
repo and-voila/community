@@ -109,6 +109,7 @@ const Footer: React.FC = async () => {
                 <Link
                   key={item.name}
                   href={item.href}
+                  aria-label={`Navigate to And Voila profile on ${item.name}`}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-muted-foreground transition duration-200 hover:text-foreground"
@@ -130,6 +131,7 @@ const Footer: React.FC = async () => {
                     <li key={item.name}>
                       <Link
                         href={item.href}
+                        aria-label={`Navigate to ${item.name} page`}
                         className="text-sm leading-6 text-muted-foreground hover:text-foreground hover:underline hover:underline-offset-4 lg:text-base"
                       >
                         {item.name}
@@ -147,6 +149,7 @@ const Footer: React.FC = async () => {
                     <li key={item.name}>
                       <Link
                         href={item.href}
+                        aria-label={`Navigate to ${item.name} page`}
                         className="text-sm leading-6 text-muted-foreground hover:text-foreground hover:underline hover:underline-offset-4 lg:text-base"
                       >
                         {item.name}
@@ -166,6 +169,7 @@ const Footer: React.FC = async () => {
                     <li key={item.name}>
                       <Link
                         href={item.href}
+                        aria-label={`Navigate to ${item.name} page`}
                         className="text-sm leading-6 text-muted-foreground hover:text-foreground hover:underline hover:underline-offset-4 lg:text-base"
                       >
                         {item.name}
@@ -183,6 +187,7 @@ const Footer: React.FC = async () => {
                     <li key={item.name}>
                       <Link
                         href={item.href}
+                        aria-label={`Navigate to ${item.name} page`}
                         className="text-sm leading-6 text-muted-foreground hover:text-foreground hover:underline hover:underline-offset-4 lg:text-base"
                       >
                         {item.name}
@@ -209,6 +214,7 @@ const Footer: React.FC = async () => {
             Designed in California by{' '}
             <Link
               href="https://bril.la"
+              aria-label="Navigate to BRIL.LA website"
               target="_blank"
               rel="noopener"
               className="font-medium text-brand hover:underline hover:underline-offset-4"
@@ -222,6 +228,7 @@ const Footer: React.FC = async () => {
             Powered by{' '}
             <Link
               href="https://vercel.com/brilla"
+              aria-label="Navigate to BRIL.LA profile on Vercel"
               target="_blank"
               rel="noopener noreferrer"
               className="font-medium hover:underline hover:underline-offset-4"
