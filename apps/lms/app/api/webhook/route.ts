@@ -23,36 +23,50 @@ export async function POST(req: Request) {
   }
 
   const session = event.data.object as Stripe.Checkout.Session;
+  const userId = session?.metadata?.userId;
+  const courseId = session?.metadata?.courseId;
 
   if (event.type === 'checkout.session.completed') {
-    const subscription = await stripe.subscriptions.retrieve(
-      session.subscription as string,
-    );
+    if (session.subscription) {
+      const subscription = await stripe.subscriptions.retrieve(
+        session.subscription as string,
+      );
 
-    const userId = session?.metadata?.userId;
-    if (!userId) {
-      return new NextResponse('User id is required', { status: 400 });
+      if (!userId) {
+        return new NextResponse('User id is required', { status: 400 });
+      }
+
+      const user = await db.user.findUnique({ where: { id: userId } });
+      if (!user) {
+        return new NextResponse('User not found', { status: 400 });
+      }
+
+      await db.userSubscription.create({
+        data: {
+          userId: userId,
+          stripeSubscriptionId: subscription.id,
+          stripeCustomerId: subscription.customer as string,
+          stripePriceId: subscription.items.data[0].price.id,
+          stripeCurrentPeriodEnd: new Date(
+            subscription.current_period_end * 1000,
+          ),
+        },
+      });
+    } else {
+      if (!userId || !courseId) {
+        return new NextResponse('Webhook Error: Missing metadata', {
+          status: 400,
+        });
+      }
+
+      await db.purchase.create({
+        data: {
+          courseId: courseId,
+          userId: userId,
+        },
+      });
     }
-
-    const user = await db.user.findUnique({ where: { id: userId } });
-    if (!user) {
-      return new NextResponse('User not found', { status: 400 });
-    }
-
-    await db.userSubscription.create({
-      data: {
-        userId: userId,
-        stripeSubscriptionId: subscription.id,
-        stripeCustomerId: subscription.customer as string,
-        stripePriceId: subscription.items.data[0].price.id,
-        stripeCurrentPeriodEnd: new Date(
-          subscription.current_period_end * 1000,
-        ),
-      },
-    });
-  }
-
-  if (event.type === 'invoice.payment_succeeded') {
+  } else if (event.type === 'invoice.payment_succeeded') {
     const subscription = await stripe.subscriptions.retrieve(
       session.subscription as string,
     );
@@ -84,6 +98,11 @@ export async function POST(req: Request) {
         },
       });
     }
+  } else {
+    return new NextResponse(
+      `Webhook Error: Unhandled event type ${event.type}`,
+      { status: 200 },
+    );
   }
 
   return new NextResponse(null, { status: 200 });

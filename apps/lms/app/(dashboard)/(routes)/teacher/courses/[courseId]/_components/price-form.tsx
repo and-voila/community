@@ -11,45 +11,53 @@ import {
   FormDescription,
   FormField,
   FormItem,
+  FormMessage,
 } from '@ui/components/ui/form';
-import { cn, Switch } from '@ui/index';
+import { Input } from '@ui/components/ui/input';
+import { Checkbox, cn, Pencil1Icon } from '@ui/index';
 import axios from 'axios';
 import { useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
 import * as z from 'zod';
 
-import { Icons } from '@/components/icons';
+import { formatPrice } from '@/lib/format';
 
-type CourseData = Pick<Course, 'isFree'>;
-
-interface AccessFormProps {
-  initialData: CourseData;
+interface PriceFormProps {
+  initialData: Course;
   courseId: string;
 }
 
-const formSchema = z.object({
-  isFree: z.boolean().default(false),
-});
+const formSchema = z
+  .object({
+    price: z.number().optional(),
+    isFree: z.boolean().default(false),
+  })
+  .refine((data) => data.isFree || data.price !== undefined, {
+    message: 'Price is required when the course is not free',
+    path: ['price'], // specify the field the error is attached to
+  });
 
-export const AccessForm = ({ initialData, courseId }: AccessFormProps) => {
+export const PriceForm = ({ initialData, courseId }: PriceFormProps) => {
   const [isEditing, setIsEditing] = useState(false);
 
   const toggleEdit = () => setIsEditing((current) => !current);
-
   const router = useRouter();
-
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      isFree: !!initialData.isFree,
+      price: initialData?.price || undefined,
+      isFree: initialData?.isFree || false,
     },
   });
 
-  const { isSubmitting } = form.formState;
+  const { isSubmitting, isValid } = form.formState;
 
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
     try {
-      form.clearErrors();
+      if (values.isFree) {
+        values.price = 0;
+      }
+      form.clearErrors('price');
       await form.trigger();
       if (form.formState.isValid) {
         await axios.patch(`/api/courses/${courseId}`, values);
@@ -63,23 +71,32 @@ export const AccessForm = ({ initialData, courseId }: AccessFormProps) => {
   };
 
   return (
-    <div className="mt-6 rounded-md border bg-white px-4 py-6 dark:bg-background">
-      <div className="flex items-center justify-between font-semibold mb-4">
-        Available to
+    <div className="mt-6 rounded-md border bg-white p-4 dark:bg-background">
+      <div className="flex items-center justify-between font-display">
+        Course price
         <Button onClick={toggleEdit} variant="ghost">
           {isEditing ? (
             <>Cancel</>
           ) : (
             <>
-              <Icons.pencil className="mr-2 h-4 w-4 text-brand" />
-              Edit access
+              <Pencil1Icon className="mr-2 h-4 w-4" />
+              Edit price
             </>
           )}
         </Button>
       </div>
       {!isEditing && (
-        <p className={cn('mt-2 text-sm')}>
-          {initialData.isFree ? 'Everyone' : 'Members only'}
+        <p
+          className={cn(
+            'mt-2 text-sm',
+            !initialData.price && 'italic text-muted-foreground',
+          )}
+        >
+          {initialData.isFree
+            ? 'Free'
+            : initialData.price
+            ? formatPrice(initialData.price)
+            : 'No price set'}
         </p>
       )}
       {isEditing && (
@@ -92,26 +109,45 @@ export const AccessForm = ({ initialData, courseId }: AccessFormProps) => {
               control={form.control}
               name="isFree"
               render={({ field }) => (
-                <FormItem className="flex flex-row items-center space-x-3 space-y-0 rounded-md border p-4">
+                <FormItem className="flex flex-row items-start space-x-3 space-y-0 rounded-md border p-4">
                   <FormControl>
-                    <Switch
+                    <Checkbox
                       checked={field.value}
                       onCheckedChange={field.onChange}
                     />
                   </FormControl>
                   <div className="space-y-1 leading-none">
                     <FormDescription>
-                      {field.value ? 'Everyone for free' : 'Members only'}
+                      Check this box if you want to make this course free
                     </FormDescription>
                   </div>
                 </FormItem>
               )}
             />
+            <FormField
+              control={form.control}
+              name="price"
+              render={({ field }) => (
+                <FormItem>
+                  <FormControl>
+                    <Input
+                      type="number"
+                      step="1"
+                      disabled={isSubmitting}
+                      placeholder="Set a price for the course."
+                      {...field}
+                    />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
             <div className="flex items-center gap-x-2">
               <Button
-                size="sm"
                 variant="custom"
-                disabled={isSubmitting}
+                disabled={
+                  isSubmitting || (!form.getValues().isFree && !isValid)
+                }
                 type="submit"
               >
                 Save

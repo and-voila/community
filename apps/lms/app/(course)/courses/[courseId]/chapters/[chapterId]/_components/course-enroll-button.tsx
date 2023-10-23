@@ -5,25 +5,30 @@ import { Button } from '@ui/components/ui/button';
 import axios from 'axios';
 import toast from 'react-hot-toast';
 
+import { formatPrice } from '@/lib/format';
+
 interface CourseEnrollButtonProps {
-  isFree: boolean;
+  price: number;
   courseId: string;
 }
 
-export const CourseEnrollButton = ({ isFree }: CourseEnrollButtonProps) => {
-  const [isLoading, setLoading] = useState(false);
+export const CourseEnrollButton = ({
+  price,
+  courseId,
+}: CourseEnrollButtonProps) => {
+  const [isLoading, setIsLoading] = useState(false);
 
   const onClick = async () => {
     try {
-      setLoading(true);
+      setIsLoading(true);
 
-      const response = await axios.get('/api/stripe');
+      const response = await axios.post(`/api/courses/${courseId}/checkout`);
 
-      window.location.href = response.data.url;
-    } catch (error) {
+      window.location.assign(response.data.url);
+    } catch {
       toast.error('Something went wrong');
     } finally {
-      setLoading(false);
+      setIsLoading(false);
     }
   };
 
@@ -31,11 +36,10 @@ export const CourseEnrollButton = ({ isFree }: CourseEnrollButtonProps) => {
     <Button
       onClick={onClick}
       disabled={isLoading}
-      size="lg"
-      variant="custom"
+      size="sm"
       className="w-full flex-shrink-0 md:w-auto"
     >
-      {isFree ? 'Enroll for Free' : 'Become a Member'}
+      Enroll for {formatPrice(price)}
     </Button>
   );
 };

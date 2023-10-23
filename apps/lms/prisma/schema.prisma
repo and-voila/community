@@ -169,6 +169,7 @@ model Course {
   chapters    Chapter[]
   attachments Attachment[]
   users       UserCourse[]
+  purchases   Purchase[]
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -285,4 +286,27 @@ model UserCourse {
   course Course? @relation(fields: [courseId], references: [id])
 
   @@unique([userId, courseId])
+}
+
+model Purchase {
+  id     String @id @default(cuid())
+  userId String
+
+  courseId String
+  course   Course @relation(fields: [courseId], references: [id], onDelete: Cascade)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt()
+
+  @@unique([userId, courseId])
+  @@index([courseId])
+}
+
+model StripeCustomer {
+  id               String @id @default(cuid())
+  userId           String @unique
+  stripeCustomerId String @unique
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }
