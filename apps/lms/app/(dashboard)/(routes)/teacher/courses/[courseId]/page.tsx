@@ -39,11 +39,19 @@ const CourseIdPage = async ({ params }: { params: { courseId: string } }) => {
         },
       },
     },
+    cacheStrategy: {
+      ttl: 604800,
+      swr: 60,
+    },
   });
 
   const categories = await db.category.findMany({
     orderBy: {
       name: 'asc',
+    },
+    cacheStrategy: {
+      ttl: 604800,
+      swr: 60,
     },
   });
 
