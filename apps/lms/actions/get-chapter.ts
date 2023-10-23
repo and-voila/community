@@ -35,12 +35,20 @@ export const getChapter = async ({
         isFree: true,
         price: true,
       },
+      cacheStrategy: {
+        ttl: 300,
+        swr: 60,
+      },
     });
 
     const chapter = await db.chapter.findUnique({
       where: {
         id: chapterId,
         isPublished: true,
+      },
+      cacheStrategy: {
+        ttl: 300,
+        swr: 60,
       },
     });
 
