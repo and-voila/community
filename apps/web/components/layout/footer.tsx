@@ -1,15 +1,8 @@
 import { JSX } from 'react';
 import Link from 'next/link';
-import {
-  DiscordLogoIcon,
-  GitHubLogoIcon,
-  LinkedInLogoIcon,
-  Logo,
-  Logomark,
-  ModeToggle,
-  NotionLogoIcon,
-  PlayIcon,
-} from 'ui';
+import { Logo, Logomark, ModeToggle } from 'ui';
+
+import { Icons } from '../icons';
 
 const { COMPANY_NAME, SITE_NAME } = process.env;
 
@@ -30,6 +23,7 @@ interface Navigation {
 const navigation: Navigation = {
   solutions: [
     { name: 'Community', href: '/' },
+    { name: 'Labs', href: 'https://labs.andvoila.gg' },
     { name: 'Roasts', href: '/roasts' },
     { name: 'Shop', href: '/shop' },
     { name: 'Unlimited', href: '/unlimited' },
@@ -60,36 +54,32 @@ const navigation: Navigation = {
     {
       name: 'Discord',
       href: 'https://discord.com/servers/and-voila-1151749282806910976',
-      icon: <DiscordLogoIcon className="h-5 w-5" aria-hidden="true" />,
+      icon: <Icons.discord className="h-5 w-5" aria-hidden="true" />,
     },
     {
       name: 'LinkedIn',
       href: 'https://www.linkedin.com/in/rebekahradice/',
-      icon: <LinkedInLogoIcon className="h-5 w-5" aria-hidden="true" />,
+      icon: <Icons.linkedin className="h-5 w-5" aria-hidden="true" />,
     },
     {
       name: 'Youtube',
       href: 'https://www.youtube.com/c/RebekahradiceLLC/videos',
-      icon: <PlayIcon className="h-5 w-5" aria-hidden="true" />,
+      icon: <Icons.video className="h-5 w-5" aria-hidden="true" />,
     },
     {
       name: 'Twitter',
       href: 'https://twitter.com/rebekahradice',
-      icon: (
-        <svg fill="currentColor" height="1em" viewBox="0 0 512 512">
-          <path d="M389.2 48h70.6L305.6 224.2 487 464H345L233.7 318.6 106.5 464H35.8L200.7 275.5 26.8 48H172.4L272.9 180.9 389.2 48zM364.4 421.8h39.1L151.1 88h-42L364.4 421.8z" />
-        </svg>
-      ),
+      icon: <Icons.twitter className="h-5 w-5" aria-hidden="true" />,
     },
     {
       name: 'GitHub',
       href: 'https://github.com/and-voila',
-      icon: <GitHubLogoIcon className="h-5 w-5" aria-hidden="true" />,
+      icon: <Icons.github className="h-5 w-5" aria-hidden="true" />,
     },
     {
       name: 'Notion',
       href: 'https://brilla.notion.site/Launchpad-5d74390176c843a589b04ffaa683ad43?pvs=4',
-      icon: <NotionLogoIcon className="h-5 w-5" aria-hidden="true" />,
+      icon: <Icons.notion className="h-5 w-5" aria-hidden="true" />,
     },
   ],
 };
@@ -114,7 +104,7 @@ const Footer: React.FC = async () => {
             <p className="text-base leading-6 text-muted-foreground">
               Helping marketers achieve magical performance.
             </p>
-            <div className="flex space-x-5">
+            <div className="flex space-x-5 items-center">
               {navigation.social.map((item) => (
                 <Link
                   key={item.name}

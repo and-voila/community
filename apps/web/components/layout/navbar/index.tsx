@@ -1,11 +1,12 @@
 import { Suspense } from 'react';
 import Link from 'next/link';
-import { DiscordLogoIcon, Logo, Logomark } from 'ui';
+import { Logo, Logomark } from 'ui';
 
 import { getMenu } from '@/lib/shopify';
 import { Menu } from '@/lib/shopify/types';
 import Cart from '@/components/cart';
 import OpenCart from '@/components/cart/open-cart';
+import { Icons } from '@/components/icons';
 import MobileMenu from '@/components/layout/navbar/mobile-menu';
 import Search from '@/components/layout/navbar/search';
 
@@ -29,14 +30,31 @@ export default async function Navbar() {
             />
           </Link>
         </div>
-        <div className="flex justify-end">
+        <div className="hidden md:flex md:justify-end md:gap-x-6 pr-6">
           <Link
             href="https://discord.com/servers/and-voila-1151749282806910976"
             target="_blank"
             rel="noopener noreferrer"
             aria-label="Navigate to And Voila Discord Community"
           >
-            <DiscordLogoIcon className="h-8 w-8 text-brand" />
+            <div className="flex items-center">
+              <Icons.discord className="h-6 w-6 text-brand" />
+              <span className="ml-2 text-sm text-muted-foreground hover:text-foreground hover:underline hover:underline-offset-4 lg:text-base">
+                Community
+              </span>
+            </div>
+          </Link>
+          <Link
+            href="https://labs.andvoila.gg"
+            target="_blank"
+            aria-label="Navigate to And Voila Labs platform"
+          >
+            <div className="flex items-center">
+              <Icons.magic className="h-6 w-6 text-brand" />
+              <span className="ml-2 text-sm leading-6 text-muted-foreground hover:text-foreground hover:underline hover:underline-offset-4 lg:text-base">
+                Labs
+              </span>
+            </div>
           </Link>
         </div>
       </div>

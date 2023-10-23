@@ -9,6 +9,7 @@ import {
   FileTextIcon,
   GearIcon,
   GitHubLogoIcon,
+  HamburgerMenuIcon,
   HeartIcon,
   HomeIcon,
   ImageIcon,
@@ -100,4 +101,6 @@ export const Icons = {
   heart: HeartIcon,
   plus: PlusIcon,
   check: CheckIcon,
+  hamburger: HamburgerMenuIcon,
+  video: VideoIcon,
 };
