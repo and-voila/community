@@ -2,7 +2,9 @@ import { FC } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { cn, FadeIn, GradientHeading } from '@ui/index';
-import { buttonVariants, MagicWandIcon } from 'ui';
+import { buttonVariants } from 'ui';
+
+import { Icons } from '../icons';
 
 const CommunityLargeCta: FC = () => {
   return (
@@ -11,17 +13,15 @@ const CommunityLargeCta: FC = () => {
         <div className="mx-auto grid max-w-2xl grid-cols-1 gap-x-12 gap-y-16 rounded-2xl bg-primary-foreground p-6 lg:mx-0 lg:min-w-full lg:max-w-none lg:flex-none lg:gap-y-8 lg:p-12">
           <FadeIn className="lg:col-end-1 lg:w-full lg:max-w-lg lg:pb-8">
             <GradientHeading level="h3" as="h2">
-              Act now, results forever
+              Unlock your marketing mojo
             </GradientHeading>
             <p className="mt-6 text-lg text-muted-foreground">
-              Ever felt like you&apos;re navigating a maze without a guide?
-              Tired of mediocre results when excellence is the expectation?
+              Mediocrity isn&apos;t your style. So why settle? Dive into an
+              ecosystem designed for marketers who aim higher.
             </p>
-            <p className="mt-6 text-base text-muted-foreground">
-              We&apos;ve got the insights and the community you&apos;ve been
-              missing. Get actionable advice that moves the needle. No more
-              chasing your tail. Click below and set yourself on the path to
-              marketing enlightenment.
+            <p className="mt-6 text-lg text-muted-foreground">
+              Community wisdom, Playbooks for quick wins, and AI Tools for the
+              edge.
             </p>
             <div className="mt-10 flex">
               <Link
@@ -31,16 +31,16 @@ const CommunityLargeCta: FC = () => {
                 className={cn(
                   buttonVariants({ variant: 'custom', size: 'lg' }),
                 )}
-                aria-label="Join the Sizzle Squad premium Discord server for digital marketing professionals"
+                aria-label="Join the And Voila premium Discord server for digital marketing professionals"
               >
-                Begin enlightenment{' '}
+                Aim higher{' '}
                 <div className="ml-2">
                   <span
                     role="img"
                     aria-label="Magic wand icon"
                     aria-hidden="true"
                   >
-                    <MagicWandIcon />
+                    <Icons.rocket />
                   </span>
                 </div>
               </Link>
