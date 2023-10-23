@@ -90,4 +90,5 @@ export const Icons = {
   rocket: RocketIcon,
   check: CheckIcon,
   briefcase: BackpackIcon,
+  barchart: BarChartIcon,
 };
