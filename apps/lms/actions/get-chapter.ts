@@ -17,6 +17,15 @@ export const getChapter = async ({
   try {
     const hasSubscription = await checkSubscription();
 
+    const purchase = await db.purchase.findUnique({
+      where: {
+        userId_courseId: {
+          userId,
+          courseId,
+        },
+      },
+    });
+
     const course = await db.course.findUnique({
       where: {
         isPublished: true,
@@ -24,10 +33,7 @@ export const getChapter = async ({
       },
       select: {
         isFree: true,
-      },
-      cacheStrategy: {
-        ttl: 300,
-        swr: 60,
+        price: true,
       },
     });
 
@@ -35,10 +41,6 @@ export const getChapter = async ({
       where: {
         id: chapterId,
         isPublished: true,
-      },
-      cacheStrategy: {
-        ttl: 300,
-        swr: 60,
       },
     });
 
@@ -50,26 +52,18 @@ export const getChapter = async ({
     let attachments: Attachment[] = [];
     let nextChapter: Chapter | null = null;
 
-    if (hasSubscription) {
+    if (hasSubscription || purchase) {
       attachments = await db.attachment.findMany({
         where: {
           courseId: courseId,
         },
-        cacheStrategy: {
-          ttl: 300,
-          swr: 60,
-        },
       });
     }
 
-    if (chapter.isFree || hasSubscription) {
+    if (chapter.isFree || hasSubscription || purchase) {
       muxData = await db.muxData.findUnique({
         where: {
           chapterId: chapterId,
-        },
-        cacheStrategy: {
-          ttl: 300,
-          swr: 60,
         },
       });
 
@@ -84,10 +78,6 @@ export const getChapter = async ({
         orderBy: {
           position: 'asc',
         },
-        cacheStrategy: {
-          ttl: 300,
-          swr: 60,
-        },
       });
     }
 
@@ -98,10 +88,6 @@ export const getChapter = async ({
           chapterId,
         },
       },
-      cacheStrategy: {
-        ttl: 60,
-        swr: 30,
-      },
     });
 
     return {
@@ -111,6 +97,7 @@ export const getChapter = async ({
       attachments,
       nextChapter,
       userProgress,
+      purchase,
     };
   } catch (error) {
     return {
@@ -120,6 +107,7 @@ export const getChapter = async ({
       attachments: [],
       nextChapter: null,
       userProgress: null,
+      purchase: null,
     };
   }
 };
