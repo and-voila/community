@@ -5,6 +5,7 @@ import { useRouter } from 'next/navigation';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Chapter } from '@prisma/client';
 import { Button } from '@ui/components/ui/button';
+import { Checkbox } from '@ui/components/ui/checkbox';
 import {
   Form,
   FormControl,
@@ -12,44 +13,35 @@ import {
   FormField,
   FormItem,
 } from '@ui/components/ui/form';
-import { cn, Switch } from '@ui/index';
+import { cn, Pencil1Icon } from '@ui/index';
 import axios from 'axios';
 import { useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
 import * as z from 'zod';
-
-import { Icons } from '@/components/icons';
 
 interface ChapterAccessFormProps {
   initialData: Chapter;
   courseId: string;
   chapterId: string;
 }
-
 const formSchema = z.object({
   isFree: z.boolean().default(false),
 });
-
 export const ChapterAccessForm = ({
   initialData,
   courseId,
   chapterId,
 }: ChapterAccessFormProps) => {
   const [isEditing, setIsEditing] = useState(false);
-
   const toggleEdit = () => setIsEditing((current) => !current);
-
   const router = useRouter();
-
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
       isFree: !!initialData.isFree,
     },
   });
-
   const { isSubmitting, isValid } = form.formState;
-
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
     try {
       await axios.patch(
@@ -66,14 +58,14 @@ export const ChapterAccessForm = ({
 
   return (
     <div className="mt-6 rounded-md border bg-white p-4 dark:bg-background">
-      <div className="flex items-center justify-between font-semibold mb-4">
-        Available to
+      <div className="flex items-center justify-between font-display">
+        Chapter access
         <Button onClick={toggleEdit} variant="ghost">
           {isEditing ? (
             <>Cancel</>
           ) : (
             <>
-              <Icons.pencil className="mr-2 h-4 w-4 text-brand" />
+              <Pencil1Icon className="mr-2 h-4 w-4" />
               Edit access
             </>
           )}
@@ -83,7 +75,7 @@ export const ChapterAccessForm = ({
         <p
           className={cn(
             'mt-2 text-sm',
-            !initialData.isFree && 'italic text-muted-foreground',
+            !initialData.isFree && 'italic text-slate-500',
           )}
         >
           {initialData.isFree ? (
@@ -103,16 +95,17 @@ export const ChapterAccessForm = ({
               control={form.control}
               name="isFree"
               render={({ field }) => (
-                <FormItem className="flex flex-row items-center space-x-3 space-y-0 rounded-md border p-4">
+                <FormItem className="flex flex-row items-start space-x-3 space-y-0 rounded-md border p-4">
                   <FormControl>
-                    <Switch
+                    <Checkbox
                       checked={field.value}
                       onCheckedChange={field.onChange}
                     />
                   </FormControl>
                   <div className="space-y-1 leading-none">
                     <FormDescription>
-                      {field.value ? 'Everyone for free' : 'Members only'}
+                      Check this box if you want to make this chapter free for
+                      preview
                     </FormDescription>
                   </div>
                 </FormItem>
@@ -120,7 +113,6 @@ export const ChapterAccessForm = ({
             />
             <div className="flex items-center gap-x-2">
               <Button
-                size="sm"
                 variant="custom"
                 disabled={!isValid || isSubmitting}
                 type="submit"
