@@ -14,6 +14,10 @@ export const increaseApiLimit = async () => {
     where: {
       userId,
     },
+    cacheStrategy: {
+      ttl: 604800,
+      swr: 3600,
+    },
   });
 
   if (userApiLimit) {
@@ -42,6 +46,10 @@ export const checkApiLimit = async () => {
     where: {
       userId: userId,
     },
+    cacheStrategy: {
+      ttl: 604800,
+      swr: 3600,
+    },
   });
 
   if (!userApiLimit || userApiLimit.count < MAX_FREE_TOKENS) {
@@ -61,6 +69,10 @@ export const getApiLimitCount = async () => {
   const userApiLimit = await db.userApiLimit.findUnique({
     where: {
       userId,
+    },
+    cacheStrategy: {
+      ttl: 604800,
+      swr: 3600,
     },
   });
 
