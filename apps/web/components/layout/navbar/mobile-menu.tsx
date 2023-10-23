@@ -4,10 +4,19 @@ import { Fragment, useEffect, useState } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { Dialog, Transition } from '@headlessui/react';
-import { Cross1Icon, DiscordLogoIcon, HamburgerMenuIcon } from 'ui';
+
+import { Icons } from '@/components/icons';
 
 const menu = [
-  { name: 'Community', href: '/' },
+  { name: 'Home', href: '/' },
+  {
+    name: 'Community',
+    href: 'https://discord.com/servers/and-voila-1151749282806910976',
+  },
+  {
+    name: 'Labs',
+    href: 'https://labs.andvoila.gg',
+  },
   { name: 'Roasts', href: '/roasts' },
   { name: 'Shop', href: '/shop' },
   { name: 'Contact', href: '/contact' },
@@ -40,7 +49,7 @@ export default function MobileMenu() {
         aria-label="Open mobile menu"
         className="flex h-11 w-11 items-center justify-center rounded-md border border-border text-foreground transition-colors md:hidden"
       >
-        <HamburgerMenuIcon className="h-4 w-4" />
+        <Icons.hamburger className="h-4 w-4" />
       </button>
       <Transition show={isOpen}>
         <Dialog onClose={closeMobileMenu} className="relative z-50">
@@ -71,7 +80,7 @@ export default function MobileMenu() {
                   onClick={closeMobileMenu}
                   aria-label="Close mobile menu"
                 >
-                  <Cross1Icon className="h-6 w-6 text-white dark:text-black" />
+                  <Icons.crossLarge className="h-6 w-6 text-white dark:text-black" />
                 </button>
 
                 {menu.length ? (
@@ -98,7 +107,7 @@ export default function MobileMenu() {
                         rel="noopener noreferrer"
                         aria-label="Navigate to And Voila Discord server"
                       >
-                        <DiscordLogoIcon className="h-12 w-12" />
+                        <Icons.discord className="h-12 w-12" />
                       </Link>
                     </li>
                   </ul>

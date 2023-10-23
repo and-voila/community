@@ -2,8 +2,9 @@ import { FC } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { cn, FadeIn } from '@ui/index';
-import { buttonVariants, MagicWandIcon } from 'ui';
+import { buttonVariants } from 'ui';
 
+import { Icons } from '@/components/icons';
 import SectionIntro from '@/components/section-intro';
 
 const CommunityHero: FC = () => {
@@ -25,11 +26,11 @@ const CommunityHero: FC = () => {
         <FadeIn className="mx-auto max-w-3xl flex-shrink-0 lg:mx-0 lg:max-w-2xl lg:pt-8">
           <div className="mt-24 sm:mt-32 lg:mt-16">
             <SectionIntro
-              eyebrow="Early Access for only $7.99/MO"
-              heading="Magical marketing"
+              eyebrow="Get Early Access"
+              heading="Experience magical marketing results"
               level="h2"
               as="h1"
-              description="Scoop up early access and mingle with mods Rebekah Radice and her full-stack crew. Watch your campaigns go magical with game-changing strategies. We're your go-to premium Discord hub for marketing zen—no fluff, all wow."
+              description="Tap into our premium Discord community and Labs platform. Mingle with mods Rebekah Radice and her crew, crush it with our playbooks and bespoke AI-assisted tools, and voila!"
             />
           </div>
           <div className="mt-10 flex items-center gap-x-6">
@@ -38,7 +39,7 @@ const CommunityHero: FC = () => {
               target="_blank"
               rel="noopener noreferrer"
               className={cn(buttonVariants({ variant: 'custom', size: 'lg' }))}
-              aria-label="Join the Sizzle Squad premium Discord server for digital marketing professionals"
+              aria-label="Join the And Voila premium Discord server for digital marketing professionals"
             >
               Join the magic
               <div className="ml-2">
@@ -47,7 +48,7 @@ const CommunityHero: FC = () => {
                   aria-label="Magic wand icon"
                   aria-hidden="true"
                 >
-                  <MagicWandIcon />
+                  <Icons.magic />
                 </span>
               </div>
             </Link>
@@ -58,7 +59,7 @@ const CommunityHero: FC = () => {
             <Image
               priority
               src="/images/shared/community.jpg"
-              alt="A partial screenshot of the Sizzling Squad Discord community welcome screen."
+              alt="A partial screenshot of the And Voila Discord community welcome screen."
               width={2432}
               height={1442}
               className="w-[76rem] rounded-md shadow-2xl md:grayscale md:hover:grayscale-0"

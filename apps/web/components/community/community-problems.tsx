@@ -1,8 +1,9 @@
 import { FC } from 'react';
 import { FadeIn, FadeInStagger } from '@ui/index';
-import { LightningBoltIcon } from 'ui';
 
 import SectionIntro from '@/components/section-intro';
+
+import { Icons } from '../icons';
 
 interface Problem {
   title: string;
@@ -13,27 +14,27 @@ const problems: Problem[] = [
   {
     title: 'AI unveiled',
     description:
-      'Confused about integrating AI? We simplify it with step-by-step, actionable advice.',
+      'Confused about integrating AI? Our Community and Playbooks simplify it with step-by-step, actionable advice.',
   },
   {
     title: 'Real-time updates',
     description:
-      'Stay ahead with timely insights on tools, techniques, and pivotal industry shifts.',
+      'Stay ahead with timely insights from our Community on tools, techniques, and pivotal industry shifts.',
   },
   {
     title: 'ROI alignment',
     description:
-      'Struggling to quantify your marketing value? We help you align your actions with measurable business goals.',
+      'Struggling to quantify your marketing value? Our Playbooks align your actions with measurable business goals.',
   },
   {
     title: 'Evergreen learning',
     description:
-      'Feel like your skills are starting to rust? Our community fosters ongoing, adaptive learning.',
+      'Feel like your skills are starting to rust? Our Playbooks offer quick, comprehensive updates to keep you in the game.',
   },
   {
     title: 'Kondo the clutter',
     description:
-      'Overwhelmed by trends and buzzwords? We sift through the noise to deliver insights that matter.',
+      'Overwhelmed by trends and buzzwords? Our Community delivers insights that cut through the noise.',
   },
   {
     title: 'Community support',
@@ -43,22 +44,32 @@ const problems: Problem[] = [
   {
     title: 'Streamlined productivity',
     description:
-      "Drowning in tasks? We'll show you focused strategies to optimize your workflow.",
+      'Drowning in tasks? Our Community will show you focused strategies to optimize your workflow.',
   },
   {
     title: 'Building confidence',
     description:
-      'Second-guessing your decisions? Gain the skills and support to act decisively.',
+      'Second-guessing your decisions? Our Playbooks give you the confidence and the skills to act decisively.',
   },
   {
     title: 'Future-proof skills',
     description:
-      'Concerned about keeping up with rapid industry changes? We offer foresight on emerging trends to keep you ahead of the curve.',
+      'Concerned about keeping up? Our Playbooks offer foresight on emerging trends.',
   },
   {
     title: 'Climb the ladder',
     description:
-      'Stuck in your career? We provide the network and know-how to boost your professional growth.',
+      'Stuck in your career? Our Community provides the network to boost your professional growth.',
+  },
+  {
+    title: 'Rapid learning with Playbooks',
+    description:
+      'Want to learn fast and effectively? Our Playbooks offer micro-courses that deliver the expertise you need in no time.',
+  },
+  {
+    title: 'AI-enhanced Tools',
+    description:
+      'Looking for smarter workflows? Our Tools offer AI-assisted features to supercharge your marketing tasks.',
   },
 ];
 
@@ -66,7 +77,7 @@ const CommunityProblems: FC = () => {
   return (
     <div className="mx-auto py-24 sm:py-32">
       <SectionIntro
-        eyebrow="Time for Transformation?"
+        eyebrow="Time for Transformation"
         heading="Escape the labyrinth"
         description="Feeling stuck with outdated tactics and lackluster results? We're your north star in the complex world of digital marketing."
       />
@@ -79,7 +90,7 @@ const CommunityProblems: FC = () => {
             >
               <div className="font-display text-lg text-foreground lg:text-xl">
                 <div className="mb-6 flex h-10 w-10 items-center justify-center rounded bg-background">
-                  <LightningBoltIcon
+                  <Icons.magic
                     className="h-6 w-6 text-brand"
                     aria-hidden="true"
                   />

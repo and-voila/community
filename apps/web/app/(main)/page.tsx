@@ -3,7 +3,7 @@ import FaqComponent from '@ui/components/faq';
 import { Container } from '@ui/index';
 
 import { SITE_URL } from '@/lib/utils';
-import Community from '@/components/community/community';
+import CommunityCta from '@/components/community/community-cta';
 import CommunityEarlyAccess from '@/components/community/community-early-access';
 import { communityFaqs } from '@/components/community/community-faq-data';
 import CommunityHero from '@/components/community/community-hero';
@@ -65,7 +65,7 @@ export default async function CommunityPage() {
         <CommunityLargeCta />
         <CommunitySummary />
         <CommunityEarlyAccess />
-        <Community />
+        <CommunityCta />
         <FaqComponent faqs={communityFaqs} />
       </Container>
     </div>

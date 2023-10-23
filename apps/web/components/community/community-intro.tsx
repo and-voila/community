@@ -1,9 +1,9 @@
 import React, { FC } from 'react';
 import Link from 'next/link';
 import { FadeIn } from '@ui/index';
-import { ArrowRightIcon, DiscordLogoIcon, RocketIcon, StarIcon } from 'ui';
 
 import Highlighter, { HighlighterItem } from '@/components/highlighter';
+import { Icons } from '@/components/icons';
 import SectionIntro from '@/components/section-intro';
 
 interface Reason {
@@ -16,28 +16,28 @@ interface Reason {
 
 const reasons: Reason[] = [
   {
-    name: 'Direct access to experts',
+    name: 'Premium Community',
     description:
-      'Enjoy personalized Q&A sessions, weekly masterclasses, and one-on-one consultations with industry leaders like Rebekah Radice.',
+      'Direct Q&A with experts like Rebekah Radice, weekly insights, and a network purpose built for marketers.',
     href: 'https://discord.com/servers/and-voila-1151749282806910976',
-    icon: <StarIcon className="h-8 w-8" />,
-    cta: 'Unlock Advice',
+    icon: <Icons.star className="h-8 w-8" />,
+    cta: 'Join Now',
   },
   {
-    name: 'Tools that get results',
+    name: 'Expert Playbooks',
     description:
-      "From conversions to cache, our expert marketing mods have you covered. We'll help you get to a whole new level of spectacular.",
+      'Actionable micro-courses that turn marketing professionals into ninjas. Released daily.',
     href: 'https://discord.com/servers/and-voila-1151749282806910976',
-    icon: <RocketIcon className="h-8 w-8" />,
-    cta: 'Boost Results',
+    icon: <Icons.rocket className="h-8 w-8" />,
+    cta: 'Learn More',
   },
   {
-    name: 'Join a growing community',
+    name: 'AI-Assist Tools',
     description:
-      'Share insights, celebrate wins, and even find your next opportunity. Connect and grow in a community built from the ground up.',
+      'Apps that make you a better marketer, not replace you. AI-tools dropping soon to elevate your results.',
     href: 'https://discord.com/servers/and-voila-1151749282806910976',
-    icon: <DiscordLogoIcon className="h-8 w-8" />,
-    cta: 'Start celebrating',
+    icon: <Icons.magic className="h-8 w-8" />,
+    cta: 'Coming Soon',
   },
 ];
 
@@ -50,9 +50,9 @@ const CommunityIntro: FC = () => {
             <HighlighterItem>
               <FadeIn className="relative z-20 mx-auto overflow-hidden rounded-[inherit] bg-primary-foreground p-6 lg:p-12">
                 <SectionIntro
-                  eyebrow="Premier Marketing Community"
-                  heading="Your path to exceptional results"
-                  description="Join the definitive Discord server for marketers, led by Rebekah Radice. Get immediate access to top-tier resources, insights, and most importantly, action."
+                  eyebrow="The ultimate digital marketing ecosystem"
+                  heading="Digital marketing superpowers"
+                  description="More than a community—it's your fast track to marketing ROI. Gain immediate access to curated expertise, Playbooks for instant skill upgrades, and upcoming AI tools that redefine efficiency."
                 />
 
                 <div className="mx-auto mt-16 max-w-2xl sm:mt-20 lg:mt-24 lg:max-w-none">
@@ -79,7 +79,7 @@ const CommunityIntro: FC = () => {
                             >
                               {reason.cta}{' '}
                               <p className="ml-2 text-brand transition-transform duration-150 ease-in-out group-hover:translate-x-0.5 dark:text-brand">
-                                <ArrowRightIcon aria-hidden="true" />
+                                <Icons.arrowright aria-hidden="true" />
                               </p>
                             </Link>
                           </div>

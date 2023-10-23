@@ -1,8 +1,8 @@
 import { FC } from 'react';
 import Image from 'next/image';
 import { FadeIn, FadeInStagger } from '@ui/index';
-import { HeartIcon } from 'ui';
 
+import { Icons } from '@/components/icons';
 import SectionIntro from '@/components/section-intro';
 
 type Feature = {
@@ -14,32 +14,48 @@ const features: Feature[] = [
   {
     name: 'Immediate insights',
     description:
-      "Lost in the maze of digital marketing? Get immediate access to pros who've overcome the same kind of puzzles you're facing.",
+      'No more wading through the chaos; get straight to the experts and actionable strategies that match your unique challenges.',
   },
   {
     name: 'Curated expertise',
     description:
-      'Be part of an exclusive circle that values wisdom over chatter. We prioritize quality insights, not post counts.',
+      'This isn’t a numbers game; it’s about quality. We offer distilled wisdom, not chatter. Quality over quantity, always.',
   },
   {
     name: 'Metrics that matter',
     description:
-      'Stop guessing and start measuring. We offer actionable metrics and KPIs for dazzling ROI and efficiency.',
+      'Go beyond vanity metrics; focus on the KPIs that genuinely drive growth and build your brand.',
   },
   {
     name: 'AI deconstructed',
     description:
-      'Understand the role of AI in your digital marketing journey. We break down the complexities into advice you can act on immediately.',
+      'AI is not a black box here. Gain clear, actionable advice on integrating AI into your marketing stack.',
   },
   {
     name: 'Real-time revelations',
     description:
-      'Stay in the know with timely digests that highlight the latest magical tools, techniques, and key shifts in the digital marketing landscape.',
+      'Keep your finger on the pulse with insights that matter, right when they happen. No more FOMO.',
   },
   {
     name: 'Community compassion',
     description:
-      'Your marketing challenges meet solutions here. Post your issues and get spellbinding solutions.',
+      'You’re never alone in your marketing struggles. Get tailored solutions from a community that cares.',
+  },
+  // New entries below
+  {
+    name: 'Precision playbooks',
+    description:
+      'Transform theoretical knowledge into concrete actions. Our playbooks are your tactical game plans for marketing success.',
+  },
+  {
+    name: 'AI-enabled tools',
+    description:
+      'Our tools don’t replace you, they amplify you. Take the grunt work out of marketing with AI that assists, not automates.',
+  },
+  {
+    name: 'The full enchilada',
+    description:
+      'Community, playbooks, and tools. And Voila is a complete ecosystem designed to deliver results.',
   },
 ];
 
@@ -48,10 +64,10 @@ const CommunitySummary: FC = () => {
     <section className="py-24 sm:py-32">
       <SectionIntro
         eyebrow="Your Network, Amplified"
-        heading="Enchanting connections await"
+        heading="Full-stack marketing arsenal"
         level="h3"
         as="h2"
-        description="And Voila isn't just another Discord server. It's your gateway to digital marketing nirvana. Uncover expert secrets, build valuable connections, and convert your campaigns from ordinary to extra. Join us for actionable insights, real-world examples, and magical results."
+        description="Welcome to a full-spectrum marketing experience. Tap into a premium Discord community, actionable Playbooks, and AI-assisted Tools. This isn't another marketing Discord, it's your one-stop-shop for marketing brilliance."
       />
       <FadeIn className="relative overflow-hidden pt-16">
         <Image
@@ -70,7 +86,7 @@ const CommunitySummary: FC = () => {
           {features.map((feature) => (
             <FadeIn key={feature.name} className="relative pl-9">
               <div className="inline font-display text-base text-foreground lg:text-lg">
-                <HeartIcon
+                <Icons.heart
                   className="absolute left-1 top-1 h-5 w-5 text-brand"
                   aria-hidden="true"
                 />

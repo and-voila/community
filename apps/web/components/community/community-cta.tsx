@@ -1,18 +1,20 @@
 import Link from 'next/link';
 import { cn, FadeIn, H5 } from '@ui/index';
-import { buttonVariants, CheckIcon } from 'ui';
+import { buttonVariants } from 'ui';
 
 import Highlighter, { HighlighterItem } from '@/components/highlighter';
 
+import { Icons } from '../icons';
+
 const includedFeatures = [
-  'Shape the community',
-  'Lock in your rate. No price hikes, ever',
-  'Flaunt unique Discord badges and roles',
-  'Be a VIP in community growth',
-  'Exclusive invites to launch events',
-  'Behind-the-scenes bloopers',
-  'Your feedback, prioritized',
-  'First access to new features and tools',
+  'Round-the-clock Discord engagement',
+  'Tailored daily insights to your inbox',
+  'Instant access to fresh Playbooks',
+  'Hands-on with next-gen AI tools',
+  'Rate lock: $25/month for one year',
+  'Unique Discord flair and statuses',
+  'Your voice, amplified in our roadmap',
+  'Be the first to test and tweak',
 ];
 
 export default function CommunityCta() {
@@ -32,9 +34,9 @@ export default function CommunityCta() {
                       Become a founding member of And Voila
                     </H5>
                     <p className="mt-6 text-base text-muted-foreground">
-                      Join now and let&apos;s mesmerize the digital marketing
-                      world together. Get unparalleled advantages that only
-                      Early Access can offer.
+                      Jumpstart your marketing mastery. Early Access gives you a
+                      tactical edge, our Playbooks, AI tools, and a community
+                      that&apos;s ahead of the curve.
                     </p>
 
                     <div className="mt-10 flex items-center gap-x-4">
@@ -49,7 +51,7 @@ export default function CommunityCta() {
                     >
                       {includedFeatures.map((feature) => (
                         <li key={feature} className="flex gap-x-3">
-                          <CheckIcon
+                          <Icons.check
                             className="h-6 w-5 flex-none text-brand/70"
                             aria-hidden="true"
                           />
@@ -65,8 +67,8 @@ export default function CommunityCta() {
                           Early Access Pricing
                         </p>
                         <p className="mt-6 flex items-baseline justify-center gap-x-2">
-                          <span className="font-display text-4xl text-foreground">
-                            $7.99
+                          <span className="font-display text-7xl text-foreground">
+                            $25
                           </span>
                           <span className="text-sm font-semibold leading-6 tracking-wide text-muted-foreground">
                             / month
