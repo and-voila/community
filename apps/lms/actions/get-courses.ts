@@ -44,6 +44,10 @@ export const getCourses = async ({
       orderBy: {
         createdAt: 'desc',
       },
+      cacheStrategy: {
+        ttl: 604800,
+        swr: 3600,
+      },
     });
 
     const shuffledCourses = [...courses].sort(() => Math.random() - 0.5);

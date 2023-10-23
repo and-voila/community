@@ -27,6 +27,10 @@ export const getDashboardCourses = async (
           },
         },
       },
+      cacheStrategy: {
+        ttl: 604800,
+        swr: 3600,
+      },
     })) as CourseWithProgressWithCategory[];
 
     for (const course of courses) {
