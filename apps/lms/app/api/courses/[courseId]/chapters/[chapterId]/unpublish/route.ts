@@ -55,8 +55,6 @@ export async function PATCH(
 
     return NextResponse.json(unpublishedChapter);
   } catch (error) {
-    // eslint-disable-next-line no-console
-    console.log('[CHAPTER_UNPUBLISH]', error);
     return new NextResponse('Internal Error', { status: 500 });
   }
 }

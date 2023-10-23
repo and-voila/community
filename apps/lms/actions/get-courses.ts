@@ -45,8 +45,8 @@ export const getCourses = async ({
         createdAt: 'desc',
       },
       cacheStrategy: {
-        ttl: 604800,
-        swr: 3600,
+        ttl: 300,
+        swr: 60,
       },
     });
 
@@ -66,8 +66,6 @@ export const getCourses = async ({
 
     return coursesWithProgress;
   } catch (error) {
-    // eslint-disable-next-line no-console
-    console.log('[GET_COURSES]', error);
     return [];
   }
 };

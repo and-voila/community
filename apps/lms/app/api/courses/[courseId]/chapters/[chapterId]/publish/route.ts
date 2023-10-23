@@ -60,8 +60,6 @@ export async function PATCH(
 
     return NextResponse.json(publishedChapter);
   } catch (error) {
-    // eslint-disable-next-line no-console
-    console.log('[CHAPTER_PUBLISH]', error);
     return new NextResponse('Internal Error', { status: 500 });
   }
 }

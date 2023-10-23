@@ -52,13 +52,8 @@ export async function GET() {
       },
     });
 
-    // eslint-disable-next-line no-console
-    console.log(stripeSession);
-
     return new NextResponse(JSON.stringify({ url: stripeSession.url }));
   } catch (error) {
-    // eslint-disable-next-line no-console
-    console.log('[STRIPE_ERROR]', error);
     return new NextResponse('Internal Error', { status: 500 });
   }
 }

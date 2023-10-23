@@ -44,8 +44,6 @@ export async function POST(req: Request) {
       'svix-signature': svix_signature,
     }) as WebhookEvent;
   } catch (err) {
-    // eslint-disable-next-line no-console
-    console.error('Error verifying webhook:', err);
     return new Response('Error occurred', {
       status: 400,
     });
@@ -57,26 +55,46 @@ export async function POST(req: Request) {
   switch (eventType) {
     case 'user.created':
       const userData = evt.data;
+      const discordAccountCreated = userData.external_accounts.find(
+        (account) => account.provider === 'oauth_discord',
+      );
       await db.user.create({
         data: {
           id: userData.id,
+          name: `${userData.first_name} ${userData.last_name}`,
           email: userData.email_addresses[0].email_address,
           image: userData.image_url,
           createdAt: new Date(userData.created_at),
           updatedAt: new Date(userData.updated_at),
+          discordId: discordAccountCreated
+            ? discordAccountCreated.provider_user_id
+            : null,
+          discordUsername: discordAccountCreated
+            ? discordAccountCreated.username
+            : null,
         },
       });
-
       break;
 
     case 'user.updated':
       const updatedUserData = evt.data;
+      const discordAccountAccountUpdated =
+        updatedUserData.external_accounts.find(
+          (account) => account.provider === 'oauth_discord',
+        );
       await db.user.update({
         where: { id: updatedUserData.id },
         data: {
+          name: `${updatedUserData.first_name} ${updatedUserData.last_name}`,
           email: updatedUserData.email_addresses[0]?.email_address,
           image: updatedUserData.image_url,
           updatedAt: new Date(updatedUserData.updated_at),
+          discordId: discordAccountAccountUpdated
+            ? discordAccountAccountUpdated.provider_user_id
+            : null,
+          discordUsername: discordAccountAccountUpdated
+            ? discordAccountAccountUpdated.username
+            : null,
         },
       });
       break;

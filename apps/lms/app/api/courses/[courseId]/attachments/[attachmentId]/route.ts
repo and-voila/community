@@ -34,8 +34,6 @@ export async function DELETE(
 
     return NextResponse.json(attachment);
   } catch (error) {
-    // eslint-disable-next-line no-console
-    console.log('ATTACHMENT_ID', error);
     return new NextResponse('Internal Error', { status: 500 });
   }
 }

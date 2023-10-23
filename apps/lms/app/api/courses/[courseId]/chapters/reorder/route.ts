@@ -36,8 +36,6 @@ export async function PUT(
 
     return new NextResponse('Success', { status: 200 });
   } catch (error) {
-    // eslint-disable-next-line no-console
-    console.log('[REORDER]', error);
     return new NextResponse('Internal Error', { status: 500 });
   }
 }
