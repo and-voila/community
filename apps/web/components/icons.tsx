@@ -10,6 +10,7 @@ import {
   GitHubLogoIcon,
   HomeIcon,
   ImageIcon,
+  LightningBoltIcon,
   LinkedInLogoIcon,
   ListBulletIcon,
   LockClosedIcon,
@@ -92,4 +93,5 @@ export const Icons = {
   star: StarIcon,
   rocket: RocketIcon,
   arrowright: ArrowRightIcon,
+  lightning: LightningBoltIcon,
 };
