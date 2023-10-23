@@ -37,10 +37,6 @@ const ChapterIdPage = async ({
     include: {
       muxData: true,
     },
-    cacheStrategy: {
-      ttl: 604800,
-      swr: 60,
-    },
   });
 
   if (!chapter) {
