@@ -39,6 +39,11 @@ export async function GET() {
       cancel_url: settingsUrl,
       payment_method_types: ['card'],
       mode: 'subscription',
+      discounts: [
+        {
+          coupon: process.env.STRIPE_COUPON_ID,
+        },
+      ],
       billing_address_collection: 'auto',
       customer_email: user.emailAddresses[0].emailAddress,
       line_items: [
