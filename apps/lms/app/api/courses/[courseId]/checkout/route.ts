@@ -91,8 +91,6 @@ export async function POST(
 
     return NextResponse.json({ url: session.url });
   } catch (error) {
-    // eslint-disable-next-line no-console
-    console.log('[COURSE_ID_CHECKOUT]', error);
     return new NextResponse('Internal Error', { status: 500 });
   }
 }

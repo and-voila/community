@@ -40,8 +40,6 @@ export const getProgress = async (
 
     return progressPercentage;
   } catch (error) {
-    // eslint-disable-next-line no-console
-    console.log('[GET_PROGRESS]', error);
     return 0;
   }
 };
