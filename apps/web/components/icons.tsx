@@ -2,6 +2,7 @@ import {
   ActivityLogIcon,
   ArrowRightIcon,
   BarChartIcon,
+  CheckIcon,
   Cross1Icon,
   DiscordLogoIcon,
   DragHandleDots2Icon,
@@ -98,4 +99,5 @@ export const Icons = {
   lightning: LightningBoltIcon,
   heart: HeartIcon,
   plus: PlusIcon,
+  check: CheckIcon,
 };

@@ -107,4 +107,34 @@ export const communityFaqs: CommunityFaq[] = [
     answer:
       'Yikes. Contact us through our website Contact page or on the Discord server. We’re committed to resolving any issues you may have.',
   },
+  {
+    id: 17,
+    question: 'What are the fair usage limits on AI-tools?',
+    answer:
+      'Our AI tools are cutting-edge and designed to assist you. However, fair usage limits apply to ensure all members get optimal performance. Details are available in the AI-tools section.',
+  },
+  {
+    id: 18,
+    question: 'Are early access rates permanent?',
+    answer:
+      'Early access rates are locked in for a year, giving you savings while you enjoy premium features.',
+  },
+  {
+    id: 19,
+    question: 'How do the AI tools work?',
+    answer:
+      'Our AI tools are designed to assist, not replace you. They help automate repetitive tasks and provide insights, but you have control. We respect your IP rights.',
+  },
+  {
+    id: 20,
+    question: 'Can I access the community and tools from any device?',
+    answer:
+      'Absolutely, as long as your device has internet access, you can log into our Discord community and access Labs.',
+  },
+  {
+    id: 21,
+    question: 'Do you offer free trials?',
+    answer:
+      'We offer limited free access to our community and Labs platform, but there is no free trial for premium features.',
+  },
 ];
