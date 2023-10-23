@@ -1,5 +1,6 @@
 import {
   ActivityLogIcon,
+  ArrowRightIcon,
   BarChartIcon,
   Cross1Icon,
   DiscordLogoIcon,
@@ -19,6 +20,8 @@ import {
   PlusCircledIcon,
   QuestionMarkCircledIcon,
   ReaderIcon,
+  RocketIcon,
+  StarIcon,
   TwitterLogoIcon,
   VideoIcon,
 } from '@ui/index';
@@ -80,4 +83,7 @@ export const Icons = {
   image: ImageIcon,
   crossLarge: Cross1Icon,
   drag: DragHandleDots2Icon,
+  star: StarIcon,
+  rocket: RocketIcon,
+  arrowright: ArrowRightIcon,
 };
