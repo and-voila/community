@@ -6,22 +6,18 @@ interface CourseProgressProps {
   variant?: 'default' | 'success';
   size?: 'default' | 'sm';
 }
-
 const colorByVariant = {
   default: 'text-foreground',
   success: 'text-foreground',
 };
-
 const sizeByVariant = {
   default: 'text-sm',
   sm: 'text-xs',
 };
-
 const variantClasses = {
   default: 'default-class',
   success: 'success-class',
 };
-
 export const CourseProgress = ({
   value,
   variant = 'default',
@@ -31,10 +27,10 @@ export const CourseProgress = ({
 
   return (
     <div>
-      <Progress className={`h-2 my-3 ${progressClass}`} value={value} />
+      <Progress className={`h-2 ${progressClass}`} value={value} />
       <p
         className={cn(
-          'font-medium text-foreground',
+          'mt-2 font-medium text-foreground',
           colorByVariant[variant],
           sizeByVariant[size || 'default'],
         )}

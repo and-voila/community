@@ -14,8 +14,8 @@ export const getProgress = async (
         id: true,
       },
       cacheStrategy: {
-        ttl: 300,
-        swr: 60,
+        ttl: 60,
+        swr: 30,
       },
     });
 
@@ -30,8 +30,8 @@ export const getProgress = async (
         isCompleted: true,
       },
       cacheStrategy: {
-        ttl: 60,
-        swr: 30,
+        ttl: 300,
+        swr: 60,
       },
     });
 

@@ -24,6 +24,10 @@ export const getChapter = async ({
           courseId,
         },
       },
+      cacheStrategy: {
+        ttl: 60,
+        swr: 30,
+      },
     });
 
     const course = await db.course.findUnique({
@@ -65,6 +69,10 @@ export const getChapter = async ({
         where: {
           courseId: courseId,
         },
+        cacheStrategy: {
+          ttl: 300,
+          swr: 60,
+        },
       });
     }
 
@@ -72,6 +80,10 @@ export const getChapter = async ({
       muxData = await db.muxData.findUnique({
         where: {
           chapterId: chapterId,
+        },
+        cacheStrategy: {
+          ttl: 300,
+          swr: 60,
         },
       });
 
@@ -86,6 +98,10 @@ export const getChapter = async ({
         orderBy: {
           position: 'asc',
         },
+        cacheStrategy: {
+          ttl: 300,
+          swr: 60,
+        },
       });
     }
 
@@ -95,6 +111,10 @@ export const getChapter = async ({
           userId,
           chapterId,
         },
+      },
+      cacheStrategy: {
+        ttl: 60,
+        swr: 30,
       },
     });
 

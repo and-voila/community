@@ -32,6 +32,10 @@ export const getDashboardCourses = async (
           },
         },
       },
+      cacheStrategy: {
+        ttl: 60,
+        swr: 30,
+      },
     });
 
     const courses = purchasedCourses.map(
