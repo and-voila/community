@@ -3,9 +3,8 @@ import Link from 'next/link';
 import { FadeIn } from '@ui/index';
 
 import Highlighter, { HighlighterItem } from '@/components/highlighter';
+import { Icons } from '@/components/icons';
 import SectionIntro from '@/components/section-intro';
-
-import { Icons } from '../icons';
 
 interface Reason {
   name: string;
