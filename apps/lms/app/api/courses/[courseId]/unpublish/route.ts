@@ -37,8 +37,6 @@ export async function PATCH(
 
     return NextResponse.json(unpublishedCourse);
   } catch (error) {
-    // eslint-disable-next-line no-console
-    console.log('[COURSE_ID_UNPUBLISH]', error);
     return new NextResponse('Internal Error', { status: 500 });
   }
 }

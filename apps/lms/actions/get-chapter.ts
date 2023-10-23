@@ -26,8 +26,8 @@ export const getChapter = async ({
         isFree: true,
       },
       cacheStrategy: {
-        ttl: 604800,
-        swr: 3600,
+        ttl: 300,
+        swr: 60,
       },
     });
 
@@ -37,8 +37,8 @@ export const getChapter = async ({
         isPublished: true,
       },
       cacheStrategy: {
-        ttl: 604800,
-        swr: 3600,
+        ttl: 300,
+        swr: 60,
       },
     });
 
@@ -56,8 +56,8 @@ export const getChapter = async ({
           courseId: courseId,
         },
         cacheStrategy: {
-          ttl: 604800,
-          swr: 3600,
+          ttl: 300,
+          swr: 60,
         },
       });
     }
@@ -68,8 +68,8 @@ export const getChapter = async ({
           chapterId: chapterId,
         },
         cacheStrategy: {
-          ttl: 604800,
-          swr: 3600,
+          ttl: 300,
+          swr: 60,
         },
       });
 
@@ -85,8 +85,8 @@ export const getChapter = async ({
           position: 'asc',
         },
         cacheStrategy: {
-          ttl: 604800,
-          swr: 3600,
+          ttl: 300,
+          swr: 60,
         },
       });
     }
@@ -99,8 +99,8 @@ export const getChapter = async ({
         },
       },
       cacheStrategy: {
-        ttl: 604800,
-        swr: 10,
+        ttl: 60,
+        swr: 30,
       },
     });
 
@@ -113,8 +113,6 @@ export const getChapter = async ({
       userProgress,
     };
   } catch (error) {
-    // eslint-disable-next-line no-console
-    console.log('[GET_CHAPTER]', error);
     return {
       chapter: null,
       course: null,

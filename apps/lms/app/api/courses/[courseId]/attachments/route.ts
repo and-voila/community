@@ -36,8 +36,6 @@ export async function POST(
 
     return NextResponse.json(attachment);
   } catch (error) {
-    // eslint-disable-next-line no-console
-    console.log('COURSE_ID_ATTACHMENTS', error);
     return new NextResponse('Internal Error', { status: 500 });
   }
 }

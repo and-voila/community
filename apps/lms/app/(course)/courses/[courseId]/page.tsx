@@ -18,8 +18,8 @@ const CourseIdPage = async ({ params }: { params: { courseId: string } }) => {
       },
     },
     cacheStrategy: {
-      ttl: 604800,
-      swr: 3600,
+      ttl: 300,
+      swr: 60,
     },
   });
 

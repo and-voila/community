@@ -27,8 +27,8 @@ const SearchPage = async ({ searchParams }: SearchPageProps) => {
       name: 'asc',
     },
     cacheStrategy: {
-      ttl: 604800,
-      swr: 3600,
+      ttl: 300,
+      swr: 60,
     },
   });
 

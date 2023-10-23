@@ -28,8 +28,8 @@ export const getDashboardCourses = async (
         },
       },
       cacheStrategy: {
-        ttl: 604800,
-        swr: 3600,
+        ttl: 300,
+        swr: 60,
       },
     })) as CourseWithProgressWithCategory[];
 
@@ -50,8 +50,6 @@ export const getDashboardCourses = async (
       coursesInProgress,
     };
   } catch (error) {
-    // eslint-disable-next-line no-console
-    console.log('[GET_DASHBOARD_COURSES]', error);
     return {
       completedCourses: [],
       coursesInProgress: [],

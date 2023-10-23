@@ -32,7 +32,7 @@ export const FreeCounter = ({
   if (isPro) {
     return null;
   }
-  // eslint-disable-next-line no-console
+
   if (isTeacher(userId)) {
     return null;
   }
