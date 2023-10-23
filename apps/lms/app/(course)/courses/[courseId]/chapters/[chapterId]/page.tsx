@@ -24,12 +24,19 @@ const ChapterIdPage = async ({
     return redirect('/');
   }
 
-  const { chapter, course, muxData, attachments, nextChapter, userProgress } =
-    await getChapter({
-      userId,
-      chapterId: params.chapterId,
-      courseId: params.courseId,
-    });
+  const {
+    chapter,
+    course,
+    muxData,
+    attachments,
+    nextChapter,
+    userProgress,
+    purchase,
+  } = await getChapter({
+    userId,
+    chapterId: params.chapterId,
+    courseId: params.courseId,
+  });
 
   const hasSubscription = await checkSubscription();
 
@@ -37,8 +44,10 @@ const ChapterIdPage = async ({
     return redirect('/');
   }
 
-  const isLocked = !chapter.isFree && !course.isFree && !hasSubscription;
-  const completeOnEnd = !!hasSubscription && !userProgress?.isCompleted;
+  const isLocked =
+    !chapter.isFree && !course.isFree && !hasSubscription && !purchase;
+  const completeOnEnd =
+    (!!hasSubscription || !!purchase) && !userProgress?.isCompleted;
 
   return (
     <div>
@@ -73,7 +82,7 @@ const ChapterIdPage = async ({
               <h2 className="mb-2 flex-grow font-display text-lg">
                 {chapter.title}
               </h2>
-              {hasSubscription ? (
+              {hasSubscription || purchase ? (
                 <CourseProgressButton
                   chapterId={params.chapterId}
                   courseId={params.courseId}
@@ -84,7 +93,7 @@ const ChapterIdPage = async ({
                 !course.isFree && (
                   <CourseEnrollButton
                     courseId={params.courseId}
-                    isFree={course.isFree}
+                    price={course.price!}
                   />
                 )
               )}
