@@ -1,8 +1,9 @@
 import { FC } from 'react';
 import { FadeIn, FadeInStagger } from '@ui/index';
-import { PlusIcon } from 'ui';
 
 import SectionIntro from '@/components/section-intro';
+
+import { Icons } from '../icons';
 
 interface Feature {
   name: string;
@@ -11,54 +12,49 @@ interface Feature {
 
 const features: Feature[] = [
   {
-    name: 'Get early access',
+    name: 'Immediate insights',
     description:
-      'Earn exclusive benefits from the get-go—first dibs on new features, members-only masterclasses, and a touch of behind-the-scenes hilarity.',
+      'Dive into a community that offers real-time advice from pros familiar with your marketing challenges.',
   },
   {
-    name: 'Founding membership',
+    name: 'Curated expertise',
     description:
-      'Join the first 500 members and carve your path in a community focused on solving your marketing puzzles.',
+      'Join a handpicked circle focused on results, not chatter. Expert-vetted insights only.',
   },
   {
-    name: 'Fixed membership rate',
+    name: 'Metrics that matter',
     description:
-      "Take advantage of our $7.99/month early-bird rate, protected from future price increases. It's your lifetime ticket to unmatched value.",
+      'Learn to focus on actionable metrics through our Playbooks, setting you on the path to impressive ROI.',
   },
   {
-    name: 'Unique Discord perks',
+    name: 'AI deconstructed',
     description:
-      "Stand out with special badges and roles on our Discord server. It's your VIP pass to digital recognition.",
+      'Demystify AI in marketing through our Playbooks and AI-assisted tools. Practical advice, zero jargon.',
   },
   {
-    name: 'Insider influence',
+    name: 'Real-time revelations',
     description:
-      "Your ideas and feedback aren't just welcome—they'll help define the future of AndVoila.gg.",
+      'Receive timely updates on must-know tools and techniques via our community channels.',
   },
   {
-    name: 'First-to-know privileges',
+    name: 'Community compassion',
     description:
-      'Stay ahead of the curve with exclusive invites to launch events and masterclasses.',
+      'Post your challenges, get immediate solutions. A community that’s got your back.',
   },
   {
-    name: 'Backstage glimpses',
+    name: 'Playbook pioneer',
     description:
-      "Get an unfiltered look at our journey, bumps and all. We make all the mistakes so you don't have to.",
+      'Get privileged access to our Playbooks. Master the art of marketing, one playbook at a time.',
   },
   {
-    name: 'Influence our growth',
+    name: 'AI tool tester',
     description:
-      'Your insights will directly shape our evolving feature set and community offerings.',
+      'Early access to AI-assisted tools. Your feedback shapes the tools that shape your campaigns.',
   },
   {
-    name: 'Beta access',
+    name: 'Ecosystem synergy',
     description:
-      'Be the first to test new tools and features before they hit the mainstream. Your feedback will refine our innovations.',
-  },
-  {
-    name: 'Resource advantage',
-    description:
-      'Kick off your journey with a hand-picked selection of premium marketing resources. Get a leg up, the magical way.',
+      'From community wisdom to Playbooks and AI tools, experience a unified ecosystem that amplifies your marketing.',
   },
 ];
 
@@ -68,16 +64,16 @@ const CommunityEarlyAccess: FC = () => {
       <div className="mx-auto grid max-w-2xl grid-cols-1 gap-x-8 gap-y-16 sm:gap-y-20 lg:mx-0 lg:max-w-none lg:grid-cols-3">
         <SectionIntro
           eyebrow="Exclusive Benefits"
-          heading="Get early access"
+          heading="Enjoy early access"
           level="h4"
           as="h2"
-          description="Earn exclusive benefits from the get-go—first dibs on new features, members-only masterclasses, and a touch of behind-the-scenes hilarity."
+          description="Be among the first to take advantage of the And Voila marketing experience. From our exclusive community to next-gen tools. Early access means you don't just witness the evolution, you're part of it."
         />
         <FadeInStagger className="col-span-2 grid grid-cols-1 gap-x-8 gap-y-10 text-base text-muted-foreground sm:grid-cols-2 lg:gap-y-16">
           {features.map((feature) => (
             <FadeIn key={feature.name} className="relative pl-9">
               <div className="font-display text-lg text-foreground lg:text-xl">
-                <PlusIcon
+                <Icons.plus
                   className="absolute left-0 top-1 h-5 w-5 text-brand/70"
                   aria-hidden="true"
                 />

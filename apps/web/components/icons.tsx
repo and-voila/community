@@ -20,6 +20,7 @@ import {
   NotionLogoIcon,
   Pencil1Icon,
   PlusCircledIcon,
+  PlusIcon,
   QuestionMarkCircledIcon,
   ReaderIcon,
   RocketIcon,
@@ -96,4 +97,5 @@ export const Icons = {
   arrowright: ArrowRightIcon,
   lightning: LightningBoltIcon,
   heart: HeartIcon,
+  plus: PlusIcon,
 };
