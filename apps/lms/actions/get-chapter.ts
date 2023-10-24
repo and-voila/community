@@ -38,6 +38,7 @@ export const getChapter = async ({
       select: {
         isFree: true,
         price: true,
+        description: true,
       },
       cacheStrategy: {
         ttl: 300,
@@ -64,7 +65,7 @@ export const getChapter = async ({
     let attachments: Attachment[] = [];
     let nextChapter: Chapter | null = null;
 
-    if (isPro || purchase) {
+    if (course.isFree || isPro || purchase) {
       attachments = await db.attachment.findMany({
         where: {
           courseId: courseId,
@@ -76,7 +77,7 @@ export const getChapter = async ({
       });
     }
 
-    if (chapter.isFree || isPro || purchase) {
+    if (course.isFree || isPro || purchase) {
       muxData = await db.muxData.findUnique({
         where: {
           chapterId: chapterId,

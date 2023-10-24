@@ -3,9 +3,17 @@
 import { useState } from 'react';
 import axios from 'axios';
 import { toast } from 'react-hot-toast';
-import { Button, MagicWandIcon } from 'ui';
+import { Button } from 'ui';
 
-export const SubscriptionButton = ({ isPro = false }: { isPro: boolean }) => {
+import { Icons } from './icons';
+
+export const SubscriptionButton = ({
+  isPro = false,
+  size,
+}: {
+  isPro: boolean;
+  size?: 'default' | 'sm' | 'lg' | 'icon';
+}) => {
   const [loading, setLoading] = useState(false);
 
   const onClick = async () => {
@@ -24,12 +32,13 @@ export const SubscriptionButton = ({ isPro = false }: { isPro: boolean }) => {
 
   return (
     <Button
+      size={size}
       variant={isPro ? 'default' : 'custom'}
       disabled={loading}
       onClick={onClick}
     >
-      {isPro ? 'Manage Subscription' : 'Upgrade'}
-      {!isPro && <MagicWandIcon className="ml-2 h-4 w-4" />}
+      {isPro ? 'Manage Subscription' : 'Become a Member'}
+      {!isPro && <Icons.magic className="ml-2 h-4 w-4" />}
     </Button>
   );
 };

@@ -46,7 +46,7 @@ export const CourseSidebar = async ({
       </div>
       <div className="flex flex-col border-y p-8">
         <h1 className="font-display text-lg">{course.title}</h1>
-        {(isPro || purchase) && (
+        {(course.isFree || isPro || purchase) && (
           <div className="mt-10">
             <CourseProgress variant="success" value={progressCount} />
           </div>
@@ -60,7 +60,7 @@ export const CourseSidebar = async ({
             label={chapter.title}
             isCompleted={!!chapter.userProgress?.[0]?.isCompleted}
             courseId={course.id}
-            isLocked={!chapter.isFree && !isPro && !purchase}
+            isLocked={!course.isFree && !isPro && !purchase}
           />
         ))}
         <SidebarQuickLinks />

@@ -8,6 +8,7 @@ type CourseWithProgressWithCategory = Course & {
   category: Category | null;
   chapters: { id: string }[];
   progress: number | null;
+  purchases: { id: string }[];
 };
 
 type GetCourses = {
@@ -57,12 +58,10 @@ export const getCourses = async ({
       },
     });
 
-    const shuffledCourses = [...courses].sort(() => Math.random() - 0.5);
-
     const coursesWithProgress: CourseWithProgressWithCategory[] =
       await Promise.all(
-        shuffledCourses.map(async (course) => {
-          if (!isPro && course.purchases.length === 0) {
+        courses.map(async (course) => {
+          if (!course.isFree && !isPro && course.purchases.length === 0) {
             return {
               ...course,
               progress: null,

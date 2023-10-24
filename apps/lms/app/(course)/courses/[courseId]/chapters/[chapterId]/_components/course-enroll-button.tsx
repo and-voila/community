@@ -34,6 +34,7 @@ export const CourseEnrollButton = ({
 
   return (
     <Button
+      variant="secondary"
       onClick={onClick}
       disabled={isLoading}
       size="sm"
