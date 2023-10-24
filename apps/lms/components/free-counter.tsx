@@ -39,16 +39,16 @@ export const FreeCounter = ({
   }
 
   return (
-    <div className="px-2">
+    <div className="px-4">
       <Card className="border bg-primary-foreground">
         <CardContent className="py-4">
-          <div className="mb-4 space-y-2 text-center text-sm text-foreground">
+          <div className="mb-4 space-y-2 text-center text-xs text-foreground">
             <h2 className="text-lg text-foreground font-semibold uppercase">
               {' '}
               Get early access
             </h2>
             <p className="text-muted-foreground">
-              Get the And Voila Best plan today and get ready for some fire.
+              Get the And Voila Best plan today, then get ready for some fire.
             </p>
             {/*<p>
               You&apos;ve used {apiLimitCount} / {MAX_FREE_TOKENS} AI tokens.
