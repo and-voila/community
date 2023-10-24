@@ -15,7 +15,7 @@ export const getChapter = async ({
   chapterId,
 }: GetChapterProps) => {
   try {
-    const hasSubscription = await checkSubscription();
+    const isPro = await checkSubscription();
 
     const purchase = await db.purchase.findUnique({
       where: {
@@ -64,7 +64,7 @@ export const getChapter = async ({
     let attachments: Attachment[] = [];
     let nextChapter: Chapter | null = null;
 
-    if (hasSubscription || purchase) {
+    if (isPro || purchase) {
       attachments = await db.attachment.findMany({
         where: {
           courseId: courseId,
@@ -76,7 +76,7 @@ export const getChapter = async ({
       });
     }
 
-    if (chapter.isFree || hasSubscription || purchase) {
+    if (chapter.isFree || isPro || purchase) {
       muxData = await db.muxData.findUnique({
         where: {
           chapterId: chapterId,

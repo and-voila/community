@@ -22,7 +22,7 @@ export const getCourses = async ({
   categoryId,
 }: GetCourses): Promise<CourseWithProgressWithCategory[]> => {
   try {
-    const hasSubscription = await checkSubscription();
+    const isPro = await checkSubscription();
 
     const courses = await db.course.findMany({
       where: {
@@ -62,7 +62,7 @@ export const getCourses = async ({
     const coursesWithProgress: CourseWithProgressWithCategory[] =
       await Promise.all(
         shuffledCourses.map(async (course) => {
-          if (!hasSubscription && course.purchases.length === 0) {
+          if (!isPro && course.purchases.length === 0) {
             return {
               ...course,
               progress: null,
