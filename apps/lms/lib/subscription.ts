@@ -5,15 +5,15 @@ import { isTeacher } from './teacher';
 
 const DAY_IN_MS = 86_400_000;
 
-export const checkSubscription = async () => {
+export const checkSubscription = async (): Promise<boolean> => {
   const { userId } = auth();
 
   if (isTeacher(userId)) {
-    return { isPaidMember: true };
+    return true;
   }
 
   if (!userId) {
-    return { isPaidMember: false };
+    return false;
   }
 
   const userSubscription = await db.userSubscription.findUnique({
@@ -33,7 +33,7 @@ export const checkSubscription = async () => {
   });
 
   if (!userSubscription) {
-    return { isPaidMember: false };
+    return false;
   }
 
   const isValid =
@@ -42,5 +42,5 @@ export const checkSubscription = async () => {
     userSubscription.stripeCurrentPeriodEnd?.getTime()! + DAY_IN_MS >
       Date.now();
 
-  return { isPaidMember: !!isValid };
+  return !!isValid;
 };
