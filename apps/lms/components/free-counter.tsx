@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 'use client';
 
 import { useEffect, useState } from 'react';
@@ -38,17 +39,24 @@ export const FreeCounter = ({
   }
 
   return (
-    <div className="px-3">
+    <div className="px-2">
       <Card className="border bg-primary-foreground">
-        <CardContent className="py-6">
+        <CardContent className="py-4">
           <div className="mb-4 space-y-2 text-center text-sm text-foreground">
-            <p>
+            <h2 className="text-lg text-foreground font-semibold uppercase">
+              {' '}
+              Get early access
+            </h2>
+            <p className="text-muted-foreground">
+              Get the And Voila Best plan today and get ready for some fire.
+            </p>
+            {/*<p>
               You&apos;ve used {apiLimitCount} / {MAX_FREE_TOKENS} AI tokens.
             </p>
             <Progress
               value={(apiLimitCount / MAX_FREE_TOKENS) * 100}
               className="h3"
-            />
+            />*/}
           </div>
           <Button onClick={proModal.onOpen} className="w-full" variant="custom">
             Upgrade

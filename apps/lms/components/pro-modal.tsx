@@ -21,6 +21,11 @@ import { Icons } from './icons';
 
 const features = [
   {
+    label: 'Early access',
+    icon: Icons.scissors,
+    description: 'Save 50% for a year.',
+  },
+  {
     label: 'Community',
     icon: Icons.heart,
     description: 'Full access to Discord community.',
@@ -83,8 +88,9 @@ export const ProModal = () => {
           </DialogTitle>
           <DialogDescription className="space-y-2 pt-2 text-center font-medium text-muted-foreground">
             <p className="text-muted-foreground text-sm lg:text-base mb-6">
-              Skyrocket your marketing performance for only $50 per month with
-              complete access to the Community and Labs.
+              Skyrocket your marketing performance for only{' '}
+              <span className="line-through">$50</span> per month with complete
+              access to the Community and Labs.
             </p>
             {features.map((feature) => (
               <Card

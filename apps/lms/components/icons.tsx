@@ -24,6 +24,7 @@ import {
   QuestionMarkCircledIcon,
   ReaderIcon,
   RocketIcon,
+  ScissorsIcon,
   TwitterLogoIcon,
   VideoIcon,
 } from '@ui/index';
@@ -91,4 +92,5 @@ export const Icons = {
   check: CheckIcon,
   briefcase: BackpackIcon,
   barchart: BarChartIcon,
+  scissors: ScissorsIcon,
 };
