@@ -8,6 +8,7 @@ type CourseWithProgressWithCategory = Course & {
   category: Category | null;
   chapters: { id: string }[];
   progress: number | null;
+  purchases: { id: string }[];
 };
 
 type GetCourses = {
@@ -22,7 +23,7 @@ export const getCourses = async ({
   categoryId,
 }: GetCourses): Promise<CourseWithProgressWithCategory[]> => {
   try {
-    const hasSubscription = await checkSubscription();
+    const isPaidMember = await checkSubscription();
 
     const courses = await db.course.findMany({
       where: {
@@ -51,18 +52,16 @@ export const getCourses = async ({
       orderBy: {
         createdAt: 'desc',
       },
-      cacheStrategy: {
-        ttl: 300,
-        swr: 60,
-      },
     });
-
-    const shuffledCourses = [...courses].sort(() => Math.random() - 0.5);
 
     const coursesWithProgress: CourseWithProgressWithCategory[] =
       await Promise.all(
-        shuffledCourses.map(async (course) => {
-          if (!hasSubscription && course.purchases.length === 0) {
+        courses.map(async (course) => {
+          if (
+            !course.isFree &&
+            !isPaidMember &&
+            course.purchases.length === 0
+          ) {
             return {
               ...course,
               progress: null,

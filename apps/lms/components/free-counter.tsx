@@ -10,12 +10,12 @@ import { isTeacher } from '@/lib/teacher';
 
 interface FreeCounterProps {
   apiLimitCount: number;
-  isPro: boolean;
+  isPaidMember: boolean;
 }
 
 export const FreeCounter = ({
   apiLimitCount = 0,
-  isPro = false,
+  isPaidMember = false,
 }: FreeCounterProps) => {
   const proModal = useProModal();
   const [mounted, setMounted] = useState(false);
@@ -29,7 +29,7 @@ export const FreeCounter = ({
     return null;
   }
 
-  if (isPro) {
+  if (isPaidMember) {
     return null;
   }
 

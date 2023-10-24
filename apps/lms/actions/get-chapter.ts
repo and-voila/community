@@ -15,7 +15,7 @@ export const getChapter = async ({
   chapterId,
 }: GetChapterProps) => {
   try {
-    const hasSubscription = await checkSubscription();
+    const isPaidMember = await checkSubscription();
 
     const purchase = await db.purchase.findUnique({
       where: {
@@ -23,10 +23,6 @@ export const getChapter = async ({
           userId,
           courseId,
         },
-      },
-      cacheStrategy: {
-        ttl: 60,
-        swr: 30,
       },
     });
 
@@ -38,10 +34,7 @@ export const getChapter = async ({
       select: {
         isFree: true,
         price: true,
-      },
-      cacheStrategy: {
-        ttl: 300,
-        swr: 60,
+        description: true,
       },
     });
 
@@ -49,10 +42,6 @@ export const getChapter = async ({
       where: {
         id: chapterId,
         isPublished: true,
-      },
-      cacheStrategy: {
-        ttl: 300,
-        swr: 60,
       },
     });
 
@@ -64,26 +53,18 @@ export const getChapter = async ({
     let attachments: Attachment[] = [];
     let nextChapter: Chapter | null = null;
 
-    if (hasSubscription || purchase) {
+    if (course.isFree || isPaidMember || purchase) {
       attachments = await db.attachment.findMany({
         where: {
           courseId: courseId,
         },
-        cacheStrategy: {
-          ttl: 300,
-          swr: 60,
-        },
       });
     }
 
-    if (chapter.isFree || hasSubscription || purchase) {
+    if (course.isFree || isPaidMember || purchase) {
       muxData = await db.muxData.findUnique({
         where: {
           chapterId: chapterId,
-        },
-        cacheStrategy: {
-          ttl: 300,
-          swr: 60,
         },
       });
 
@@ -98,10 +79,6 @@ export const getChapter = async ({
         orderBy: {
           position: 'asc',
         },
-        cacheStrategy: {
-          ttl: 300,
-          swr: 60,
-        },
       });
     }
 
@@ -111,10 +88,6 @@ export const getChapter = async ({
           userId,
           chapterId,
         },
-      },
-      cacheStrategy: {
-        ttl: 60,
-        swr: 30,
       },
     });
 

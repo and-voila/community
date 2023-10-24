@@ -27,7 +27,7 @@ export const CourseProgress = ({
 
   return (
     <div>
-      <Progress className={`h-2 ${progressClass}`} value={value} />
+      <Progress className={`h-2 my-2 ${progressClass}`} value={value} />
       <p
         className={cn(
           'mt-2 font-medium text-foreground',

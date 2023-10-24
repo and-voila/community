@@ -7,12 +7,12 @@ import {
 } from '@ui/index';
 
 const bannerVariants = cva(
-  'border text-center p-4 text-sm flex items-center w-full',
+  'border-2 text-center p-4 text-sm flex items-center w-full',
   {
     variants: {
       variant: {
-        warning: 'bg-yellow-200/80 border-yellow-500 text-black',
-        success: 'bg-emerald-700 border-emerald-800 text-white',
+        warning: 'bg-yellow-400 border-yellow-600 text-black',
+        success: 'bg-green-600 border-green-800 text-white',
       },
     },
     defaultVariants: {

@@ -46,7 +46,7 @@ export const CourseCard = ({
               </span>
             </div>
           </div>
-          <div className="line-clamp-1 font-display text-lg leading-7 transition group-hover:text-brand">
+          <div className="line-clamp-2 font-semibold text-lg leading-7 transition group-hover:text-brand">
             {title}
           </div>
           <p className="my-2 line-clamp-2 text-sm text-muted-foreground">

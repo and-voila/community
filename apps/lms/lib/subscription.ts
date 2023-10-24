@@ -5,7 +5,7 @@ import { isTeacher } from './teacher';
 
 const DAY_IN_MS = 86_400_000;
 
-export const checkSubscription = async () => {
+export const checkSubscription = async (): Promise<boolean> => {
   const { userId } = auth();
 
   if (isTeacher(userId)) {
@@ -25,10 +25,6 @@ export const checkSubscription = async () => {
       stripeCurrentPeriodEnd: true,
       stripeCustomerId: true,
       stripePriceId: true,
-    },
-    cacheStrategy: {
-      ttl: 604800,
-      swr: 10,
     },
   });
 

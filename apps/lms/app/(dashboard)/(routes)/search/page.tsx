@@ -26,10 +26,6 @@ const SearchPage = async ({ searchParams }: SearchPageProps) => {
     orderBy: {
       name: 'asc',
     },
-    cacheStrategy: {
-      ttl: 300,
-      swr: 60,
-    },
   });
 
   const courses = await getCourses({

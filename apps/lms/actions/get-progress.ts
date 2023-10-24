@@ -13,10 +13,6 @@ export const getProgress = async (
       select: {
         id: true,
       },
-      cacheStrategy: {
-        ttl: 60,
-        swr: 30,
-      },
     });
 
     const publishedChapterIds = publishedChapters.map((chapter) => chapter.id);
@@ -28,10 +24,6 @@ export const getProgress = async (
           in: publishedChapterIds,
         },
         isCompleted: true,
-      },
-      cacheStrategy: {
-        ttl: 300,
-        swr: 60,
       },
     });
 

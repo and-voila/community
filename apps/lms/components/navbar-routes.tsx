@@ -28,7 +28,7 @@ export const NavbarRoutes = () => {
       <div className="ml-auto flex pr-6">
         {isTeacherPage || isCoursePage ? (
           <Link href="/">
-            <Button size="sm" variant="ghost">
+            <Button size="sm" variant="outline">
               <ExitIcon className="mr-2 h-4 w-4" />
               Exit
             </Button>
@@ -41,7 +41,7 @@ export const NavbarRoutes = () => {
           </Link>
         ) : null}
       </div>
-      <div className="flex gap-x-2 mx-6">
+      <div className="flex gap-x-4 mr-6">
         <ModeToggle />
         <UserButton afterSignOutUrl="/sign-in" />
       </div>

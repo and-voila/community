@@ -6,10 +6,13 @@ import { SidebarRoutes } from './sidebar-routes';
 
 interface SidebarProps {
   apiLimitCount: number;
-  isPro: boolean;
+  isPaidMember: boolean;
 }
 
-export const Sidebar = ({ apiLimitCount, isPro = false }: SidebarProps) => {
+export const Sidebar = ({
+  apiLimitCount,
+  isPaidMember = false,
+}: SidebarProps) => {
   return (
     <div className="flex h-full flex-col overflow-y-auto bg-[#d0d5dd] shadow-sm dark:bg-[#010101]">
       <div className="p-6">
@@ -19,7 +22,10 @@ export const Sidebar = ({ apiLimitCount, isPro = false }: SidebarProps) => {
         <SidebarRoutes />
       </div>
       <div className="absolute bottom-6 w-full">
-        <FreeCounter isPro={isPro} apiLimitCount={apiLimitCount} />
+        <FreeCounter
+          isPaidMember={isPaidMember}
+          apiLimitCount={apiLimitCount}
+        />
       </div>
     </div>
   );
