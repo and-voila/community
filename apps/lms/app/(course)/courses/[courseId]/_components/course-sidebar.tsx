@@ -29,7 +29,7 @@ export const CourseSidebar = async ({
     return redirect('/');
   }
 
-  const isPro = await checkSubscription();
+  const isPaidMember = await checkSubscription();
   const purchase = await db.purchase.findUnique({
     where: {
       userId_courseId: {
@@ -46,7 +46,7 @@ export const CourseSidebar = async ({
       </div>
       <div className="flex flex-col border-y p-8">
         <h1 className="font-display text-lg">{course.title}</h1>
-        {(course.isFree || isPro || purchase) && (
+        {(course.isFree || isPaidMember || purchase) && (
           <div className="mt-10">
             <CourseProgress variant="success" value={progressCount} />
           </div>
@@ -60,7 +60,7 @@ export const CourseSidebar = async ({
             label={chapter.title}
             isCompleted={!!chapter.userProgress?.[0]?.isCompleted}
             courseId={course.id}
-            isLocked={!course.isFree && !isPro && !purchase}
+            isLocked={!course.isFree && !isPaidMember && !purchase}
           />
         ))}
         <SidebarQuickLinks />

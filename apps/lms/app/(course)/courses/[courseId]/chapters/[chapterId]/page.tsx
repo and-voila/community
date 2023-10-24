@@ -39,13 +39,13 @@ const ChapterIdPage = async ({
     courseId: params.courseId,
   });
 
-  const isPro = await checkSubscription();
+  const isPaidMember = await checkSubscription();
 
   if (!chapter || !course) {
     return redirect('/');
   }
 
-  const isLocked = !course.isFree && !isPro && !purchase;
+  const isLocked = !course.isFree && !isPaidMember && !purchase;
 
   // ...
 
@@ -63,7 +63,8 @@ const ChapterIdPage = async ({
       )
     );
   }
-  const completeOnEnd = (!!isPro || !!purchase) && !userProgress?.isCompleted;
+  const completeOnEnd =
+    (!!isPaidMember || !!purchase) && !userProgress?.isCompleted;
 
   return (
     <div>
@@ -113,7 +114,7 @@ const ChapterIdPage = async ({
                       price={course.price!}
                     />
                     or
-                    <SubscriptionButton isPro={isPro} size="sm" />
+                    <SubscriptionButton isPaidMember={isPaidMember} size="sm" />
                   </div>
                 )
               )}

@@ -2,13 +2,13 @@ import { formatPrice } from '@/lib/format';
 
 export const getCoursePrice = (
   price: number,
-  isPro: boolean,
+  isPaidMember: boolean,
   purchased: boolean,
   isFree: boolean,
 ): string => {
   if (isFree || price === 0) {
     return 'Free';
-  } else if (isPro) {
+  } else if (isPaidMember) {
     return 'Included';
   } else if (purchased) {
     return 'Purchased';

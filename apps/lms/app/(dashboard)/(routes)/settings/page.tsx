@@ -5,7 +5,7 @@ import { checkSubscription } from 'lib/subscription';
 import { GearIcon, Tabs, TabsContent, TabsList, TabsTrigger } from 'ui';
 
 const SettingsPage = async () => {
-  const isPro = await checkSubscription();
+  const isPaidMember = await checkSubscription();
 
   return (
     <div className="md:mt-8">
@@ -26,15 +26,15 @@ const SettingsPage = async () => {
             className="mt-6 space-y-4 lg:space-y-6"
           >
             <h3 className="text-base font-semibold text-foreground lg:text-lg">
-              {isPro ? 'Manage Subscription.' : 'Ready to go Premium?'}
+              {isPaidMember ? 'Manage Subscription.' : 'Ready to go Premium?'}
             </h3>
             <p className="mt-2 text-sm text-muted-foreground lg:text-base">
-              {isPro
+              {isPaidMember
                 ? 'Update your payment info, change billing cycle, or cancel. Payment processing handled securely by Stripe.'
                 : 'Subscribe today. Backed by our 100% Delight Guarantee. Payments are handled by Stripe, ensuring a secure and smooth experience.'}
             </p>
             <div className="">
-              <SubscriptionButton isPro={isPro} />
+              <SubscriptionButton isPaidMember={isPaidMember} />
             </div>
           </TabsContent>
           <TabsContent value="profile" className="mt-6 space-y-4 lg:space-y-6">

@@ -15,7 +15,7 @@ export const getChapter = async ({
   chapterId,
 }: GetChapterProps) => {
   try {
-    const isPro = await checkSubscription();
+    const isPaidMember = await checkSubscription();
 
     const purchase = await db.purchase.findUnique({
       where: {
@@ -23,10 +23,6 @@ export const getChapter = async ({
           userId,
           courseId,
         },
-      },
-      cacheStrategy: {
-        ttl: 60,
-        swr: 30,
       },
     });
 
@@ -40,20 +36,12 @@ export const getChapter = async ({
         price: true,
         description: true,
       },
-      cacheStrategy: {
-        ttl: 300,
-        swr: 60,
-      },
     });
 
     const chapter = await db.chapter.findUnique({
       where: {
         id: chapterId,
         isPublished: true,
-      },
-      cacheStrategy: {
-        ttl: 300,
-        swr: 60,
       },
     });
 
@@ -65,26 +53,18 @@ export const getChapter = async ({
     let attachments: Attachment[] = [];
     let nextChapter: Chapter | null = null;
 
-    if (course.isFree || isPro || purchase) {
+    if (course.isFree || isPaidMember || purchase) {
       attachments = await db.attachment.findMany({
         where: {
           courseId: courseId,
         },
-        cacheStrategy: {
-          ttl: 300,
-          swr: 60,
-        },
       });
     }
 
-    if (course.isFree || isPro || purchase) {
+    if (course.isFree || isPaidMember || purchase) {
       muxData = await db.muxData.findUnique({
         where: {
           chapterId: chapterId,
-        },
-        cacheStrategy: {
-          ttl: 300,
-          swr: 60,
         },
       });
 
@@ -99,10 +79,6 @@ export const getChapter = async ({
         orderBy: {
           position: 'asc',
         },
-        cacheStrategy: {
-          ttl: 300,
-          swr: 60,
-        },
       });
     }
 
@@ -112,10 +88,6 @@ export const getChapter = async ({
           userId,
           chapterId,
         },
-      },
-      cacheStrategy: {
-        ttl: 60,
-        swr: 30,
       },
     });
 

@@ -5,12 +5,12 @@ import { Sidebar } from './sidebar';
 
 interface MobileSidebarProps {
   apiLimitCount: number;
-  isPro: boolean;
+  isPaidMember: boolean;
 }
 
 export const MobileSidebar = ({
   apiLimitCount = 0,
-  isPro = false,
+  isPaidMember = false,
 }: MobileSidebarProps) => {
   return (
     <Sheet>
@@ -18,7 +18,7 @@ export const MobileSidebar = ({
         <HamburgerMenuIcon />
       </SheetTrigger>
       <SheetContent side="left" className="bg-white p-0">
-        <Sidebar isPro={isPro} apiLimitCount={apiLimitCount} />
+        <Sidebar isPaidMember={isPaidMember} apiLimitCount={apiLimitCount} />
       </SheetContent>
     </Sheet>
   );

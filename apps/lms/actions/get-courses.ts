@@ -23,7 +23,7 @@ export const getCourses = async ({
   categoryId,
 }: GetCourses): Promise<CourseWithProgressWithCategory[]> => {
   try {
-    const isPro = await checkSubscription();
+    const isPaidMember = await checkSubscription();
 
     const courses = await db.course.findMany({
       where: {
@@ -52,16 +52,16 @@ export const getCourses = async ({
       orderBy: {
         createdAt: 'desc',
       },
-      cacheStrategy: {
-        ttl: 300,
-        swr: 60,
-      },
     });
 
     const coursesWithProgress: CourseWithProgressWithCategory[] =
       await Promise.all(
         courses.map(async (course) => {
-          if (!course.isFree && !isPro && course.purchases.length === 0) {
+          if (
+            !course.isFree &&
+            !isPaidMember &&
+            course.purchases.length === 0
+          ) {
             return {
               ...course,
               progress: null,

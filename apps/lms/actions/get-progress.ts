@@ -2,29 +2,35 @@ import { db } from '@/lib/db';
 
 export const getProgress = async (
   userId: string,
-  chapterId: string,
+  courseId: string,
 ): Promise<number> => {
   try {
-    const userProgress = await db.userProgress.findFirst({
+    const publishedChapters = await db.chapter.findMany({
       where: {
-        userId: userId,
-        chapterId: chapterId,
+        courseId: courseId,
+        isPublished: true,
       },
-      cacheStrategy: {
-        ttl: 300,
-        swr: 60,
+      select: {
+        id: true,
       },
     });
 
-    if (!userProgress) {
-      return 0;
-    }
+    const publishedChapterIds = publishedChapters.map((chapter) => chapter.id);
 
-    if (userProgress.isCompleted) {
-      return 100;
-    }
+    const validCompletedChapters = await db.userProgress.count({
+      where: {
+        userId: userId,
+        chapterId: {
+          in: publishedChapterIds,
+        },
+        isCompleted: true,
+      },
+    });
 
-    return 10;
+    const progressPercentage =
+      (validCompletedChapters / publishedChapterIds.length) * 100;
+
+    return progressPercentage;
   } catch (error) {
     return 0;
   }

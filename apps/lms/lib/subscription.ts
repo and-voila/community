@@ -9,11 +9,11 @@ export const checkSubscription = async () => {
   const { userId } = auth();
 
   if (isTeacher(userId)) {
-    return true;
+    return { isPaidMember: true };
   }
 
   if (!userId) {
-    return false;
+    return { isPaidMember: false };
   }
 
   const userSubscription = await db.userSubscription.findUnique({
@@ -33,7 +33,7 @@ export const checkSubscription = async () => {
   });
 
   if (!userSubscription) {
-    return false;
+    return { isPaidMember: false };
   }
 
   const isValid =
@@ -42,5 +42,5 @@ export const checkSubscription = async () => {
     userSubscription.stripeCurrentPeriodEnd?.getTime()! + DAY_IN_MS >
       Date.now();
 
-  return !!isValid;
+  return { isPaidMember: !!isValid };
 };

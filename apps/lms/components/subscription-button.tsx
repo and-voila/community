@@ -8,10 +8,10 @@ import { Button } from 'ui';
 import { Icons } from './icons';
 
 export const SubscriptionButton = ({
-  isPro = false,
+  isPaidMember = false,
   size,
 }: {
-  isPro: boolean;
+  isPaidMember: boolean;
   size?: 'default' | 'sm' | 'lg' | 'icon';
 }) => {
   const [loading, setLoading] = useState(false);
@@ -33,12 +33,12 @@ export const SubscriptionButton = ({
   return (
     <Button
       size={size}
-      variant={isPro ? 'default' : 'custom'}
+      variant={isPaidMember ? 'default' : 'custom'}
       disabled={loading}
       onClick={onClick}
     >
-      {isPro ? 'Manage Subscription' : 'Become a Member'}
-      {!isPro && <Icons.magic className="ml-2 h-4 w-4" />}
+      {isPaidMember ? 'Manage Subscription' : 'Become a Member'}
+      {!isPaidMember && <Icons.magic className="ml-2 h-4 w-4" />}
     </Button>
   );
 };

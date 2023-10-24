@@ -16,7 +16,7 @@ type DashboardCourses = {
 export const getDashboardCourses = async (
   userId: string,
 ): Promise<DashboardCourses> => {
-  const isPro = await checkSubscription();
+  const isPaidMember = await checkSubscription();
   try {
     const allCourses = await db.course.findMany({
       where: {
@@ -29,7 +29,7 @@ export const getDashboardCourses = async (
               },
             },
           },
-          isPro ? {} : { NOT: { isFree: false } },
+          isPaidMember ? {} : { NOT: { isFree: false } },
         ],
       },
       include: {
@@ -39,10 +39,6 @@ export const getDashboardCourses = async (
             isPublished: true,
           },
         },
-      },
-      cacheStrategy: {
-        ttl: 60,
-        swr: 30,
       },
     });
 
