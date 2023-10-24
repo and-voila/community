@@ -6,7 +6,6 @@ import { Logo } from '@ui/index';
 import { db } from '@/lib/db';
 import { checkSubscription } from '@/lib/subscription';
 import { CourseProgress } from '@/components/course-progress';
-import SidebarQuickLinks from '@/components/sidebar-quick-links';
 
 import { CourseSidebarItem } from './course-sidebar-item';
 
@@ -44,8 +43,8 @@ export const CourseSidebar = async ({
       <div className="mb-4 p-8">
         <Logo fillOnHover className="h-6 md:h-8" />
       </div>
-      <div className="flex flex-col border-y p-8">
-        <h1 className="font-display text-lg">{course.title}</h1>
+      <div className="flex flex-col border-y p-8 bg-primary-foreground">
+        <h1 className="font-semibold text-xl">{course.title}</h1>
         {(course.isFree || isPaidMember || purchase) && (
           <div className="mt-10">
             <CourseProgress variant="success" value={progressCount} />
@@ -63,7 +62,6 @@ export const CourseSidebar = async ({
             isLocked={!course.isFree && !isPaidMember && !purchase}
           />
         ))}
-        <SidebarQuickLinks />
       </div>
     </div>
   );
