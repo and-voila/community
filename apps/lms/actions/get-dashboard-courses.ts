@@ -36,14 +36,40 @@ export const getDashboardCourses = async (
       },
     });
 
-    const courses = purchasedCourses.map(
-      (purchase) => purchase.course,
-    ) as CourseWithProgressWithCategory[];
+    const purchasedCourseIds = purchasedCourses.map(
+      (purchase) => purchase.course.id,
+    );
 
-    for (const course of courses) {
-      const progress = await getProgress(userId, course.id);
-      course['progress'] = progress;
-    }
+    const userProgress = await db.userProgress.findMany({
+      where: { userId },
+      select: { chapterId: true },
+    });
+
+    const courseIdsWithProgress = userProgress.map(
+      (progress) => progress.chapterId,
+    );
+
+    const allCourseIds = Array.from(
+      new Set([...purchasedCourseIds, ...courseIdsWithProgress]),
+    );
+
+    const courses = await Promise.all(
+      allCourseIds.map(async (id) => {
+        const course = await db.course.findUnique({
+          where: { id },
+          include: {
+            category: true,
+            chapters: {
+              where: {
+                isPublished: true,
+              },
+            },
+          },
+        });
+        const progress = await getProgress(userId, id);
+        return { ...course, progress } as CourseWithProgressWithCategory;
+      }),
+    );
 
     const completedCourses = courses.filter(
       (course) => course.progress === 100,
