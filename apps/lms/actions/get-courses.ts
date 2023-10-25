@@ -16,6 +16,7 @@ type GetCourses = {
   userId: string;
   title?: string;
   categoryId?: string;
+  isPaidMember: boolean;
 };
 
 export const getCourses = async ({

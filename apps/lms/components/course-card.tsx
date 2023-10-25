@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 
-import { formatPrice } from '@/lib/format';
+import { getCoursePrice } from '@/lib/course-pricing';
 import { CourseProgress } from '@/components/course-progress';
 import { IconBadge } from '@/components/icon-badge';
 
@@ -17,6 +17,8 @@ interface CourseCardProps {
   price: number;
   progress: number | null;
   category: string;
+  isPaidMember: boolean;
+  purchased: boolean;
 }
 export const CourseCard = ({
   id,
@@ -28,7 +30,10 @@ export const CourseCard = ({
   price,
   progress,
   category,
+  isPaidMember,
+  purchased,
 }: CourseCardProps) => {
+  const displayPrice = getCoursePrice(price, isPaidMember, purchased);
   return (
     <Link href={`/courses/${id}`}>
       <div className="group h-full overflow-hidden rounded-xl border bg-white transition hover:shadow-sm dark:bg-background">
@@ -60,8 +65,8 @@ export const CourseCard = ({
               value={progress}
             />
           ) : (
-            <p className="mt-2 text-lg font-semibold text-brand">
-              {formatPrice(price) === '$0' ? 'Free' : formatPrice(price)}
+            <p className="mt-2 text-base font-semibold text-brand">
+              {displayPrice}
             </p>
           )}
         </div>
