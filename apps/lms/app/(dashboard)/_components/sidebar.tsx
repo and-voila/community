@@ -21,7 +21,7 @@ export const Sidebar = ({
       <div className="flex w-full flex-col">
         <SidebarRoutes />
       </div>
-      <div className="absolute bottom-6 w-full">
+      <div className="absolute bottom-6 flex w-full flex-col">
         <FreeCounter
           isPaidMember={isPaidMember}
           apiLimitCount={apiLimitCount}

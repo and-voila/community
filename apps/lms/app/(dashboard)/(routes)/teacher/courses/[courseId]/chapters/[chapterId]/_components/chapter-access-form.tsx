@@ -13,11 +13,13 @@ import {
   FormField,
   FormItem,
 } from '@ui/components/ui/form';
-import { cn, Pencil1Icon } from '@ui/index';
+import { cn } from '@ui/index';
 import axios from 'axios';
 import { useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
 import * as z from 'zod';
+
+import { Icons } from '@/components/icons';
 
 interface ChapterAccessFormProps {
   initialData: Chapter;
@@ -57,15 +59,15 @@ export const ChapterAccessForm = ({
   };
 
   return (
-    <div className="mt-6 rounded-md border bg-white p-4 dark:bg-background">
-      <div className="flex items-center justify-between font-display">
+    <div className="mt-6 rounded-md border bg-white px-4 py-6 dark:bg-background">
+      <div className="flex items-center justify-between font-semibold mb-4">
         Chapter access
         <Button onClick={toggleEdit} variant="ghost">
           {isEditing ? (
             <>Cancel</>
           ) : (
             <>
-              <Pencil1Icon className="mr-2 h-4 w-4" />
+              <Icons.pencil className="mr-2 h-4 w-4" />
               Edit access
             </>
           )}
@@ -113,6 +115,7 @@ export const ChapterAccessForm = ({
             />
             <div className="flex items-center gap-x-2">
               <Button
+                size="sm"
                 variant="custom"
                 disabled={!isValid || isSubmitting}
                 type="submit"

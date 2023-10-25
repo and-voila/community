@@ -8,54 +8,84 @@ type CourseWithProgressWithCategory = Course & {
   category: Category;
   chapters: Chapter[];
   progress: number | null;
+  isPaidMember: boolean;
 };
+
 type DashboardCourses = {
   completedCourses: CourseWithProgressWithCategory[];
   coursesInProgress: CourseWithProgressWithCategory[];
 };
+
 export const getDashboardCourses = async (
   userId: string,
 ): Promise<DashboardCourses> => {
-  const isPaidMember = await checkSubscription();
   try {
-    const allCourses = await db.course.findMany({
+    const purchasedCourses = await db.purchase.findMany({
       where: {
-        OR: [
-          { isFree: true },
-          {
-            purchases: {
-              some: {
-                userId: userId,
+        userId: userId,
+      },
+      select: {
+        course: {
+          include: {
+            category: true,
+            chapters: {
+              where: {
+                isPublished: true,
               },
             },
-          },
-          isPaidMember ? {} : { NOT: { isFree: false } },
-        ],
-      },
-      include: {
-        category: true,
-        chapters: {
-          where: {
-            isPublished: true,
           },
         },
       },
     });
 
-    const courses = allCourses.map(
-      (course) => course,
-    ) as CourseWithProgressWithCategory[];
+    const purchasedCourseIds = purchasedCourses.map(
+      (purchase) => purchase.course.id,
+    );
 
-    for (const course of courses) {
-      const progress = await getProgress(userId, course.id);
-      course['progress'] = progress;
-    }
+    const userProgress = await db.userProgress.findMany({
+      where: { userId },
+      select: { chapterId: true },
+    });
+
+    const courseIdsWithProgress = userProgress.map(
+      (progress) => progress.chapterId,
+    );
+
+    const allCourseIds = Array.from(
+      new Set([...purchasedCourseIds, ...courseIdsWithProgress]),
+    );
+
+    const isPaidMember = await checkSubscription();
+
+    const courses = await Promise.all(
+      allCourseIds.map(async (id) => {
+        const course = await db.course.findUnique({
+          where: { id },
+          include: {
+            category: true,
+            chapters: {
+              where: {
+                isPublished: true,
+              },
+            },
+          },
+        });
+        const progress = await getProgress(userId, id);
+        return {
+          ...course,
+          progress,
+          isPaidMember,
+        } as CourseWithProgressWithCategory;
+      }),
+    );
+
     const completedCourses = courses.filter(
       (course) => course.progress === 100,
     );
     const coursesInProgress = courses.filter(
       (course) => (course.progress ?? 0) < 100,
     );
+
     return {
       completedCourses,
       coursesInProgress,

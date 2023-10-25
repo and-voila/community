@@ -15,7 +15,6 @@ interface VideoPlayerProps {
   courseId: string;
   chapterId: string;
   nextChapterId?: string;
-  isLocked: boolean;
   completeOnEnd: boolean;
   title: string;
 }
@@ -25,7 +24,6 @@ export const VideoPlayer = ({
   courseId,
   chapterId,
   nextChapterId,
-  isLocked,
   completeOnEnd,
   title,
 }: VideoPlayerProps) => {
@@ -61,30 +59,19 @@ export const VideoPlayer = ({
 
   return (
     <div className="relative aspect-video">
-      {!isReady && !isLocked && (
+      {!isReady && (
         <div className="absolute inset-0 flex items-center justify-center bg-brand/20">
           <Icons.spinner className="h-8 w-8 animate-spin text-secondary" />
         </div>
       )}
-      {isLocked && (
-        <div className="absolute inset-0 flex flex-col items-center justify-center gap-y-2 bg-brand/20 text-foreground">
-          <Icons.locked className="h-8 w-8" />
-          <p className="text-base max-w-sm text-center">
-            This is a premium playbook available for purchase or to members on
-            the Best plan.
-          </p>
-        </div>
-      )}
-      {!isLocked && (
-        <MuxPlayer
-          title={title}
-          className={cn(!isReady && 'hidden')}
-          onCanPlay={() => setIsReady(true)}
-          onEnded={onEnd}
-          autoPlay
-          playbackId={playbackId}
-        />
-      )}
+      <MuxPlayer
+        title={title}
+        className={cn(!isReady && 'hidden')}
+        onCanPlay={() => setIsReady(true)}
+        onEnded={onEnd}
+        autoPlay
+        playbackId={playbackId}
+      />
     </div>
   );
 };

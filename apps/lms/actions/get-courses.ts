@@ -8,13 +8,15 @@ type CourseWithProgressWithCategory = Course & {
   category: Category | null;
   chapters: { id: string }[];
   progress: number | null;
-  purchases: { id: string }[];
+  price: number;
+  isPaidMember: boolean;
 };
 
 type GetCourses = {
   userId: string;
   title?: string;
   categoryId?: string;
+  isPaidMember: boolean;
 };
 
 export const getCourses = async ({
@@ -23,8 +25,6 @@ export const getCourses = async ({
   categoryId,
 }: GetCourses): Promise<CourseWithProgressWithCategory[]> => {
   try {
-    const isPaidMember = await checkSubscription();
-
     const courses = await db.course.findMany({
       where: {
         isPublished: true,
@@ -43,30 +43,27 @@ export const getCourses = async ({
             id: true,
           },
         },
+        purchases: {
+          where: {
+            userId,
+          },
+        },
       },
       orderBy: {
         createdAt: 'desc',
       },
-      cacheStrategy: {
-        ttl: 30,
-        swr: 60,
-      },
     });
 
-    const purchases = await db.purchase.findMany({
-      where: {
-        userId,
-      },
-    });
+    const isPaidMember = await checkSubscription();
 
     const coursesWithProgress: CourseWithProgressWithCategory[] =
       await Promise.all(
         courses.map(async (course) => {
-          if (!course.isFree && !isPaidMember && purchases.length === 0) {
+          if (course.purchases.length === 0) {
             return {
               ...course,
               progress: null,
-              purchases,
+              isPaidMember,
             };
           }
 
@@ -75,7 +72,7 @@ export const getCourses = async ({
           return {
             ...course,
             progress: progressPercentage,
-            purchases,
+            isPaidMember,
           };
         }),
       );

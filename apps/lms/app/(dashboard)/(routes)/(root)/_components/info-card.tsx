@@ -1,4 +1,4 @@
-import { LucideIcon } from '@ui/index';
+import { FunctionComponent } from 'react';
 
 import { IconBadge } from '@/components/icon-badge';
 
@@ -6,7 +6,7 @@ interface InfoCardProps {
   numberOfItems: number;
   variant?: 'default' | 'success';
   label: string;
-  icon: LucideIcon;
+  icon: FunctionComponent;
 }
 
 export const InfoCard = ({

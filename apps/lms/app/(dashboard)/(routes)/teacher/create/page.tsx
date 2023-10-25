@@ -2,6 +2,7 @@
 
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
+import { COURSE_DEFAULT_PRICE } from '@/constants';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Button } from '@ui/components/ui/button';
 import {
@@ -39,7 +40,10 @@ const CreatePage = () => {
 
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
     try {
-      const response = await axios.post('/api/courses', values);
+      const response = await axios.post('/api/courses', {
+        ...values,
+        price: COURSE_DEFAULT_PRICE,
+      });
       router.push(`/teacher/courses/${response.data.id}`);
       toast.success('Course created');
     } catch {
@@ -88,6 +92,7 @@ const CreatePage = () => {
                 </Button>
               </Link>
               <Button
+                variant="custom"
                 type="submit"
                 size="sm"
                 disabled={!isValid || isSubmitting}

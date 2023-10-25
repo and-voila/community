@@ -94,11 +94,6 @@ export const ChaptersList = ({
                     </div>
                     {chapter.title}
                     <div className="ml-auto flex items-center gap-x-2 pr-2">
-                      {chapter.isFree && (
-                        <Badge className="pointer-events-none border-alternate bg-transparent text-alternate">
-                          Free
-                        </Badge>
-                      )}
                       <Badge
                         className={cn(
                           'pointer-events-none border border-border bg-transparent text-muted-foreground',

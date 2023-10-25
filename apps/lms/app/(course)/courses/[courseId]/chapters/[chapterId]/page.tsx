@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import { redirect } from 'next/navigation';
 import { getChapter } from '@/actions/get-chapter';
 import { auth } from '@clerk/nextjs';
@@ -25,6 +26,8 @@ const ChapterIdPage = async ({
     return redirect('/');
   }
 
+  const isPaidMember = await checkSubscription();
+
   const {
     chapter,
     course,
@@ -39,32 +42,13 @@ const ChapterIdPage = async ({
     courseId: params.courseId,
   });
 
-  const isPaidMember = await checkSubscription();
-
   if (!chapter || !course) {
     return redirect('/');
   }
 
-  const isLocked = !course.isFree && !isPaidMember && !purchase;
+  const isLocked = course.price !== 0 && !(isPaidMember || purchase);
 
-  // ...
-
-  {
-    !isLocked ? (
-      <CourseProgressButton
-        chapterId={params.chapterId}
-        courseId={params.courseId}
-        nextChapterId={nextChapter?.id}
-        isCompleted={!!userProgress?.isCompleted}
-      />
-    ) : (
-      !course.isFree && (
-        <CourseEnrollButton courseId={params.courseId} price={course.price!} />
-      )
-    );
-  }
-  const completeOnEnd =
-    (!!isPaidMember || !!purchase) && !userProgress?.isCompleted;
+  const completeOnEnd = !!purchase && !userProgress?.isCompleted;
 
   return (
     <div>
@@ -77,37 +61,25 @@ const ChapterIdPage = async ({
             />
           )}
           {isLocked && (
-            <Banner
-              variant="warning"
-              label="Access this playbook for $12 or become a paid member and enjoy full access to our community, playbooks, and AI tools."
-            />
-          )}
-          <div className="py-4">
-            <VideoPlayer
-              chapterId={params.chapterId}
-              title={chapter.title}
-              courseId={params.courseId}
-              nextChapterId={nextChapter?.id}
-              // eslint-disable-next-line @typescript-eslint/no-non-null-asserted-optional-chain
-              playbackId={muxData?.playbackId!}
-              isLocked={isLocked}
-              completeOnEnd={completeOnEnd}
-            />
-          </div>
-          <div className="rounded-xl bg-white p-6 dark:bg-background lg:p-8">
-            <div className="flex flex-col items-center justify-between p-4 md:flex-row">
-              <h2 className="mb-2 flex-grow font-display text-lg">
-                {chapter.title}
-              </h2>
-              {!isLocked ? (
-                <CourseProgressButton
-                  chapterId={params.chapterId}
-                  courseId={params.courseId}
-                  nextChapterId={nextChapter?.id}
-                  isCompleted={!!userProgress?.isCompleted}
-                />
-              ) : (
-                !course.isFree && (
+            <>
+              <Banner
+                variant="warning"
+                label="You need to purchase this course to watch this chapter."
+              />
+              <Image
+                className="w-full py-4 shadow-md"
+                src={course.imageUrl}
+                alt={`A featured image of an anthropomorphic cat representing ${course.title}`}
+                width={630}
+                height={1200}
+                role="img"
+                aria-label={`A featured image of an anthropomorphic cat representing ${course.title}`}
+              />
+              <div className="rounded-xl bg-white p-6 dark:bg-background lg:p-8">
+                <div className="flex flex-col items-center justify-between p-4 md:flex-row">
+                  <h2 className="mb-2 flex-grow font-display text-lg">
+                    {chapter.title}
+                  </h2>
                   <div className="flex flex-row gap-x-4 items-center">
                     <CourseEnrollButton
                       courseId={params.courseId}
@@ -116,13 +88,43 @@ const ChapterIdPage = async ({
                     or
                     <SubscriptionButton isPaidMember={isPaidMember} size="sm" />
                   </div>
-                )
-              )}
-            </div>
-            <Separator />
-            {!isLocked ? (
-              <>
-                <Preview value={chapter.description!} />
+                </div>
+                <Separator />
+                <div>
+                  <Preview value={course.description!} />
+                </div>
+              </div>
+            </>
+          )}
+          {!isLocked && (
+            <>
+              <div className="py-4">
+                <VideoPlayer
+                  chapterId={params.chapterId}
+                  title={chapter.title}
+                  courseId={params.courseId}
+                  nextChapterId={nextChapter?.id}
+                  // eslint-disable-next-line @typescript-eslint/no-non-null-asserted-optional-chain
+                  playbackId={muxData?.playbackId!}
+                  completeOnEnd={completeOnEnd}
+                />
+              </div>
+              <div className="rounded-xl bg-white p-6 dark:bg-background lg:p-8">
+                <div className="flex flex-col items-center justify-between p-4 md:flex-row">
+                  <h2 className="mb-2 flex-grow font-display text-lg">
+                    {chapter.title}
+                  </h2>
+                  <CourseProgressButton
+                    chapterId={params.chapterId}
+                    courseId={params.courseId}
+                    nextChapterId={nextChapter?.id}
+                    isCompleted={!!userProgress?.isCompleted}
+                  />
+                </div>
+                <Separator />
+                <div>
+                  <Preview value={chapter.description!} />
+                </div>
                 {!!attachments.length && (
                   <>
                     <Separator />
@@ -149,13 +151,9 @@ const ChapterIdPage = async ({
                     </div>
                   </>
                 )}
-              </>
-            ) : (
-              <div>
-                <Preview value={course.description!} />
               </div>
-            )}
-          </div>
+            </>
+          )}
         </div>
       </Container>
     </div>

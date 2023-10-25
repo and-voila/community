@@ -1,10 +1,12 @@
 'use client';
 
 import { usePathname, useRouter } from 'next/navigation';
-import { cn, LucideIcon } from '@ui/index';
+import { cn } from '@ui/index';
+
+import { IconComponent } from '@/components/icons';
 
 interface SidebarItemProps {
-  icon: LucideIcon;
+  icon: IconComponent;
   label: string;
   href: string;
 }
@@ -34,8 +36,10 @@ export const SidebarItem = ({ icon: Icon, label, href }: SidebarItemProps) => {
     >
       <div className="flex items-center gap-x-2 py-4">
         <Icon
-          size={22}
-          className={cn('text-muted-foreground', isActive && 'text-brand')}
+          className={cn(
+            'text-muted-foreground h-4 w-4',
+            isActive && 'text-brand',
+          )}
         />
         {label}
       </div>

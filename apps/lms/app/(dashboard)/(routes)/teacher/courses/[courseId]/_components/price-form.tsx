@@ -1,7 +1,8 @@
 'use client';
 
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
+import { COURSE_DEFAULT_PRICE } from '@/constants';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Course } from '@prisma/client';
 import { Button } from '@ui/components/ui/button';
@@ -11,42 +12,35 @@ import {
   FormDescription,
   FormField,
   FormItem,
-  FormMessage,
 } from '@ui/components/ui/form';
-import { Input } from '@ui/components/ui/input';
-import { Checkbox, cn, Pencil1Icon } from '@ui/index';
+import { Switch } from '@ui/index';
 import axios from 'axios';
 import { useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
 import * as z from 'zod';
 
-import { formatPrice } from '@/lib/format';
+import { Icons } from '@/components/icons';
 
 interface PriceFormProps {
   initialData: Course;
   courseId: string;
 }
 
-const formSchema = z
-  .object({
-    price: z.number().optional(),
-    isFree: z.boolean().default(false),
-  })
-  .refine((data) => data.isFree || data.price !== undefined, {
-    message: 'Price is required when the course is not free',
-    path: ['price'], // specify the field the error is attached to
-  });
+const formSchema = z.object({
+  isFree: z.boolean(),
+});
 
 export const PriceForm = ({ initialData, courseId }: PriceFormProps) => {
   const [isEditing, setIsEditing] = useState(false);
 
   const toggleEdit = () => setIsEditing((current) => !current);
+
   const router = useRouter();
+
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      price: initialData?.price || undefined,
-      isFree: initialData?.isFree || false,
+      isFree: initialData?.price === 0,
     },
   });
 
@@ -54,49 +48,37 @@ export const PriceForm = ({ initialData, courseId }: PriceFormProps) => {
 
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
     try {
-      if (values.isFree) {
-        values.price = 0;
-      }
-      form.clearErrors('price');
-      await form.trigger();
-      if (form.formState.isValid) {
-        await axios.patch(`/api/courses/${courseId}`, values);
-        toast.success('Course updated');
-        toggleEdit();
-        router.refresh();
-      }
+      const price = values.isFree ? 0 : COURSE_DEFAULT_PRICE;
+
+      await axios.patch(`/api/courses/${courseId}`, {
+        price,
+      });
+      toast.success('Course updated');
+      toggleEdit();
+      router.refresh();
     } catch {
       toast.error('Something went wrong');
     }
   };
 
   return (
-    <div className="mt-6 rounded-md border bg-white p-4 dark:bg-background">
-      <div className="flex items-center justify-between font-display">
-        Course price
-        <Button onClick={toggleEdit} variant="ghost">
+    <div className="mt-6 rounded-md border bg-white px-4 py-6 dark:bg-background">
+      <div className="flex items-center justify-between font-semibold mb-4">
+        Course access
+        <Button onClick={toggleEdit} variant="ghost" aria-label="Edit access">
           {isEditing ? (
             <>Cancel</>
           ) : (
             <>
-              <Pencil1Icon className="mr-2 h-4 w-4" />
-              Edit price
+              <Icons.pencil className="mr-2 h-4 w-4 text-brand" />
+              Edit access
             </>
           )}
         </Button>
       </div>
       {!isEditing && (
-        <p
-          className={cn(
-            'mt-2 text-sm',
-            !initialData.price && 'italic text-muted-foreground',
-          )}
-        >
-          {initialData.isFree
-            ? 'Free'
-            : initialData.price
-            ? formatPrice(initialData.price)
-            : 'No price set'}
+        <p className="mt-2 text-sm">
+          {initialData.price === 0 ? 'Free' : 'Paid'}
         </p>
       )}
       {isEditing && (
@@ -109,45 +91,31 @@ export const PriceForm = ({ initialData, courseId }: PriceFormProps) => {
               control={form.control}
               name="isFree"
               render={({ field }) => (
-                <FormItem className="flex flex-row items-start space-x-3 space-y-0 rounded-md border p-4">
+                <FormItem className="flex flex-row items-center space-x-3 space-y-0 rounded-md border p-4">
                   <FormControl>
-                    <Checkbox
+                    <Switch
                       checked={field.value}
                       onCheckedChange={field.onChange}
+                      role="switch"
+                      aria-checked={field.value}
+                      aria-label="Toggle course free status"
                     />
                   </FormControl>
                   <div className="space-y-1 leading-none">
-                    <FormDescription>
-                      Check this box if you want to make this course free
+                    <FormDescription id="switch-label" className="text-base">
+                      {field.value
+                        ? 'The course is currently Free.'
+                        : 'The course is currently Paid.'}
                     </FormDescription>
                   </div>
                 </FormItem>
               )}
             />
-            <FormField
-              control={form.control}
-              name="price"
-              render={({ field }) => (
-                <FormItem>
-                  <FormControl>
-                    <Input
-                      type="number"
-                      step="1"
-                      disabled={isSubmitting}
-                      placeholder="Set a price for the course."
-                      {...field}
-                    />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
             <div className="flex items-center gap-x-2">
               <Button
+                size="sm"
                 variant="custom"
-                disabled={
-                  isSubmitting || (!form.getValues().isFree && !isValid)
-                }
+                disabled={!isValid || isSubmitting}
                 type="submit"
               >
                 Save

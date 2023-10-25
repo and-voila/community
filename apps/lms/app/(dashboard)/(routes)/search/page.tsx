@@ -3,6 +3,7 @@ import { getCourses } from '@/actions/get-courses';
 import { auth } from '@clerk/nextjs';
 
 import { db } from '@/lib/db';
+import { checkSubscription } from '@/lib/subscription';
 import { CoursesList } from '@/components/courses-list';
 import { SearchInput } from '@/components/search-input';
 
@@ -26,15 +27,14 @@ const SearchPage = async ({ searchParams }: SearchPageProps) => {
     orderBy: {
       name: 'asc',
     },
-    cacheStrategy: {
-      ttl: 300,
-      swr: 600,
-    },
   });
+
+  const isPaidMember = await checkSubscription();
 
   const courses = await getCourses({
     userId,
     ...searchParams,
+    isPaidMember,
   });
 
   return (

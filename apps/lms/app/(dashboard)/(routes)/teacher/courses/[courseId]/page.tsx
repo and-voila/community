@@ -1,15 +1,10 @@
 import { redirect } from 'next/navigation';
 import { auth } from '@clerk/nextjs';
-import {
-  ActivityLogIcon,
-  FileTextIcon,
-  MagicWandIcon,
-  RocketIcon,
-} from '@ui/index';
 
 import { db } from '@/lib/db';
 import { Banner } from '@/components/banner';
 import { IconBadge } from '@/components/icon-badge';
+import { Icons } from '@/components/icons';
 
 import { Actions } from './_components/actions';
 import { AttachmentForm } from './_components/attachment-form';
@@ -22,9 +17,11 @@ import { TitleForm } from './_components/title-form';
 
 const CourseIdPage = async ({ params }: { params: { courseId: string } }) => {
   const { userId } = auth();
+
   if (!userId) {
     return redirect('/');
   }
+
   const course = await db.course.findUnique({
     where: {
       id: params.courseId,
@@ -43,26 +40,33 @@ const CourseIdPage = async ({ params }: { params: { courseId: string } }) => {
       },
     },
   });
+
   const categories = await db.category.findMany({
     orderBy: {
       name: 'asc',
     },
   });
+
   if (!course) {
     return redirect('/');
   }
+
   const requiredFields = [
     course.title,
     course.description,
     course.imageUrl,
-    course.isFree || course.price,
+    course.price,
     course.categoryId,
     course.chapters.some((chapter) => chapter.isPublished),
   ];
+
   const totalFields = requiredFields.length;
   const completedFields = requiredFields.filter(Boolean).length;
+
   const completionText = `(${completedFields}/${totalFields})`;
+
   const isComplete = requiredFields.every(Boolean);
+
   return (
     <div className="mx-auto max-w-3xl bg-background pb-24 dark:bg-[#242629] lg:pb-32">
       {!course.isPublished && (
@@ -85,7 +89,7 @@ const CourseIdPage = async ({ params }: { params: { courseId: string } }) => {
         <div className="mt-16">
           <div>
             <div className="flex items-center gap-x-2">
-              <IconBadge icon={MagicWandIcon} />
+              <IconBadge icon={Icons.magic} />
               <h2 className="font-display text-lg">Customize your course</h2>
             </div>
             <TitleForm initialData={course} courseId={course.id} />
@@ -103,21 +107,21 @@ const CourseIdPage = async ({ params }: { params: { courseId: string } }) => {
           <div className="mt-16 space-y-6">
             <div>
               <div className="flex items-center gap-x-2">
-                <IconBadge icon={ActivityLogIcon} />
+                <IconBadge icon={Icons.activity} />
                 <h2 className="font-display text-lg">Course chapters</h2>
               </div>
               <ChaptersForm initialData={course} courseId={course.id} />
             </div>
             <div>
               <div className="mt-16 flex items-center gap-x-2">
-                <IconBadge icon={RocketIcon} />
+                <IconBadge icon={Icons.rocket} />
                 <h2 className="font-display text-lg">Course pricing</h2>
               </div>
               <PriceForm initialData={course} courseId={course.id} />
             </div>
             <div>
               <div className="mt-16 flex items-center gap-x-2">
-                <IconBadge icon={FileTextIcon} />
+                <IconBadge icon={Icons.file} />
                 <h2 className="font-display text-lg">
                   Resources & Attachments
                 </h2>
@@ -130,4 +134,5 @@ const CourseIdPage = async ({ params }: { params: { courseId: string } }) => {
     </div>
   );
 };
+
 export default CourseIdPage;

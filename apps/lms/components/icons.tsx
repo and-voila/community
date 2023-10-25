@@ -1,15 +1,24 @@
+import { FunctionComponent, SVGProps } from 'react';
 import {
   ActivityLogIcon,
+  ArrowLeftIcon,
   BackpackIcon,
   BarChartIcon,
+  CaretSortIcon,
+  CheckCircledIcon,
   CheckIcon,
+  ClockIcon,
   Cross1Icon,
+  CrossCircledIcon,
   DesktopIcon,
   DiscordLogoIcon,
+  DotsHorizontalIcon,
   DragHandleDots2Icon,
+  EyeOpenIcon,
   FileTextIcon,
   GearIcon,
   GitHubLogoIcon,
+  HamburgerMenuIcon,
   HeartIcon,
   HomeIcon,
   ImageIcon,
@@ -20,26 +29,24 @@ import {
   MagnifyingGlassIcon,
   NotionLogoIcon,
   Pencil1Icon,
+  PlayIcon,
   PlusCircledIcon,
   QuestionMarkCircledIcon,
   ReaderIcon,
   RocketIcon,
+  ScissorsIcon,
+  TrashIcon,
   TwitterLogoIcon,
   VideoIcon,
 } from '@ui/index';
 
-type IconProps = React.HTMLAttributes<SVGElement>;
+export type IconProps = SVGProps<SVGSVGElement>;
 
-export const Icons = {
-  discord: DiscordLogoIcon,
-  google: (props: IconProps) => (
-    <svg role="img" viewBox="0 0 24 24" {...props}>
-      <path
-        fill="currentColor"
-        d="M12.48 10.92v3.28h7.84c-.24 1.84-.853 3.187-1.787 4.133-1.147 1.147-2.933 2.4-6.053 2.4-4.827 0-8.6-3.893-8.6-8.72s3.773-8.72 8.6-8.72c2.6 0 4.507 1.027 5.907 2.347l2.307-2.307C18.747 1.44 16.133 0 12.48 0 5.867 0 .307 5.387.307 12s5.56 12 12.173 12c3.573 0 6.267-1.173 8.373-3.36 2.16-2.16 2.84-5.213 2.84-7.667 0-.76-.053-1.467-.173-2.053H12.48z"
-      />
-    </svg>
-  ),
+export type IconComponent = FunctionComponent<IconProps>;
+
+export const Icons: Record<string, IconComponent> = {
+  activity: ActivityLogIcon,
+  analytics: BarChartIcon,
   apple: (props: IconProps) => (
     <svg role="img" viewBox="0 0 24 24" {...props}>
       <path
@@ -48,6 +55,49 @@ export const Icons = {
       />
     </svg>
   ),
+  arrowLeft: ArrowLeftIcon,
+  barchart: BarChartIcon,
+  briefcase: BackpackIcon,
+  caretSort: CaretSortIcon,
+  check: CheckIcon,
+  circleChecked: CheckCircledIcon,
+  clock: ClockIcon,
+  courses: ListBulletIcon,
+  crossCircled: CrossCircledIcon,
+  crossLarge: Cross1Icon,
+  desktop: DesktopIcon,
+  discord: DiscordLogoIcon,
+  docs: ReaderIcon,
+  dotsHorizontal: DotsHorizontalIcon,
+  drag: DragHandleDots2Icon,
+  eyeOpen: EyeOpenIcon,
+  file: FileTextIcon,
+  github: GitHubLogoIcon,
+  google: (props: IconProps) => (
+    <svg role="img" viewBox="0 0 24 24" {...props}>
+      <path
+        fill="currentColor"
+        d="M12.48 10.92v3.28h7.84c-.24 1.84-.853 3.187-1.787 4.133-1.147 1.147-2.933 2.4-6.053 2.4-4.827 0-8.6-3.893-8.6-8.72s3.773-8.72 8.6-8.72c2.6 0 4.507 1.027 5.907 2.347l2.307-2.307C18.747 1.44 16.133 0 12.48 0 5.867 0 .307 5.387.307 12s5.56 12 12.173 12c3.573 0 6.267-1.173 8.373-3.36 2.16-2.16 2.84-5.213 2.84-7.667 0-.76-.053-1.467-.173-2.053H12.48z"
+      />
+    </svg>
+  ),
+  hamburgerMenu: HamburgerMenuIcon,
+  heart: HeartIcon,
+  help: QuestionMarkCircledIcon,
+  home: HomeIcon,
+  image: ImageIcon,
+  linkedin: LinkedInLogoIcon,
+  listBullet: ListBulletIcon,
+  locked: LockClosedIcon,
+  magic: MagicWandIcon,
+  notion: NotionLogoIcon,
+  pencil: Pencil1Icon,
+  play: PlayIcon,
+  plusCircled: PlusCircledIcon,
+  rocket: RocketIcon,
+  scissors: ScissorsIcon,
+  search: MagnifyingGlassIcon,
+  settings: GearIcon,
   spinner: (props: IconProps) => (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -64,31 +114,7 @@ export const Icons = {
       <path d="M21 12a9 9 0 1 1-6.219-8.56" />
     </svg>
   ),
-  linkedin: LinkedInLogoIcon,
-  youtube: VideoIcon,
+  trash: TrashIcon,
   twitter: TwitterLogoIcon,
-  github: GitHubLogoIcon,
-  notion: NotionLogoIcon,
-  home: HomeIcon,
-  search: MagnifyingGlassIcon,
-  settings: GearIcon,
-  help: QuestionMarkCircledIcon,
-  docs: ReaderIcon,
-  courses: ListBulletIcon,
-  analytics: BarChartIcon,
-  magic: MagicWandIcon,
-  file: FileTextIcon,
-  locked: LockClosedIcon,
-  activity: ActivityLogIcon,
-  pencil: Pencil1Icon,
-  plusCircled: PlusCircledIcon,
-  image: ImageIcon,
-  crossLarge: Cross1Icon,
-  drag: DragHandleDots2Icon,
-  heart: HeartIcon,
-  desktop: DesktopIcon,
-  rocket: RocketIcon,
-  check: CheckIcon,
-  briefcase: BackpackIcon,
-  barchart: BarChartIcon,
+  youtube: VideoIcon,
 };

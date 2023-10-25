@@ -15,8 +15,6 @@ export const getChapter = async ({
   chapterId,
 }: GetChapterProps) => {
   try {
-    const isPaidMember = await checkSubscription();
-
     const purchase = await db.purchase.findUnique({
       where: {
         userId_courseId: {
@@ -31,15 +29,6 @@ export const getChapter = async ({
         isPublished: true,
         id: courseId,
       },
-      select: {
-        isFree: true,
-        price: true,
-        description: true,
-      },
-      cacheStrategy: {
-        ttl: 30,
-        swr: 60,
-      },
     });
 
     const chapter = await db.chapter.findUnique({
@@ -47,40 +36,30 @@ export const getChapter = async ({
         id: chapterId,
         isPublished: true,
       },
-      cacheStrategy: {
-        ttl: 30,
-        swr: 60,
-      },
     });
 
     if (!chapter || !course) {
       throw new Error('Chapter or course not found');
     }
 
+    const isPaidMember = await checkSubscription();
+
     let muxData = null;
     let attachments: Attachment[] = [];
     let nextChapter: Chapter | null = null;
 
-    if (course.isFree || isPaidMember || purchase) {
+    if (course.price === 0 || purchase || isPaidMember) {
       attachments = await db.attachment.findMany({
         where: {
           courseId: courseId,
         },
-        cacheStrategy: {
-          ttl: 30,
-          swr: 60,
-        },
       });
     }
 
-    if (course.isFree || isPaidMember || purchase) {
+    if (course.price === 0 || purchase || isPaidMember) {
       muxData = await db.muxData.findUnique({
         where: {
           chapterId: chapterId,
-        },
-        cacheStrategy: {
-          ttl: 30,
-          swr: 60,
         },
       });
 
@@ -94,10 +73,6 @@ export const getChapter = async ({
         },
         orderBy: {
           position: 'asc',
-        },
-        cacheStrategy: {
-          ttl: 30,
-          swr: 60,
         },
       });
     }
@@ -119,6 +94,7 @@ export const getChapter = async ({
       nextChapter,
       userProgress,
       purchase,
+      isPaidMember,
     };
   } catch (error) {
     return {
@@ -129,6 +105,7 @@ export const getChapter = async ({
       nextChapter: null,
       userProgress: null,
       purchase: null,
+      isPaidMember: false,
     };
   }
 };

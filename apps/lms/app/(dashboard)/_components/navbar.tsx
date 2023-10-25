@@ -4,10 +4,9 @@ import { NavbarRoutes } from '@/components/navbar-routes';
 
 import { MobileSidebar } from './mobile-sidebar';
 
-const Navbar = async () => {
+export const Navbar = async () => {
   const apiLimitCount = await getApiLimitCount();
   const isPaidMember = await checkSubscription();
-
   return (
     <div className="flex h-full items-center border-b bg-[#dcdfe5] p-4 shadow-sm dark:bg-[#16161a]">
       <MobileSidebar
@@ -18,5 +17,3 @@ const Navbar = async () => {
     </div>
   );
 };
-
-export default Navbar;

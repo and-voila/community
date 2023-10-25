@@ -42,3 +42,44 @@
 .ql-snow .ql-toolbar .ql-formats .ql-picker-label {
   color: #000000;
 }
+
+.myQuill .ql-editor p,
+.myQuill .ql-editor h1,
+.myQuill .ql-editor h2,
+.myQuill .ql-editor h3,
+.myQuill .ql-editor h4,
+.myQuill .ql-editor h5,
+.myQuill .ql-editor h6,
+.myQuill .ql-editor ul,
+.myQuill .ql-editor ol {
+  margin: 0;
+  padding: 0;
+}
+
+.myQuill .ql-editor h1,
+.myQuill .ql-editor h2,
+.myQuill .ql-editor h3,
+.myQuill .ql-editor h4,
+.myQuill .ql-editor h5,
+.myQuill .ql-editor h6 {
+  @apply text-foreground;
+}
+
+.myQuill .ql-editor p,
+.myQuill .ql-editor ul,
+.myQuill .ql-editor ol {
+  @apply text-muted-foreground;
+}
+
+.myQuill .ql-editor a {
+  @apply text-brand;
+}
+.myQuill .ql-tooltip.ql-editing input[type='text'] {
+  @apply bg-white;
+  @apply text-black;
+}
+
+.myQuill .ql-tooltip input[type='text'] {
+  background-color: white !important;
+  color: black !important;
+}

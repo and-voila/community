@@ -1,10 +1,10 @@
 import { redirect } from 'next/navigation';
 import { getDashboardCourses } from '@/actions/get-dashboard-courses';
 import { auth } from '@clerk/nextjs';
-import { CheckCircledIcon, ClockIcon } from '@ui/index';
 
 import { Container } from '@/components/container';
 import { CoursesList } from '@/components/courses-list';
+import { Icons } from '@/components/icons';
 
 import { InfoCard } from './_components/info-card';
 
@@ -23,12 +23,12 @@ export default async function Dashboard() {
       <div className="space-y-8 p-6">
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
           <InfoCard
-            icon={ClockIcon}
+            icon={Icons.clock}
             label="In Progress"
             numberOfItems={coursesInProgress.length}
           />
           <InfoCard
-            icon={CheckCircledIcon}
+            icon={Icons.circleChecked}
             label="Completed"
             numberOfItems={completedCourses.length}
             variant="default"
