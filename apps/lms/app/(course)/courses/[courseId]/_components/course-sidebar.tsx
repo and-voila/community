@@ -5,6 +5,7 @@ import { Logo } from '@ui/index';
 
 import { db } from '@/lib/db';
 import { CourseProgress } from '@/components/course-progress';
+import { FreeCounter } from '@/components/free-counter';
 
 import { CourseSidebarItem } from './course-sidebar-item';
 
@@ -15,11 +16,15 @@ interface CourseSidebarProps {
     })[];
   };
   progressCount: number;
+  apiLimitCount: number;
+  isPaidMember: boolean;
 }
 
 export const CourseSidebar = async ({
   course,
   progressCount,
+  apiLimitCount,
+  isPaidMember = false,
 }: CourseSidebarProps) => {
   const { userId } = auth();
 
@@ -43,7 +48,7 @@ export const CourseSidebar = async ({
       </div>
       <div className="flex flex-col border-y p-8">
         <h1 className="font-display text-lg">{course.title}</h1>
-        {purchase && (
+        {(isPaidMember || purchase || course.price === 0) && (
           <div className="mt-10">
             <CourseProgress variant="success" value={progressCount} />
           </div>
@@ -57,9 +62,15 @@ export const CourseSidebar = async ({
             label={chapter.title}
             isCompleted={!!chapter.userProgress?.[0]?.isCompleted}
             courseId={course.id}
-            isLocked={!(course.price === 0) && !purchase}
+            isLocked={course.price !== 0 && !(isPaidMember || purchase)}
           />
         ))}
+        <div className="absolute bottom-6">
+          <FreeCounter
+            isPaidMember={isPaidMember}
+            apiLimitCount={apiLimitCount}
+          />
+        </div>
       </div>
     </div>
   );

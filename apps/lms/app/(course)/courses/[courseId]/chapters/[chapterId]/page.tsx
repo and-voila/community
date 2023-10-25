@@ -5,9 +5,11 @@ import { auth } from '@clerk/nextjs';
 import { Separator } from '@ui/components/ui/separator';
 import { FileIcon } from '@ui/index';
 
+import { checkSubscription } from '@/lib/subscription';
 import { Banner } from '@/components/banner';
 import { Container } from '@/components/container';
 import { Preview } from '@/components/preview';
+import { SubscriptionButton } from '@/components/subscription-button';
 
 import { CourseEnrollButton } from './_components/course-enroll-button';
 import { CourseProgressButton } from './_components/course-progress-button';
@@ -23,6 +25,8 @@ const ChapterIdPage = async ({
   if (!userId) {
     return redirect('/');
   }
+
+  const isPaidMember = await checkSubscription();
 
   const {
     chapter,
@@ -42,7 +46,7 @@ const ChapterIdPage = async ({
     return redirect('/');
   }
 
-  const isLocked = !(course.price === 0) && !purchase;
+  const isLocked = course.price !== 0 && !(isPaidMember || purchase);
 
   const completeOnEnd = !!purchase && !userProgress?.isCompleted;
 
@@ -81,6 +85,8 @@ const ChapterIdPage = async ({
                       courseId={params.courseId}
                       price={course.price!}
                     />
+                    or
+                    <SubscriptionButton isPaidMember={isPaidMember} size="sm" />
                   </div>
                 </div>
                 <Separator />

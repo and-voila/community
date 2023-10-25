@@ -2,12 +2,14 @@ import { getProgress } from '@/actions/get-progress';
 import { Category, Course } from '@prisma/client';
 
 import { db } from '@/lib/db';
+import { checkSubscription } from '@/lib/subscription';
 
 type CourseWithProgressWithCategory = Course & {
   category: Category | null;
   chapters: { id: string }[];
   progress: number | null;
   price: number;
+  isPaidMember: boolean;
 };
 
 type GetCourses = {
@@ -51,15 +53,16 @@ export const getCourses = async ({
       },
     });
 
-    const shuffledCourses = [...courses].sort(() => Math.random() - 0.5);
+    const isPaidMember = await checkSubscription();
 
     const coursesWithProgress: CourseWithProgressWithCategory[] =
       await Promise.all(
-        shuffledCourses.map(async (course) => {
+        courses.map(async (course) => {
           if (course.purchases.length === 0) {
             return {
               ...course,
               progress: null,
+              isPaidMember,
             };
           }
 
@@ -68,6 +71,7 @@ export const getCourses = async ({
           return {
             ...course,
             progress: progressPercentage,
+            isPaidMember,
           };
         }),
       );

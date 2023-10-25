@@ -4,14 +4,22 @@ import { Icons } from '@/components/icons';
 
 import { Sidebar } from './sidebar';
 
-export const MobileSidebar = () => {
+interface MobileSidebarProps {
+  apiLimitCount: number;
+  isPaidMember: boolean;
+}
+
+export const MobileSidebar = ({
+  apiLimitCount = 0,
+  isPaidMember = false,
+}: MobileSidebarProps) => {
   return (
     <Sheet>
       <SheetTrigger className="pr-4 transition hover:opacity-75 md:hidden">
         <Icons.hamburgerMenu />
       </SheetTrigger>
       <SheetContent side="left" className="bg-white p-0">
-        <Sidebar />
+        <Sidebar isPaidMember={isPaidMember} apiLimitCount={apiLimitCount} />
       </SheetContent>
     </Sheet>
   );

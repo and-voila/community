@@ -1,6 +1,7 @@
 import { Attachment, Chapter } from '@prisma/client';
 
 import { db } from '@/lib/db';
+import { checkSubscription } from '@/lib/subscription';
 
 interface GetChapterProps {
   userId: string;
@@ -41,11 +42,13 @@ export const getChapter = async ({
       throw new Error('Chapter or course not found');
     }
 
+    const isPaidMember = await checkSubscription();
+
     let muxData = null;
     let attachments: Attachment[] = [];
     let nextChapter: Chapter | null = null;
 
-    if (course.price === 0 || purchase) {
+    if (course.price === 0 || purchase || isPaidMember) {
       attachments = await db.attachment.findMany({
         where: {
           courseId: courseId,
@@ -53,7 +56,7 @@ export const getChapter = async ({
       });
     }
 
-    if (course.price === 0 || purchase) {
+    if (course.price === 0 || purchase || isPaidMember) {
       muxData = await db.muxData.findUnique({
         where: {
           chapterId: chapterId,
@@ -91,6 +94,7 @@ export const getChapter = async ({
       nextChapter,
       userProgress,
       purchase,
+      isPaidMember,
     };
   } catch (error) {
     return {
@@ -101,6 +105,7 @@ export const getChapter = async ({
       nextChapter: null,
       userProgress: null,
       purchase: null,
+      isPaidMember: false,
     };
   }
 };

@@ -2,11 +2,13 @@ import { getProgress } from '@/actions/get-progress';
 import { Category, Chapter, Course } from '@prisma/client';
 
 import { db } from '@/lib/db';
+import { checkSubscription } from '@/lib/subscription';
 
 type CourseWithProgressWithCategory = Course & {
   category: Category;
   chapters: Chapter[];
   progress: number | null;
+  isPaidMember: boolean;
 };
 
 type DashboardCourses = {
@@ -53,6 +55,8 @@ export const getDashboardCourses = async (
       new Set([...purchasedCourseIds, ...courseIdsWithProgress]),
     );
 
+    const isPaidMember = await checkSubscription();
+
     const courses = await Promise.all(
       allCourseIds.map(async (id) => {
         const course = await db.course.findUnique({
@@ -67,7 +71,11 @@ export const getDashboardCourses = async (
           },
         });
         const progress = await getProgress(userId, id);
-        return { ...course, progress } as CourseWithProgressWithCategory;
+        return {
+          ...course,
+          progress,
+          isPaidMember,
+        } as CourseWithProgressWithCategory;
       }),
     );
 

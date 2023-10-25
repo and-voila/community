@@ -11,11 +11,15 @@ interface CourseMobileSidebarProps {
     })[];
   };
   progressCount: number;
+  isPaidMember: boolean;
+  apiLimitCount: number;
 }
 
 export const CourseMobileSidebar = ({
   course,
   progressCount,
+  isPaidMember,
+  apiLimitCount,
 }: CourseMobileSidebarProps) => {
   return (
     <Sheet>
@@ -23,7 +27,12 @@ export const CourseMobileSidebar = ({
         <HamburgerMenuIcon />
       </SheetTrigger>
       <SheetContent side="left" className="w-72 bg-white p-0">
-        <CourseSidebar course={course} progressCount={progressCount} />
+        <CourseSidebar
+          course={course}
+          progressCount={progressCount}
+          isPaidMember={isPaidMember}
+          apiLimitCount={apiLimitCount}
+        />
       </SheetContent>
     </Sheet>
   );
