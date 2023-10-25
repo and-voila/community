@@ -53,7 +53,7 @@
 .myQuill .ql-editor ul,
 .myQuill .ql-editor ol {
   margin: 0;
-  padding: 10px;
+  padding: 0;
 }
 
 .myQuill .ql-editor h1,
