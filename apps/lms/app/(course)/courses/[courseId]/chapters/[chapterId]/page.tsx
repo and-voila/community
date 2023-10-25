@@ -41,7 +41,8 @@ const ChapterIdPage = async ({
     return redirect('/');
   }
 
-  const isLocked = !chapter.isFree && !purchase;
+  const isLocked = !(course.price === 0) && !purchase;
+
   const completeOnEnd = !!purchase && !userProgress?.isCompleted;
 
   return (
