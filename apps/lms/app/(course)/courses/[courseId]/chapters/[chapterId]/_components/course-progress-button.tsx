@@ -3,11 +3,11 @@
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { Button } from '@ui/components/ui/button';
-import { CheckCircledIcon, CrossCircledIcon } from '@ui/index';
 import axios from 'axios';
 import toast from 'react-hot-toast';
 
 import { useConfettiStore } from '@/hooks/use-confetti-store';
+import { Icons } from '@/components/icons';
 
 interface CourseProgressButtonProps {
   chapterId: string;
@@ -55,8 +55,8 @@ export const CourseProgressButton = ({
   };
 
   const Icon: React.ElementType = isCompleted
-    ? CrossCircledIcon
-    : CheckCircledIcon;
+    ? Icons.crossCircled
+    : Icons.circleChecked;
 
   return (
     <Button
