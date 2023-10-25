@@ -1,24 +1,17 @@
-import { HamburgerMenuIcon } from '@ui/index';
 import { Sheet, SheetContent, SheetTrigger } from 'ui';
+
+import { Icons } from '@/components/icons';
 
 import { Sidebar } from './sidebar';
 
-interface MobileSidebarProps {
-  apiLimitCount: number;
-  isPaidMember: boolean;
-}
-
-export const MobileSidebar = ({
-  apiLimitCount = 0,
-  isPaidMember = false,
-}: MobileSidebarProps) => {
+export const MobileSidebar = () => {
   return (
     <Sheet>
       <SheetTrigger className="pr-4 transition hover:opacity-75 md:hidden">
-        <HamburgerMenuIcon />
+        <Icons.hamburgerMenu />
       </SheetTrigger>
       <SheetContent side="left" className="bg-white p-0">
-        <Sidebar isPaidMember={isPaidMember} apiLimitCount={apiLimitCount} />
+        <Sidebar />
       </SheetContent>
     </Sheet>
   );

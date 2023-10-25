@@ -3,11 +3,11 @@
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { Button } from '@ui/components/ui/button';
-import { TrashIcon } from '@ui/index';
 import axios from 'axios';
 import toast from 'react-hot-toast';
 
 import { useConfettiStore } from '@/hooks/use-confetti-store';
+import { Icons } from '@/components/icons';
 import { ConfirmModal } from '@/components/modals/confirm-modal';
 
 interface ActionsProps {
@@ -63,14 +63,14 @@ export const Actions = ({ disabled, courseId, isPublished }: ActionsProps) => {
       <Button
         onClick={onClick}
         disabled={disabled || isLoading}
-        variant="outline"
+        variant="custom"
         size="sm"
       >
         {isPublished ? 'Unpublish' : 'Publish'}
       </Button>
       <ConfirmModal onConfirm={onDelete}>
         <Button size="sm" disabled={isLoading}>
-          <TrashIcon className="h-4 w-4" />
+          <Icons.trash className="h-4 w-4" />
         </Button>
       </ConfirmModal>
     </div>

@@ -92,3 +92,5 @@ export type SocialItem = {
 export type SocialConfig = {
   social: SocialItem[];
 };
+
+export type IconKey = keyof typeof Icons;

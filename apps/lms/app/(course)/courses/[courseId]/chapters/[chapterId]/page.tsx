@@ -4,11 +4,9 @@ import { auth } from '@clerk/nextjs';
 import { Separator } from '@ui/components/ui/separator';
 import { FileIcon } from '@ui/index';
 
-import { checkSubscription } from '@/lib/subscription';
 import { Banner } from '@/components/banner';
 import { Container } from '@/components/container';
 import { Preview } from '@/components/preview';
-import { SubscriptionButton } from '@/components/subscription-button';
 
 import { CourseEnrollButton } from './_components/course-enroll-button';
 import { CourseProgressButton } from './_components/course-progress-button';
@@ -39,32 +37,12 @@ const ChapterIdPage = async ({
     courseId: params.courseId,
   });
 
-  const isPaidMember = await checkSubscription();
-
   if (!chapter || !course) {
     return redirect('/');
   }
 
-  const isLocked = !course.isFree && !isPaidMember && !purchase;
-
-  // ...
-
-  {
-    !isLocked ? (
-      <CourseProgressButton
-        chapterId={params.chapterId}
-        courseId={params.courseId}
-        nextChapterId={nextChapter?.id}
-        isCompleted={!!userProgress?.isCompleted}
-      />
-    ) : (
-      !course.isFree && (
-        <CourseEnrollButton courseId={params.courseId} price={course.price!} />
-      )
-    );
-  }
-  const completeOnEnd =
-    (!!isPaidMember || !!purchase) && !userProgress?.isCompleted;
+  const isLocked = !chapter.isFree && !purchase;
+  const completeOnEnd = !!purchase && !userProgress?.isCompleted;
 
   return (
     <div>
@@ -79,10 +57,10 @@ const ChapterIdPage = async ({
           {isLocked && (
             <Banner
               variant="warning"
-              label="Access this playbook for $12 or become a paid member and enjoy full access to our community, playbooks, and AI tools."
+              label="You need to purchase this course to watch this chapter."
             />
           )}
-          <div className="py-4">
+          <div className="p-4">
             <VideoPlayer
               chapterId={params.chapterId}
               title={chapter.title}
@@ -99,7 +77,7 @@ const ChapterIdPage = async ({
               <h2 className="mb-2 flex-grow font-display text-lg">
                 {chapter.title}
               </h2>
-              {!isLocked ? (
+              {purchase ? (
                 <CourseProgressButton
                   chapterId={params.chapterId}
                   courseId={params.courseId}
@@ -107,53 +85,41 @@ const ChapterIdPage = async ({
                   isCompleted={!!userProgress?.isCompleted}
                 />
               ) : (
-                !course.isFree && (
-                  <div className="flex flex-row gap-x-4 items-center">
-                    <CourseEnrollButton
-                      courseId={params.courseId}
-                      price={course.price!}
-                    />
-                    or
-                    <SubscriptionButton isPaidMember={isPaidMember} size="sm" />
-                  </div>
-                )
+                <CourseEnrollButton
+                  courseId={params.courseId}
+                  price={course.price!}
+                />
               )}
             </div>
             <Separator />
-            {!isLocked ? (
+            <div>
+              <Preview value={chapter.description!} />
+            </div>
+            {!!attachments.length && (
               <>
-                <Preview value={chapter.description!} />
-                {!!attachments.length && (
-                  <>
-                    <Separator />
-                    <div className="p-4">
-                      {attachments.length > 0 && (
-                        <div className="mt-16 flex items-center gap-x-2">
-                          <h2 className="font-display text-lg">
-                            Resources & Attachments
-                          </h2>
-                        </div>
-                      )}
-                      {attachments.map((attachment) => (
-                        <a
-                          href={attachment.url}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          key={attachment.id}
-                          className="mt-8 flex w-full items-center rounded-md border p-3 text-foreground hover:underline"
-                        >
-                          <FileIcon />
-                          <p className="ml-2 line-clamp-1">{attachment.name}</p>
-                        </a>
-                      ))}
+                <Separator />
+                <div className="p-4">
+                  {attachments.length > 0 && (
+                    <div className="mt-16 flex items-center gap-x-2">
+                      <h2 className="font-display text-lg">
+                        Resources & Attachments
+                      </h2>
                     </div>
-                  </>
-                )}
+                  )}
+                  {attachments.map((attachment) => (
+                    <a
+                      href={attachment.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      key={attachment.id}
+                      className="mt-8 flex w-full items-center rounded-md border p-3 text-foreground hover:underline"
+                    >
+                      <FileIcon />
+                      <p className="ml-2 line-clamp-1">{attachment.name}</p>
+                    </a>
+                  ))}
+                </div>
               </>
-            ) : (
-              <div>
-                <Preview value={course.description!} />
-              </div>
             )}
           </div>
         </div>

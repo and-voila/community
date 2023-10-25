@@ -1,7 +1,9 @@
 'use client';
 
 import { usePathname, useRouter } from 'next/navigation';
-import { CheckCircledIcon, cn, LockClosedIcon, PlayIcon } from '@ui/index';
+import { cn } from '@ui/index';
+
+import { Icons } from '@/components/icons';
 
 interface CourseSidebarItemProps {
   label: string;
@@ -22,10 +24,10 @@ export const CourseSidebarItem = ({
   const router = useRouter();
 
   const Icon = isLocked
-    ? LockClosedIcon
+    ? Icons.locked
     : isCompleted
-    ? CheckCircledIcon
-    : PlayIcon;
+    ? Icons.circleChecked
+    : Icons.play;
   const isActive = pathname?.includes(id);
 
   const onClick = () => {
@@ -37,7 +39,7 @@ export const CourseSidebarItem = ({
       onClick={onClick}
       type="button"
       className={cn(
-        'flex items-center gap-x-2 pl-6 text-left text-base font-semibold text-muted-foreground transition-all hover:bg-gray-400/20 hover:text-foreground',
+        'flex items-center gap-x-2 pl-6 text-left text-sm font-semibold text-muted-foreground transition-all hover:bg-gray-400/20 hover:text-foreground',
         isActive &&
           'bg-brand/20 text-foreground hover:bg-brand/20 hover:text-foreground',
         isCompleted && 'text-foreground line-through hover:text-[#186343]',
@@ -47,7 +49,7 @@ export const CourseSidebarItem = ({
       <div className="flex items-center gap-x-2 py-4">
         <Icon
           className={cn(
-            'text-muted-foreground h-4 w-4 md:h-5 md:w-5',
+            'text-muted-foreground',
             isActive && 'text-brand',
             isCompleted && 'text-alternate',
           )}

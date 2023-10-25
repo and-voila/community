@@ -108,8 +108,8 @@ export const DescriptionForm = ({
                     />
                   </FormControl>
                   <FormDescription>
-                    A short paragraph describing the learning outcome of the
-                    course.
+                    An SEO optimized description for the course. Ideally around
+                    158 characters.
                   </FormDescription>
                   <FormMessage />
                 </FormItem>

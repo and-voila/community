@@ -11,7 +11,9 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from '@ui/components/ui/dropdown-menu';
-import { CaretSortIcon, cn, DotsHorizontalIcon, Pencil1Icon } from '@ui/index';
+import { cn } from '@ui/index';
+
+import { Icons } from '@/components/icons';
 
 export const columns: ColumnDef<Course>[] = [
   {
@@ -23,38 +25,34 @@ export const columns: ColumnDef<Course>[] = [
           onClick={() => column.toggleSorting(column.getIsSorted() === 'asc')}
         >
           Title
-          <CaretSortIcon className="ml-2 h-4 w-4" />
+          <Icons.caretSort className="ml-2 h-4 w-4" />
         </Button>
       );
     },
   },
   {
-    accessorKey: 'isFree',
+    accessorKey: 'price',
     header: ({ column }) => {
       return (
         <Button
           variant="ghost"
           onClick={() => column.toggleSorting(column.getIsSorted() === 'asc')}
         >
-          Access
-          <CaretSortIcon className="ml-2 h-4 w-4" />
+          Price
+          <Icons.caretSort className="ml-2 h-4 w-4" />
         </Button>
       );
     },
     cell: ({ row }) => {
-      const isFree = row.getValue('isFree') || false;
+      const price = parseFloat(row.getValue('price') || '0');
+      const formatted = new Intl.NumberFormat('en-US', {
+        style: 'currency',
+        currency: 'USD',
+        minimumFractionDigits: 0,
+        maximumFractionDigits: 0,
+      }).format(price);
 
-      return (
-        <Badge
-          className={cn(
-            'border bg-transparent text-muted-foreground',
-            isFree &&
-              'pointer-events-none border-alternate bg-transparent text-alternate',
-          )}
-        >
-          {isFree ? 'Free' : 'Paid'}
-        </Badge>
-      );
+      return <div>{formatted}</div>;
     },
   },
   {
@@ -66,7 +64,7 @@ export const columns: ColumnDef<Course>[] = [
           onClick={() => column.toggleSorting(column.getIsSorted() === 'asc')}
         >
           Published
-          <CaretSortIcon className="ml-2 h-4 w-4" />
+          <Icons.caretSort className="ml-2 h-4 w-4" />
         </Button>
       );
     },
@@ -96,13 +94,13 @@ export const columns: ColumnDef<Course>[] = [
           <DropdownMenuTrigger asChild>
             <Button variant="ghost" className="h-4 w-8 p-0">
               <span className="sr-only">Open menu</span>
-              <DotsHorizontalIcon className="h-4 w-4" />
+              <Icons.dotsHorizontal className="h-4 w-4" />
             </Button>
           </DropdownMenuTrigger>
           <DropdownMenuContent align="end">
             <Link href={`/teacher/courses/${id}`}>
               <DropdownMenuItem>
-                <Pencil1Icon className="mr-2 h-4 w-4" />
+                <Icons.pencil className="mr-2 h-4 w-4" />
                 Edit
               </DropdownMenuItem>
             </Link>

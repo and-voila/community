@@ -1,18 +1,8 @@
 import { Logo } from '@ui/index';
 
-import { FreeCounter } from '@/components/free-counter';
-
 import { SidebarRoutes } from './sidebar-routes';
 
-interface SidebarProps {
-  apiLimitCount: number;
-  isPaidMember: boolean;
-}
-
-export const Sidebar = ({
-  apiLimitCount,
-  isPaidMember = false,
-}: SidebarProps) => {
+export const Sidebar = () => {
   return (
     <div className="flex h-full flex-col overflow-y-auto bg-[#d0d5dd] shadow-sm dark:bg-[#010101]">
       <div className="p-6">
@@ -20,12 +10,6 @@ export const Sidebar = ({
       </div>
       <div className="flex w-full flex-col">
         <SidebarRoutes />
-      </div>
-      <div className="absolute bottom-6 w-full">
-        <FreeCounter
-          isPaidMember={isPaidMember}
-          apiLimitCount={apiLimitCount}
-        />
       </div>
     </div>
   );

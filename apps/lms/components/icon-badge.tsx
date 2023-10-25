@@ -1,4 +1,6 @@
-import { cn, cva, LucideIcon, VariantProps } from '@ui/index';
+import { cn, cva, VariantProps } from '@ui/index';
+
+import { IconComponent } from './icons';
 
 const backgroundVariants = cva('rounded-xl flex items-center justify-center', {
   variants: {
@@ -38,7 +40,7 @@ type BackgroundVariantsProps = VariantProps<typeof backgroundVariants>;
 type IconVariantsProps = VariantProps<typeof iconVariants>;
 
 interface IconBadgeProps extends BackgroundVariantsProps, IconVariantsProps {
-  icon: LucideIcon;
+  icon: IconComponent;
 }
 
 export const IconBadge = ({ icon: Icon, variant, size }: IconBadgeProps) => {

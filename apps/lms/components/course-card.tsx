@@ -1,10 +1,11 @@
 import Image from 'next/image';
 import Link from 'next/link';
-import { ListBulletIcon } from '@ui/index';
 
 import { formatPrice } from '@/lib/format';
 import { CourseProgress } from '@/components/course-progress';
 import { IconBadge } from '@/components/icon-badge';
+
+import { Icons } from './icons';
 
 interface CourseCardProps {
   id: string;
@@ -40,7 +41,7 @@ export const CourseCard = ({
           <div className="mb-2 flex items-center justify-between text-sm text-muted-foreground">
             <p>{category}</p>
             <div className="flex items-center gap-x-1 text-foreground">
-              <IconBadge size="sm" icon={ListBulletIcon} />
+              <IconBadge size="sm" icon={Icons.listBullet} />
               <span>
                 {chaptersLength} {chaptersLength === 1 ? 'Chapter' : 'Chapters'}
               </span>

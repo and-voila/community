@@ -1,7 +1,6 @@
 import { Attachment, Chapter } from '@prisma/client';
 
 import { db } from '@/lib/db';
-import { checkSubscription } from '@/lib/subscription';
 
 interface GetChapterProps {
   userId: string;
@@ -15,8 +14,6 @@ export const getChapter = async ({
   chapterId,
 }: GetChapterProps) => {
   try {
-    const isPaidMember = await checkSubscription();
-
     const purchase = await db.purchase.findUnique({
       where: {
         userId_courseId: {
@@ -32,13 +29,7 @@ export const getChapter = async ({
         id: courseId,
       },
       select: {
-        isFree: true,
         price: true,
-        description: true,
-      },
-      cacheStrategy: {
-        ttl: 30,
-        swr: 60,
       },
     });
 
@@ -46,10 +37,6 @@ export const getChapter = async ({
       where: {
         id: chapterId,
         isPublished: true,
-      },
-      cacheStrategy: {
-        ttl: 30,
-        swr: 60,
       },
     });
 
@@ -61,26 +48,18 @@ export const getChapter = async ({
     let attachments: Attachment[] = [];
     let nextChapter: Chapter | null = null;
 
-    if (course.isFree || isPaidMember || purchase) {
+    if (purchase) {
       attachments = await db.attachment.findMany({
         where: {
           courseId: courseId,
         },
-        cacheStrategy: {
-          ttl: 30,
-          swr: 60,
-        },
       });
     }
 
-    if (course.isFree || isPaidMember || purchase) {
+    if (chapter.isFree || purchase) {
       muxData = await db.muxData.findUnique({
         where: {
           chapterId: chapterId,
-        },
-        cacheStrategy: {
-          ttl: 30,
-          swr: 60,
         },
       });
 
@@ -94,10 +73,6 @@ export const getChapter = async ({
         },
         orderBy: {
           position: 'asc',
-        },
-        cacheStrategy: {
-          ttl: 30,
-          swr: 60,
         },
       });
     }

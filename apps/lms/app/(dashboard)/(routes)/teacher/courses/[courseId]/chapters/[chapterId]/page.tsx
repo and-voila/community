@@ -1,16 +1,11 @@
 import Link from 'next/link';
 import { redirect } from 'next/navigation';
 import { auth } from '@clerk/nextjs';
-import {
-  ArrowLeftIcon,
-  EyeOpenIcon,
-  MagicWandIcon,
-  VideoIcon,
-} from '@ui/index';
 
 import { db } from '@/lib/db';
 import { Banner } from '@/components/banner';
 import { IconBadge } from '@/components/icon-badge';
+import { Icons } from '@/components/icons';
 
 import { ChapterAccessForm } from './_components/chapter-access-form';
 import { ChapterActions } from './_components/chapter-actions';
@@ -67,7 +62,7 @@ const ChapterIdPage = async ({
               href={`/teacher/courses/${params.courseId}`}
               className="mb-6 flex items-center text-sm transition hover:opacity-75"
             >
-              <ArrowLeftIcon className="mr-2 h-4 w-4" />
+              <Icons.arrowLeft className="mr-2 h-4 w-4" />
               Back to course setup
             </Link>
             <div className="flex w-full items-center justify-between">
@@ -90,7 +85,7 @@ const ChapterIdPage = async ({
           <div className="space-y-4">
             <div>
               <div className="flex items-center gap-x-2">
-                <IconBadge icon={MagicWandIcon} />
+                <IconBadge icon={Icons.magic} />
                 <h2 className="font-display text-xl">Customize your chapter</h2>
               </div>
               <ChapterTitleForm
@@ -106,7 +101,7 @@ const ChapterIdPage = async ({
             </div>
             <div>
               <div className="mt-16 flex items-center gap-x-2">
-                <IconBadge icon={EyeOpenIcon} />
+                <IconBadge icon={Icons.eyeOpen} />
                 <h2 className="font-display text-xl">Access Settings</h2>
               </div>
               <ChapterAccessForm
@@ -118,7 +113,7 @@ const ChapterIdPage = async ({
           </div>
           <div>
             <div className="mt-16 flex items-center gap-x-2">
-              <IconBadge icon={VideoIcon} />
+              <IconBadge icon={Icons.youtube} />
               <h2 className="font-display text-xl">Add a video</h2>
             </div>
             <ChapterVideoForm
