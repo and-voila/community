@@ -48,7 +48,7 @@ export const getChapter = async ({
     let attachments: Attachment[] = [];
     let nextChapter: Chapter | null = null;
 
-    if (purchase) {
+    if (course.price === 0 || purchase) {
       attachments = await db.attachment.findMany({
         where: {
           courseId: courseId,
@@ -56,7 +56,7 @@ export const getChapter = async ({
       });
     }
 
-    if (chapter.isFree || purchase) {
+    if (course.price === 0 || purchase) {
       muxData = await db.muxData.findUnique({
         where: {
           chapterId: chapterId,
