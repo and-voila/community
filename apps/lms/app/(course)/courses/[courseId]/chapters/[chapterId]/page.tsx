@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import { redirect } from 'next/navigation';
 import { getChapter } from '@/actions/get-chapter';
 import { auth } from '@clerk/nextjs';
@@ -56,73 +57,97 @@ const ChapterIdPage = async ({
             />
           )}
           {isLocked && (
-            <Banner
-              variant="warning"
-              label="You need to purchase this course to watch this chapter."
-            />
+            <>
+              <Banner
+                variant="warning"
+                label="You need to purchase this course to watch this chapter."
+              />
+              <Image
+                className="w-full py-4 shadow-md"
+                src={course.imageUrl}
+                alt={`A featured image of an anthropomorphic cat representing ${course.title}`}
+                width={630}
+                height={1200}
+                role="img"
+                aria-label={`A featured image of an anthropomorphic cat representing ${course.title}`}
+              />
+              <div className="rounded-xl bg-white p-6 dark:bg-background lg:p-8">
+                <div className="flex flex-col items-center justify-between p-4 md:flex-row">
+                  <h2 className="mb-2 flex-grow font-display text-lg">
+                    {chapter.title}
+                  </h2>
+                  <div className="flex flex-row gap-x-4 items-center">
+                    <CourseEnrollButton
+                      courseId={params.courseId}
+                      price={course.price!}
+                    />
+                  </div>
+                </div>
+                <Separator />
+                <div>
+                  <Preview value={course.description!} />
+                </div>
+              </div>
+            </>
           )}
-          <div className="p-4">
-            <VideoPlayer
-              chapterId={params.chapterId}
-              title={chapter.title}
-              courseId={params.courseId}
-              nextChapterId={nextChapter?.id}
-              // eslint-disable-next-line @typescript-eslint/no-non-null-asserted-optional-chain
-              playbackId={muxData?.playbackId!}
-              isLocked={isLocked}
-              completeOnEnd={completeOnEnd}
-            />
-          </div>
-          <div className="rounded-xl bg-white p-6 dark:bg-background lg:p-8">
-            <div className="flex flex-col items-center justify-between p-4 md:flex-row">
-              <h2 className="mb-2 flex-grow font-display text-lg">
-                {chapter.title}
-              </h2>
-              {purchase ? (
-                <CourseProgressButton
+          {!isLocked && (
+            <>
+              <div className="py-4">
+                <VideoPlayer
                   chapterId={params.chapterId}
+                  title={chapter.title}
                   courseId={params.courseId}
                   nextChapterId={nextChapter?.id}
-                  isCompleted={!!userProgress?.isCompleted}
+                  // eslint-disable-next-line @typescript-eslint/no-non-null-asserted-optional-chain
+                  playbackId={muxData?.playbackId!}
+                  completeOnEnd={completeOnEnd}
                 />
-              ) : (
-                <CourseEnrollButton
-                  courseId={params.courseId}
-                  price={course.price!}
-                />
-              )}
-            </div>
-            <Separator />
-            <div>
-              <Preview value={chapter.description!} />
-            </div>
-            {!!attachments.length && (
-              <>
-                <Separator />
-                <div className="p-4">
-                  {attachments.length > 0 && (
-                    <div className="mt-16 flex items-center gap-x-2">
-                      <h2 className="font-display text-lg">
-                        Resources & Attachments
-                      </h2>
-                    </div>
-                  )}
-                  {attachments.map((attachment) => (
-                    <a
-                      href={attachment.url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      key={attachment.id}
-                      className="mt-8 flex w-full items-center rounded-md border p-3 text-foreground hover:underline"
-                    >
-                      <FileIcon />
-                      <p className="ml-2 line-clamp-1">{attachment.name}</p>
-                    </a>
-                  ))}
+              </div>
+              <div className="rounded-xl bg-white p-6 dark:bg-background lg:p-8">
+                <div className="flex flex-col items-center justify-between p-4 md:flex-row">
+                  <h2 className="mb-2 flex-grow font-display text-lg">
+                    {chapter.title}
+                  </h2>
+                  <CourseProgressButton
+                    chapterId={params.chapterId}
+                    courseId={params.courseId}
+                    nextChapterId={nextChapter?.id}
+                    isCompleted={!!userProgress?.isCompleted}
+                  />
                 </div>
-              </>
-            )}
-          </div>
+                <Separator />
+                <div>
+                  <Preview value={chapter.description!} />
+                </div>
+                {!!attachments.length && (
+                  <>
+                    <Separator />
+                    <div className="p-4">
+                      {attachments.length > 0 && (
+                        <div className="mt-16 flex items-center gap-x-2">
+                          <h2 className="font-display text-lg">
+                            Resources & Attachments
+                          </h2>
+                        </div>
+                      )}
+                      {attachments.map((attachment) => (
+                        <a
+                          href={attachment.url}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          key={attachment.id}
+                          className="mt-8 flex w-full items-center rounded-md border p-3 text-foreground hover:underline"
+                        >
+                          <FileIcon />
+                          <p className="ml-2 line-clamp-1">{attachment.name}</p>
+                        </a>
+                      ))}
+                    </div>
+                  </>
+                )}
+              </div>
+            </>
+          )}
         </div>
       </Container>
     </div>

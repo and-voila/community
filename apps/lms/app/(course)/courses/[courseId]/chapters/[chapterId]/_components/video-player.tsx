@@ -3,18 +3,18 @@
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import MuxPlayer from '@mux/mux-player-react';
-import { cn, LockClosedIcon, ReloadIcon } from '@ui/index';
+import { cn } from '@ui/index';
 import axios from 'axios';
 import { toast } from 'react-hot-toast';
 
 import { useConfettiStore } from '@/hooks/use-confetti-store';
+import { Icons } from '@/components/icons';
 
 interface VideoPlayerProps {
   playbackId: string;
   courseId: string;
   chapterId: string;
   nextChapterId?: string;
-  isLocked: boolean;
   completeOnEnd: boolean;
   title: string;
 }
@@ -24,7 +24,6 @@ export const VideoPlayer = ({
   courseId,
   chapterId,
   nextChapterId,
-  isLocked,
   completeOnEnd,
   title,
 }: VideoPlayerProps) => {
@@ -60,27 +59,19 @@ export const VideoPlayer = ({
 
   return (
     <div className="relative aspect-video">
-      {!isReady && !isLocked && (
+      {!isReady && (
         <div className="absolute inset-0 flex items-center justify-center bg-brand/20">
-          <ReloadIcon className="h-8 w-8 animate-spin text-secondary" />
+          <Icons.spinner className="h-8 w-8 animate-spin text-secondary" />
         </div>
       )}
-      {isLocked && (
-        <div className="absolute inset-0 flex flex-col items-center justify-center gap-y-2 bg-brand/20 text-foreground">
-          <LockClosedIcon className="h-8 w-8" />
-          <p className="text-sm">Please enroll to enjoy this course.</p>
-        </div>
-      )}
-      {!isLocked && (
-        <MuxPlayer
-          title={title}
-          className={cn(!isReady && 'hidden')}
-          onCanPlay={() => setIsReady(true)}
-          onEnded={onEnd}
-          autoPlay
-          playbackId={playbackId}
-        />
-      )}
+      <MuxPlayer
+        title={title}
+        className={cn(!isReady && 'hidden')}
+        onCanPlay={() => setIsReady(true)}
+        onEnded={onEnd}
+        autoPlay
+        playbackId={playbackId}
+      />
     </div>
   );
 };

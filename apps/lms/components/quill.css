@@ -6,7 +6,6 @@
   @apply prose-a:text-brand;
   @apply prose-a:underline-offset-4;
   @apply prose-a:font-bold;
-  @apply prose-headings:leading-none;
 }
 
 /* Light Mode Styles */
@@ -54,7 +53,7 @@
 .myQuill .ql-editor ul,
 .myQuill .ql-editor ol {
   margin: 0;
-  padding: 0;
+  padding: 10px;
 }
 
 .myQuill .ql-editor h1,

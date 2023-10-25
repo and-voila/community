@@ -7,7 +7,6 @@ import { Banner } from '@/components/banner';
 import { IconBadge } from '@/components/icon-badge';
 import { Icons } from '@/components/icons';
 
-import { ChapterAccessForm } from './_components/chapter-access-form';
 import { ChapterActions } from './_components/chapter-actions';
 import { ChapterDescriptionForm } from './_components/chapter-description-form';
 import { ChapterTitleForm } from './_components/chapter-title-form';
@@ -104,11 +103,6 @@ const ChapterIdPage = async ({
                 <IconBadge icon={Icons.eyeOpen} />
                 <h2 className="font-display text-xl">Access Settings</h2>
               </div>
-              <ChapterAccessForm
-                initialData={chapter}
-                courseId={params.courseId}
-                chapterId={params.chapterId}
-              />
             </div>
           </div>
           <div>
