@@ -56,7 +56,12 @@ const CourseLayout = async ({
   return (
     <div className="h-full bg-background dark:bg-[#242629]">
       <div className="fixed inset-y-0 z-50 h-[80px] w-full md:pl-80">
-        <CourseNavbar course={course} progressCount={progressCount} />
+        <CourseNavbar
+          course={course}
+          progressCount={progressCount}
+          isPaidMember={isPaidMember}
+          apiLimitCount={apiLimitCount}
+        />
       </div>
       <div className="fixed inset-y-0 z-50 hidden h-full w-80 flex-col md:flex">
         <CourseSidebar
