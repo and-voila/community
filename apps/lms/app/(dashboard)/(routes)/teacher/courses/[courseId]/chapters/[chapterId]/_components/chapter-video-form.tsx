@@ -5,12 +5,12 @@ import { useRouter } from 'next/navigation';
 import MuxPlayer from '@mux/mux-player-react';
 import { Chapter, MuxData } from '@prisma/client';
 import { Button } from '@ui/components/ui/button';
-import { Pencil1Icon, PlusCircledIcon, VideoIcon } from '@ui/index';
 import axios from 'axios';
 import toast from 'react-hot-toast';
 import * as z from 'zod';
 
 import { FileUpload } from '@/components/file-upload';
+import { Icons } from '@/components/icons';
 
 interface ChapterVideoFormProps {
   initialData: Chapter & { muxData?: MuxData | null };
@@ -48,20 +48,20 @@ export const ChapterVideoForm = ({
   };
 
   return (
-    <div className="mt-6 rounded-md border bg-white p-4 dark:bg-background">
-      <div className="flex items-center justify-between font-display">
+    <div className="mt-6 rounded-md border bg-white px-4 py-6 dark:bg-background">
+      <div className="flex items-center justify-between font-semibold mb-4">
         Chapter video
         <Button onClick={toggleEdit} variant="ghost">
           {isEditing && <>Cancel</>}
           {!isEditing && !initialData.videoUrl && (
             <>
-              <PlusCircledIcon className="mr-2 h-4 w-4" />
+              <Icons.plusCircled className="mr-2 h-4 w-4 text-brand" />
               Add a video
             </>
           )}
           {!isEditing && initialData.videoUrl && (
             <>
-              <Pencil1Icon className="mr-2 h-4 w-4" />
+              <Icons.pencil className="mr-2 h-4 w-4 text-brand" />
               Edit video
             </>
           )}
@@ -69,8 +69,8 @@ export const ChapterVideoForm = ({
       </div>
       {!isEditing &&
         (!initialData.videoUrl ? (
-          <div className="flex h-60 items-center justify-center rounded-md bg-slate-200">
-            <VideoIcon className="h-10 w-10 text-slate-500" />
+          <div className="flex h-60 items-center justify-center rounded-md bg-muted">
+            <Icons.youtube className="h-10 w-10 text-brand" />
           </div>
         ) : (
           <div className="relative mt-2 aspect-video">
