@@ -38,9 +38,9 @@ export const CourseEnrollButton = ({
       onClick={onClick}
       disabled={isLoading}
       size="sm"
-      className="w-full flex-shrink-0 md:w-auto"
+      className="w-full flex-shrink-0 lg:w-auto"
     >
-      Enroll for {formatPrice(price)}
+      Buy it for {formatPrice(price)}
     </Button>
   );
 };

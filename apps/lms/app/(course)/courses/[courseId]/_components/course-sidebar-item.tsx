@@ -46,10 +46,10 @@ export const CourseSidebarItem = ({
         isCompleted && isActive && 'bg-emerald-200/20',
       )}
     >
-      <div className="flex items-center gap-x-2 py-4">
+      <div className="flex items-center gap-x-2 py-4 text-base">
         <Icon
           className={cn(
-            'text-muted-foreground',
+            'text-muted-foreground w-4 h-4',
             isActive && 'text-brand',
             isCompleted && 'text-alternate',
           )}

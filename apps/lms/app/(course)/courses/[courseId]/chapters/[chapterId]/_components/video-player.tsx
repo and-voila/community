@@ -61,7 +61,7 @@ export const VideoPlayer = ({
     <div className="relative aspect-video">
       {!isReady && (
         <div className="absolute inset-0 flex items-center justify-center bg-brand/20">
-          <Icons.spinner className="h-8 w-8 animate-spin text-secondary" />
+          <Icons.spinner className="h-8 w-8 animate-spin text-foreground" />
         </div>
       )}
       <MuxPlayer
@@ -71,6 +71,7 @@ export const VideoPlayer = ({
         onEnded={onEnd}
         autoPlay
         playbackId={playbackId}
+        accentColor="#6847c2"
       />
     </div>
   );
