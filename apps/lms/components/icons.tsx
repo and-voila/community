@@ -14,6 +14,7 @@ import {
   DiscordLogoIcon,
   DotsHorizontalIcon,
   DragHandleDots2Icon,
+  ExclamationTriangleIcon,
   EyeOpenIcon,
   FileTextIcon,
   GearIcon,
@@ -117,4 +118,5 @@ export const Icons: Record<string, IconComponent> = {
   trash: TrashIcon,
   twitter: TwitterLogoIcon,
   youtube: VideoIcon,
+  warning: ExclamationTriangleIcon,
 };

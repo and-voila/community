@@ -1,5 +1,6 @@
 import Image from 'next/image';
 import { redirect } from 'next/navigation';
+import { COURSE_DEFAULT_PRICE } from '@/constants';
 import { auth } from '@clerk/nextjs';
 import { Separator } from '@ui/index';
 
@@ -63,7 +64,7 @@ const CourseIdPage = async ({ params }: { params: { courseId: string } }) => {
             {' '}
             <Banner
               variant="warning"
-              label="You need to purchase this course to watch this chapter."
+              label={`You can buy this playbook for $${COURSE_DEFAULT_PRICE} or upgrade to get full access to the And Voila ecosystem.`}
             />
             <Image
               className="w-full py-4 shadow-md grayscale hover:grayscale-0 transition duration-200"
@@ -75,16 +76,15 @@ const CourseIdPage = async ({ params }: { params: { courseId: string } }) => {
               aria-label={`A featured image of an anthropomorphic cat representing ${course.title}`}
             />
             <div className="rounded-xl bg-white p-6 dark:bg-background lg:p-8">
-              <div className="flex flex-col items-center justify-between p-4 md:flex-row">
-                <h2 className="mb-2 flex-grow font-display text-lg">
+              <div className="flex flex-col items-center justify-between p-4 lg:flex-row">
+                <h2 className="mb-2 flex-grow font-display text-3xl">
                   {course.title}
                 </h2>
-                <div className="flex flex-row gap-x-4 items-center">
+                <div className="lg:p-6 flex flex-col sm:py-0 lg:flex-row gap-x-4 items-center w-full lg:w-auto py-4 space-y-6 lg:space-y-0">
                   <CourseEnrollButton
                     courseId={params.courseId}
                     price={course.price!}
                   />
-                  or
                   <SubscriptionButton isPaidMember={isPaidMember} size="sm" />
                 </div>
               </div>

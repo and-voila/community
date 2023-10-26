@@ -36,9 +36,10 @@ export const SubscriptionButton = ({
       variant={isPaidMember ? 'default' : 'custom'}
       disabled={loading}
       onClick={onClick}
+      className="w-full lg:w-auto"
     >
-      {isPaidMember ? 'Manage Subscription' : 'Become a Member'}
-      {!isPaidMember && <Icons.magic className="ml-2 h-4 w-4" />}
+      {isPaidMember ? 'Manage Subscription' : 'Upgrade'}
+      {!isPaidMember && <Icons.magic className="ml-2" />}
     </Button>
   );
 };
