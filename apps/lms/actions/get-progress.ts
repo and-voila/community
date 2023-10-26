@@ -17,6 +17,15 @@ export const getProgress = async (
 
     const publishedChapterIds = publishedChapters.map((chapter) => chapter.id);
 
+    const firstChapterProgress = await db.userProgress.findFirst({
+      where: {
+        userId: userId,
+        chapterId: publishedChapterIds[0],
+      },
+    });
+
+    const isStarted = firstChapterProgress?.isStarted || false;
+
     const validCompletedChapters = await db.userProgress.count({
       where: {
         userId: userId,
@@ -27,8 +36,16 @@ export const getProgress = async (
       },
     });
 
-    const progressPercentage =
-      (validCompletedChapters / publishedChapterIds.length) * 100;
+    let progressPercentage = 0;
+
+    if (isStarted && validCompletedChapters === 0) {
+      progressPercentage = 25;
+    } else if (isStarted && validCompletedChapters > 0) {
+      progressPercentage =
+        (validCompletedChapters / publishedChapterIds.length) * 100;
+    } else if (!isStarted) {
+      progressPercentage = 0;
+    }
 
     return progressPercentage;
   } catch (error) {

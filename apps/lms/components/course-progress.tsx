@@ -1,5 +1,4 @@
-import { Progress } from '@ui/components/ui/progress';
-import { cn } from '@ui/index';
+import { cn, Progress } from '@ui/index';
 
 interface CourseProgressProps {
   value: number;
@@ -17,25 +16,18 @@ const sizeByVariant = {
   sm: 'text-xs',
 };
 
-const variantClasses = {
-  default: 'default-class',
-  success: 'success-class',
-};
-
 export const CourseProgress = ({
   value,
-  variant = 'default',
+  variant,
   size,
 }: CourseProgressProps) => {
-  const progressClass = variantClasses[variant];
-
   return (
-    <div>
-      <Progress className={`h-2 ${progressClass}`} value={value} />
+    <div className="my-2">
+      <Progress className="h-2" value={value} variant={variant} />
       <p
         className={cn(
-          'mt-2 font-medium text-foreground',
-          colorByVariant[variant],
+          'font-medium mt-2 text-brand',
+          colorByVariant[variant || 'default'],
           sizeByVariant[size || 'default'],
         )}
       >
