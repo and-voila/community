@@ -9,7 +9,8 @@
     "lint:fix": "eslint --fix . && prettier --write .",
     "format": "prettier --write \"**/*.{ts,tsx,md,mdx}\"",
     "format:check": "prettier --check \"**/*.{ts,tsx,md,mdx}\"",
-    "ui:add": "pnpm --filter ui ui:add"
+    "ui:add": "pnpm --filter ui ui:add",
+    "prepare": "husky install"
   },
   "devDependencies": {
     "@ianvs/prettier-plugin-sort-imports": "^4.1.1",
@@ -27,6 +28,10 @@
     "prettier-plugin-tailwindcss": "^0.5.6",
     "turbo": "^1.10.16",
     "vercel": "^32.5.0"
+  },
+  "lint-staged": {
+    "apps/**/*.{js,ts,jsx,tsx,md,mdx}": "eslint --fix && prettier --write",
+    "packages/ui/**/*.{js,ts,jsx,tsx,md,mdx}": "eslint --fix && prettier --write"
   },
   "packageManager": "pnpm@8.9.2"
 }
