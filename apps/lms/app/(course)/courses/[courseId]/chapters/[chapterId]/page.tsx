@@ -2,10 +2,10 @@ import { redirect } from 'next/navigation';
 import { getChapter } from '@/actions/get-chapter';
 import { auth } from '@clerk/nextjs';
 import { Separator } from '@ui/components/ui/separator';
-import { FileIcon } from '@ui/index';
 
 import { Banner } from '@/components/banner';
 import { Container } from '@/components/container';
+import { Icons } from '@/components/icons';
 import { Preview } from '@/components/preview';
 
 import { CourseProgressButton } from './_components/course-progress-button';
@@ -98,7 +98,7 @@ const ChapterIdPage = async ({
                       key={attachment.id}
                       className="mt-8 flex w-full items-center rounded-md border p-3 text-foreground hover:underline"
                     >
-                      <FileIcon />
+                      <Icons.file />
                       <p className="ml-2 line-clamp-1">{attachment.name}</p>
                     </a>
                   ))}

@@ -1,6 +1,7 @@
 import { Chapter, Course, UserProgress } from '@prisma/client';
 import { Sheet, SheetContent, SheetTrigger } from '@ui/components/ui/sheet';
-import { HamburgerMenuIcon } from '@ui/index';
+
+import { Icons } from '@/components/icons';
 
 import { CourseSidebar } from './course-sidebar';
 
@@ -24,7 +25,7 @@ export const CourseMobileSidebar = ({
   return (
     <Sheet>
       <SheetTrigger className="pr-4 transition hover:opacity-75 md:hidden">
-        <HamburgerMenuIcon />
+        <Icons.hamburgerMenu />
       </SheetTrigger>
       <SheetContent side="left" className="w-72 bg-white p-0">
         <CourseSidebar

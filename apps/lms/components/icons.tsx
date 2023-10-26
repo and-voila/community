@@ -45,7 +45,11 @@ export type IconProps = SVGProps<SVGSVGElement>;
 
 export type IconComponent = FunctionComponent<IconProps>;
 
-export const Icons: Record<string, IconComponent> = {
+function createIcons<T extends Record<string, IconComponent>>(icons: T): T {
+  return icons;
+}
+
+export const Icons = createIcons({
   activity: ActivityLogIcon,
   analytics: BarChartIcon,
   apple: (props: IconProps) => (
@@ -119,4 +123,4 @@ export const Icons: Record<string, IconComponent> = {
   twitter: TwitterLogoIcon,
   youtube: VideoIcon,
   warning: ExclamationTriangleIcon,
-};
+});
