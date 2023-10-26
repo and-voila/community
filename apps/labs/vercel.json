@@ -1,6 +1,0 @@
-{
-  "ignoreCommand": "npx turbo-ignore",
-  "github": {
-    "silent": true
-  }
-}

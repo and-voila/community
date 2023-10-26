@@ -34,9 +34,6 @@ const CourseIdPage = async ({ params }: { params: { courseId: string } }) => {
     },
   });
 
-  // eslint-disable-next-line no-console
-  console.log('Chapters:', course?.chapters);
-
   const userProgress = await db.userProgress.findFirst({
     where: {
       userId: userId,
