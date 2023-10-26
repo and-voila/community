@@ -10,12 +10,12 @@
     "type-check": "next lint --no-cache"
   },
   "dependencies": {
-    "@clerk/nextjs": "^4.25.6",
+    "@clerk/nextjs": "^4.25.7",
     "@hello-pangea/dnd": "^16.3.0",
     "@hookform/resolvers": "^3.3.2",
     "@mux/mux-node": "^7.3.2",
-    "@mux/mux-player-react": "^2.0.1",
-    "@prisma/client": "^5.4.2",
+    "@mux/mux-player-react": "^2.1.0",
+    "@prisma/client": "^5.5.2",
     "@prisma/extension-accelerate": "^0.6.2",
     "@tanstack/react-table": "^8.10.7",
     "@uploadthing/react": "^5.7.0",
@@ -41,16 +41,16 @@
     "zustand": "^4.4.4"
   },
   "devDependencies": {
-    "@types/node": "20.8.7",
-    "@types/react": "18.2.22",
-    "@types/react-dom": "18.2.12",
+    "@types/node": "20.8.9",
+    "@types/react": "18.2.33",
+    "@types/react-dom": "18.2.14",
     "autoprefixer": "10.4.16",
     "eslint-config-custom": "workspace:*",
     "postcss": "8.4.31",
-    "prisma": "^5.4.2",
+    "prisma": "^5.5.2",
     "save": "^2.9.0",
     "sharp": "^0.32.6",
-    "tailwindcss": "3.3.3",
+    "tailwindcss": "3.3.5",
     "tailwindcss-animate": "^1.0.7",
     "tsconfig": "workspace:*",
     "typescript": "5.2.2"
