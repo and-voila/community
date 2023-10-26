@@ -35,6 +35,12 @@ importers:
       eslint-plugin-unicorn:
         specifier: ^48.0.1
         version: 48.0.1(eslint@8.52.0)
+      husky:
+        specifier: ^8.0.3
+        version: 8.0.3
+      lint-staged:
+        specifier: ^15.0.2
+        version: 15.0.2
       prettier:
         specifier: ^3.0.3
         version: 3.0.3
@@ -82,7 +88,7 @@ importers:
         version: 1.5.1
       next:
         specifier: 13.5.6
-        version: 13.5.6(@babel/core@7.23.2)(react-dom@18.2.0)(react@18.2.0)
+        version: 13.5.6(@babel/core@7.23.2)(@opentelemetry/api@1.6.0)(react-dom@18.2.0)(react@18.2.0)
       query-string:
         specifier: ^8.1.0
         version: 8.1.0
@@ -294,7 +300,7 @@ importers:
         version: 5.0.2
       next:
         specifier: 13.5.6
-        version: 13.5.6(@babel/core@7.23.2)(react-dom@18.2.0)(react@18.2.0)
+        version: 13.5.6(@babel/core@7.23.2)(@opentelemetry/api@1.6.0)(react-dom@18.2.0)(react@18.2.0)
       next-auth:
         specifier: 4.24.3
         version: 4.24.3(next@13.5.6)(react-dom@18.2.0)(react@18.2.0)
@@ -837,7 +843,7 @@ packages:
       '@clerk/clerk-sdk-node': 4.12.16(react@18.2.0)
       '@clerk/shared': 1.0.0(react@18.2.0)
       '@clerk/types': 3.57.0
-      next: 13.5.6(@babel/core@7.23.2)(react-dom@18.2.0)(react@18.2.0)
+      next: 13.5.6(@babel/core@7.23.2)(@opentelemetry/api@1.6.0)(react-dom@18.2.0)(react@18.2.0)
       path-to-regexp: 6.2.1
       react: 18.2.0
       react-dom: 18.2.0(react@18.2.0)
@@ -5204,7 +5210,7 @@ packages:
       '@uploadthing/shared': 5.2.5(@uploadthing/mime-types@0.2.1)(zod@3.22.4)
       attr-accept: 2.2.2
       file-selector: 0.6.0
-      next: 13.5.6(@babel/core@7.23.2)(react-dom@18.2.0)(react@18.2.0)
+      next: 13.5.6(@babel/core@7.23.2)(@opentelemetry/api@1.6.0)(react-dom@18.2.0)(react@18.2.0)
       react: 18.2.0
       tailwind-merge: 1.14.0
       uploadthing: 5.7.2(zod@3.22.4)
@@ -9003,6 +9009,12 @@ packages:
     engines: {node: '>=16.17.0'}
     dev: true
 
+  /husky@8.0.3:
+    resolution: {integrity: sha512-+dQSyqPh4x1hlO1swXBiNb2HzTDN1I2IGLQx1GrBuiqFJfoMrnZWwVmatvSiO+Iz8fBUnf+lekwNo4c2LlXItg==}
+    engines: {node: '>=14'}
+    hasBin: true
+    dev: true
+
   /iconv-lite@0.4.24:
     resolution: {integrity: sha512-v3MXnZAcvnywkTUEZomIActle7RXXeedOR31wwl7VlyoXO4Qi9arvSenNQWne1TcRwhCL1HwLI21bEqdpj8/rA==}
     engines: {node: '>=0.10.0'}
@@ -10898,7 +10910,7 @@ packages:
       '@panva/hkdf': 1.1.1
       cookie: 0.5.0
       jose: 4.15.4
-      next: 13.5.6(@babel/core@7.23.2)(react-dom@18.2.0)(react@18.2.0)
+      next: 13.5.6(@babel/core@7.23.2)(@opentelemetry/api@1.6.0)(react-dom@18.2.0)(react@18.2.0)
       oauth: 0.9.15
       openid-client: 5.6.1
       preact: 10.18.1
@@ -10953,7 +10965,7 @@ packages:
       react: '*'
       react-dom: '*'
     dependencies:
-      next: 13.5.6(@babel/core@7.23.2)(react-dom@18.2.0)(react@18.2.0)
+      next: 13.5.6(@babel/core@7.23.2)(@opentelemetry/api@1.6.0)(react-dom@18.2.0)(react@18.2.0)
       react: 18.2.0
       react-dom: 18.2.0(react@18.2.0)
     dev: false
@@ -11015,45 +11027,6 @@ packages:
     dependencies:
       '@next/env': 13.5.6
       '@opentelemetry/api': 1.6.0
-      '@swc/helpers': 0.5.2
-      busboy: 1.6.0
-      caniuse-lite: 1.0.30001554
-      postcss: 8.4.31
-      react: 18.2.0
-      react-dom: 18.2.0(react@18.2.0)
-      styled-jsx: 5.1.1(@babel/core@7.23.2)(react@18.2.0)
-      watchpack: 2.4.0
-    optionalDependencies:
-      '@next/swc-darwin-arm64': 13.5.6
-      '@next/swc-darwin-x64': 13.5.6
-      '@next/swc-linux-arm64-gnu': 13.5.6
-      '@next/swc-linux-arm64-musl': 13.5.6
-      '@next/swc-linux-x64-gnu': 13.5.6
-      '@next/swc-linux-x64-musl': 13.5.6
-      '@next/swc-win32-arm64-msvc': 13.5.6
-      '@next/swc-win32-ia32-msvc': 13.5.6
-      '@next/swc-win32-x64-msvc': 13.5.6
-    transitivePeerDependencies:
-      - '@babel/core'
-      - babel-plugin-macros
-    dev: false
-
-  /next@13.5.6(@babel/core@7.23.2)(react-dom@18.2.0)(react@18.2.0):
-    resolution: {integrity: sha512-Y2wTcTbO4WwEsVb4A8VSnOsG1I9ok+h74q0ZdxkwM3EODqrs4pasq7O0iUxbcS9VtWMicG7f3+HAj0r1+NtKSw==}
-    engines: {node: '>=16.14.0'}
-    hasBin: true
-    peerDependencies:
-      '@opentelemetry/api': ^1.1.0
-      react: ^18.2.0
-      react-dom: ^18.2.0
-      sass: ^1.3.0
-    peerDependenciesMeta:
-      '@opentelemetry/api':
-        optional: true
-      sass:
-        optional: true
-    dependencies:
-      '@next/env': 13.5.6
       '@swc/helpers': 0.5.2
       busboy: 1.6.0
       caniuse-lite: 1.0.30001553
