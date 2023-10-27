@@ -2,6 +2,7 @@ import { NextResponse } from 'next/server';
 import { auth } from '@clerk/nextjs';
 
 import { db } from '@/lib/db';
+import { isTeacher } from '@/lib/teacher';
 
 export async function PUT(
   req: Request,
@@ -10,20 +11,19 @@ export async function PUT(
   try {
     const { userId } = auth();
 
-    if (!userId) {
+    if (!isTeacher(userId)) {
       return new NextResponse('Unauthorized', { status: 401 });
     }
 
     const { list } = await req.json();
 
-    const ownCourse = await db.course.findUnique({
+    const course = await db.course.findUnique({
       where: {
         id: params.courseId,
-        userId: userId,
       },
     });
 
-    if (!ownCourse) {
+    if (!course) {
       return new NextResponse('Unauthorized', { status: 401 });
     }
 

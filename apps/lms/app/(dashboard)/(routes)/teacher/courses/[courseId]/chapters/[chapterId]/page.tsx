@@ -3,6 +3,7 @@ import { redirect } from 'next/navigation';
 import { auth } from '@clerk/nextjs';
 
 import { db } from '@/lib/db';
+import { isTeacher } from '@/lib/teacher';
 import { Banner } from '@/components/banner';
 import { IconBadge } from '@/components/icon-badge';
 import { Icons } from '@/components/icons';
@@ -19,7 +20,7 @@ const ChapterIdPage = async ({
 }) => {
   const { userId } = auth();
 
-  if (!userId) {
+  if (!isTeacher(userId)) {
     return redirect('/');
   }
 

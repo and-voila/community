@@ -3,6 +3,7 @@ import { auth } from '@clerk/nextjs';
 import Mux from '@mux/mux-node';
 
 import { db } from '@/lib/db';
+import { isTeacher } from '@/lib/teacher';
 
 const { Video } = new Mux(
   process.env.MUX_TOKEN_ID!,
@@ -16,18 +17,17 @@ export async function DELETE(
   try {
     const { userId } = auth();
 
-    if (!userId) {
+    if (!isTeacher(userId)) {
       return new NextResponse('Unauthorized', { status: 401 });
     }
 
-    const ownCourse = await db.course.findUnique({
+    const course = await db.course.findUnique({
       where: {
         id: params.courseId,
-        userId,
       },
     });
 
-    if (!ownCourse) {
+    if (!course) {
       return new NextResponse('Unauthorized', { status: 401 });
     }
 
@@ -97,18 +97,17 @@ export async function PATCH(
     const { userId } = auth();
     const { isPublished, ...values } = await req.json();
 
-    if (!userId) {
+    if (!isTeacher(userId)) {
       return new NextResponse('Unauthorized', { status: 401 });
     }
 
-    const ownCourse = await db.course.findUnique({
+    const course = await db.course.findUnique({
       where: {
         id: params.courseId,
-        userId,
       },
     });
 
-    if (!ownCourse) {
+    if (!course) {
       return new NextResponse('Unauthorized', { status: 401 });
     }
 
