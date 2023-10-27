@@ -2,6 +2,7 @@ import { redirect } from 'next/navigation';
 import { auth } from '@clerk/nextjs';
 
 import { db } from '@/lib/db';
+import { isTeacher } from '@/lib/teacher';
 import { Banner } from '@/components/banner';
 import { IconBadge } from '@/components/icon-badge';
 import { Icons } from '@/components/icons';
@@ -18,14 +19,13 @@ import { TitleForm } from './_components/title-form';
 const CourseIdPage = async ({ params }: { params: { courseId: string } }) => {
   const { userId } = auth();
 
-  if (!userId) {
+  if (!isTeacher(userId)) {
     return redirect('/');
   }
 
   const course = await db.course.findUnique({
     where: {
       id: params.courseId,
-      userId,
     },
     include: {
       chapters: {
