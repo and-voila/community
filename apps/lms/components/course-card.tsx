@@ -10,7 +10,7 @@ import { Icons } from './icons';
 interface CourseCardProps {
   id: string;
   title: string;
-  description: string;
+  preview: string;
   imageUrl: string;
   displayImage?: boolean;
   chaptersLength: number;
@@ -23,7 +23,7 @@ interface CourseCardProps {
 export const CourseCard = ({
   id,
   title,
-  description,
+  preview,
   imageUrl,
   displayImage = true,
   chaptersLength,
@@ -56,7 +56,7 @@ export const CourseCard = ({
             {title}
           </div>
           <p className="my-2 line-clamp-2 text-sm text-muted-foreground">
-            {description}
+            {preview}
           </p>
           {progress !== null ? (
             <CourseProgress
@@ -65,9 +65,7 @@ export const CourseCard = ({
               value={progress}
             />
           ) : (
-            <p className="mt-2 text-base font-semibold text-brand">
-              {displayPrice}
-            </p>
+            <p className="text-base font-medium text-brand">{displayPrice}</p>
           )}
         </div>
       </div>

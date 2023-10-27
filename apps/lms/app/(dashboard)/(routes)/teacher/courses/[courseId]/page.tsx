@@ -13,6 +13,7 @@ import { CategoryForm } from './_components/category-form';
 import { ChaptersForm } from './_components/chapters-form';
 import { DescriptionForm } from './_components/description-form';
 import { ImageForm } from './_components/image-form';
+import { PreviewForm } from './_components/preview-form';
 import { PriceForm } from './_components/price-form';
 import { TitleForm } from './_components/title-form';
 
@@ -53,6 +54,7 @@ const CourseIdPage = async ({ params }: { params: { courseId: string } }) => {
 
   const requiredFields = [
     course.title,
+    course.preview,
     course.description,
     course.imageUrl,
     course.price,
@@ -93,6 +95,7 @@ const CourseIdPage = async ({ params }: { params: { courseId: string } }) => {
               <h2 className="font-display text-lg">Customize your course</h2>
             </div>
             <TitleForm initialData={course} courseId={course.id} />
+            <PreviewForm initialData={course} courseId={course.id} />
             <DescriptionForm initialData={course} courseId={course.id} />
             <ImageForm initialData={course} courseId={course.id} />
             <CategoryForm

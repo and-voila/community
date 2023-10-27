@@ -77,7 +77,7 @@ export const PriceForm = ({ initialData, courseId }: PriceFormProps) => {
         </Button>
       </div>
       {!isEditing && (
-        <p className="mt-2 text-sm">
+        <p className="mt-2 text-base lg:text-lg text-muted-foreground">
           {initialData.price === 0 ? 'Free' : 'Paid'}
         </p>
       )}

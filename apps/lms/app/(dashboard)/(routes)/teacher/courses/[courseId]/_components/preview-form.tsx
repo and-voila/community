@@ -3,15 +3,17 @@
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { Button } from '@ui/components/ui/button';
+import { Course } from '@prisma/client';
 import {
+  Button,
+  cn,
   Form,
   FormControl,
   FormField,
   FormItem,
   FormMessage,
-} from '@ui/components/ui/form';
-import { Input } from '@ui/components/ui/input';
+  Textarea,
+} from '@ui/index';
 import axios from 'axios';
 import { useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
@@ -19,20 +21,23 @@ import * as z from 'zod';
 
 import { Icons } from '@/components/icons';
 
-interface TitleFormProps {
-  initialData: {
-    title: string;
-  };
+interface PreviewFormProps {
+  initialData: Course;
   courseId: string;
 }
 
 const formSchema = z.object({
-  title: z.string().min(1, {
-    message: 'Title is required',
-  }),
+  preview: z
+    .string()
+    .min(1, {
+      message: 'Description is required',
+    })
+    .max(200, {
+      message: 'Description cannot exceed 200 characters',
+    }),
 });
 
-export const TitleForm = ({ initialData, courseId }: TitleFormProps) => {
+export const PreviewForm = ({ initialData, courseId }: PreviewFormProps) => {
   const [isEditing, setIsEditing] = useState(false);
 
   const toggleEdit = () => setIsEditing((current) => !current);
@@ -41,7 +46,9 @@ export const TitleForm = ({ initialData, courseId }: TitleFormProps) => {
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
-    defaultValues: initialData,
+    defaultValues: {
+      preview: initialData?.description || '',
+    },
   });
 
   const { isSubmitting, isValid } = form.formState;
@@ -58,40 +65,45 @@ export const TitleForm = ({ initialData, courseId }: TitleFormProps) => {
   };
 
   return (
-    <div className="mt-6 rounded-md border bg-white px-4 py-6 dark:bg-background">
+    <div className="mt-6 rounded-md border bg-white dark:bg-background px-4 py-6">
       <div className="flex items-center justify-between font-semibold mb-4">
-        Course title
+        Course preview text
         <Button onClick={toggleEdit} variant="ghost">
           {isEditing ? (
             <>Cancel</>
           ) : (
             <>
-              <Icons.pencil className="mr-2 h-4 w-4 text-brand" />
-              Edit title
+              <Icons.pencil className="h-4 w-4 mr-2 text-brand" />
+              Edit preview
             </>
           )}
         </Button>
       </div>
       {!isEditing && (
-        <p className="mt-2 text-base lg:text-lg text-muted-foreground">
-          {initialData.title}
+        <p
+          className={cn(
+            'text-base lg:text-lg text-muted-foreground mt-2',
+            !initialData.preview && 'text-muted-foreground italic',
+          )}
+        >
+          {initialData.preview || 'No preview set'}
         </p>
       )}
       {isEditing && (
         <Form {...form}>
           <form
             onSubmit={form.handleSubmit(onSubmit)}
-            className="mt-4 space-y-4"
+            className="space-y-4 mt-4"
           >
             <FormField
               control={form.control}
-              name="title"
+              name="preview"
               render={({ field }) => (
                 <FormItem>
                   <FormControl>
-                    <Input
+                    <Textarea
                       disabled={isSubmitting}
-                      placeholder="e.g. 'The art of procrastination'"
+                      placeholder="e.g. 'This is my super duper 158 character max course preview text...'"
                       {...field}
                     />
                   </FormControl>

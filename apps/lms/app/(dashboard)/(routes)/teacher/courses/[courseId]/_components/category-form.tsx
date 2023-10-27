@@ -84,7 +84,7 @@ export const CategoryForm = ({
       {!isEditing && (
         <p
           className={cn(
-            'mt-2 text-sm',
+            'mt-2 text-base lg:text-lg text-muted-foreground',
             !initialData.categoryId && 'italic text-muted-foreground',
           )}
         >
