@@ -158,6 +158,7 @@ model Course {
   userId      String
   title       String  @db.Text
   description String? @db.Text
+  preview     String? @db.Text
   imageUrl    String? @db.Text
   price       Float?
   isFree      Boolean @default(false)

@@ -19,6 +19,7 @@ import toast from 'react-hot-toast';
 import * as z from 'zod';
 
 import { Icons } from '@/components/icons';
+import { Preview } from '@/components/preview';
 import { QuillEditor } from '@/components/quill-editor';
 
 interface DescriptionFormProps {
@@ -44,6 +45,7 @@ export const DescriptionForm = ({
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
+    mode: 'onSubmit',
     defaultValues: {
       description: initialData?.description || '',
     },
@@ -78,14 +80,17 @@ export const DescriptionForm = ({
         </Button>
       </div>
       {!isEditing && (
-        <p
+        <div
           className={cn(
             'mt-2 text-sm',
             !initialData.description && 'italic text-muted-foreground',
           )}
         >
-          {initialData.description || 'No description'}
-        </p>
+          {!initialData.description && 'No description'}
+          {initialData.description && (
+            <Preview value={initialData.description} />
+          )}
+        </div>
       )}
       {isEditing && (
         <Form {...form}>

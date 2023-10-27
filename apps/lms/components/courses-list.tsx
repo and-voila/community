@@ -40,7 +40,7 @@ export const CoursesList = ({ items }: CoursesListProps) => {
               <CourseCard
                 id={item.id}
                 title={item.title}
-                description={item.description}
+                preview={item.preview}
                 imageUrl={item.imageUrl}
                 chaptersLength={item.chapters.length}
                 price={item.price}
