@@ -1,85 +1,110 @@
+/* 
+====================
+PREVIEW COMPONENT
+====================
+*/
+
+/* Structure */
 .myQuill .ql-container {
   @apply prose;
   @apply dark:prose-invert;
   @apply lg:prose-lg;
+}
+
+/* Headings */
+.myQuill .ql-editor h1,
+.myQuill .ql-editor h2,
+.myQuill .ql-editor h3 {
+  margin: 0;
+  padding: 0;
+  @apply text-foreground;
   @apply prose-headings:font-display;
-  @apply prose-a:text-brand;
+  @apply prose-headings:leading-loose;
+}
+
+/* Paragraphs */
+.myQuill .ql-editor p {
+  margin: 0;
+  padding: 0;
+  @apply text-muted-foreground;
+  @apply prose-p:leading-normal;
+}
+
+/* Links */
+.myQuill .ql-editor a {
+  @apply text-brand;
   @apply prose-a:underline-offset-4;
   @apply prose-a:font-bold;
 }
 
-/* Light Mode Styles */
-.ql-snow.ql-container h1,
-.ql-snow.ql-container h2,
-.ql-snow.ql-container h3,
-.ql-snow.ql-container h4,
-.ql-snow.ql-container h5,
-.ql-snow.ql-container h6 {
-  color: #1f2937;
-}
-.ql-snow.ql-container p {
-  color: #4b5563;
+/* List Items */
+.myQuill .ql-editor ul,
+.myQuill .ql-editor ol {
+  margin: 0;
+  padding: 0;
+  @apply prose-ol:leading-normal prose-ul:leading-normal;
 }
 
-.ql-snow.ql-container ul,
-.ql-snow.ql-container ol {
-  color: #4b5563;
-}
+/* 
+====================
+EDITOR COMPONENT
+====================
+*/
 
-.ql-snow.ql-container a {
-  color: #6847c2;
-}
-
+/* Structure */
 .ql-snow .ql-editor {
   font-size: 16px;
   line-height: 1.5;
 }
 
-.ql-snow .ql-toolbar .ql-formats {
-  border-color: #000000;
+/* Headings */
+.ql-snow.ql-container h1,
+.ql-snow.ql-container h2,
+.ql-snow.ql-container h3 {
+  color: #1f2937;
 }
 
+.ql-editor h1 {
+  line-height: 1.4;
+}
+
+.ql-editor h2 {
+  line-height: 1.5;
+}
+
+.ql-editor h3 {
+  line-height: 1.5;
+}
+
+/* Paragraphs */
+.ql-snow.ql-container p,
+.ql-snow.ql-container ul,
+.ql-snow.ql-container ol {
+  color: #4b5563;
+}
+
+.ql-editor p {
+  margin: 1em 0;
+  padding: 0;
+}
+
+/* Links */
+.ql-snow.ql-container a {
+  color: #6847c2;
+}
+
+/* List Items */
+.ql-editor ul,
+.ql-editor ol,
+.ql-editor li {
+  margin: 0.5em 0;
+}
+
+/* Misc */
 .ql-snow .ql-toolbar .ql-formats .ql-picker-label {
   color: #000000;
 }
 
-.myQuill .ql-editor p,
-.myQuill .ql-editor h1,
-.myQuill .ql-editor h2,
-.myQuill .ql-editor h3,
-.myQuill .ql-editor h4,
-.myQuill .ql-editor h5,
-.myQuill .ql-editor h6,
-.myQuill .ql-editor ul,
-.myQuill .ql-editor ol {
-  margin: 0;
-  padding: 0;
-}
-
-.myQuill .ql-editor h1,
-.myQuill .ql-editor h2,
-.myQuill .ql-editor h3,
-.myQuill .ql-editor h4,
-.myQuill .ql-editor h5,
-.myQuill .ql-editor h6 {
-  @apply text-foreground;
-}
-
-.myQuill .ql-editor p,
-.myQuill .ql-editor ul,
-.myQuill .ql-editor ol {
-  @apply text-muted-foreground;
-}
-
-.myQuill .ql-editor a {
-  @apply text-brand;
-}
-.myQuill .ql-tooltip.ql-editing input[type='text'] {
-  @apply bg-white;
-  @apply text-black;
-}
-
-.myQuill .ql-tooltip input[type='text'] {
-  background-color: white !important;
-  color: black !important;
+.ql-snow .ql-tooltip.ql-editing input[type='text'] {
+  background-color: white;
 }
