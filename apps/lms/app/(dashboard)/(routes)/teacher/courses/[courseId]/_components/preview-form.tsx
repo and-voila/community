@@ -47,7 +47,7 @@ export const PreviewForm = ({ initialData, courseId }: PreviewFormProps) => {
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      preview: initialData?.description || '',
+      preview: initialData?.preview || '',
     },
   });
 
