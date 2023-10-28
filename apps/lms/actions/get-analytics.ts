@@ -1,3 +1,5 @@
+'use server';
+
 import { Course, Purchase } from '@prisma/client';
 
 import { db } from '@/lib/db';
@@ -20,14 +22,10 @@ const groupByCourse = (purchases: PurchaseWithCourse[]) => {
   return grouped;
 };
 
-export const getAnalytics = async (userId: string) => {
+export const getAnalytics = async () => {
   try {
     const purchases = await db.purchase.findMany({
-      where: {
-        course: {
-          userId: userId,
-        },
-      },
+      where: {},
       include: {
         course: true,
       },

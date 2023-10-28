@@ -52,6 +52,10 @@ export const getCourses = async ({
       orderBy: {
         createdAt: 'desc',
       },
+      cacheStrategy: {
+        ttl: 3,
+        swr: 6,
+      },
     });
 
     const isPaidMember = await checkSubscription();

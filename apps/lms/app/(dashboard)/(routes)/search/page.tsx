@@ -27,6 +27,10 @@ const SearchPage = async ({ searchParams }: SearchPageProps) => {
     orderBy: {
       name: 'asc',
     },
+    cacheStrategy: {
+      ttl: 600,
+      swr: 1200,
+    },
   });
 
   const isPaidMember = await checkSubscription();

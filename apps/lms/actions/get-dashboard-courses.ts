@@ -46,6 +46,10 @@ export const getDashboardCourses = async (
           },
         },
       },
+      cacheStrategy: {
+        ttl: 3,
+        swr: 6,
+      },
     });
 
     const coursesWithProgress = await Promise.all(
