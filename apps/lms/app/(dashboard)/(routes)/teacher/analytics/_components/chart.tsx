@@ -1,6 +1,6 @@
 'use client';
 
-import { Card } from '@ui/components/ui/card';
+import { Card, CardFooter } from '@ui/components/ui/card';
 import { Bar, BarChart, ResponsiveContainer, XAxis, YAxis } from 'recharts';
 
 interface ChartProps {
@@ -32,6 +32,9 @@ export const Chart = ({ data }: ChartProps) => {
           <Bar dataKey="total" fill="#6847c2" radius={[4, 4, 0, 0]} />
         </BarChart>
       </ResponsiveContainer>
+      <CardFooter className="text-xs lg:text-sm justify-center text-muted-foreground py-4">
+        Updated every couple of minutes.
+      </CardFooter>
     </Card>
   );
 };
