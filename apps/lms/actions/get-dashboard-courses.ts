@@ -2,12 +2,14 @@ import { getProgress } from '@/actions/get-progress';
 import { Category, Chapter, Course } from '@prisma/client';
 
 import { db } from '@/lib/db';
+import { checkSubscription } from '@/lib/subscription';
 
 type CourseWithProgressWithCategory = Course & {
   category: Category;
   chapters: Chapter[];
   progress: number | null;
   isPaidMember: boolean;
+  purchased: boolean;
 };
 
 type DashboardCourses = {
@@ -45,6 +47,7 @@ export const getDashboardCourses = async (
             isPublished: true,
           },
         },
+        purchases: true,
       },
       cacheStrategy: {
         ttl: 3,
@@ -55,9 +58,15 @@ export const getDashboardCourses = async (
     const coursesWithProgress = await Promise.all(
       courses.map(async (course) => {
         const progress = await getProgress(userId, course.id);
+        const purchased = course.purchases.some(
+          (purchase) => purchase.userId === userId,
+        );
+        const isPaidMember = await checkSubscription();
         return {
           ...course,
           progress,
+          purchased,
+          isPaidMember,
         } as CourseWithProgressWithCategory;
       }),
     );

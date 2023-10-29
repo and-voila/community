@@ -6,8 +6,10 @@
     "dev": "prisma generate --no-engine && next dev --port 3001",
     "build": "prisma generate --no-engine && next build",
     "start": "next start",
-    "lint": "next lint",
-    "type-check": "next lint --no-cache"
+    "lint": "next lint --no-cache",
+    "type-check": "tsc --noEmit",
+    "prettier": "prettier --write .",
+    "test": "pnpm run lint && pnpm run prettier && pnpm run type-check"
   },
   "dependencies": {
     "@clerk/nextjs": "^4.25.7",

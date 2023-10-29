@@ -6,8 +6,10 @@
     "dev": "next dev --port 3000",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint",
-    "type-check": "next lint --no-cache"
+    "lint": "next lint --no-cache",
+    "type-check": "tsc --noEmit",
+    "prettier": "prettier --write .",
+    "test": "pnpm run lint && pnpm run prettier && pnpm run type-check"
   },
   "dependencies": {
     "@headlessui/react": "^1.7.17",
