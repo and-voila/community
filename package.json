@@ -10,7 +10,8 @@
     "format": "prettier --write \"**/*.{ts,tsx,md,mdx}\"",
     "format:check": "prettier --check \"**/*.{ts,tsx,md,mdx}\"",
     "ui:add": "pnpm --filter ui ui:add",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "test": "pnpm recursive run test"
   },
   "devDependencies": {
     "@ianvs/prettier-plugin-sort-imports": "^4.1.1",

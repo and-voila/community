@@ -79,7 +79,7 @@ export const ProModal = () => {
       <DialogContent>
         <DialogHeader>
           <DialogTitle className="flex flex-col items-center justify-center gap-y-4 pb-2">
-            <div className="flex items-center gap-x-2 py-1 font-display text-2xl">
+            <div className="flex items-center gap-x-2 py-1 font-display tracking-tight text-2xl">
               Become a paid member
               <Badge variant="custom" className="py-1 text-sm uppercase">
                 The Best Plan

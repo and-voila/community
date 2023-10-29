@@ -8,8 +8,10 @@
     "format:write": "prettier --write \"**/*.{css,js,json,jsx,ts,tsx}\"",
     "format": "prettier \"**/*.{css,js,json,jsx,ts,tsx}\"",
     "start": "next start",
-    "lint": "next lint",
-    "type-check": "next lint --no-cache"
+    "lint": "next lint --no-cache",
+    "type-check": "tsc --noEmit",
+    "prettier": "prettier --write .",
+    "test": "pnpm run lint && pnpm run prettier && pnpm run type-check"
   },
   "dependencies": {
     "@next-auth/prisma-adapter": "^1.0.7",

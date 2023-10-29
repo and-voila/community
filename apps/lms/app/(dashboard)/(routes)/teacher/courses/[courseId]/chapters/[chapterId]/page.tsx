@@ -67,7 +67,9 @@ const ChapterIdPage = async ({
             </Link>
             <div className="flex w-full items-center justify-between">
               <div className="flex flex-col gap-y-2">
-                <h1 className="font-display text-2xl">Chapter Creation</h1>
+                <h1 className="font-display tracking-tight text-2xl">
+                  Chapter Creation
+                </h1>
                 <span className="text-base text-muted-foreground">
                   Complete all fields {completionText}
                 </span>
@@ -86,7 +88,9 @@ const ChapterIdPage = async ({
             <div>
               <div className="flex items-center gap-x-2">
                 <IconBadge icon={Icons.magic} />
-                <h2 className="font-display text-xl">Customize your chapter</h2>
+                <h2 className="font-display tracking-tight text-xl">
+                  Customize your chapter
+                </h2>
               </div>
               <ChapterTitleForm
                 initialData={chapter}
@@ -102,14 +106,18 @@ const ChapterIdPage = async ({
             <div>
               <div className="mt-16 flex items-center gap-x-2">
                 <IconBadge icon={Icons.eyeOpen} />
-                <h2 className="font-display text-xl">Access Settings</h2>
+                <h2 className="font-display tracking-tight text-xl">
+                  Access Settings
+                </h2>
               </div>
             </div>
           </div>
           <div>
             <div className="mt-16 flex items-center gap-x-2">
               <IconBadge icon={Icons.youtube} />
-              <h2 className="font-display text-xl">Add a video</h2>
+              <h2 className="font-display tracking-tight text-xl">
+                Add a video
+              </h2>
             </div>
             <ChapterVideoForm
               initialData={chapter}

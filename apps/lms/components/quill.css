@@ -15,8 +15,9 @@ PREVIEW COMPONENT
 .myQuill .ql-editor h1,
 .myQuill .ql-editor h2,
 .myQuill .ql-editor h3 {
-  margin: 0;
+  margin: 0.25em 0 0.25em 0;
   padding: 0;
+  letter-spacing: -0.025em;
   @apply text-foreground;
   @apply prose-headings:font-display;
   @apply prose-headings:leading-loose;
@@ -28,6 +29,7 @@ PREVIEW COMPONENT
   padding: 0;
   @apply text-muted-foreground;
   @apply prose-p:leading-normal;
+  @apply prose-strong:text-muted-foreground;
 }
 
 /* Links */
@@ -42,7 +44,7 @@ PREVIEW COMPONENT
 .myQuill .ql-editor ol {
   margin: 0;
   padding: 0;
-  @apply prose-ol:leading-normal prose-ul:leading-normal;
+  @apply text-muted-foreground prose-strong:text-muted-foreground prose-ol:leading-normal prose-ul:leading-normal;
 }
 
 /* 

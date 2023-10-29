@@ -2,10 +2,6 @@ import Image from 'next/image';
 import Link from 'next/link';
 
 import { getCoursePrice } from '@/lib/course-pricing';
-import { CourseProgress } from '@/components/course-progress';
-import { IconBadge } from '@/components/icon-badge';
-
-import { Icons } from './icons';
 
 interface CourseCardProps {
   id: string;
@@ -13,7 +9,6 @@ interface CourseCardProps {
   preview: string;
   imageUrl: string;
   displayImage?: boolean;
-  chaptersLength: number;
   price: number;
   progress: number | null;
   category: string;
@@ -26,7 +21,6 @@ export const CourseCard = ({
   preview,
   imageUrl,
   displayImage = true,
-  chaptersLength,
   price,
   progress,
   category,
@@ -34,6 +28,7 @@ export const CourseCard = ({
   purchased,
 }: CourseCardProps) => {
   const displayPrice = getCoursePrice(price, isPaidMember, purchased);
+
   return (
     <Link href={`/courses/${id}`}>
       <div className="group h-full overflow-hidden rounded-xl border bg-white transition hover:shadow-sm dark:bg-background">
@@ -43,30 +38,28 @@ export const CourseCard = ({
           </div>
         )}
         <div className="mt-1 flex flex-col p-4">
-          <div className="mb-2 flex items-center justify-between text-sm text-muted-foreground">
-            <p>{category}</p>
-            <div className="flex items-center gap-x-1 text-foreground">
-              <IconBadge size="sm" icon={Icons.listBullet} />
-              <span>
-                {chaptersLength} {chaptersLength === 1 ? 'Chapter' : 'Chapters'}
-              </span>
-            </div>
+          <div className="flex justify-between items-center mb-2">
+            <p className="text-muted-foreground font-mono text-sm">
+              {category}
+            </p>
+            {progress !== null ? (
+              progress === 0 ? (
+                <p className="text-sm text-brand font-mono">Not Started</p>
+              ) : progress === 100 ? (
+                <p className="text-sm text-alternate font-mono">Complete</p>
+              ) : (
+                <p className="text-sm text-brand font-mono">In Progress</p>
+              )
+            ) : (
+              <p className="text-sm text-brand font-mono">{displayPrice}</p>
+            )}
           </div>
-          <div className="line-clamp-2 font-semibold text-lg leading-7 transition group-hover:text-brand">
+          <div className="line-clamp-2 font-semibold text-lg leading-tight transition group-hover:text-brand">
             {title}
           </div>
           <p className="my-2 line-clamp-2 text-sm text-muted-foreground">
             {preview}
           </p>
-          {progress !== null ? (
-            <CourseProgress
-              variant={progress === 100 ? 'success' : 'default'}
-              size="sm"
-              value={progress}
-            />
-          ) : (
-            <p className="text-base font-medium text-brand">{displayPrice}</p>
-          )}
         </div>
       </div>
     </Link>
