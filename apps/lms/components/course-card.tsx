@@ -3,9 +3,6 @@ import Link from 'next/link';
 
 import { getCoursePrice } from '@/lib/course-pricing';
 import { CourseProgress } from '@/components/course-progress';
-import { IconBadge } from '@/components/icon-badge';
-
-import { Icons } from './icons';
 
 interface CourseCardProps {
   id: string;
@@ -13,7 +10,6 @@ interface CourseCardProps {
   preview: string;
   imageUrl: string;
   displayImage?: boolean;
-  chaptersLength: number;
   price: number;
   progress: number | null;
   category: string;
@@ -26,7 +22,6 @@ export const CourseCard = ({
   preview,
   imageUrl,
   displayImage = true,
-  chaptersLength,
   price,
   progress,
   category,
@@ -34,6 +29,9 @@ export const CourseCard = ({
   purchased,
 }: CourseCardProps) => {
   const displayPrice = getCoursePrice(price, isPaidMember, purchased);
+
+  // eslint-disable-next-line no-console
+  console.log(`Course ID: ${id}, Progress: ${progress}`);
   return (
     <Link href={`/courses/${id}`}>
       <div className="group h-full overflow-hidden rounded-xl border bg-white transition hover:shadow-sm dark:bg-background">
@@ -43,15 +41,9 @@ export const CourseCard = ({
           </div>
         )}
         <div className="mt-1 flex flex-col p-4">
-          <div className="mb-2 flex items-center justify-between text-sm text-muted-foreground">
-            <p>{category}</p>
-            <div className="flex items-center gap-x-1 text-foreground">
-              <IconBadge size="sm" icon={Icons.listBullet} />
-              <span>
-                {chaptersLength} {chaptersLength === 1 ? 'Chapter' : 'Chapters'}
-              </span>
-            </div>
-          </div>
+          <p className="mb-2 text-muted-foreground font-mono text-sm">
+            {category}
+          </p>
           <div className="line-clamp-2 font-semibold text-lg leading-7 transition group-hover:text-brand">
             {title}
           </div>
@@ -65,7 +57,9 @@ export const CourseCard = ({
               value={progress}
             />
           ) : (
-            <p className="text-base font-medium text-brand">{displayPrice}</p>
+            <p className="text-base font-medium text-brand font-mono">
+              {displayPrice}
+            </p>
           )}
         </div>
       </div>

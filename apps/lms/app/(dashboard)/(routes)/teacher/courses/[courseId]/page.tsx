@@ -77,7 +77,9 @@ const CourseIdPage = async ({ params }: { params: { courseId: string } }) => {
       <div className="p-6">
         <div className="flex items-center justify-between">
           <div className="flex flex-col gap-y-2">
-            <h1 className="font-display text-2xl">Course setup</h1>
+            <h1 className="font-display tracking-tight text-2xl">
+              Course setup
+            </h1>
             <span className="text-base text-muted-foreground">
               Complete all fields {completionText}
             </span>
@@ -92,7 +94,9 @@ const CourseIdPage = async ({ params }: { params: { courseId: string } }) => {
           <div>
             <div className="flex items-center gap-x-2">
               <IconBadge icon={Icons.magic} />
-              <h2 className="font-display text-lg">Customize your course</h2>
+              <h2 className="font-display tracking-tight text-lg">
+                Customize your course
+              </h2>
             </div>
             <TitleForm initialData={course} courseId={course.id} />
             <PreviewForm initialData={course} courseId={course.id} />
@@ -111,21 +115,25 @@ const CourseIdPage = async ({ params }: { params: { courseId: string } }) => {
             <div>
               <div className="flex items-center gap-x-2">
                 <IconBadge icon={Icons.activity} />
-                <h2 className="font-display text-lg">Course chapters</h2>
+                <h2 className="font-display tracking-tight text-lg">
+                  Course chapters
+                </h2>
               </div>
               <ChaptersForm initialData={course} courseId={course.id} />
             </div>
             <div>
               <div className="mt-16 flex items-center gap-x-2">
                 <IconBadge icon={Icons.rocket} />
-                <h2 className="font-display text-lg">Course pricing</h2>
+                <h2 className="font-display tracking-tight text-lg">
+                  Course pricing
+                </h2>
               </div>
               <PriceForm initialData={course} courseId={course.id} />
             </div>
             <div>
               <div className="mt-16 flex items-center gap-x-2">
                 <IconBadge icon={Icons.file} />
-                <h2 className="font-display text-lg">
+                <h2 className="font-display tracking-tight text-lg">
                   Resources & Attachments
                 </h2>
               </div>

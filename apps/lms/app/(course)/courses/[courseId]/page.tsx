@@ -78,7 +78,7 @@ const CourseIdPage = async ({ params }: { params: { courseId: string } }) => {
             />
             <div className="rounded-xl bg-white p-6 dark:bg-background lg:p-8">
               <div className="flex flex-col items-center justify-between p-4 lg:flex-row">
-                <h2 className="mb-2 flex-grow font-display text-3xl">
+                <h2 className="mb-2 flex-grow font-display tracking-tight text-3xl">
                   {course.title}
                 </h2>
                 <div className="lg:p-6 flex flex-col sm:py-0 lg:flex-row gap-x-4 items-center w-full lg:w-auto py-4 space-y-6 lg:space-y-0">
@@ -114,7 +114,7 @@ const CourseIdPage = async ({ params }: { params: { courseId: string } }) => {
             />
             <div className="rounded-xl bg-white p-6 dark:bg-background lg:p-8">
               <div className="flex flex-col items-center justify-between p-4 md:flex-row">
-                <h2 className="mb-2 flex-grow font-display text-lg">
+                <h2 className="mb-2 flex-grow font-display tracking-tight text-lg">
                   {course.title}
                 </h2>
                 <div className="flex flex-row gap-x-4 items-center">

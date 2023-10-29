@@ -65,7 +65,7 @@ const ChapterIdPage = async ({
           </div>
           <div className="rounded-xl bg-white p-6 dark:bg-background lg:p-8">
             <div className="flex flex-col items-center justify-between p-4 lg:flex-row space-y-4 lg:space-y-0">
-              <h2 className="mb-2 flex-grow font-display text-3xl">
+              <h2 className="mb-2 flex-grow font-display tracking-tight text-3xl">
                 {chapter.title}
               </h2>
               <CourseProgressButton
@@ -85,7 +85,7 @@ const ChapterIdPage = async ({
                 <div className="p-4">
                   {attachments.length > 0 && (
                     <div className="mt-16 flex items-center gap-x-2">
-                      <h2 className="font-display text-lg">
+                      <h2 className="font-display tracking-tight text-lg">
                         Resources & Attachments
                       </h2>
                     </div>

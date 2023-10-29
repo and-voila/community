@@ -49,7 +49,7 @@ export const CourseSidebar = async ({
         <Logo fillOnHover className="h-6 md:h-8" />
       </div>
       <div className="flex flex-col border-y p-8 bg-primary-foreground">
-        <p className="text-xs text-muted-foreground mb-2">Playbook</p>
+        <p className="text-xs text-muted-foreground mb-2 font-mono">Playbook</p>
         <h1 className="font-semibold text-lg">{course.title}</h1>
         {(isPaidMember || purchase || course.price === 0) && (
           <div className="mt-10">
@@ -61,7 +61,9 @@ export const CourseSidebar = async ({
         )}
       </div>
       <div className="mt-4 flex w-full flex-col">
-        <p className="text-xs text-muted-foreground mb-2 px-8">Topic</p>
+        <p className="text-xs text-muted-foreground mb-2 px-8 font-mono">
+          Topic
+        </p>
         {course.chapters.map((chapter) => (
           <CourseSidebarItem
             key={chapter.id}
