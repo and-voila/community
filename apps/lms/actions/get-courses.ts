@@ -10,6 +10,7 @@ type CourseWithProgressWithCategory = Course & {
   progress: number | null;
   price: number;
   isPaidMember: boolean;
+  purchased: boolean;
 };
 
 type GetCourses = {
@@ -63,20 +64,23 @@ export const getCourses = async ({
     const coursesWithProgress: CourseWithProgressWithCategory[] =
       await Promise.all(
         courses.map(async (course) => {
-          if (course.purchases.length === 0) {
+          const purchased = course.purchases.length > 0;
+          if (isPaidMember || course.price === 0 || purchased) {
+            const progressPercentage = await getProgress(userId, course.id);
+
             return {
               ...course,
-              progress: null,
+              progress: progressPercentage,
               isPaidMember,
+              purchased,
             };
           }
 
-          const progressPercentage = await getProgress(userId, course.id);
-
           return {
             ...course,
-            progress: progressPercentage,
+            progress: null,
             isPaidMember,
+            purchased,
           };
         }),
       );

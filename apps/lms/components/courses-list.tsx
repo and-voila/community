@@ -7,6 +7,7 @@ type CourseWithProgressWithCategory = Course & {
   chapters: { id: string }[];
   progress: number | null;
   isPaidMember: boolean;
+  purchased: boolean;
 };
 
 interface CoursesListProps {
@@ -47,7 +48,7 @@ export const CoursesList = ({ items }: CoursesListProps) => {
                 category={item.category.name}
                 displayImage={displayImage}
                 isPaidMember={item.isPaidMember}
-                purchased={!!item.progress}
+                purchased={item.purchased}
               />
             </div>
           );
