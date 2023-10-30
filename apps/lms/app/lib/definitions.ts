@@ -1,18 +1,10 @@
-import { Icons } from '../ui/icons';
+import { Icons } from '@/app/ui/icons';
 
-export interface NavItem {
+export type IconKey = keyof typeof Icons;
+
+export type Route = {
   id: string;
+  icon?: IconKey;
   label: string;
   href: string;
-  disabled?: boolean;
-}
-export interface NavbarRoute extends NavItem {}
-
-export interface SidebarRoute extends NavItem {
-  icon: keyof typeof Icons;
-}
-
-export interface LayoutConfig {
-  navbarRoutes: NavbarRoute[];
-  sidebarRoutes: SidebarRoute[];
-}
+};

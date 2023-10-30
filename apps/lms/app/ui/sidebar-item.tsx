@@ -37,7 +37,7 @@ export const SidebarItem = ({ icon: Icon, label, href }: SidebarItemProps) => {
       <div className="flex items-center gap-x-2 py-4">
         <Icon
           className={cn(
-            'text-muted-foreground h-4 w-4',
+            'text-muted-foreground h-5 w-5',
             isActive && 'text-brand',
           )}
         />

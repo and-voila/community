@@ -2,24 +2,24 @@ import { Logo } from '@ui/index';
 
 import { FreeCounter } from '@/app/ui/free-counter';
 
-import { MainSidebarRoutes } from '../config/main-sidebar-routes';
+import { SidebarRoutes } from '../config/sidebar-routes';
 
-interface MainSidebarProps {
+interface SidebarProps {
   apiLimitCount: number;
   isPaidMember: boolean;
 }
 
-export const MainSidebar = ({
+export const Sidebar = ({
   apiLimitCount,
   isPaidMember = false,
-}: MainSidebarProps) => {
+}: SidebarProps) => {
   return (
     <div className="flex h-full flex-col overflow-y-auto bg-[#d0d5dd] shadow-sm dark:bg-[#010101]">
       <div className="p-6">
         <Logo fillOnHover className="h-6 md:h-8" />
       </div>
       <div className="flex w-full flex-col">
-        <MainSidebarRoutes />
+        <SidebarRoutes />
       </div>
       <div className="absolute bottom-6 flex w-full flex-col">
         <FreeCounter
