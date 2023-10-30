@@ -1,11 +1,10 @@
 import { redirect } from 'next/navigation';
-import { getDashboardCourses } from '@/actions/get-dashboard-courses';
 import { auth } from '@clerk/nextjs';
 
-import { CoursesList } from '@/components/courses-list';
-import { Icons } from '@/components/icons';
-
-import { InfoCard } from './_components/info-card';
+import { getDashboardCourses } from '@/app/lib/actions/get-dashboard-courses';
+import { Icons } from '@/app/ui/icons';
+import { CoursesList } from '@/app/ui/learn/courses/courses-list';
+import { InfoCard } from '@/app/ui/learn/dashboard/info-card';
 
 export default async function Dashboard() {
   const { userId } = auth();

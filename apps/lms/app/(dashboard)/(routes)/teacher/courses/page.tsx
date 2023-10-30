@@ -1,12 +1,11 @@
 import { redirect } from 'next/navigation';
 import { auth } from '@clerk/nextjs';
 
-import { db } from '@/lib/db';
-import { isTeacher } from '@/lib/teacher';
-import { Container } from '@/components/container';
-
-import { columns } from './_components/columns';
-import { DataTable } from './_components/data-table';
+import { db } from '@/app/lib/db';
+import { isTeacher } from '@/app/lib/teacher';
+import { Container } from '@/app/ui/container';
+import { teacherCourseListColumns } from '@/app/ui/learn/teacher/teacher-course-list-columns';
+import { TeacherCourseListDataTable } from '@/app/ui/learn/teacher/teacher-course-list-data-table';
 
 const CoursesPage = async () => {
   const { userId } = auth();
@@ -23,7 +22,10 @@ const CoursesPage = async () => {
 
   return (
     <Container className="py-12">
-      <DataTable columns={columns} data={courses} />
+      <TeacherCourseListDataTable
+        columns={teacherCourseListColumns}
+        data={courses}
+      />
     </Container>
   );
 };

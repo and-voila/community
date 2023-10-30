@@ -1,15 +1,14 @@
 import { redirect } from 'next/navigation';
-import { getChapter } from '@/actions/get-chapter';
 import { auth } from '@clerk/nextjs';
 import { Separator } from '@ui/components/ui/separator';
 
-import { Banner } from '@/components/banner';
-import { Container } from '@/components/container';
-import { Icons } from '@/components/icons';
-import { Preview } from '@/components/preview';
-
-import { CourseProgressButton } from './_components/course-progress-button';
-import { VideoPlayer } from './_components/video-player';
+import { getChapter } from '@/app/lib/actions/get-chapter';
+import { Banner } from '@/app/ui/banner';
+import { Container } from '@/app/ui/container';
+import { Icons } from '@/app/ui/icons';
+import { CourseProgressButton } from '@/app/ui/learn/courses/course-progress-button';
+import { VideoPlayer } from '@/app/ui/learn/courses/video-player';
+import { Preview } from '@/app/ui/preview';
 
 const ChapterIdPage = async ({
   params,

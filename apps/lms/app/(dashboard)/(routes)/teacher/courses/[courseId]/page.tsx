@@ -1,21 +1,20 @@
 import { redirect } from 'next/navigation';
 import { auth } from '@clerk/nextjs';
 
-import { db } from '@/lib/db';
-import { isTeacher } from '@/lib/teacher';
-import { Banner } from '@/components/banner';
-import { IconBadge } from '@/components/icon-badge';
-import { Icons } from '@/components/icons';
-
-import { Actions } from './_components/actions';
-import { AttachmentForm } from './_components/attachment-form';
-import { CategoryForm } from './_components/category-form';
-import { ChaptersForm } from './_components/chapters-form';
-import { DescriptionForm } from './_components/description-form';
-import { ImageForm } from './_components/image-form';
-import { PreviewForm } from './_components/preview-form';
-import { PriceForm } from './_components/price-form';
-import { TitleForm } from './_components/title-form';
+import { db } from '@/app/lib/db';
+import { isTeacher } from '@/app/lib/teacher';
+import { Banner } from '@/app/ui/banner';
+import { IconBadge } from '@/app/ui/icon-badge';
+import { Icons } from '@/app/ui/icons';
+import { Actions } from '@/app/ui/learn/teacher/courses/actions';
+import { AttachmentForm } from '@/app/ui/learn/teacher/courses/attachment-form';
+import { CategoryForm } from '@/app/ui/learn/teacher/courses/category-form';
+import { ChaptersForm } from '@/app/ui/learn/teacher/courses/chapters-form';
+import { DescriptionForm } from '@/app/ui/learn/teacher/courses/description-form';
+import { ImageForm } from '@/app/ui/learn/teacher/courses/image-form';
+import { PreviewForm } from '@/app/ui/learn/teacher/courses/preview-form';
+import { PriceForm } from '@/app/ui/learn/teacher/courses/price-form';
+import { TitleForm } from '@/app/ui/learn/teacher/courses/title-form';
 
 const CourseIdPage = async ({ params }: { params: { courseId: string } }) => {
   const { userId } = auth();

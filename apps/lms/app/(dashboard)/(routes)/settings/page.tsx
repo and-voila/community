@@ -1,7 +1,8 @@
 import { UserProfile } from '@clerk/nextjs';
-import { SubscriptionButton } from 'components/subscription-button';
-import { checkSubscription } from 'lib/subscription';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from 'ui';
+
+import { checkSubscription } from '@/app/lib/actions/check-subscription';
+import { SubscriptionButton } from '@/app/ui/subscription-button';
 
 const SettingsPage = async () => {
   const isPaidMember = await checkSubscription();

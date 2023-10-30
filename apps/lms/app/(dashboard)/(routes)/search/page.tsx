@@ -1,13 +1,12 @@
 import { redirect } from 'next/navigation';
-import { getCourses } from '@/actions/get-courses';
 import { auth } from '@clerk/nextjs';
 
-import { db } from '@/lib/db';
-import { checkSubscription } from '@/lib/subscription';
-import { CoursesList } from '@/components/courses-list';
-import { SearchInput } from '@/components/search-input';
-
-import { Categories } from './_components/categories';
+import { checkSubscription } from '@/app/lib/actions/check-subscription';
+import { getCourses } from '@/app/lib/actions/get-courses';
+import { db } from '@/app/lib/db';
+import { CoursesList } from '@/app/ui/learn/courses/courses-list';
+import { Categories } from '@/app/ui/learn/dashboard/categories';
+import { SearchInput } from '@/app/ui/search-input';
 
 interface SearchPageProps {
   searchParams: {

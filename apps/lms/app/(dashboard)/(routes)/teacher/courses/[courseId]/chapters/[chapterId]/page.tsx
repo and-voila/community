@@ -2,16 +2,15 @@ import Link from 'next/link';
 import { redirect } from 'next/navigation';
 import { auth } from '@clerk/nextjs';
 
-import { db } from '@/lib/db';
-import { isTeacher } from '@/lib/teacher';
-import { Banner } from '@/components/banner';
-import { IconBadge } from '@/components/icon-badge';
-import { Icons } from '@/components/icons';
-
-import { ChapterActions } from './_components/chapter-actions';
-import { ChapterDescriptionForm } from './_components/chapter-description-form';
-import { ChapterTitleForm } from './_components/chapter-title-form';
-import { ChapterVideoForm } from './_components/chapter-video-form';
+import { db } from '@/app/lib/db';
+import { isTeacher } from '@/app/lib/teacher';
+import { Banner } from '@/app/ui/banner';
+import { IconBadge } from '@/app/ui/icon-badge';
+import { Icons } from '@/app/ui/icons';
+import { ChapterActions } from '@/app/ui/learn/teacher/chapters/chapter-actions';
+import { ChapterDescriptionForm } from '@/app/ui/learn/teacher/chapters/chapter-description-form';
+import { ChapterTitleForm } from '@/app/ui/learn/teacher/chapters/chapter-title-form';
+import { ChapterVideoForm } from '@/app/ui/learn/teacher/chapters/chapter-video-form';
 
 const ChapterIdPage = async ({
   params,

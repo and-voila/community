@@ -1,13 +1,12 @@
 import { redirect } from 'next/navigation';
-import { getProgress } from '@/actions/get-progress';
 import { auth } from '@clerk/nextjs';
 
-import { getApiLimitCount } from '@/lib/api-limit';
-import { db } from '@/lib/db';
-import { checkSubscription } from '@/lib/subscription';
-
-import { CourseNavbar } from './_components/course-navbar';
-import { CourseSidebar } from './_components/course-sidebar';
+import { checkSubscription } from '@/app/lib/actions/check-subscription';
+import { getProgress } from '@/app/lib/actions/get-progress';
+import { getApiLimitCount } from '@/app/lib/api-limit';
+import { db } from '@/app/lib/db';
+import { CourseNavbar } from '@/app/ui/learn/courses/course-navbar';
+import { CourseSidebar } from '@/app/ui/learn/courses/course-sidebar';
 
 const CourseLayout = async ({
   children,

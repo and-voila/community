@@ -2,7 +2,7 @@
 import { WebhookEvent } from '@clerk/nextjs/server';
 import { Webhook } from 'svix';
 
-import { db } from '@/lib/db';
+import { db } from '@/app/lib/db';
 
 export async function POST(req: Request) {
   // Extract Clerk webhook secret from environment variables

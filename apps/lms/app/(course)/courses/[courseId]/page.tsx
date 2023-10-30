@@ -4,15 +4,14 @@ import { COURSE_DEFAULT_PRICE } from '@/constants';
 import { auth } from '@clerk/nextjs';
 import { Separator } from '@ui/index';
 
-import { db } from '@/lib/db';
-import { checkSubscription } from '@/lib/subscription';
-import { Banner } from '@/components/banner';
-import { Container } from '@/components/container';
-import { Preview } from '@/components/preview';
-import { SubscriptionButton } from '@/components/subscription-button';
-
-import { CourseEnrollButton } from './chapters/[chapterId]/_components/course-enroll-button';
-import { StartCourseButton } from './chapters/[chapterId]/_components/start-course-button';
+import { checkSubscription } from '@/app/lib/actions/check-subscription';
+import { db } from '@/app/lib/db';
+import { Banner } from '@/app/ui/banner';
+import { Container } from '@/app/ui/container';
+import { CourseEnrollButton } from '@/app/ui/learn/courses/course-enroll-button';
+import { StartCourseButton } from '@/app/ui/learn/courses/start-course-button';
+import { Preview } from '@/app/ui/preview';
+import { SubscriptionButton } from '@/app/ui/subscription-button';
 
 const CourseIdPage = async ({ params }: { params: { courseId: string } }) => {
   const { userId } = auth();

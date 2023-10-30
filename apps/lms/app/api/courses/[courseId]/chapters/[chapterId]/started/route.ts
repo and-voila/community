@@ -1,7 +1,7 @@
 import { NextResponse } from 'next/server';
 import { auth } from '@clerk/nextjs';
 
-import { db } from '@/lib/db';
+import { db } from '@/app/lib/db';
 
 export async function PUT(
   req: Request,
