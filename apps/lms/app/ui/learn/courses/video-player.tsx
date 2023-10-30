@@ -49,7 +49,7 @@ export const VideoPlayer = ({
         router.refresh();
 
         if (nextChapterId) {
-          router.push(`/courses/${courseId}/chapters/${nextChapterId}`);
+          router.push(`/learn/courses/${courseId}/chapters/${nextChapterId}`);
         }
       }
     } catch {

@@ -30,7 +30,7 @@ export const CourseCard = ({
   const displayPrice = getCoursePrice(price, isPaidMember, purchased);
 
   return (
-    <Link href={`/courses/${id}`}>
+    <Link href={`/learn/courses/${id}`}>
       <div className="group h-full overflow-hidden rounded-xl border bg-white transition hover:shadow-sm dark:bg-background">
         {displayImage && (
           <div className="relative aspect-video w-full overflow-hidden md:grayscale md:group-hover:grayscale-0">

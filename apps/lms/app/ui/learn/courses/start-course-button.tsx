@@ -36,7 +36,7 @@ export const StartCourseButton = ({
       );
 
       if (!isStarted) {
-        router.push(`/courses/${courseId}/chapters/${firstChapterId}`);
+        router.push(`/learn/courses/${courseId}/chapters/${firstChapterId}`);
       }
 
       toast.success('Playbook started');

@@ -13,9 +13,9 @@ export const NavbarRoutes = () => {
   const { userId } = useAuth();
   const pathname = usePathname();
 
-  const isTeacherPage = pathname?.startsWith('/teacher');
-  const isCoursePage = pathname?.includes('/courses');
-  const isSearchPage = pathname === '/search';
+  const isTeacherPage = pathname?.startsWith('/learn/teacher');
+  const isCoursePage = pathname?.includes('/learn/courses');
+  const isSearchPage = pathname === '/learn/search';
 
   return (
     <>

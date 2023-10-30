@@ -42,7 +42,7 @@ export const CourseProgressButton = ({
       }
 
       if (!isCompleted && nextChapterId) {
-        router.push(`/courses/${courseId}/chapters/${nextChapterId}`);
+        router.push(`/learn/courses/${courseId}/chapters/${nextChapterId}`);
       }
 
       toast.success('Progress updated');
