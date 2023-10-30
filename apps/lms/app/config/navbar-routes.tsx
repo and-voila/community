@@ -26,7 +26,7 @@ export const NavbarRoutes = () => {
       )}
       <div className="ml-auto flex pr-6">
         {isTeacherPage || isCoursePage ? (
-          <Link href="/">
+          <Link href="/learn">
             <Button size="sm" variant="outline">
               <ExitIcon className="mr-2 h-4 w-4" />
               Exit

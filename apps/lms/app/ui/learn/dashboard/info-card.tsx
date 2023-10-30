@@ -21,7 +21,7 @@ export const InfoCard = ({
       <div>
         <p className="font-semibold">{label}</p>
         <p className="text-sm text-muted-foreground">
-          {numberOfItems} {numberOfItems === 1 ? 'Course' : 'Courses'}
+          {numberOfItems} {numberOfItems === 1 ? 'Playbook' : 'Playbooks'}
         </p>
       </div>
     </div>

@@ -12,29 +12,14 @@ const guestRoutes = [
     href: '/',
   },
   {
+    icon: Icons.courses,
+    label: 'My Playbooks',
+    href: '/learn',
+  },
+  {
     icon: Icons.search,
     label: 'Browse',
-    href: '/search',
-  },
-  {
-    icon: Icons.settings,
-    label: 'Settings',
-    href: '/settings',
-  },
-  {
-    icon: Icons.discord,
-    label: 'Community',
-    href: 'https://discord.com/channels/1151749282806910976/1164902538731069542',
-  },
-  {
-    icon: Icons.docs,
-    label: 'Documentation',
-    href: '/docs',
-  },
-  {
-    icon: Icons.help,
-    label: 'Support',
-    href: '/support',
+    href: '/learn/search',
   },
 ];
 
