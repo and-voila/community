@@ -44,7 +44,7 @@ const CreatePage = () => {
         ...values,
         price: COURSE_DEFAULT_PRICE,
       });
-      router.push(`/teacher/courses/${response.data.id}`);
+      router.push(`/learn/teacher/courses/${response.data.id}`);
       toast.success('Course created');
     } catch {
       toast.error('Something went wrong');

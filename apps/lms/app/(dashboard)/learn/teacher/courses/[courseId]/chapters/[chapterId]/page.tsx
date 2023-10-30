@@ -58,7 +58,7 @@ const ChapterIdPage = async ({
         <div className="flex items-center justify-between">
           <div className="w-full">
             <Link
-              href={`/teacher/courses/${params.courseId}`}
+              href={`/learn/teacher/courses/${params.courseId}`}
               className="mb-6 flex items-center text-sm transition hover:opacity-75"
             >
               <Icons.arrowLeft className="mr-2 h-4 w-4" />
@@ -101,14 +101,6 @@ const ChapterIdPage = async ({
                 courseId={params.courseId}
                 chapterId={params.chapterId}
               />
-            </div>
-            <div>
-              <div className="mt-16 flex items-center gap-x-2">
-                <IconBadge icon={Icons.eyeOpen} />
-                <h2 className="font-display tracking-tight text-xl">
-                  Access Settings
-                </h2>
-              </div>
             </div>
           </div>
           <div>

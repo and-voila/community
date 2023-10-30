@@ -42,12 +42,12 @@ const teacherRoutes = [
   {
     icon: Icons.courses,
     label: 'Courses',
-    href: '/teacher/courses',
+    href: '/learn/teacher/courses',
   },
   {
     icon: Icons.barchart,
     label: 'Analytics',
-    href: '/teacher/analytics',
+    href: '/learn/teacher/analytics',
   },
 ];
 

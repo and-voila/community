@@ -66,7 +66,7 @@ export function TeacherCourseListDataTable<TData, TValue>({
           }
           className="max-w-sm bg-white dark:bg-background"
         />
-        <Link href="/teacher/create">
+        <Link href="/learn/teacher/create">
           <Button variant="custom">
             <Icons.plusCircled className="mr-2 h-4 w-4" />
             New course
