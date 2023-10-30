@@ -15,7 +15,7 @@ module.exports = withUt({
         mono: ['var(--font-geist-mono)', ...defaultTheme.fontFamily.mono],
       },
       fontWeight: {
-        display: '600',
+        display: '700',
       },
       typography: (theme) => ({
         DEFAULT: {

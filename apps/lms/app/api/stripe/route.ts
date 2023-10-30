@@ -1,10 +1,10 @@
 import { NextResponse } from 'next/server';
 import { auth, currentUser } from '@clerk/nextjs';
-import { stripe } from 'lib/stripe';
-import { absoluteUrl } from 'lib/utils';
 
-import { bestPlan } from '@/config/subscriptions';
-import { db } from '@/lib/db';
+import { bestPlan } from '@/app/config/subscriptions';
+import { db } from '@/app/lib/db';
+import { stripe } from '@/app/lib/stripe';
+import { absoluteUrl } from '@/app/lib/utils';
 
 const settingsUrl = absoluteUrl('/settings');
 
