@@ -63,7 +63,7 @@ body,
     --border: 217 16% 84%; /* 200 */
     --input: 217 16% 84%; /* 200 */
 
-    --ring: 240 8% 9%; /* 900 */
+    --ring: 256 50% 52%; /* brand */
     --radius: 0.5rem;
 
     --brand: 256 50% 52%;
@@ -98,7 +98,7 @@ body,
     --border: 223 6% 24%; /* 700 */
     --input: 223 6% 24%; /* 700 */
 
-    --ring: 217 16% 84%; /* 200 */
+    --ring: 255 83% 65%; /* brand */
     --radius: 0.5rem;
 
     --brand: 255 83% 65%;
@@ -127,7 +127,7 @@ body,
 a,
 input,
 button {
-  @apply focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-gray-50 dark:focus-visible:ring-gray-600 dark:focus-visible:ring-offset-gray-900;
+  @apply focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring;
 }
 
 /* Pulsing animation */
