@@ -15,7 +15,4 @@ module.exports = {
       'o7vlwfjcmdebvcux.public.blob.vercel-storage.com',
     ],
   },
-  experimental: {
-    serverActions: true,
-  },
 };
