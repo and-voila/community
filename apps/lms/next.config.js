@@ -4,7 +4,4 @@ module.exports = {
   images: {
     domains: ['utfs.io'],
   },
-  experimental: {
-    serverActions: true,
-  },
 };
