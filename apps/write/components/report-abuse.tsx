@@ -4,8 +4,7 @@ import { useState } from 'react';
 import { useParams } from 'next/navigation';
 import { cn, LucideReact } from '@ui/index';
 import va from '@vercel/analytics';
-// @ts-expect-error https://github.com/vercel/next.js/issues/55919
-import { experimental_useFormStatus as useFormStatus } from 'react-dom';
+import { useFormStatus } from 'react-dom';
 import { toast } from 'sonner';
 
 import LoadingDots from './icons/loading-dots';

@@ -4,8 +4,7 @@ import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { cn } from '@ui/index';
 import va from '@vercel/analytics';
-// @ts-expect-error This exists but TS doesn't recognize it.
-import { experimental_useFormStatus as useFormStatus } from 'react-dom';
+import { useFormStatus } from 'react-dom';
 import { toast } from 'sonner';
 
 import { createSite } from '@/lib/actions';
