@@ -1,8 +1,8 @@
-import { Category, Chapter, Course } from '@prisma/client';
-
 import { checkSubscription } from '@/app/lib/actions/check-subscription';
 import { getProgress } from '@/app/lib/actions/get-progress';
 import { db } from '@/app/lib/db';
+
+import { Category, Chapter, Course } from '.prisma/client';
 
 type CourseWithProgressWithCategory = Course & {
   category: Category;

@@ -3,7 +3,6 @@
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import MuxPlayer from '@mux/mux-player-react';
-import { Chapter, MuxData } from '@prisma/client';
 import { Button } from '@ui/components/ui/button';
 import axios from 'axios';
 import toast from 'react-hot-toast';
@@ -11,6 +10,8 @@ import * as z from 'zod';
 
 import { Icons } from '@/app/ui/icons';
 import { FileUpload } from '@/app/ui/learn/teacher/file-upload';
+
+import { Chapter, MuxData } from '.prisma/client';
 
 interface ChapterVideoFormProps {
   initialData: Chapter & { muxData?: MuxData | null };
