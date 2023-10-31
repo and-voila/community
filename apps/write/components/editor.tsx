@@ -1,7 +1,6 @@
 'use client';
 
 import { useEffect, useState, useTransition } from 'react';
-import { Post } from '@prisma/client';
 import { cn, LucideReact } from '@ui/index';
 import { Editor as NovelEditor } from 'novel';
 import TextareaAutosize from 'react-textarea-autosize';
@@ -10,6 +9,7 @@ import { toast } from 'sonner';
 import { updatePost, updatePostMetadata } from '@/lib/actions';
 
 import LoadingDots from './icons/loading-dots';
+import { Post } from '.prisma/client';
 
 type PostWithSite = Post & { site: { subdomain: string | null } | null };
 

@@ -2,7 +2,6 @@
 'use server';
 
 import { revalidateTag } from 'next/cache';
-import { Post, Site } from '@prisma/client';
 import { put } from '@vercel/blob';
 import { customAlphabet } from 'nanoid';
 
@@ -18,6 +17,7 @@ import prisma from '@/lib/prisma';
 import { getBlurDataURL } from '@/lib/utils';
 
 import { withPostAuth, withSiteAuth } from './auth';
+import { Post, Site } from '.prisma/client';
 
 const nanoid = customAlphabet(
   '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz',

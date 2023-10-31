@@ -1,8 +1,9 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { ReactNode } from 'react';
 import Link from 'next/link';
-import type { Example, PrismaClient } from '@prisma/client';
 import { visit } from 'unist-util-visit';
+
+import type { Example, PrismaClient } from '.prisma/client';
 
 export function replaceLinks({
   href,
