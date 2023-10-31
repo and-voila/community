@@ -45,8 +45,9 @@ export const CourseSidebar = async ({
 
   return (
     <div className="flex h-full flex-col overflow-y-auto bg-[#d0d5dd] shadow-sm dark:bg-[#010101]">
-      <div className="mb-4 p-8">
+      <div className="p-6 flex items-center">
         <Logo fillOnHover className="h-6 md:h-8" />
+        <sup className="text-xs -ml-2 md:-ml-3 text-brand font-mono">beta</sup>
       </div>
       <div className="flex flex-col border-y p-8 bg-primary-foreground">
         <p className="text-xs text-muted-foreground mb-2 font-mono">Playbook</p>
