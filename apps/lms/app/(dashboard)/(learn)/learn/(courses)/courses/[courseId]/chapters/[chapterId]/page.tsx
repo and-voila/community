@@ -46,10 +46,7 @@ const ChapterIdPage = async ({
       <Container>
         <div className="mx-auto flex flex-col pb-20">
           {userProgress?.isCompleted && (
-            <Banner
-              variant="success"
-              label="You already completed this chapter."
-            />
+            <Banner variant="success" label="You've completed this chapter." />
           )}
           <div className="py-4">
             <VideoPlayer

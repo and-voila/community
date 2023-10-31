@@ -5,8 +5,6 @@ import axios from 'axios';
 import { toast } from 'react-hot-toast';
 import { Button } from 'ui';
 
-import { Icons } from './icons';
-
 export const SubscriptionButton = ({
   isPaidMember = false,
   size,
@@ -39,7 +37,7 @@ export const SubscriptionButton = ({
       className="w-full lg:w-auto"
     >
       {isPaidMember ? 'Manage Subscription' : 'Upgrade'}
-      {!isPaidMember && <Icons.magic className="ml-2" />}
+      {!isPaidMember}
     </Button>
   );
 };

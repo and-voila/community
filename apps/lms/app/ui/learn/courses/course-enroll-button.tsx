@@ -40,7 +40,7 @@ export const CourseEnrollButton = ({
       size="sm"
       className="w-full flex-shrink-0 lg:w-auto"
     >
-      Buy it for {formatPrice(price)}
+      Buy for {formatPrice(price)}
     </Button>
   );
 };

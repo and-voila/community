@@ -41,9 +41,10 @@ export const CourseSidebarItem = ({
       className={cn(
         'flex items-center gap-x-2 pl-6 text-left text-sm font-semibold text-muted-foreground transition-all hover:bg-gray-400/20 hover:text-foreground',
         isActive &&
-          'bg-brand/20 text-foreground hover:bg-brand/20 hover:text-foreground',
-        isCompleted && 'text-foreground line-through hover:text-[#186343]',
-        isCompleted && isActive && 'bg-emerald-200/20',
+          'bg-brand/20 text-foreground hover:bg-brand/40 hover:text-foreground',
+        isCompleted &&
+          'text-muted-foreground line-through hover:text-[#186343]',
+        isCompleted && isActive && 'bg-alternate/20',
       )}
     >
       <div className="flex items-center gap-x-2 py-4 text-base">
@@ -51,7 +52,7 @@ export const CourseSidebarItem = ({
           className={cn(
             'text-muted-foreground w-4 h-4',
             isActive && 'text-brand',
-            isCompleted && 'text-alternate',
+            isCompleted && 'text-[#186343]',
           )}
         />
         {label}

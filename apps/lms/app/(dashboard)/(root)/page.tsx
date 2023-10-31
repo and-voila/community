@@ -20,23 +20,23 @@ const tools = [
     href: '/learn',
     cta: 'Crush it',
     description:
-      'Fire up your skills in 5 minutes or less with our hand-crafted playbooks that will skyrocket your ROI.',
+      'Unlock daily micro-courses that supercharge your marketing game. Boost your ROI in less than 5 minutes per playbook.',
   },
   {
     label: 'Tools',
     icon: Icons.robot,
     href: '/tools',
-    cta: 'Work it',
+    cta: 'Hack it',
     description:
-      "Geek out with our publishing tools. Launch your site in minutes and push through writer's block with an AI-assist.",
+      'Deploy your own website in under 3 minutes with a custom domain and smash writer’s block with Juno, your AI wingthing.',
   },
   {
     label: 'Community',
     icon: Icons.discord,
     href: 'https://discord.com/channels/1151749282806910976/1164902538731069542',
-    cta: 'Schmooze now',
+    cta: 'Work it',
     description:
-      'The community is a rager of pure marketing bliss. Join the party and get your questions answered by the pros.',
+      'Dive into a buzzing hub of marketing savants. Get real-time insights, priceless tips, and direct access to industry pros.',
   },
 ];
 
