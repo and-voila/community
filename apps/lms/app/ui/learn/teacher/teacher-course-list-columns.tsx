@@ -1,7 +1,6 @@
 'use client';
 
 import Link from 'next/link';
-import { Course } from '@prisma/client';
 import { ColumnDef } from '@tanstack/react-table';
 import { Badge } from '@ui/components/ui/badge';
 import { Button } from '@ui/components/ui/button';
@@ -14,6 +13,8 @@ import {
 import { cn } from '@ui/index';
 
 import { Icons } from '@/app/ui/icons';
+
+import { Course } from '.prisma/client';
 
 export const teacherCourseListColumns: ColumnDef<Course>[] = [
   {

@@ -3,7 +3,6 @@
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { Course } from '@prisma/client';
 import {
   Button,
   cn,
@@ -20,6 +19,8 @@ import toast from 'react-hot-toast';
 import * as z from 'zod';
 
 import { Icons } from '@/app/ui/icons';
+
+import { Course } from '.prisma/client';
 
 interface PreviewFormProps {
   initialData: Course;

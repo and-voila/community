@@ -4,7 +4,6 @@ import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { COURSE_DEFAULT_PRICE } from '@/constants';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { Course } from '@prisma/client';
 import { Button } from '@ui/components/ui/button';
 import {
   Form,
@@ -20,6 +19,8 @@ import toast from 'react-hot-toast';
 import * as z from 'zod';
 
 import { Icons } from '@/app/ui/icons';
+
+import { Course } from '.prisma/client';
 
 interface PriceFormProps {
   initialData: Course;

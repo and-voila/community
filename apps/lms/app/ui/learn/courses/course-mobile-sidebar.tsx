@@ -1,9 +1,9 @@
-import { Chapter, Course, UserProgress } from '@prisma/client';
 import { Sheet, SheetContent, SheetTrigger } from '@ui/components/ui/sheet';
 
 import { Icons } from '@/app/ui/icons';
 
 import { CourseSidebar } from './course-sidebar';
+import { Chapter, Course, UserProgress } from '.prisma/client';
 
 interface CourseMobileSidebarProps {
   course: Course & {

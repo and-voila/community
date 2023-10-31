@@ -1,7 +1,7 @@
-import { Attachment, Chapter } from '@prisma/client';
-
 import { checkSubscription } from '@/app/lib/actions/check-subscription';
 import { db } from '@/app/lib/db';
+
+import { Attachment, Chapter } from '.prisma/client';
 
 interface GetChapterProps {
   userId: string;
