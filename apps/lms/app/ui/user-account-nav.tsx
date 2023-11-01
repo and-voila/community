@@ -57,7 +57,7 @@ export function UserAccountNav({ user }: UserAccountNavProps) {
             });
           }}
         >
-          Sign out
+          Log out
         </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>
