@@ -1,13 +1,14 @@
 import { redirect } from 'next/navigation';
-import { auth } from '@clerk/nextjs';
 
 import { getDashboardCourses } from '@/app/lib/actions/get-dashboard-courses';
+import { getCurrentUser } from '@/app/lib/session';
 import { Icons } from '@/app/ui/icons';
 import { CoursesList } from '@/app/ui/learn/courses/courses-list';
 import { InfoCard } from '@/app/ui/learn/dashboard/info-card';
 
 export default async function Dashboard() {
-  const { userId } = auth();
+  const user = await getCurrentUser();
+  const userId = user?.id;
 
   if (!userId) {
     return redirect('/');

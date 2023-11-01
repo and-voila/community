@@ -1,8 +1,8 @@
 import Link from 'next/link';
 import { redirect } from 'next/navigation';
-import { auth } from '@clerk/nextjs';
 
 import { db } from '@/app/lib/db';
+import { getCurrentUser } from '@/app/lib/session';
 import { isTeacher } from '@/app/lib/teacher';
 import { Banner } from '@/app/ui/banner';
 import { IconBadge } from '@/app/ui/icon-badge';
@@ -17,7 +17,8 @@ const ChapterIdPage = async ({
 }: {
   params: { courseId: string; chapterId: string };
 }) => {
-  const { userId } = auth();
+  const user = await getCurrentUser();
+  const userId = user?.id;
 
   if (!isTeacher(userId)) {
     return redirect('/');

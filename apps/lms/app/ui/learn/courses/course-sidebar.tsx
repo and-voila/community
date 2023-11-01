@@ -1,8 +1,8 @@
 import { redirect } from 'next/navigation';
-import { auth } from '@clerk/nextjs';
 import { Logo } from '@ui/index';
 
 import { db } from '@/app/lib/db';
+import { getCurrentUser } from '@/app/lib/session';
 import { FreeCounter } from '@/app/ui/free-counter';
 import { CourseProgress } from '@/app/ui/learn/courses/course-progress';
 
@@ -26,7 +26,8 @@ export const CourseSidebar = async ({
   apiLimitCount,
   isPaidMember = false,
 }: CourseSidebarProps) => {
-  const { userId } = auth();
+  const user = await getCurrentUser();
+  const userId = user?.id;
 
   if (!userId) {
     return redirect('/');

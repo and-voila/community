@@ -1,11 +1,11 @@
 import Image from 'next/image';
 import { redirect } from 'next/navigation';
 import { COURSE_DEFAULT_PRICE } from '@/constants';
-import { auth } from '@clerk/nextjs';
 import { Separator } from '@ui/index';
 
 import { checkSubscription } from '@/app/lib/actions/check-subscription';
 import { db } from '@/app/lib/db';
+import { getCurrentUser } from '@/app/lib/session';
 import { Banner } from '@/app/ui/banner';
 import { Container } from '@/app/ui/container';
 import { CourseEnrollButton } from '@/app/ui/learn/courses/course-enroll-button';
@@ -14,7 +14,8 @@ import { Preview } from '@/app/ui/preview';
 import { SubscriptionButton } from '@/app/ui/subscription-button';
 
 const CourseIdPage = async ({ params }: { params: { courseId: string } }) => {
-  const { userId } = auth();
+  const user = await getCurrentUser();
+  const userId = user?.id;
   const course = await db.course.findUnique({
     where: {
       id: params.courseId,

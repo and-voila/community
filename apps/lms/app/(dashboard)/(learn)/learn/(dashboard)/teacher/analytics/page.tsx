@@ -1,14 +1,15 @@
 import { redirect } from 'next/navigation';
-import { auth } from '@clerk/nextjs';
 
 import { getAnalytics } from '@/app/lib/actions/get-analytics';
+import { getCurrentUser } from '@/app/lib/session';
 import { isTeacher } from '@/app/lib/teacher';
 import { Container } from '@/app/ui/container';
 import { TeacherAnalyticsChart } from '@/app/ui/learn/teacher/teacher-analytics-chart';
 import { TeacherAnalyticsDataCard } from '@/app/ui/learn/teacher/teacher-analytics-data-card';
 
 const AnalyticsPage = async () => {
-  const { userId } = auth();
+  const user = await getCurrentUser();
+  const userId = user?.id;
 
   if (!isTeacher(userId)) {
     return redirect('/');

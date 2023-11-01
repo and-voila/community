@@ -1,4 +1,3 @@
-import { UserProfile } from '@clerk/nextjs';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from 'ui';
 
 import { checkSubscription } from '@/app/lib/actions/check-subscription';
@@ -39,7 +38,6 @@ const SettingsPage = async () => {
               Update your avatar, connect your accounts, or secure your account
               with 2FA.
             </p>
-            <UserProfile />
           </TabsContent>
         </Tabs>
       </div>
