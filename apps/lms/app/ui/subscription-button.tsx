@@ -31,7 +31,7 @@ export const SubscriptionButton = ({
   return (
     <Button
       size={size}
-      variant={isPaidMember ? 'default' : 'custom'}
+      variant={isPaidMember ? 'secondary' : 'custom'}
       disabled={loading}
       onClick={onClick}
       className="w-full lg:w-auto"

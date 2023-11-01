@@ -1,10 +1,11 @@
 import { MAX_FREE_TOKENS } from '@/constants';
-import { auth } from '@clerk/nextjs';
 
 import { db } from './db';
+import { getCurrentUser } from './session';
 
 export const increaseApiLimit = async () => {
-  const { userId } = auth();
+  const user = await getCurrentUser();
+  const userId = user?.id;
 
   if (!userId) {
     return;
@@ -32,7 +33,8 @@ export const increaseApiLimit = async () => {
 };
 
 export const checkApiLimit = async () => {
-  const { userId } = auth();
+  const user = await getCurrentUser();
+  const userId = user?.id;
 
   if (!userId) {
     return false;
@@ -52,7 +54,8 @@ export const checkApiLimit = async () => {
 };
 
 export const getApiLimitCount = async () => {
-  const { userId } = auth();
+  const user = await getCurrentUser();
+  const userId = user?.id;
 
   if (!userId) {
     return 0;

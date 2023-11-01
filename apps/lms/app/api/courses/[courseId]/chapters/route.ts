@@ -1,7 +1,7 @@
 import { NextResponse } from 'next/server';
-import { auth } from '@clerk/nextjs';
 
 import { db } from '@/app/lib/db';
+import { getCurrentUser } from '@/app/lib/session';
 import { isTeacher } from '@/app/lib/teacher';
 
 export async function POST(
@@ -9,7 +9,8 @@ export async function POST(
   { params }: { params: { courseId: string } },
 ) {
   try {
-    const { userId } = auth();
+    const user = await getCurrentUser();
+    const userId = user?.id;
     const { title } = await req.json();
 
     if (!isTeacher(userId)) {

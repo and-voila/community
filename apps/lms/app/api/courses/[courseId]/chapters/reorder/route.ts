@@ -1,7 +1,7 @@
 import { NextResponse } from 'next/server';
-import { auth } from '@clerk/nextjs';
 
 import { db } from '@/app/lib/db';
+import { getCurrentUser } from '@/app/lib/session';
 import { isTeacher } from '@/app/lib/teacher';
 
 export async function PUT(
@@ -9,7 +9,8 @@ export async function PUT(
   { params }: { params: { courseId: string } },
 ) {
   try {
-    const { userId } = auth();
+    const user = await getCurrentUser();
+    const userId = user?.id;
 
     if (!isTeacher(userId)) {
       return new NextResponse('Unauthorized', { status: 401 });

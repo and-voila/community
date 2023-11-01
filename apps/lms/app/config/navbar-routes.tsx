@@ -2,7 +2,6 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { useAuth, UserButton } from '@clerk/nextjs';
 import { Button } from '@ui/components/ui/button';
 import { ExitIcon, ModeToggle } from '@ui/index';
 
@@ -11,8 +10,7 @@ import { SearchInput } from '@/app/ui/search-input';
 
 import { Icons } from '../ui/icons';
 
-export const NavbarRoutes = () => {
-  const { userId } = useAuth();
+export const NavbarRoutes = ({ userId }) => {
   const pathname = usePathname();
 
   const isTeacherPage = pathname?.startsWith('/learn/teacher');
@@ -44,7 +42,6 @@ export const NavbarRoutes = () => {
       </div>
       <div className="flex gap-x-4 mr-6 items-center">
         <ModeToggle />
-        <UserButton afterSignOutUrl="/sign-in" />
         <Link
           href="https://discord.com/channels/1151749282806910976/1164902538731069542"
           target="_blank"

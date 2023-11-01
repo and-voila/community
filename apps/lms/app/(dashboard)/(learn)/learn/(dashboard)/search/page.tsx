@@ -1,9 +1,9 @@
 import { redirect } from 'next/navigation';
-import { auth } from '@clerk/nextjs';
 
 import { checkSubscription } from '@/app/lib/actions/check-subscription';
 import { getCourses } from '@/app/lib/actions/get-courses';
 import { db } from '@/app/lib/db';
+import { getCurrentUser } from '@/app/lib/session';
 import { CoursesList } from '@/app/ui/learn/courses/courses-list';
 import { Categories } from '@/app/ui/learn/dashboard/categories';
 import { SearchInput } from '@/app/ui/search-input';
@@ -16,7 +16,8 @@ interface SearchPageProps {
 }
 
 const SearchPage = async ({ searchParams }: SearchPageProps) => {
-  const { userId } = auth();
+  const user = await getCurrentUser();
+  const userId = user?.id;
 
   if (!userId) {
     return redirect('/');

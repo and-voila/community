@@ -1,6 +1,5 @@
 import Link from 'next/link';
 import { redirect } from 'next/navigation';
-import { auth } from '@clerk/nextjs';
 import {
   Button,
   Card,
@@ -11,6 +10,7 @@ import {
   cn,
 } from 'ui';
 
+import { getCurrentUser } from '@/app/lib/session';
 import { Icons } from '@/app/ui/icons';
 
 const tools = [
@@ -41,7 +41,8 @@ const tools = [
 ];
 
 export default async function DashboardPage() {
-  const { userId } = auth();
+  const user = await getCurrentUser();
+  const userId = user?.id;
 
   if (!userId) {
     return redirect('/');

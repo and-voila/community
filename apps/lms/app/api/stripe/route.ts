@@ -1,8 +1,8 @@
 import { NextResponse } from 'next/server';
-import { auth, currentUser } from '@clerk/nextjs';
 
 import { bestPlan } from '@/app/config/subscriptions';
 import { db } from '@/app/lib/db';
+import { getCurrentUser } from '@/app/lib/session';
 import { stripe } from '@/app/lib/stripe';
 import { absoluteUrl } from '@/app/lib/utils';
 
@@ -12,8 +12,8 @@ export const dynamic = 'force-dynamic';
 
 export async function GET() {
   try {
-    const { userId } = auth();
-    const user = await currentUser();
+    const user = await getCurrentUser();
+    const userId = user?.id;
 
     if (!userId || !user) {
       return new NextResponse('Unauthorized', { status: 401 });
@@ -45,7 +45,7 @@ export async function GET() {
         },
       ],
       billing_address_collection: 'auto',
-      customer_email: user.emailAddresses[0].emailAddress,
+      customer_email: user.email,
       line_items: [
         {
           price: bestPlan.stripePriceId,

@@ -1,12 +1,12 @@
-import { auth } from '@clerk/nextjs';
-
 import { db } from '../db';
+import { getCurrentUser } from '../session';
 import { isTeacher } from '../teacher';
 
 const DAY_IN_MS = 86_400_000;
 
 export const checkSubscription = async (): Promise<boolean> => {
-  const { userId } = auth();
+  const user = await getCurrentUser();
+  const userId = user?.id;
 
   if (isTeacher(userId)) {
     return true;

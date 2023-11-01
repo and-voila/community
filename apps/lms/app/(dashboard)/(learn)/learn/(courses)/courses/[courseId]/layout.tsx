@@ -1,10 +1,10 @@
 import { redirect } from 'next/navigation';
-import { auth } from '@clerk/nextjs';
 
 import { checkSubscription } from '@/app/lib/actions/check-subscription';
 import { getProgress } from '@/app/lib/actions/get-progress';
 import { getApiLimitCount } from '@/app/lib/api-limit';
 import { db } from '@/app/lib/db';
+import { getCurrentUser } from '@/app/lib/session';
 import { CourseNavbar } from '@/app/ui/learn/courses/course-navbar';
 import { CourseSidebar } from '@/app/ui/learn/courses/course-sidebar';
 
@@ -17,7 +17,8 @@ const CourseLayout = async ({
 }) => {
   const apiLimitCount = await getApiLimitCount();
   const isPaidMember = await checkSubscription();
-  const { userId } = auth();
+  const user = await getCurrentUser();
+  const userId = user?.id;
 
   if (!userId) {
     return redirect('/');

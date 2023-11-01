@@ -1,7 +1,7 @@
 import { redirect } from 'next/navigation';
-import { auth } from '@clerk/nextjs';
 
 import { db } from '@/app/lib/db';
+import { getCurrentUser } from '@/app/lib/session';
 import { isTeacher } from '@/app/lib/teacher';
 import { Banner } from '@/app/ui/banner';
 import { IconBadge } from '@/app/ui/icon-badge';
@@ -17,7 +17,8 @@ import { PriceForm } from '@/app/ui/learn/teacher/courses/price-form';
 import { TitleForm } from '@/app/ui/learn/teacher/courses/title-form';
 
 const CourseIdPage = async ({ params }: { params: { courseId: string } }) => {
-  const { userId } = auth();
+  const user = await getCurrentUser();
+  const userId = user?.id;
 
   if (!isTeacher(userId)) {
     return redirect('/');
