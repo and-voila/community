@@ -3,17 +3,17 @@ import { buttonVariants, cn, Logo } from '@ui/index';
 
 import UserAuthForm from '@/app/ui/user-auth-form';
 
-const LoginPage = () => {
+export default function RegisterPage() {
   return (
     <div>
       <Link
-        href="/register"
+        href="/login"
         className={cn(
           buttonVariants({ variant: 'outline', size: 'sm' }),
           'absolute right-4 top-4 md:right-8 md:top-8',
         )}
       >
-        Register
+        Login
       </Link>
       <div className="max-w-sm">
         <div className="p-6 flex items-center justify-center">
@@ -22,15 +22,14 @@ const LoginPage = () => {
             beta
           </sup>
         </div>
-        <UserAuthForm />
-
+        <UserAuthForm isRegistration />
         <p className="text-sm text-muted-foreground max-w-xs mt-4 text-center mx-auto">
           No credit card required. If you&apos;re interested, here&apos;s our
           <Link
             href="https://andvoila.gg/privacy"
             target="_blank"
             aria-label="Naivgate to And Voila's Privacy Policy on their website in a new window"
-            className="text-brand hover:underline"
+            className="text-foreground hover:underline"
           >
             {' '}
             Privacy Policy{' '}
@@ -40,7 +39,7 @@ const LoginPage = () => {
             href="https://andvoila.gg/terms"
             target="_blank"
             aria-label="Naivgate to And Voila's Terms of Service on their website in a new window"
-            className="text-brand hover:underline"
+            className="text-foreground hover:underline"
           >
             Terms of Service
           </Link>
@@ -49,6 +48,4 @@ const LoginPage = () => {
       </div>
     </div>
   );
-};
-
-export default LoginPage;
+}

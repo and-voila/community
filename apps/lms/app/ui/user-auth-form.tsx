@@ -24,11 +24,17 @@ import { z } from 'zod';
 import { userAuthSchema } from '@/app/lib/validations/user-auth';
 import { Icons } from '@/app/ui/icons';
 
-interface UserAuthFormProps extends React.HTMLAttributes<HTMLDivElement> {}
+interface UserAuthFormProps extends React.HTMLAttributes<HTMLDivElement> {
+  isRegistration?: boolean;
+}
 
 type FormData = z.infer<typeof userAuthSchema>;
 
-export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
+export function UserAuthForm({
+  className,
+  isRegistration,
+  ...props
+}: UserAuthFormProps) {
   const {
     register,
     handleSubmit,
@@ -48,7 +54,7 @@ export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
     const signInResult = await signIn('email', {
       email: data.email.toLowerCase(),
       redirect: false,
-      callbackUrl: searchParams?.get('from') || '/dashboard',
+      callbackUrl: searchParams?.get('from') || '/',
     });
 
     setIsLoading(false);
@@ -73,11 +79,12 @@ export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
         <Card className="py-6">
           <CardHeader className="space-y-1">
             <CardTitle className="text-2xl font-display pb-2">
-              Log in{' '}
+              {isRegistration ? 'Create your free account' : 'Welcome back'}
             </CardTitle>
             <CardDescription>
-              Use Discord, Google, or enter your email and we&apos;ll send you a
-              magic link.
+              {isRegistration
+                ? 'Use Discord, Google, or enter your email to create an account.'
+                : "Use Discord, Google, or enter your email and we'll send you a magic link."}
             </CardDescription>
           </CardHeader>
           <CardContent className="grid gap-4">
@@ -144,7 +151,7 @@ export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
               )}
             </div>
           </CardContent>
-          <CardFooter>
+          <CardFooter className="flex flex-col gap-3">
             <button
               className={cn('w-full', buttonVariants({ variant: 'secondary' }))}
               disabled={isLoading}
@@ -152,33 +159,24 @@ export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
               {isLoading && (
                 <Icons.spinner className="mr-2 h-4 w-4 animate-spin" />
               )}
-              Sign In with Email
+              {isRegistration ? 'Register with email' : 'Log in with email'}
             </button>
+            {!isRegistration && (
+              <p className="text-xs text-muted-foreground">
+                Don&apos;t have an account? No sweat,{' '}
+                <Link
+                  href="/register"
+                  aria-label="Navigate to And Voila's Registration page to create an account."
+                  className="text-brand hover:underline"
+                >
+                  create one
+                </Link>
+                .
+              </p>
+            )}
           </CardFooter>
         </Card>
       </form>
-      <p className="text-sm text-muted-foreground max-w-xs mt-4 text-center mx-auto">
-        No credit card required. If you&apos;re interested, here&apos;s our
-        <Link
-          href="https://andvoila.gg/privacy"
-          target="_blank"
-          aria-label="Naivgate to And Voila's Privacy Policy on their website in a new window"
-          className="text-brand hover:underline"
-        >
-          {' '}
-          Privacy Policy{' '}
-        </Link>
-        and{' '}
-        <Link
-          href="https://andvoila.gg/terms"
-          target="_blank"
-          aria-label="Naivgate to And Voila's Terms of Service on their website in a new window"
-          className="text-brand hover:underline"
-        >
-          Terms of Service
-        </Link>
-        .
-      </p>
     </div>
   );
 }
