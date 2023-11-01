@@ -8,6 +8,8 @@ import { ConfettiProvider } from '@/app/ui/providers/confetti-provider';
 import { ModalProvider } from '@/app/ui/providers/modal-provider';
 import { ToastProvider } from '@/app/ui/providers/toaster-provider';
 
+import { SessionInfo } from './ui/session-info';
+
 export const metadata: Metadata = {
   title: 'And Voila Labs',
   description:
@@ -66,6 +68,7 @@ export default function RootLayout({
           <ConfettiProvider />
           <Toaster />
           <ToastProvider />
+          <SessionInfo />
           {children}
         </ThemeProvider>
       </body>

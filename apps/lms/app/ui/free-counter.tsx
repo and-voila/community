@@ -3,7 +3,6 @@
 
 import { useEffect, useState } from 'react';
 import { MAX_FREE_TOKENS } from '@/constants';
-import { useAuth } from '@clerk/nextjs';
 import { Button, Card, CardContent, Progress } from 'ui';
 
 import { useProModal } from '@/app/hooks/use-pro-modal';
@@ -14,15 +13,16 @@ import { Icons } from './icons';
 interface FreeCounterProps {
   apiLimitCount: number;
   isPaidMember: boolean;
+  userId: string;
 }
 
 export const FreeCounter = ({
   apiLimitCount = 0,
   isPaidMember = false,
+  userId,
 }: FreeCounterProps) => {
   const proModal = useProModal();
   const [mounted, setMounted] = useState(false);
-  const { userId } = useAuth();
 
   useEffect(() => {
     setMounted(true);
