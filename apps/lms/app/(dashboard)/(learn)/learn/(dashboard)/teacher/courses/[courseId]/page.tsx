@@ -72,7 +72,7 @@ const CourseIdPage = async ({ params }: { params: { courseId: string } }) => {
   return (
     <div className="mx-auto max-w-3xl bg-background pb-24 dark:bg-[#242629] lg:pb-32">
       {!course.isPublished && (
-        <Banner label="This course is unpublished. It will not be visible to the students." />
+        <Banner label="This playbook ain't published. No one will be able to see it yo." />
       )}
       <div className="p-6">
         <div className="flex items-center justify-between">
