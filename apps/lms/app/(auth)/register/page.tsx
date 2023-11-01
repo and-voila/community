@@ -29,7 +29,7 @@ export default function RegisterPage() {
             href="https://andvoila.gg/privacy"
             target="_blank"
             aria-label="Naivgate to And Voila's Privacy Policy on their website in a new window"
-            className="text-foreground hover:underline"
+            className="text-brand hover:underline"
           >
             {' '}
             Privacy Policy{' '}
@@ -39,7 +39,7 @@ export default function RegisterPage() {
             href="https://andvoila.gg/terms"
             target="_blank"
             aria-label="Naivgate to And Voila's Terms of Service on their website in a new window"
-            className="text-foreground hover:underline"
+            className="text-brand hover:underline"
           >
             Terms of Service
           </Link>

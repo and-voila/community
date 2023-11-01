@@ -4,6 +4,10 @@ import { withAuth } from 'next-auth/middleware';
 
 export default withAuth(
   async function middleware(req) {
+    if (req.nextUrl.pathname.startsWith('/api')) {
+      return null;
+    }
+
     const token = await getToken({ req });
     const isAuth = !!token;
     const isAuthPage =
