@@ -80,6 +80,7 @@ export const CourseSidebar = async ({
           <FreeCounter
             isPaidMember={isPaidMember}
             apiLimitCount={apiLimitCount}
+            userId={userId}
           />
         </div>
       </div>

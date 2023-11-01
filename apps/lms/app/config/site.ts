@@ -1,4 +1,4 @@
-import { SiteConfig } from '@/types';
+import { SiteConfig } from '@/app/lib/types';
 
 export const siteConfig: SiteConfig = {
   company: 'BRIL.LA, LLC.',
