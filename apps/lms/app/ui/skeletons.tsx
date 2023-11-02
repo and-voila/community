@@ -1,5 +1,7 @@
 import { cn, Skeleton } from '@ui/index';
 
+import { Icons } from './icons';
+
 // Sidebar Skeletons
 
 export const SidebarItemSkeleton = () => {
@@ -42,24 +44,6 @@ export const FreeCounterSkeleton = () => {
         {/* Placeholder for API_LIMIT_COUNT progress bar */}
         {/* <Skeleton className="w-full h-3 my-2" />  Progress bar */}
         <Skeleton className="w-full h-8 my-2" />
-      </div>
-    </div>
-  );
-};
-
-export const SidebarSkeleton = () => {
-  return (
-    <div className="flex h-full flex-col overflow-y-auto bg-[#d0d5dd] shadow-sm dark:bg-[#010101]">
-      <div className="p-6 flex items-center">
-        <LogoSkeleton />
-        <Skeleton className="text-xs -ml-2 md:-ml-3 w-10 h-3" />{' '}
-        {/* beta text */}
-      </div>
-      <div className="flex w-full flex-col">
-        <SidebarRoutesSkeleton />
-      </div>
-      <div className="absolute bottom-6 flex w-full flex-col">
-        <FreeCounterSkeleton />
       </div>
     </div>
   );
@@ -120,49 +104,6 @@ export const UserAccountNavSkeleton = () => {
   );
 };
 
-export const MobileSidebarSkeleton = () => {
-  return (
-    <div className="relative inline-block md:hidden">
-      <Skeleton className="h-6 w-6" />
-      <div className="absolute top-full mt-2 left-0 w-64 rounded-md shadow-lg bg-white p-2">
-        <SidebarItemSkeleton />
-        <SidebarItemSkeleton />
-        <SidebarItemSkeleton />
-        <SidebarItemSkeleton />
-        <SidebarItemSkeleton />
-      </div>
-    </div>
-  );
-};
-
-export const NavbarRoutesSkeleton = () => {
-  return (
-    <>
-      <div className="hidden md:block">
-        <SearchInputSkeleton />
-      </div>
-      <div className="ml-auto flex pr-6">
-        <ExitButtonSkeleton />
-      </div>
-      <div className="flex gap-x-4 mr-6 items-center">
-        <ModeToggleSkeleton />
-        <CommunityIconSkeleton />
-        <UserAvatarSkeleton />
-      </div>
-    </>
-  );
-};
-
-export const NavbarSkeleton = () => {
-  return (
-    <div className="flex h-full items-center p-4 shadow-sm bg-[#dcdfe5] dark:bg-[#16161a]">
-      <MobileSidebarSkeleton />
-      <NavbarRoutesSkeleton />
-      <UserAccountNavSkeleton />
-    </div>
-  );
-};
-
 // Playbook Skeletons
 
 interface CourseCardSkeletonProps {
@@ -184,6 +125,147 @@ export const CourseCardSkeleton = ({
         <Skeleton className="h-4 w-full rounded-md" />
         <Skeleton className="h-4 w-3/4 rounded-md" />
       </div>
+    </div>
+  );
+};
+
+export const CategoryItemSkeleton = () => {
+  return (
+    <div className="flex items-center gap-x-1 rounded-lg border px-3 py-2">
+      <Skeleton className="h-4 w-20 rounded-md" />
+    </div>
+  );
+};
+
+export const ProgressSkeleton = () => {
+  return (
+    <div className="relative h-4 w-full overflow-hidden rounded-full bg-secondary">
+      <Skeleton className="h-full w-3/4 bg-primary" />
+    </div>
+  );
+};
+
+export const CourseProgressSkeleton = () => {
+  return (
+    <div className="mt-2">
+      <ProgressSkeleton />
+      <Skeleton className="h-4 w-24 mt-2 rounded-md" />
+    </div>
+  );
+};
+
+export const CourseSidebarItemSkeleton = () => {
+  return (
+    <div className="flex items-center gap-x-2 pl-6 text-left text-sm font-semibold text-muted-foreground">
+      <Skeleton className="h-4 w-4 rounded-full" />
+      <Skeleton className="h-4 w-32 rounded-md" />
+    </div>
+  );
+};
+
+export const CourseImageSkeleton = () => {
+  return (
+    <Skeleton
+      className="w-full py-4 shadow-md"
+      style={{ height: '1200px' }}
+      role="img"
+      aria-label="Loading course image..."
+    />
+  );
+};
+
+export const CourseTitleSkeleton = () => {
+  return (
+    <div className="mb-2 flex-grow">
+      <Skeleton className="h-10 w-3/4" />
+    </div>
+  );
+};
+
+export const CourseButtonsSkeleton = () => {
+  return (
+    <div className="lg:p-6 flex flex-col sm:py-0 lg:flex-row gap-x-4 items-center w-full lg:w-auto py-4 space-y-6 lg:space-y-0">
+      <Skeleton className="h-10 w-32" />
+      <Skeleton className="h-10 w-24" />
+    </div>
+  );
+};
+
+export const CoursePreviewSkeleton = () => {
+  return (
+    <div className="prose">
+      <Skeleton className="h-4 w-3/4 mb-4" />
+      <Skeleton className="h-4 w-1/2 mb-4" />
+      <Skeleton className="h-4 w-5/6 mb-4" />
+      <ul>
+        <li>
+          <Skeleton className="h-4 w-1/3 mb-2" />
+        </li>
+        <li>
+          <Skeleton className="h-4 w-1/2 mb-2" />
+        </li>
+        <li>
+          <Skeleton className="h-4 w-2/5 mb-4" />
+        </li>
+      </ul>
+      <Skeleton className="h-4 w-4/6 mb-4" />
+      <Skeleton className="h-4 w-1/2" />
+    </div>
+  );
+};
+
+export const VideoPlayerSkeleton = () => {
+  return (
+    <div className="relative aspect-video bg-gray-300">
+      <div className="absolute inset-0 flex items-center justify-center bg-opacity-50">
+        <Icons.play className="h-16 w-16 text-gray-500" />
+      </div>
+      <div className="absolute bottom-0 left-0 w-full h-1">
+        <Skeleton className="h-full w-1/4 bg-brand" />
+      </div>
+    </div>
+  );
+};
+
+// Teacher Courses Skeletons
+
+export const TeacherCoursesFilterSkeleton = () => {
+  return (
+    <div className="max-w-sm">
+      <Skeleton className="h-10 rounded-md" />
+    </div>
+  );
+};
+
+export const TeacherCoursesTableSkeleton = () => {
+  return (
+    <div className="my-6 rounded-md border bg-white dark:bg-background">
+      <div className="rounded-xl">
+        <div className="flex">
+          <Skeleton className="w-1/2 h-10 m-2 rounded-md" />
+          <Skeleton className="w-1/6 h-10 m-2 rounded-md" />
+          <Skeleton className="w-1/6 h-10 m-2 rounded-md" />
+          <Skeleton className="w-1/6 h-10 m-2 rounded-md" />
+        </div>
+
+        {Array.from({ length: 10 }).map((_, index) => (
+          <div className="flex" key={index}>
+            <Skeleton className="w-1/2 h-10 m-2 rounded-md" />
+            <Skeleton className="w-1/6 h-10 m-2 rounded-md" />
+            <Skeleton className="w-1/6 h-10 m-2 rounded-md" />
+            <Skeleton className="w-1/6 h-10 m-2 rounded-md" />
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+};
+
+export const TeacherCoursesPaginationSkeleton = () => {
+  return (
+    <div className="flex items-center justify-end space-x-2 py-4">
+      <Skeleton className="w-24 h-8 rounded-md" />
+      <Skeleton className="w-24 h-8 rounded-md" />
     </div>
   );
 };
