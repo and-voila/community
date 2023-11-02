@@ -1,14 +1,9 @@
 import 'ui/styles/globals.css';
 
 import type { Metadata } from 'next';
-import { ThemeProvider, Toaster } from '@ui/index';
 import { GeistMono, GeistSans } from 'geist/font';
 
-import { ConfettiProvider } from '@/app/ui/providers/confetti-provider';
-import { ModalProvider } from '@/app/ui/providers/modal-provider';
-import { ToastProvider } from '@/app/ui/providers/toaster-provider';
-
-import { SessionInfo } from './ui/session-info';
+import { Providers } from './ui/providers/providers';
 
 export const metadata: Metadata = {
   title: 'And Voila Labs',
@@ -63,14 +58,7 @@ export default function RootLayout({
       suppressHydrationWarning
     >
       <body className="bg-background dark:bg-[#242629]">
-        <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>
-          <ModalProvider />
-          <ConfettiProvider />
-          <Toaster />
-          <ToastProvider />
-          <SessionInfo />
-          {children}
-        </ThemeProvider>
+        <Providers>{children}</Providers>
       </body>
     </html>
   );
