@@ -269,3 +269,57 @@ export const TeacherCoursesPaginationSkeleton = () => {
     </div>
   );
 };
+
+// Dashboard Skeletons
+
+export const DashboardSkeleton = () => {
+  return (
+    <div className="md:mt-8 py-24 lg:py-32">
+      <div className="mx-auto grid max-w-6xl gap-4 px-8 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:max-w-7xl">
+        {Array(3)
+          .fill(0)
+          .map((_, idx) => (
+            <div
+              key={idx}
+              className="mt-4 flex cursor-pointer flex-col p-6 transition hover:shadow-md dark:hover:shadow-muted"
+            >
+              <div className="flex items-center gap-3">
+                <Skeleton className="rounded-md h-8 w-8" />
+                <Skeleton className="font-medium h-6 w-3/4" />
+              </div>
+              <Skeleton className="flex-grow mt-4 h-6 w-full" />
+              <Skeleton className="mt-4 h-10 w-full" />
+            </div>
+          ))}
+      </div>
+    </div>
+  );
+};
+
+export const DashboardCardSkeleton = () => {
+  return (
+    <div className="md:mt-8 py-24 lg:py-32">
+      <div className="mx-auto grid max-w-6xl gap-4 px-8 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:max-w-7xl">
+        <div className="mt-4 flex cursor-pointer flex-col p-6 transition hover:shadow-md dark:hover:shadow-muted">
+          <div className="flex items-center gap-3">
+            <Skeleton className="rounded-md h-8 w-8" />
+            <Skeleton className="font-medium h-6 w-3/4" />
+          </div>
+          <Skeleton className="flex-grow mt-4 h-6 w-full" />
+          <Skeleton className="mt-4 h-10 w-full" />
+        </div>
+      </div>
+    </div>
+  );
+};
+
+// Miscellaneous Skeletons
+
+export const SessionInfoSkeleton = () => {
+  return (
+    <div className="absolute bottom-6 right-6 bg-alternate/50 backdrop-blur-md p-4 rounded-lg">
+      <p className="text-xs font-mono font-bold">For testing purposes</p>
+      <Skeleton className="h-4 w-20 mt-2" />
+    </div>
+  );
+};
