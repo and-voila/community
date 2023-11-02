@@ -64,3 +64,101 @@ export const SidebarSkeleton = () => {
     </div>
   );
 };
+
+// Navbar Skeletons
+
+export const SearchInputSkeleton = () => {
+  return (
+    <div className="relative flex items-center pl-4">
+      <Skeleton className="absolute left-6 h-4 w-4 rounded-full" />{' '}
+      <Skeleton className="w-full h-6 rounded-lg" />
+    </div>
+  );
+};
+
+export const ExitButtonSkeleton = () => {
+  return (
+    <div className="ml-auto flex pr-6">
+      <Skeleton className="h-6 w-24 rounded-md" />
+    </div>
+  );
+};
+
+export const ModeToggleSkeleton = () => {
+  return (
+    <div className="relative">
+      <Skeleton className="rounded-md h-6 w-6" />
+    </div>
+  );
+};
+
+export const CommunityIconSkeleton = () => {
+  return <Skeleton className="rounded-full h-9 w-9" />;
+};
+
+export const UserAvatarSkeleton = () => {
+  return <Skeleton className="rounded-full h-8 w-8" />;
+};
+
+export const UserAccountNavSkeleton = () => {
+  return (
+    <div className="relative inline-block">
+      <Skeleton className="rounded-full h-8 w-8" />
+      <div className="absolute top-full mt-2 right-0 w-48 rounded-md shadow-lg">
+        <div className="bg-white dark:bg-gray-800 p-2 rounded-md">
+          <Skeleton className="block h-4 w-24 my-1" />
+          <Skeleton className="block h-3 w-32 my-1" />
+          <div className="my-2 border-t border-gray-200 dark:border-gray-700" />
+          <Skeleton className="block h-4 w-24 my-1" />
+          <Skeleton className="block h-4 w-24 my-1" />
+          <Skeleton className="block h-4 w-24 my-1" />
+          <div className="my-2 border-t border-gray-200 dark:border-gray-700" />
+          <Skeleton className="block h-4 w-24 my-1" />
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export const MobileSidebarSkeleton = () => {
+  return (
+    <div className="relative inline-block md:hidden">
+      <Skeleton className="h-6 w-6" />
+      <div className="absolute top-full mt-2 left-0 w-64 rounded-md shadow-lg bg-white p-2">
+        <SidebarItemSkeleton />
+        <SidebarItemSkeleton />
+        <SidebarItemSkeleton />
+        <SidebarItemSkeleton />
+        <SidebarItemSkeleton />
+      </div>
+    </div>
+  );
+};
+
+export const NavbarRoutesSkeleton = () => {
+  return (
+    <>
+      <div className="hidden md:block">
+        <SearchInputSkeleton />
+      </div>
+      <div className="ml-auto flex pr-6">
+        <ExitButtonSkeleton />
+      </div>
+      <div className="flex gap-x-4 mr-6 items-center">
+        <ModeToggleSkeleton />
+        <CommunityIconSkeleton />
+        <UserAvatarSkeleton />
+      </div>
+    </>
+  );
+};
+
+export const NavbarSkeleton = () => {
+  return (
+    <div className="flex h-full items-center p-4 shadow-sm bg-[#dcdfe5] dark:bg-[#16161a]">
+      <MobileSidebarSkeleton />
+      <NavbarRoutesSkeleton />
+      <UserAccountNavSkeleton />
+    </div>
+  );
+};
