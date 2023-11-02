@@ -71,8 +71,8 @@ const CourseIdPage = async ({ params }: { params: { courseId: string } }) => {
               className="w-full py-4 shadow-md grayscale hover:grayscale-0 transition duration-200"
               src={course.imageUrl}
               alt={`A featured image of an anthropomorphic cat representing ${course.title}`}
-              width={630}
-              height={1200}
+              width={1200}
+              height={630}
               role="img"
               aria-label={`A featured image of an anthropomorphic cat representing ${course.title}`}
             />
