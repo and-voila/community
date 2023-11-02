@@ -1,14 +1,71 @@
 import 'ui/styles/globals.css';
 
-import type { Metadata } from 'next';
 import { GeistMono, GeistSans } from 'geist/font';
 
+import { siteConfig } from './config/site';
 import { Providers } from './ui/providers/providers';
 
-export const metadata: Metadata = {
-  title: 'And Voila Labs',
-  description:
-    'Learn everything there is to know about digital marketing. A members-only LMS for the And Voila Discord community.',
+const baseUrl = process.env.NEXT_PUBLIC_VERCEL_URL
+  ? `https://${process.env.NEXT_PUBLIC_VERCEL_URL}`
+  : 'http://localhost:3001';
+
+export const metadata = {
+  metadataBase: new URL(baseUrl),
+  title: {
+    default: siteConfig.name,
+    template: `%s | ${siteConfig.name}`,
+  },
+  description: siteConfig.description,
+  keywords: [
+    'Exclusive Digital Marketing Community',
+    'Digital Marketing Community',
+    'Discord Server for Digital Marketers',
+    'Digital Marketing Optimization',
+    'Rebekah Radice',
+  ],
+  authors: [
+    {
+      name: 'Rebekah Radice',
+      url: 'https://bril.la',
+    },
+  ],
+  creator: 'Rebekah Radice',
+  themeColor: [
+    { media: '(prefers-color-scheme: light)', color: 'white' },
+    { media: '(prefers-color-scheme: dark)', color: 'black' },
+  ],
+  openGraph: {
+    type: 'website',
+    title: siteConfig.name,
+    description: siteConfig.description,
+    images: [
+      {
+        url: '/open-graph.gif',
+        width: 1200,
+        height: 630,
+        alt: 'An open graph image that appears to look like a Loading screen with the And Voila logo.',
+      },
+    ],
+    siteName: siteConfig.name,
+  },
+  category: 'digital marketing community',
+  robots: {
+    follow: false,
+    index: false,
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: siteConfig.name,
+    description: siteConfig.description,
+    images: [
+      {
+        url: '/open-graph.gif',
+        alt: 'An open graph image that appears to look like a Loading screen with the And Voila logo.',
+      },
+    ],
+    creator: '@rebekahradice',
+    site: siteConfig.url,
+  },
   icons: [
     {
       rel: 'icon',

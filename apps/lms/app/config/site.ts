@@ -2,9 +2,9 @@ import { SiteConfig } from '@/app/lib/types';
 
 export const siteConfig: SiteConfig = {
   company: 'BRIL.LA, LLC.',
-  name: 'And Voila',
+  name: 'And Voila Labs',
   description:
-    'An open source application built using the new router, server components and everything new in Next.js 13.',
+    'We help digital marketers gain superpowers. Join the community, use our playbooks, and AI-assisted tools. And voila! Watch your marketing ROI skyrocket. 🔥 ',
   url: 'https://labs.andvoila.gg',
   ogImage: '/open-graph.gif',
   links: {
