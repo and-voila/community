@@ -162,3 +162,28 @@ export const NavbarSkeleton = () => {
     </div>
   );
 };
+
+// Playbook Skeletons
+
+interface CourseCardSkeletonProps {
+  displayImage?: boolean;
+}
+
+export const CourseCardSkeleton = ({
+  displayImage = true,
+}: CourseCardSkeletonProps) => {
+  return (
+    <div className="h-full overflow-hidden rounded-xl border bg-white dark:bg-background">
+      {displayImage && <Skeleton className="w-full h-32 rounded-t-xl" />}
+      <div className="mt-1 flex flex-col p-4">
+        <div className="flex justify-between items-center mb-2">
+          <Skeleton className="h-4 w-20 rounded-md" />
+          <Skeleton className="h-4 w-24 rounded-md" />
+        </div>
+        <Skeleton className="h-6 w-3/4 rounded-md mb-2" />
+        <Skeleton className="h-4 w-full rounded-md" />
+        <Skeleton className="h-4 w-3/4 rounded-md" />
+      </div>
+    </div>
+  );
+};
