@@ -4,6 +4,7 @@ import { ReactNode } from 'react';
 import { ThemeProvider, Toaster } from '@ui/index';
 
 import { SessionInfo } from '../session-info';
+import { TailwindIndicator } from '../tailwind-indicator';
 import { ConfettiProvider } from './confetti-provider';
 import { ModalProvider } from './modal-provider';
 import { ToastProvider } from './toaster-provider';
@@ -16,6 +17,7 @@ export function Providers({ children }: { children: ReactNode }) {
       <Toaster />
       <ToastProvider />
       <SessionInfo />
+      <TailwindIndicator />
       {children}
     </ThemeProvider>
   );
