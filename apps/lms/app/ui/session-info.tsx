@@ -29,7 +29,7 @@ export const SessionInfo = () => {
 
   return (
     <>
-      {process.env.NODE_ENV !== 'production' && (
+      {process.env.NEXT_PUBLIC_VERCEL_ENV !== 'production' && (
         <div className="text-xs bg-alternate/50 backdrop-blur-md absolute bottom-6 right-6 p-4 rounded-lg text-black">
           <p className="font-mono font-bold ">For testing purposes</p>
           <pre>User ID: {obfuscatedUserId}</pre>
