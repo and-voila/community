@@ -19,7 +19,7 @@ export const SessionInfo = () => {
 
   const obfuscatedUserId = userId?.substring(0, 8);
 
-  if (!session) {
+  if (!session && process.env.NEXT_PUBLIC_VERCEL_ENV !== 'production') {
     return (
       <div className="absolute bottom-6 right-6 bg-destructive p-4 rounded-lg text-xs">
         No session found...
