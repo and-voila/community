@@ -7,6 +7,7 @@ import { Button } from '@ui/components/ui/button';
 import {
   Form,
   FormControl,
+  FormDescription,
   FormField,
   FormItem,
   FormMessage,
@@ -28,7 +29,14 @@ interface ChaptersFormProps {
 }
 
 const formSchema = z.object({
-  title: z.string().min(1),
+  title: z
+    .string()
+    .min(40, {
+      message: "Ugh, the play's title must be at least 40 characters",
+    })
+    .max(65, {
+      message: "Oof, the play's title can't be more than 65 characters",
+    }),
 });
 
 export const ChaptersForm = ({ initialData, courseId }: ChaptersFormProps) => {
@@ -78,7 +86,7 @@ export const ChaptersForm = ({ initialData, courseId }: ChaptersFormProps) => {
         list: updateData,
       });
       toast({
-        title: "You're a Dragger and a Dropper!",
+        title: "You're a dragger and a dropper!",
         description: 'Your plays have been re-ordered in the playbook.',
       });
       router.refresh();
@@ -107,7 +115,7 @@ export const ChaptersForm = ({ initialData, courseId }: ChaptersFormProps) => {
       )}
       <div className="flex items-center justify-between font-semibold mb-4">
         List of plays
-        <Button onClick={toggleCreating} variant="ghost">
+        <Button onClick={toggleCreating} variant="ghost" size="sm">
           {isCreating ? (
             <>Cancel</>
           ) : (
@@ -136,6 +144,9 @@ export const ChaptersForm = ({ initialData, courseId }: ChaptersFormProps) => {
                       {...field}
                     />
                   </FormControl>
+                  <FormDescription className="text-muted-foreground/70">
+                    A playbook needs at least one play yo!
+                  </FormDescription>
                   <FormMessage />
                 </FormItem>
               )}
@@ -154,11 +165,11 @@ export const ChaptersForm = ({ initialData, courseId }: ChaptersFormProps) => {
       {!isCreating && (
         <div
           className={cn(
-            'mt-2 text-sm',
-            !initialData.chapters.length && 'italic text-muted-foreground',
+            'mt-2 text-base text-muted-foreground ',
+            !initialData.chapters.length && 'italic text-destructive',
           )}
         >
-          {!initialData.chapters.length && 'No chapters'}
+          {!initialData.chapters.length && 'No plays created'}
           <ChaptersList
             onEdit={onEdit}
             onReorder={onReorder}

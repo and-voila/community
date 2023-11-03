@@ -7,6 +7,7 @@ import { Button } from '@ui/components/ui/button';
 import {
   Form,
   FormControl,
+  FormDescription,
   FormField,
   FormItem,
   FormMessage,
@@ -28,7 +29,14 @@ interface ChapterTitleFormProps {
 }
 
 const formSchema = z.object({
-  title: z.string().min(1),
+  title: z
+    .string()
+    .min(40, {
+      message: "Yo! The play's title needs at least 40 characters.",
+    })
+    .max(65, {
+      message: 'Oops, keep your title under 65 characters please.',
+    }),
 });
 
 export const ChapterTitleForm = ({
@@ -74,8 +82,8 @@ export const ChapterTitleForm = ({
   return (
     <div className="mt-6 rounded-md border bg-white px-4 py-6 dark:bg-background">
       <div className="flex items-center justify-between font-semibold mb-4">
-        Title of the play
-        <Button onClick={toggleEdit} variant="ghost">
+        Play title
+        <Button onClick={toggleEdit} variant="ghost" size="sm">
           {isEditing ? (
             <>Cancel</>
           ) : (
@@ -86,7 +94,11 @@ export const ChapterTitleForm = ({
           )}
         </Button>
       </div>
-      {!isEditing && <p className="mt-2 text-sm">{initialData.title}</p>}
+      {!isEditing && (
+        <p className="mt-2 text-base text-muted-foreground">
+          {initialData.title}
+        </p>
+      )}
       {isEditing && (
         <Form {...form}>
           <form
@@ -105,6 +117,10 @@ export const ChapterTitleForm = ({
                       {...field}
                     />
                   </FormControl>
+                  <FormDescription className="text-muted-foreground/70">
+                    Use sentence case for the title of the play and keep it
+                    between 45-65 characters.
+                  </FormDescription>
                   <FormMessage />
                 </FormItem>
               )}

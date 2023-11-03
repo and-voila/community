@@ -40,7 +40,7 @@ export const NavbarRoutes = ({ userId }) => {
           </Link>
         ) : null}
       </div>
-      <div className="flex gap-x-4 mr-6 items-center">
+      <div className="flex gap-x-3 mr-3 items-center">
         <ModeToggle />
         <Link
           href="https://discord.com/channels/1151749282806910976/1164902538731069542"
@@ -48,7 +48,7 @@ export const NavbarRoutes = ({ userId }) => {
           rel="noopener noreferrer"
           aria-label="Navigate to And Voila Discord in a new window."
         >
-          <Icons.discord className="text-brand h-9 w-9" />
+          <Icons.discord className="text-foreground/80 h-6 w-6" />
         </Link>
       </div>
     </>

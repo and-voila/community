@@ -21,9 +21,14 @@ import { useForm } from 'react-hook-form';
 import * as z from 'zod';
 
 const formSchema = z.object({
-  title: z.string().min(1, {
-    message: 'Every playbook needs a title.',
-  }),
+  title: z
+    .string()
+    .min(40, {
+      message: 'Ouch! The playbook title must be at least 40 characters',
+    })
+    .max(65, {
+      message: 'OK but, the playbook title cannot exceed 65 characters.',
+    }),
 });
 
 const CreatePage = () => {
@@ -85,8 +90,8 @@ const CreatePage = () => {
                       {...field}
                     />
                   </FormControl>
-                  <FormDescription>
-                    Use sentence case for your title.
+                  <FormDescription className="text-muted-foreground/70">
+                    Use sentence case for your title between 45-65 characters.
                   </FormDescription>
                   <FormMessage />
                 </FormItem>

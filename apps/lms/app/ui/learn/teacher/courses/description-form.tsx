@@ -7,6 +7,7 @@ import { Button } from '@ui/components/ui/button';
 import {
   Form,
   FormControl,
+  FormDescription,
   FormField,
   FormItem,
   FormMessage,
@@ -28,9 +29,15 @@ interface DescriptionFormProps {
 }
 
 const formSchema = z.object({
-  description: z.string().min(1, {
-    message: 'Description is required',
-  }),
+  description: z.string().refine(
+    (value) => {
+      const wordCount = value.split(/\s+/).length;
+      return wordCount >= 150;
+    },
+    {
+      message: 'Description must be at least 150 words',
+    },
+  ),
 });
 
 export const DescriptionForm = ({
@@ -74,8 +81,8 @@ export const DescriptionForm = ({
   return (
     <div className="mt-6 rounded-md border bg-white dark:bg-background px-4 py-6">
       <div className="flex items-center justify-between font-semibold mb-4">
-        Course description
-        <Button onClick={toggleEdit} variant="ghost">
+        Playbook description
+        <Button onClick={toggleEdit} variant="ghost" size="sm">
           {isEditing ? (
             <>Cancel</>
           ) : (
@@ -89,11 +96,11 @@ export const DescriptionForm = ({
       {!isEditing && (
         <div
           className={cn(
-            'mt-2 text-sm',
-            !initialData.description && 'italic text-muted-foreground',
+            'text-base text-muted-foreground mt-2',
+            !initialData.description && 'italic text-destructive',
           )}
         >
-          {!initialData.description && 'No description'}
+          {!initialData.description && 'No description set'}
           {initialData.description && (
             <Preview value={initialData.description} />
           )}
@@ -113,6 +120,9 @@ export const DescriptionForm = ({
                   <FormControl>
                     <QuillEditor {...field} />
                   </FormControl>
+                  <FormDescription className="text-muted-foreground/70">
+                    The playbook description should be at least 150 words.
+                  </FormDescription>
                   <FormMessage />
                 </FormItem>
               )}

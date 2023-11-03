@@ -71,7 +71,7 @@ export const ChapterAccessForm = ({
     <div className="mt-6 rounded-md border bg-white px-4 py-6 dark:bg-background">
       <div className="flex items-center justify-between font-semibold mb-4">
         Access to the play
-        <Button onClick={toggleEdit} variant="ghost">
+        <Button onClick={toggleEdit} variant="ghost" size="sm">
           {isEditing ? (
             <>Cancel</>
           ) : (

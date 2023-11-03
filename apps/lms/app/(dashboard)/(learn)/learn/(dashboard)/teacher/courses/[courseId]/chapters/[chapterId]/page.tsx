@@ -62,7 +62,7 @@ const ChapterIdPage = async ({
               href={`/learn/teacher/courses/${params.courseId}`}
               className="mb-6 flex items-center text-sm transition hover:opacity-75"
             >
-              <Icons.arrowLeft className="mr-2 h-4 w-4" />
+              <Icons.arrowLeft className="mr-2 h-4 w-4 text-brand" />
               Back to playbook setup
             </Link>
             <div className="flex w-full items-center justify-between">

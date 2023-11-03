@@ -88,8 +88,8 @@ export const Actions = ({ disabled, courseId, isPublished }: ActionsProps) => {
         {isPublished ? 'Unpublish' : 'Publish'}
       </Button>
       <ConfirmModal onConfirm={onDelete}>
-        <Button size="sm" disabled={isLoading}>
-          <Icons.trash className="h-4 w-4" />
+        <Button variant="destructive" size="sm" disabled={isLoading}>
+          <Icons.trash className="h-4 w-4 text-white" />
         </Button>
       </ConfirmModal>
     </div>

@@ -74,8 +74,8 @@ export const AttachmentForm = ({
   return (
     <div className="mt-6 rounded-md border bg-white px-4 py-6 dark:bg-background">
       <div className="flex items-center justify-between font-semibold mb-4">
-        Course attachments
-        <Button onClick={toggleEdit} variant="ghost">
+        Playbook attachments
+        <Button onClick={toggleEdit} variant="ghost" size="sm">
           {isEditing && <>Cancel</>}
           {!isEditing && (
             <>
@@ -88,8 +88,8 @@ export const AttachmentForm = ({
       {!isEditing && (
         <>
           {initialData.attachments.length === 0 && (
-            <p className="mt-2 text-sm italic text-muted-foreground">
-              No attachments yet
+            <p className="mt-2 text-base italic text-destructive">
+              No attachments set
             </p>
           )}
           {initialData.attachments.length > 0 && (

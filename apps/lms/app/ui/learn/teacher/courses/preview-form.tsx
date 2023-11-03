@@ -8,6 +8,7 @@ import {
   cn,
   Form,
   FormControl,
+  FormDescription,
   FormField,
   FormItem,
   FormMessage,
@@ -30,11 +31,11 @@ interface PreviewFormProps {
 const formSchema = z.object({
   preview: z
     .string()
-    .min(1, {
-      message: 'Description is required',
+    .min(125, {
+      message: 'You need to provide a preview of at least 125 characters.',
     })
-    .max(200, {
-      message: 'Description cannot exceed 200 characters',
+    .max(165, {
+      message: 'Preview text cannot exceed 165 characters.',
     }),
 });
 
@@ -75,8 +76,8 @@ export const PreviewForm = ({ initialData, courseId }: PreviewFormProps) => {
   return (
     <div className="mt-6 rounded-md border bg-white dark:bg-background px-4 py-6">
       <div className="flex items-center justify-between font-semibold mb-4">
-        Course preview text
-        <Button onClick={toggleEdit} variant="ghost">
+        Playbook preview text
+        <Button onClick={toggleEdit} variant="ghost" size="sm">
           {isEditing ? (
             <>Cancel</>
           ) : (
@@ -90,8 +91,8 @@ export const PreviewForm = ({ initialData, courseId }: PreviewFormProps) => {
       {!isEditing && (
         <p
           className={cn(
-            'text-base lg:text-lg text-muted-foreground mt-2',
-            !initialData.preview && 'text-muted-foreground italic',
+            'text-base text-muted-foreground mt-2',
+            !initialData.preview && 'italic text-destructive',
           )}
         >
           {initialData.preview || 'No preview set'}
@@ -115,6 +116,10 @@ export const PreviewForm = ({ initialData, courseId }: PreviewFormProps) => {
                       {...field}
                     />
                   </FormControl>
+                  <FormDescription className="text-muted-foreground/70">
+                    Your preview text should be SEO optimized and between
+                    125-165 characters.
+                  </FormDescription>
                   <FormMessage />
                 </FormItem>
               )}

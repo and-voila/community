@@ -8,6 +8,7 @@ import { Combobox } from '@ui/components/ui/combobox';
 import {
   Form,
   FormControl,
+  FormDescription,
   FormField,
   FormItem,
   FormMessage,
@@ -28,7 +29,7 @@ interface CategoryFormProps {
 }
 
 const formSchema = z.object({
-  categoryId: z.string().min(1),
+  categoryId: z.string().min(2),
 });
 
 export const CategoryForm = ({
@@ -77,8 +78,8 @@ export const CategoryForm = ({
   return (
     <div className="mt-6 rounded-md border bg-white px-4 py-6 dark:bg-background">
       <div className="flex items-center justify-between font-semibold mb-4">
-        Course category
-        <Button onClick={toggleEdit} variant="ghost">
+        Playbook category
+        <Button onClick={toggleEdit} variant="ghost" size="sm">
           {isEditing ? (
             <>Cancel</>
           ) : (
@@ -92,11 +93,11 @@ export const CategoryForm = ({
       {!isEditing && (
         <p
           className={cn(
-            'mt-2 text-base lg:text-lg text-muted-foreground',
-            !initialData.categoryId && 'italic text-muted-foreground',
+            'mt-2 text-base text-muted-foreground',
+            !initialData.categoryId && 'italic text-destructive',
           )}
         >
-          {selectedOption?.label || 'No category'}
+          {selectedOption?.label || 'No category set'}
         </p>
       )}
       {isEditing && (
@@ -117,6 +118,9 @@ export const CategoryForm = ({
                       onChange={(value) => field.onChange(value)}
                     />
                   </FormControl>
+                  <FormDescription className="text-muted-foreground/70">
+                    Each playbook must have a category, only one.
+                  </FormDescription>
                   <FormMessage />
                 </FormItem>
               )}
