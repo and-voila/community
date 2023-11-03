@@ -12,10 +12,9 @@ import {
   FormField,
   FormItem,
 } from '@ui/components/ui/form';
-import { cn } from '@ui/index';
+import { cn, toast } from '@ui/index';
 import axios from 'axios';
 import { useForm } from 'react-hook-form';
-import toast from 'react-hot-toast';
 import * as z from 'zod';
 
 import { Icons } from '@/app/ui/icons';
@@ -51,18 +50,27 @@ export const ChapterAccessForm = ({
         `/api/courses/${courseId}/chapters/${chapterId}`,
         values,
       );
-      toast.success('Chapter updated');
+      toast({
+        title: 'You FTW!!',
+        description:
+          "The changes you made to this play's access have been saved.",
+      });
       toggleEdit();
       router.refresh();
     } catch {
-      toast.error('Something went wrong');
+      toast({
+        title: 'Oops, an error occured.',
+        description:
+          'Honestly, we have no idea what happened. Please try again.',
+        variant: 'destructive',
+      });
     }
   };
 
   return (
     <div className="mt-6 rounded-md border bg-white px-4 py-6 dark:bg-background">
       <div className="flex items-center justify-between font-semibold mb-4">
-        Chapter access
+        Access to the play
         <Button onClick={toggleEdit} variant="ghost">
           {isEditing ? (
             <>Cancel</>
@@ -82,9 +90,9 @@ export const ChapterAccessForm = ({
           )}
         >
           {initialData.isFree ? (
-            <>This chapter is free for preview.</>
+            <>This play is free for preview.</>
           ) : (
-            <>This chapter is not free.</>
+            <>This play is not free.</>
           )}
         </p>
       )}
@@ -107,7 +115,7 @@ export const ChapterAccessForm = ({
                   </FormControl>
                   <div className="space-y-1 leading-none">
                     <FormDescription>
-                      Check this box if you want to make this chapter free for
+                      Check this box if you want to make this play free for
                       preview
                     </FormDescription>
                   </div>

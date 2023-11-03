@@ -3,8 +3,8 @@
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { Button } from '@ui/components/ui/button';
+import { toast } from '@ui/index';
 import axios from 'axios';
-import toast from 'react-hot-toast';
 
 import { Icons } from '@/app/ui/icons';
 
@@ -39,10 +39,17 @@ export const StartCourseButton = ({
         router.push(`/learn/courses/${courseId}/chapters/${firstChapterId}`);
       }
 
-      toast.success('Playbook started');
+      toast({
+        title: '#LFG',
+        description: 'Your playbook has been started',
+      });
       router.refresh();
     } catch {
-      toast.error('Something went wrong');
+      toast({
+        title: 'Oh no, an error occurred.',
+        description: 'Please try again, that usually does the trick.',
+        variant: 'destructive',
+      });
     } finally {
       setIsLoading(false);
     }

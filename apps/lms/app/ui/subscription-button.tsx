@@ -2,8 +2,7 @@
 
 import { useState } from 'react';
 import axios from 'axios';
-import { toast } from 'react-hot-toast';
-import { Button } from 'ui';
+import { Button, toast } from 'ui';
 
 export const SubscriptionButton = ({
   isPaidMember = false,
@@ -22,7 +21,12 @@ export const SubscriptionButton = ({
 
       window.location.href = response.data.url;
     } catch (error) {
-      toast.error('Something went wrong');
+      toast({
+        title: 'Oh no, an error occured!',
+        description:
+          "Apologies! We're in beta and thing's are a bit rough around the edges. Please try again.",
+        variant: 'destructive',
+      });
     } finally {
       setLoading(false);
     }

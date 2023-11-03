@@ -4,8 +4,8 @@ import { useState } from 'react';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import { Button } from '@ui/components/ui/button';
+import { toast } from '@ui/index';
 import axios from 'axios';
-import toast from 'react-hot-toast';
 import * as z from 'zod';
 
 import { Icons } from '@/app/ui/icons';
@@ -34,11 +34,19 @@ export const ImageForm = ({ initialData, courseId }: ImageFormProps) => {
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
     try {
       await axios.patch(`/api/courses/${courseId}`, values);
-      toast.success('Course updated');
+      toast({
+        title: "You're an uploading wizard!",
+        description: 'Your image has been added to the playbook.',
+      });
       toggleEdit();
       router.refresh();
     } catch {
-      toast.error('Something went wrong');
+      toast({
+        title: 'Ugh, something broke.',
+        description:
+          'Please try uploading the image again, or saving it again. Whichever will work this time.',
+        variant: 'destructive',
+      });
     }
   };
 

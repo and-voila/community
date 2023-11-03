@@ -63,12 +63,12 @@ const ChapterIdPage = async ({
               className="mb-6 flex items-center text-sm transition hover:opacity-75"
             >
               <Icons.arrowLeft className="mr-2 h-4 w-4" />
-              Back to course setup
+              Back to playbook setup
             </Link>
             <div className="flex w-full items-center justify-between">
               <div className="flex flex-col gap-y-2">
                 <h1 className="font-display tracking-tight text-2xl">
-                  Chapter Creation
+                  Create a play
                 </h1>
                 <span className="text-base text-muted-foreground">
                   Complete all fields {completionText}
@@ -89,7 +89,7 @@ const ChapterIdPage = async ({
               <div className="flex items-center gap-x-2">
                 <IconBadge icon={Icons.magic} />
                 <h2 className="font-display tracking-tight text-xl">
-                  Customize your chapter
+                  Customize your play
                 </h2>
               </div>
               <ChapterTitleForm

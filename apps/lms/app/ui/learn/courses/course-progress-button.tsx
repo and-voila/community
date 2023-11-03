@@ -3,8 +3,8 @@
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { Button } from '@ui/components/ui/button';
+import { toast } from '@ui/index';
 import axios from 'axios';
-import toast from 'react-hot-toast';
 
 import { useConfettiStore } from '@/app/hooks/use-confetti-store';
 import { Icons } from '@/app/ui/icons';
@@ -45,10 +45,18 @@ export const CourseProgressButton = ({
         router.push(`/learn/courses/${courseId}/chapters/${nextChapterId}`);
       }
 
-      toast.success('Progress updated');
+      toast({
+        title: 'Sweet!',
+        description: 'Your progress has been updated.',
+      });
       router.refresh();
     } catch {
-      toast.error('Something went wrong');
+      toast({
+        title: 'Ugh, something broke.',
+        description:
+          'Please try again. If this keeps happening, please let us know.',
+        variant: 'destructive',
+      });
     } finally {
       setIsLoading(false);
     }

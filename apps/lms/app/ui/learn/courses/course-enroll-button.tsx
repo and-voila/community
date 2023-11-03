@@ -2,8 +2,8 @@
 
 import { useState } from 'react';
 import { Button } from '@ui/components/ui/button';
+import { toast } from '@ui/index';
 import axios from 'axios';
-import toast from 'react-hot-toast';
 
 import { formatPrice } from '@/app/lib/format';
 
@@ -26,7 +26,12 @@ export const CourseEnrollButton = ({
 
       window.location.assign(response.data.url);
     } catch {
-      toast.error('Something went wrong');
+      toast({
+        title: 'Uh oh! An error occurred.',
+        description:
+          'Honestly, we have no idea what happened. Please try again.',
+        variant: 'destructive',
+      });
     } finally {
       setIsLoading(false);
     }

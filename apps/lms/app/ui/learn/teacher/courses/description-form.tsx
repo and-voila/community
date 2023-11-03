@@ -11,10 +11,9 @@ import {
   FormItem,
   FormMessage,
 } from '@ui/components/ui/form';
-import { cn } from '@ui/index';
+import { cn, toast } from '@ui/index';
 import axios from 'axios';
 import { useForm } from 'react-hook-form';
-import toast from 'react-hot-toast';
 import * as z from 'zod';
 
 import { Icons } from '@/app/ui/icons';
@@ -57,11 +56,18 @@ export const DescriptionForm = ({
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
     try {
       await axios.patch(`/api/courses/${courseId}`, values);
-      toast.success('Course updated');
+      toast({
+        title: 'Enlightening!',
+        description: 'Your playbook description has been updated.',
+      });
       toggleEdit();
       router.refresh();
     } catch {
-      toast.error('Something went wrong');
+      toast({
+        title: 'Awe shucks, something broke.',
+        description: 'Please try saving the playbook description again.',
+        variant: 'destructive',
+      });
     }
   };
 

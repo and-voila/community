@@ -12,10 +12,9 @@ import {
   FormField,
   FormItem,
 } from '@ui/components/ui/form';
-import { Switch } from '@ui/index';
+import { Switch, toast } from '@ui/index';
 import axios from 'axios';
 import { useForm } from 'react-hook-form';
-import toast from 'react-hot-toast';
 import * as z from 'zod';
 
 import { Icons } from '@/app/ui/icons';
@@ -54,11 +53,18 @@ export const PriceForm = ({ initialData, courseId }: PriceFormProps) => {
       await axios.patch(`/api/courses/${courseId}`, {
         price,
       });
-      toast.success('Course updated');
+      toast({
+        title: 'Chaching!',
+        description: 'You just updated the access settings for the playbook.',
+      });
       toggleEdit();
       router.refresh();
     } catch {
-      toast.error('Something went wrong');
+      toast({
+        title: "Oh no, that didn't work.",
+        description: 'Something went wrong, so please try again. Thanks!',
+        variant: 'destructive',
+      });
     }
   };
 
@@ -99,14 +105,14 @@ export const PriceForm = ({ initialData, courseId }: PriceFormProps) => {
                       onCheckedChange={field.onChange}
                       role="switch"
                       aria-checked={field.value}
-                      aria-label="Toggle course free status"
+                      aria-label="Toggle playbook free status"
                     />
                   </FormControl>
                   <div className="space-y-1 leading-none">
                     <FormDescription id="switch-label" className="text-base">
                       {field.value
-                        ? 'The course is currently Free.'
-                        : 'The course is currently Paid.'}
+                        ? 'The playbook is currently Free.'
+                        : 'The playbook is currently Paid.'}
                     </FormDescription>
                   </div>
                 </FormItem>

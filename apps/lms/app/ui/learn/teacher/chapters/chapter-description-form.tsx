@@ -11,10 +11,9 @@ import {
   FormItem,
   FormMessage,
 } from '@ui/components/ui/form';
-import { cn } from '@ui/index';
+import { cn, toast } from '@ui/index';
 import axios from 'axios';
 import { useForm } from 'react-hook-form';
-import toast from 'react-hot-toast';
 import * as z from 'zod';
 
 import { Icons } from '@/app/ui/icons';
@@ -59,18 +58,25 @@ export const ChapterDescriptionForm = ({
         `/api/courses/${courseId}/chapters/${chapterId}`,
         values,
       );
-      toast.success('Chapter updated');
+      toast({
+        title: 'Mission accomplished.',
+        description: 'Your play now has a fancy description people can ignore.',
+      });
       toggleEdit();
       router.refresh();
     } catch {
-      toast.error('Something went wrong');
+      toast({
+        title: 'Hmmm... something went wrong.',
+        description: 'Please try saving it again.',
+        variant: 'destructive',
+      });
     }
   };
 
   return (
     <div className="mt-6 rounded-md border bg-white px-4 py-6 dark:bg-background">
       <div className="flex items-center justify-between font-semibold mb-4">
-        Chapter description
+        Describe the play
         <Button onClick={toggleEdit} variant="ghost">
           {isEditing ? (
             <>Cancel</>

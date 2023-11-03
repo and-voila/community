@@ -3,7 +3,6 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import axios from 'axios';
-import toast from 'react-hot-toast';
 import {
   Badge,
   Button,
@@ -14,6 +13,7 @@ import {
   DialogFooter,
   DialogHeader,
   DialogTitle,
+  toast,
 } from 'ui';
 
 import { useProModal } from '@/app/hooks/use-pro-modal';
@@ -39,7 +39,7 @@ const features = [
   {
     label: 'Playbooks',
     icon: Icons.image,
-    description: 'Full access to Playbook library.',
+    description: 'Full access to playbook library.',
   },
   {
     label: 'AI Tools',
@@ -69,7 +69,12 @@ export const ProModal = () => {
 
       window.location.href = response.data.url;
     } catch (error) {
-      toast.error('Something went wrong');
+      toast({
+        title: 'Awe shucks, something went wrong.',
+        description:
+          'Sorry for the inconvenience, it should just work. Please try again. Thank you!',
+        variant: 'destructive',
+      });
     } finally {
       setLoading(false);
     }

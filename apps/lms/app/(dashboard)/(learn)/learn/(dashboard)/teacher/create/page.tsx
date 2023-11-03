@@ -15,15 +15,14 @@ import {
   FormMessage,
 } from '@ui/components/ui/form';
 import { Input } from '@ui/components/ui/input';
-import { H4 } from '@ui/index';
+import { H4, toast } from '@ui/index';
 import axios from 'axios';
 import { useForm } from 'react-hook-form';
-import toast from 'react-hot-toast';
 import * as z from 'zod';
 
 const formSchema = z.object({
   title: z.string().min(1, {
-    message: 'Title is required',
+    message: 'Every playbook needs a title.',
   }),
 });
 
@@ -45,9 +44,17 @@ const CreatePage = () => {
         price: COURSE_DEFAULT_PRICE,
       });
       router.push(`/learn/teacher/courses/${response.data.id}`);
-      toast.success('Course created');
+      toast({
+        title: 'Way to go!',
+        description:
+          'Your playbook title is set and ready for you to make it awesome.',
+      });
     } catch {
-      toast.error('Something went wrong');
+      toast({
+        title: 'Oh snap! An error occurred.',
+        description:
+          "Something just broke, it's probably Rebekah's fault. Please try again.",
+      });
     }
   };
 
@@ -55,10 +62,10 @@ const CreatePage = () => {
     <div className="mx-auto mt-24 flex rounded-xl border bg-white p-6 shadow-md dark:bg-background md:mt-32 md:max-w-3xl md:justify-center md:p-12">
       <div>
         <H4 as="h1" className="mb-4">
-          Name the course
+          Name the playbook
         </H4>
         <p className="text-sm lg:text-base text-muted-foreground">
-          Choose a short and SEO friendly title for your course.
+          Choose a short and SEO friendly title for your playbook.
         </p>
         <Form {...form}>
           <form
@@ -70,7 +77,7 @@ const CreatePage = () => {
               name="title"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Course title</FormLabel>
+                  <FormLabel>Playbook title</FormLabel>
                   <FormControl>
                     <Input
                       disabled={isSubmitting}

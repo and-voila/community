@@ -1,6 +1,6 @@
 'use client';
 
-import toast from 'react-hot-toast';
+import { toast } from '@ui/index';
 
 import { ourFileRouter } from '@/app/api/uploadthing/core';
 import { UploadDropzone } from '@/app/lib/uploadthing';
@@ -19,7 +19,13 @@ export const FileUpload = ({ onChange, endpoint }: FileUploadProps) => {
         onChange(res?.[0].url);
       }}
       onUploadError={(error: Error) => {
-        toast.error(`${error?.message}`);
+        toast({
+          title: 'Uh oh! An error occurred.',
+          description: `Something went wrong. Please try again. If the problem persists, here's the error code for support: ${
+            error?.message || 'Unknown error'
+          }`,
+          variant: 'destructive',
+        });
       }}
     />
   );
