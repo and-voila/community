@@ -71,8 +71,13 @@ export const PriceForm = ({ initialData, courseId }: PriceFormProps) => {
   return (
     <div className="mt-6 rounded-md border bg-white px-4 py-6 dark:bg-background">
       <div className="flex items-center justify-between font-semibold mb-4">
-        Course access
-        <Button onClick={toggleEdit} variant="ghost" aria-label="Edit access">
+        Playbook access
+        <Button
+          onClick={toggleEdit}
+          variant="ghost"
+          aria-label="Edit access"
+          size="sm"
+        >
           {isEditing ? (
             <>Cancel</>
           ) : (
@@ -84,7 +89,7 @@ export const PriceForm = ({ initialData, courseId }: PriceFormProps) => {
         </Button>
       </div>
       {!isEditing && (
-        <p className="mt-2 text-base lg:text-lg text-muted-foreground">
+        <p className="mt-2 text-base text-muted-foreground">
           {initialData.price === 0 ? 'Free' : 'Paid'}
         </p>
       )}
@@ -111,8 +116,8 @@ export const PriceForm = ({ initialData, courseId }: PriceFormProps) => {
                   <div className="space-y-1 leading-none">
                     <FormDescription id="switch-label" className="text-base">
                       {field.value
-                        ? 'The playbook is currently Free.'
-                        : 'The playbook is currently Paid.'}
+                        ? 'This is a free playbook.'
+                        : 'The is a paid playbook.'}
                     </FormDescription>
                   </div>
                 </FormItem>

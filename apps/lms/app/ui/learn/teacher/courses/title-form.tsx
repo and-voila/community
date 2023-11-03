@@ -7,6 +7,7 @@ import { Button } from '@ui/components/ui/button';
 import {
   Form,
   FormControl,
+  FormDescription,
   FormField,
   FormItem,
   FormMessage,
@@ -27,9 +28,14 @@ interface TitleFormProps {
 }
 
 const formSchema = z.object({
-  title: z.string().min(1, {
-    message: 'Title is required',
-  }),
+  title: z
+    .string()
+    .min(40, {
+      message: 'Yo! The playbook title needs at least 40 characters.',
+    })
+    .max(65, {
+      message: 'Hey verbosa, keep your title under 65 characters please.',
+    }),
 });
 
 export const TitleForm = ({ initialData, courseId }: TitleFormProps) => {
@@ -68,7 +74,7 @@ export const TitleForm = ({ initialData, courseId }: TitleFormProps) => {
     <div className="mt-6 rounded-md border bg-white px-4 py-6 dark:bg-background">
       <div className="flex items-center justify-between font-semibold mb-4">
         Playbook title
-        <Button onClick={toggleEdit} variant="ghost">
+        <Button onClick={toggleEdit} variant="ghost" size="sm">
           {isEditing ? (
             <>Cancel</>
           ) : (
@@ -80,7 +86,7 @@ export const TitleForm = ({ initialData, courseId }: TitleFormProps) => {
         </Button>
       </div>
       {!isEditing && (
-        <p className="mt-2 text-base lg:text-lg text-muted-foreground">
+        <p className="mt-2 text-base text-muted-foreground">
           {initialData.title}
         </p>
       )}
@@ -102,6 +108,9 @@ export const TitleForm = ({ initialData, courseId }: TitleFormProps) => {
                       {...field}
                     />
                   </FormControl>
+                  <FormDescription className="text-muted-foreground/70">
+                    Use sentence case for your title between 45-65 characters.
+                  </FormDescription>
                   <FormMessage />
                 </FormItem>
               )}

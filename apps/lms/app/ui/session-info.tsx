@@ -21,7 +21,7 @@ export const SessionInfo = () => {
 
   if (!session && process.env.NEXT_PUBLIC_VERCEL_ENV !== 'production') {
     return (
-      <div className="absolute bottom-6 right-6 bg-destructive p-4 rounded-lg text-xs">
+      <div className="flex fixed bottom-6 right-6 bg-destructive p-4 rounded-lg text-xs">
         No session found...
       </div>
     );
@@ -30,7 +30,7 @@ export const SessionInfo = () => {
   return (
     <>
       {process.env.NEXT_PUBLIC_VERCEL_ENV !== 'production' && (
-        <div className="text-xs bg-alternate/50 backdrop-blur-md absolute bottom-6 right-6 p-4 rounded-lg text-black">
+        <div className="text-xs bg-alternate/50 backdrop-blur-md flex flex-col fixed bottom-6 right-6 p-4 rounded-lg text-black">
           <p className="font-mono font-bold ">For testing purposes</p>
           <pre>User ID: {obfuscatedUserId}</pre>
         </div>

@@ -57,7 +57,7 @@ const CourseIdPage = async ({ params }: { params: { courseId: string } }) => {
     course.preview,
     course.description,
     course.imageUrl,
-    course.price,
+    course.price !== null && course.price !== undefined,
     course.categoryId,
     course.chapters.some((chapter) => chapter.isPublished),
   ];
@@ -77,7 +77,7 @@ const CourseIdPage = async ({ params }: { params: { courseId: string } }) => {
       <div className="p-6">
         <div className="flex items-center justify-between">
           <div className="flex flex-col gap-y-2">
-            <h1 className="font-display tracking-tight text-2xl">
+            <h1 className="font-display tracking-tight text-3xl">
               Playbook setup
             </h1>
             <span className="text-base text-muted-foreground">

@@ -7,6 +7,7 @@ import { Button } from '@ui/components/ui/button';
 import {
   Form,
   FormControl,
+  FormDescription,
   FormField,
   FormItem,
   FormMessage,
@@ -29,7 +30,15 @@ interface ChapterDescriptionFormProps {
 }
 
 const formSchema = z.object({
-  description: z.string().min(1),
+  description: z.string().refine(
+    (value) => {
+      const wordCount = value.split(/\s+/).length;
+      return wordCount >= 150;
+    },
+    {
+      message: 'Description must be at least 150 words',
+    },
+  ),
 });
 
 export const ChapterDescriptionForm = ({
@@ -77,7 +86,7 @@ export const ChapterDescriptionForm = ({
     <div className="mt-6 rounded-md border bg-white px-4 py-6 dark:bg-background">
       <div className="flex items-center justify-between font-semibold mb-4">
         Describe the play
-        <Button onClick={toggleEdit} variant="ghost">
+        <Button onClick={toggleEdit} variant="ghost" size="sm">
           {isEditing ? (
             <>Cancel</>
           ) : (
@@ -91,11 +100,11 @@ export const ChapterDescriptionForm = ({
       {!isEditing && (
         <div
           className={cn(
-            'mt-2 text-sm',
-            !initialData.description && 'italic text-slate-500',
+            'mt-2 text-base',
+            !initialData.description && 'italic text-destructive',
           )}
         >
-          {!initialData.description && 'No description'}
+          {!initialData.description && 'No description set'}
           {initialData.description && (
             <Preview value={initialData.description} />
           )}
@@ -115,6 +124,10 @@ export const ChapterDescriptionForm = ({
                   <FormControl>
                     <QuillEditor {...field} />
                   </FormControl>
+                  <FormDescription className="text-muted-foreground/70">
+                    The description should be at least 250 words. Make it
+                    awesome!
+                  </FormDescription>
                   <FormMessage />
                 </FormItem>
               )}
