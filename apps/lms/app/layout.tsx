@@ -1,19 +1,71 @@
 import 'ui/styles/globals.css';
 
-import type { Metadata } from 'next';
-import { ThemeProvider, Toaster } from '@ui/index';
 import { GeistMono, GeistSans } from 'geist/font';
 
-import { ConfettiProvider } from '@/app/ui/providers/confetti-provider';
-import { ModalProvider } from '@/app/ui/providers/modal-provider';
-import { ToastProvider } from '@/app/ui/providers/toaster-provider';
+import { siteConfig } from './config/site';
+import { Providers } from './ui/providers/providers';
 
-import { SessionInfo } from './ui/session-info';
+const baseUrl = process.env.NEXT_PUBLIC_VERCEL_URL
+  ? `https://${process.env.NEXT_PUBLIC_VERCEL_URL}`
+  : 'http://localhost:3001';
 
-export const metadata: Metadata = {
-  title: 'And Voila Labs',
-  description:
-    'Learn everything there is to know about digital marketing. A members-only LMS for the And Voila Discord community.',
+export const metadata = {
+  metadataBase: new URL(baseUrl),
+  title: {
+    default: siteConfig.name,
+    template: `%s | ${siteConfig.name}`,
+  },
+  description: siteConfig.description,
+  keywords: [
+    'Exclusive Digital Marketing Community',
+    'Digital Marketing Community',
+    'Discord Server for Digital Marketers',
+    'Digital Marketing Optimization',
+    'Rebekah Radice',
+  ],
+  authors: [
+    {
+      name: 'Rebekah Radice',
+      url: 'https://bril.la',
+    },
+  ],
+  creator: 'Rebekah Radice',
+  themeColor: [
+    { media: '(prefers-color-scheme: light)', color: 'white' },
+    { media: '(prefers-color-scheme: dark)', color: 'black' },
+  ],
+  openGraph: {
+    type: 'website',
+    title: siteConfig.name,
+    description: siteConfig.description,
+    images: [
+      {
+        url: '/open-graph.gif',
+        width: 1200,
+        height: 630,
+        alt: 'An open graph image that appears to look like a Loading screen with the And Voila logo.',
+      },
+    ],
+    siteName: siteConfig.name,
+  },
+  category: 'digital marketing community',
+  robots: {
+    follow: false,
+    index: false,
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: siteConfig.name,
+    description: siteConfig.description,
+    images: [
+      {
+        url: '/open-graph.gif',
+        alt: 'An open graph image that appears to look like a Loading screen with the And Voila logo.',
+      },
+    ],
+    creator: '@rebekahradice',
+    site: siteConfig.url,
+  },
   icons: [
     {
       rel: 'icon',
@@ -63,14 +115,7 @@ export default function RootLayout({
       suppressHydrationWarning
     >
       <body className="bg-background dark:bg-[#242629]">
-        <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>
-          <ModalProvider />
-          <ConfettiProvider />
-          <Toaster />
-          <ToastProvider />
-          <SessionInfo />
-          {children}
-        </ThemeProvider>
+        <Providers>{children}</Providers>
       </body>
     </html>
   );

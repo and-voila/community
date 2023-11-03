@@ -81,7 +81,7 @@ export const CommunityIconSkeleton = () => {
 };
 
 export const UserAvatarSkeleton = () => {
-  return <Skeleton className="rounded-full h-8 w-8" />;
+  return <Skeleton className="rounded-full h-8 w-8 bg-brand" />;
 };
 
 export const UserAccountNavSkeleton = () => {

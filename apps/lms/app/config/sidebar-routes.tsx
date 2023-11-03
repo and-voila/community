@@ -55,13 +55,13 @@ const learnRoutes: Route[] = [
   },
   {
     id: 'learn',
-    icon: 'courses',
+    icon: 'bookmarks',
     label: 'My Playbooks',
     href: '/learn',
   },
   {
     id: 'browse',
-    icon: 'search',
+    icon: 'courses',
     label: 'Browse',
     href: '/learn/search',
   },
