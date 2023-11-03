@@ -3,9 +3,8 @@
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import MuxPlayer from '@mux/mux-player-react';
-import { cn } from '@ui/index';
+import { cn, toast } from '@ui/index';
 import axios from 'axios';
-import { toast } from 'react-hot-toast';
 
 import { useConfettiStore } from '@/app/hooks/use-confetti-store';
 import { Icons } from '@/app/ui/icons';
@@ -45,7 +44,10 @@ export const VideoPlayer = ({
           confetti.onOpen();
         }
 
-        toast.success('Progress updated');
+        toast({
+          title: 'Good stuff!',
+          description: 'Your progress has been updated.',
+        });
         router.refresh();
 
         if (nextChapterId) {
@@ -53,7 +55,12 @@ export const VideoPlayer = ({
         }
       }
     } catch {
-      toast.error('Something went wrong');
+      toast({
+        title: 'Ugh! Something just broke.',
+        description:
+          'Please try again and give us a heads up if the problem persists. Thank you for your patience.',
+        variant: 'destructive',
+      });
     }
   };
 
