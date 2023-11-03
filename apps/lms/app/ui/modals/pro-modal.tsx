@@ -39,7 +39,7 @@ const features = [
   {
     label: 'Playbooks',
     icon: Icons.image,
-    description: 'Full access to Playbook library.',
+    description: 'Full access to playbook library.',
   },
   {
     label: 'AI Tools',

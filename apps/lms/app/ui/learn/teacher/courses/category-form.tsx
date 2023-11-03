@@ -57,7 +57,7 @@ export const CategoryForm = ({
       toast({
         title: 'Cool, category updated.',
         description:
-          "The Playbook's category was successfully updated and set.",
+          "The playbook's category was successfully updated and set.",
       });
       toggleEdit();
       router.refresh();

@@ -56,7 +56,7 @@ export const ChaptersForm = ({ initialData, courseId }: ChaptersFormProps) => {
       toast({
         title: 'Alright, alright, alright!',
         description:
-          "Your play was just created and added to the Playbook, it's almost official.",
+          "Your play was just created and added to the playbook, it's almost official.",
       });
       toggleCreating();
       router.refresh();
@@ -79,7 +79,7 @@ export const ChaptersForm = ({ initialData, courseId }: ChaptersFormProps) => {
       });
       toast({
         title: "You're a Dragger and a Dropper!",
-        description: 'Your plays have been re-ordered in the Playbook.',
+        description: 'Your plays have been re-ordered in the playbook.',
       });
       router.refresh();
     } catch {
@@ -106,7 +106,7 @@ export const ChaptersForm = ({ initialData, courseId }: ChaptersFormProps) => {
         </div>
       )}
       <div className="flex items-center justify-between font-semibold mb-4">
-        Play list
+        List of plays
         <Button onClick={toggleCreating} variant="ghost">
           {isCreating ? (
             <>Cancel</>

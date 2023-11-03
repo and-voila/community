@@ -37,7 +37,7 @@ export const AttachmentForm = ({
       await axios.post(`/api/courses/${courseId}/attachments`, values);
       toast({
         title: 'Kaboom, you did it!',
-        description: 'Your attachment has been added to the Playbook.',
+        description: 'Your attachment has been added to the playbook.',
       });
       toggleEdit();
       router.refresh();
@@ -56,7 +56,7 @@ export const AttachmentForm = ({
       await axios.delete(`/api/courses/${courseId}/attachments/${id}`);
       toast({
         title: 'Look at you, power deleter!',
-        description: 'Your attachment has been deleted from the Playbook.',
+        description: 'Your attachment has been deleted from the playbook.',
       });
       router.refresh();
     } catch {

@@ -36,7 +36,7 @@ export const ImageForm = ({ initialData, courseId }: ImageFormProps) => {
       await axios.patch(`/api/courses/${courseId}`, values);
       toast({
         title: "You're an uploading wizard!",
-        description: 'Your image has been added to the Playbook.',
+        description: 'Your image has been added to the playbook.',
       });
       toggleEdit();
       router.refresh();

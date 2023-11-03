@@ -55,7 +55,7 @@ export const PriceForm = ({ initialData, courseId }: PriceFormProps) => {
       });
       toast({
         title: 'Chaching!',
-        description: 'You just updated the access settings for the Playbook.',
+        description: 'You just updated the access settings for the playbook.',
       });
       toggleEdit();
       router.refresh();

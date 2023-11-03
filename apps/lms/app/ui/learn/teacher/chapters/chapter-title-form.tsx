@@ -74,7 +74,7 @@ export const ChapterTitleForm = ({
   return (
     <div className="mt-6 rounded-md border bg-white px-4 py-6 dark:bg-background">
       <div className="flex items-center justify-between font-semibold mb-4">
-        Play title
+        Title of the play
         <Button onClick={toggleEdit} variant="ghost">
           {isEditing ? (
             <>Cancel</>
