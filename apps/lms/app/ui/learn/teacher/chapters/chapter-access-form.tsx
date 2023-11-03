@@ -51,7 +51,7 @@ export const ChapterAccessForm = ({
         `/api/courses/${courseId}/chapters/${chapterId}`,
         values,
       );
-      toast.success('Chapter updated');
+      toast.success('Play updated');
       toggleEdit();
       router.refresh();
     } catch {
@@ -62,7 +62,7 @@ export const ChapterAccessForm = ({
   return (
     <div className="mt-6 rounded-md border bg-white px-4 py-6 dark:bg-background">
       <div className="flex items-center justify-between font-semibold mb-4">
-        Chapter access
+        Play access
         <Button onClick={toggleEdit} variant="ghost">
           {isEditing ? (
             <>Cancel</>
@@ -82,9 +82,9 @@ export const ChapterAccessForm = ({
           )}
         >
           {initialData.isFree ? (
-            <>This chapter is free for preview.</>
+            <>This play is free for preview.</>
           ) : (
-            <>This chapter is not free.</>
+            <>This play is not free.</>
           )}
         </p>
       )}
@@ -107,7 +107,7 @@ export const ChapterAccessForm = ({
                   </FormControl>
                   <div className="space-y-1 leading-none">
                     <FormDescription>
-                      Check this box if you want to make this chapter free for
+                      Check this box if you want to make this play free for
                       preview
                     </FormDescription>
                   </div>

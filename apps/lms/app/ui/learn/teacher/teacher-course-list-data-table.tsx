@@ -69,7 +69,7 @@ export function TeacherCourseListDataTable<TData, TValue>({
         <Link href="/learn/teacher/create">
           <Button variant="custom">
             <Icons.plusCircled className="mr-2 h-4 w-4" />
-            New course
+            New playbook
           </Button>
         </Link>
       </div>

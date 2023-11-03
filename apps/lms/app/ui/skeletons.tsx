@@ -169,7 +169,7 @@ export const CourseImageSkeleton = () => {
       className="w-full py-4 shadow-md"
       style={{ height: '1200px' }}
       role="img"
-      aria-label="Loading course image..."
+      aria-label="Loading playbook image..."
     />
   );
 };

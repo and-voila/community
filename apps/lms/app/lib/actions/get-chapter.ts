@@ -47,7 +47,7 @@ export const getChapter = async ({
     });
 
     if (!chapter || !course) {
-      throw new Error('Chapter or course not found');
+      throw new Error('Play or playbook not found');
     }
 
     const isPaidMember = await checkSubscription();

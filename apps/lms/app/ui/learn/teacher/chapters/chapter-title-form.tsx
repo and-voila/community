@@ -55,7 +55,7 @@ export const ChapterTitleForm = ({
         `/api/courses/${courseId}/chapters/${chapterId}`,
         values,
       );
-      toast.success('Chapter updated');
+      toast.success('Play updated');
       toggleEdit();
       router.refresh();
     } catch {
@@ -66,7 +66,7 @@ export const ChapterTitleForm = ({
   return (
     <div className="mt-6 rounded-md border bg-white px-4 py-6 dark:bg-background">
       <div className="flex items-center justify-between font-semibold mb-4">
-        Chapter title
+        Play title
         <Button onClick={toggleEdit} variant="ghost">
           {isEditing ? (
             <>Cancel</>
@@ -93,7 +93,7 @@ export const ChapterTitleForm = ({
                   <FormControl>
                     <Input
                       disabled={isSubmitting}
-                      placeholder="e.g. 'Introduction to the course'"
+                      placeholder="e.g. 'Introduction to the play'"
                       {...field}
                     />
                   </FormControl>

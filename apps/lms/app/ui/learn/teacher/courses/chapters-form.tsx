@@ -54,7 +54,7 @@ export const ChaptersForm = ({ initialData, courseId }: ChaptersFormProps) => {
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
     try {
       await axios.post(`/api/courses/${courseId}/chapters`, values);
-      toast.success('Chapter created');
+      toast.success('Play created');
       toggleCreating();
       router.refresh();
     } catch {
@@ -90,14 +90,14 @@ export const ChaptersForm = ({ initialData, courseId }: ChaptersFormProps) => {
         </div>
       )}
       <div className="flex items-center justify-between font-semibold mb-4">
-        Chapter list
+        Play list
         <Button onClick={toggleCreating} variant="ghost">
           {isCreating ? (
             <>Cancel</>
           ) : (
             <>
               <Icons.pencil className="mr-2 h-4 w-4 text-brand" />
-              Add a chapter
+              Add a play
             </>
           )}
         </Button>
@@ -116,7 +116,7 @@ export const ChaptersForm = ({ initialData, courseId }: ChaptersFormProps) => {
                   <FormControl>
                     <Input
                       disabled={isSubmitting}
-                      placeholder="e.g. 'Introduction to the course'"
+                      placeholder="e.g. 'Introduction to the playbook'"
                       {...field}
                     />
                   </FormControl>

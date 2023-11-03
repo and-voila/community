@@ -78,7 +78,7 @@ const CourseIdPage = async ({ params }: { params: { courseId: string } }) => {
         <div className="flex items-center justify-between">
           <div className="flex flex-col gap-y-2">
             <h1 className="font-display tracking-tight text-2xl">
-              Course setup
+              Playbook setup
             </h1>
             <span className="text-base text-muted-foreground">
               Complete all fields {completionText}
@@ -95,7 +95,7 @@ const CourseIdPage = async ({ params }: { params: { courseId: string } }) => {
             <div className="flex items-center gap-x-2">
               <IconBadge icon={Icons.magic} />
               <h2 className="font-display tracking-tight text-lg">
-                Customize your course
+                Customize your playbook
               </h2>
             </div>
             <TitleForm initialData={course} courseId={course.id} />
@@ -116,7 +116,7 @@ const CourseIdPage = async ({ params }: { params: { courseId: string } }) => {
               <div className="flex items-center gap-x-2">
                 <IconBadge icon={Icons.activity} />
                 <h2 className="font-display tracking-tight text-lg">
-                  Course chapters
+                  Playbook chapters
                 </h2>
               </div>
               <ChaptersForm initialData={course} courseId={course.id} />
@@ -125,7 +125,7 @@ const CourseIdPage = async ({ params }: { params: { courseId: string } }) => {
               <div className="mt-16 flex items-center gap-x-2">
                 <IconBadge icon={Icons.rocket} />
                 <h2 className="font-display tracking-tight text-lg">
-                  Course pricing
+                  Playbook pricing
                 </h2>
               </div>
               <PriceForm initialData={course} courseId={course.id} />

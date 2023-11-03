@@ -99,14 +99,14 @@ export const PriceForm = ({ initialData, courseId }: PriceFormProps) => {
                       onCheckedChange={field.onChange}
                       role="switch"
                       aria-checked={field.value}
-                      aria-label="Toggle course free status"
+                      aria-label="Toggle playbook free status"
                     />
                   </FormControl>
                   <div className="space-y-1 leading-none">
                     <FormDescription id="switch-label" className="text-base">
                       {field.value
-                        ? 'The course is currently Free.'
-                        : 'The course is currently Paid.'}
+                        ? 'The playbook is currently Free.'
+                        : 'The playbook is currently Paid.'}
                     </FormDescription>
                   </div>
                 </FormItem>

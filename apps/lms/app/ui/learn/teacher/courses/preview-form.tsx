@@ -104,7 +104,7 @@ export const PreviewForm = ({ initialData, courseId }: PreviewFormProps) => {
                   <FormControl>
                     <Textarea
                       disabled={isSubmitting}
-                      placeholder="e.g. 'This is my super duper 158 character max course preview text...'"
+                      placeholder="e.g. 'This is my super duper 158 character max playbook preview text...'"
                       {...field}
                     />
                   </FormControl>
