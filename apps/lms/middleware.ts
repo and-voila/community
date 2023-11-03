@@ -53,5 +53,7 @@ export const config = {
     '/tools/:path*',
     '/settings/:path*',
     '/support/:path*',
+    '/login',
+    '/register',
   ],
 };
