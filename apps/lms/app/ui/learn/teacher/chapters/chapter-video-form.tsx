@@ -4,8 +4,8 @@ import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import MuxPlayer from '@mux/mux-player-react';
 import { Button } from '@ui/components/ui/button';
+import { toast } from '@ui/index';
 import axios from 'axios';
-import toast from 'react-hot-toast';
 import * as z from 'zod';
 
 import { Icons } from '@/app/ui/icons';
@@ -40,11 +40,18 @@ export const ChapterVideoForm = ({
         `/api/courses/${courseId}/chapters/${chapterId}`,
         values,
       );
-      toast.success('Play updated');
+      toast({
+        title: 'Good stuff, grab the popcorn!',
+        description: 'Your video has been uploaded to the Mux cloud.',
+      });
       toggleEdit();
       router.refresh();
     } catch {
-      toast.error('Something went wrong');
+      toast({
+        title: 'Crap! An error occurred.',
+        description: 'Please try uploading or saving the video again.',
+        variant: 'destructive',
+      });
     }
   };
 

@@ -3,8 +3,8 @@
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { Button } from '@ui/components/ui/button';
+import { toast } from '@ui/index';
 import axios from 'axios';
-import toast from 'react-hot-toast';
 
 import { useConfettiStore } from '@/app/hooks/use-confetti-store';
 import { Icons } from '@/app/ui/icons';
@@ -27,16 +27,26 @@ export const Actions = ({ disabled, courseId, isPublished }: ActionsProps) => {
 
       if (isPublished) {
         await axios.patch(`/api/courses/${courseId}/unpublish`);
-        toast.success('Playbook unpublished');
+        toast({
+          title: 'Success!',
+          description: 'Your playbook was unpublished.',
+        });
       } else {
         await axios.patch(`/api/courses/${courseId}/publish`);
-        toast.success('Playbook published');
+        toast({
+          title: 'Woohoo!',
+          description: 'Your playbook was just published!',
+        });
         confetti.onOpen();
       }
 
       router.refresh();
     } catch {
-      toast.error('Something went wrong');
+      toast({
+        title: 'Sorry about that.',
+        description: 'An error occured, please try again.',
+        variant: 'destructive',
+      });
     } finally {
       setIsLoading(false);
     }
@@ -48,11 +58,20 @@ export const Actions = ({ disabled, courseId, isPublished }: ActionsProps) => {
 
       await axios.delete(`/api/courses/${courseId}`);
 
-      toast.success('Playbook deleted');
+      toast({
+        title: 'OK then, done!',
+        description:
+          'Your playbook has been deleted, like totally, no evidence, nada, zilch.',
+      });
       router.refresh();
       router.push('/learn/teacher/courses');
     } catch {
-      toast.error('Something went wrong');
+      toast({
+        title: 'Yikes! An error occurred.',
+        description:
+          'Please try again and if the problem persists, take a deep breath, then hail the "Serenity Now" Gods.',
+        variant: 'destructive',
+      });
     } finally {
       setIsLoading(false);
     }

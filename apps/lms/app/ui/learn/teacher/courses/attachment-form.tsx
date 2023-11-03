@@ -3,8 +3,8 @@
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { Button } from '@ui/components/ui/button';
+import { toast } from '@ui/index';
 import axios from 'axios';
-import toast from 'react-hot-toast';
 import * as z from 'zod';
 
 import { Icons } from '@/app/ui/icons';
@@ -35,11 +35,18 @@ export const AttachmentForm = ({
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
     try {
       await axios.post(`/api/courses/${courseId}/attachments`, values);
-      toast.success('Course updated');
+      toast({
+        title: 'Kaboom, you did it!',
+        description: 'Your attachment has been added to the Playbook.',
+      });
       toggleEdit();
       router.refresh();
     } catch {
-      toast.error('Something went wrong');
+      toast({
+        title: 'Aww nuts, something broke.',
+        description: 'Please try uploading the attachment again.',
+        variant: 'destructive',
+      });
     }
   };
 
@@ -47,10 +54,18 @@ export const AttachmentForm = ({
     try {
       setDeletingId(id);
       await axios.delete(`/api/courses/${courseId}/attachments/${id}`);
-      toast.success('Attachment deleted');
+      toast({
+        title: 'Look at you, power deleter!',
+        description: 'Your attachment has been deleted from the Playbook.',
+      });
       router.refresh();
     } catch {
-      toast.error('Something went wrong');
+      toast({
+        title: 'Uh oh, something broke.',
+        description:
+          'Please try again, this is one of those situations where we have no ideer what just happened.',
+        variant: 'destructive',
+      });
     } finally {
       setDeletingId(null);
     }

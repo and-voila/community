@@ -12,9 +12,9 @@ import {
   FormMessage,
 } from '@ui/components/ui/form';
 import { Input } from '@ui/components/ui/input';
+import { toast } from '@ui/index';
 import axios from 'axios';
 import { useForm } from 'react-hook-form';
-import toast from 'react-hot-toast';
 import * as z from 'zod';
 
 import { Icons } from '@/app/ui/icons';
@@ -55,11 +55,19 @@ export const ChapterTitleForm = ({
         `/api/courses/${courseId}/chapters/${chapterId}`,
         values,
       );
-      toast.success('Play updated');
+      toast({
+        title: 'Alright, all set.',
+        description: 'The title for the play is now official and set.',
+      });
       toggleEdit();
       router.refresh();
     } catch {
-      toast.error('Something went wrong');
+      toast({
+        title: 'Oops, you broke something.',
+        description:
+          "Just kidding, but please try again because it didn't work the last time.",
+        variant: 'destructive',
+      });
     }
   };
 

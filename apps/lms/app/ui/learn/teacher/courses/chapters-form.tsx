@@ -12,10 +12,9 @@ import {
   FormMessage,
 } from '@ui/components/ui/form';
 import { Input } from '@ui/components/ui/input';
-import { cn } from '@ui/index';
+import { cn, toast } from '@ui/index';
 import axios from 'axios';
 import { useForm } from 'react-hook-form';
-import toast from 'react-hot-toast';
 import * as z from 'zod';
 
 import { Icons } from '@/app/ui/icons';
@@ -54,11 +53,20 @@ export const ChaptersForm = ({ initialData, courseId }: ChaptersFormProps) => {
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
     try {
       await axios.post(`/api/courses/${courseId}/chapters`, values);
-      toast.success('Play created');
+      toast({
+        title: 'Alright, alright, alright!',
+        description:
+          "Your play was just created and added to the Playbook, it's almost official.",
+      });
       toggleCreating();
       router.refresh();
     } catch {
-      toast.error('Something went wrong');
+      toast({
+        title: 'An error occured.',
+        description:
+          'Please try doing what you just did again but not the same way you did it.',
+        variant: 'destructive',
+      });
     }
   };
 
@@ -69,10 +77,18 @@ export const ChaptersForm = ({ initialData, courseId }: ChaptersFormProps) => {
       await axios.put(`/api/courses/${courseId}/chapters/reorder`, {
         list: updateData,
       });
-      toast.success('Chapters reordered');
+      toast({
+        title: "You're a Dragger and a Dropper!",
+        description: 'Your plays have been re-ordered in the Playbook.',
+      });
       router.refresh();
     } catch {
-      toast.error('Something went wrong');
+      toast({
+        title: 'Oh nuts, something broke.',
+        description:
+          'Please check your dragging or your dropping and drag and drop again. Sorry...',
+        variant: 'destructive',
+      });
     } finally {
       setIsUpdating(false);
     }

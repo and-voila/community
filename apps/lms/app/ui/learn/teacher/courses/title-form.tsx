@@ -12,9 +12,9 @@ import {
   FormMessage,
 } from '@ui/components/ui/form';
 import { Input } from '@ui/components/ui/input';
+import { toast } from '@ui/index';
 import axios from 'axios';
 import { useForm } from 'react-hook-form';
-import toast from 'react-hot-toast';
 import * as z from 'zod';
 
 import { Icons } from '@/app/ui/icons';
@@ -49,11 +49,18 @@ export const TitleForm = ({ initialData, courseId }: TitleFormProps) => {
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
     try {
       await axios.patch(`/api/courses/${courseId}`, values);
-      toast.success('Playbook updated');
+      toast({
+        title: 'That was easy!',
+        description: "Your Playbook's title was updated. Anything else?",
+      });
       toggleEdit();
       router.refresh();
     } catch {
-      toast.error('Something went wrong');
+      toast({
+        title: 'Yikes, Ambreen broke something.',
+        description: 'Please try updating the Playbook title again. Thank you.',
+        variant: 'destructive',
+      });
     }
   };
 

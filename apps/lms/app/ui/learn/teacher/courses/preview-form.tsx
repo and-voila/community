@@ -12,10 +12,10 @@ import {
   FormItem,
   FormMessage,
   Textarea,
+  toast,
 } from '@ui/index';
 import axios from 'axios';
 import { useForm } from 'react-hook-form';
-import toast from 'react-hot-toast';
 import * as z from 'zod';
 
 import { Icons } from '@/app/ui/icons';
@@ -57,11 +57,18 @@ export const PreviewForm = ({ initialData, courseId }: PreviewFormProps) => {
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
     try {
       await axios.patch(`/api/courses/${courseId}`, values);
-      toast.success('Course updated');
+      toast({
+        title: 'Cool, yo!',
+        description: 'Your Playbook preview has been set.',
+      });
       toggleEdit();
       router.refresh();
     } catch {
-      toast.error('Something went wrong');
+      toast({
+        title: 'Whoops! An error occured.',
+        description: 'Please try saving or setting the Playbook preview again.',
+        variant: 'destructive',
+      });
     }
   };
 

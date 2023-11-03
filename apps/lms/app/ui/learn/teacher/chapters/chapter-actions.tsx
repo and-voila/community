@@ -3,9 +3,8 @@
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { Button } from '@ui/components/ui/button';
-import { TrashIcon } from '@ui/index';
+import { toast, TrashIcon } from '@ui/index';
 import axios from 'axios';
-import toast from 'react-hot-toast';
 
 import { ConfirmModal } from '@/app/ui/modals/confirm-modal';
 
@@ -33,17 +32,27 @@ export const ChapterActions = ({
         await axios.patch(
           `/api/courses/${courseId}/chapters/${chapterId}/unpublish`,
         );
-        toast.success('Play unpublished');
+        toast({
+          title: '1,2,3 and done!',
+          description: 'Your play has been unpublished.',
+        });
       } else {
         await axios.patch(
           `/api/courses/${courseId}/chapters/${chapterId}/publish`,
         );
-        toast.success('Play published');
+        toast({
+          title: 'That was painless.',
+          description: 'Your fancy new play has been published.',
+        });
       }
 
       router.refresh();
     } catch {
-      toast.error('Something went wrong');
+      toast({
+        title: 'An error occurred.',
+        description: 'Please try again.',
+        variant: 'destructive',
+      });
     } finally {
       setIsLoading(false);
     }
@@ -55,11 +64,18 @@ export const ChapterActions = ({
 
       await axios.delete(`/api/courses/${courseId}/chapters/${chapterId}`);
 
-      toast.success('Play deleted');
+      toast({
+        title: 'Oh boy, that was fast.',
+        description: 'Your play has been deleted, like forever.',
+      });
       router.refresh();
       router.push(`/learn/teacher/courses/${courseId}`);
     } catch {
-      toast.error('Something went wrong');
+      toast({
+        title: 'Aw, snap! Not again.',
+        description: 'An error occured, so please try again.',
+        variant: 'destructive',
+      });
     } finally {
       setIsLoading(false);
     }

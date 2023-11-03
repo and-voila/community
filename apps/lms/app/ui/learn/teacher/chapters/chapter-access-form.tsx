@@ -12,10 +12,9 @@ import {
   FormField,
   FormItem,
 } from '@ui/components/ui/form';
-import { cn } from '@ui/index';
+import { cn, toast } from '@ui/index';
 import axios from 'axios';
 import { useForm } from 'react-hook-form';
-import toast from 'react-hot-toast';
 import * as z from 'zod';
 
 import { Icons } from '@/app/ui/icons';
@@ -51,11 +50,20 @@ export const ChapterAccessForm = ({
         `/api/courses/${courseId}/chapters/${chapterId}`,
         values,
       );
-      toast.success('Play updated');
+      toast({
+        title: 'You FTW!!',
+        description:
+          "The changes you made to this play's access have been saved.",
+      });
       toggleEdit();
       router.refresh();
     } catch {
-      toast.error('Something went wrong');
+      toast({
+        title: 'Oops, an error occured.',
+        description:
+          'Honestly, we have no idea what happened. Please try again.',
+        variant: 'destructive',
+      });
     }
   };
 

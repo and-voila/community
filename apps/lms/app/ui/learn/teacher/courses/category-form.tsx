@@ -12,10 +12,9 @@ import {
   FormItem,
   FormMessage,
 } from '@ui/components/ui/form';
-import { cn } from '@ui/index';
+import { cn, toast } from '@ui/index';
 import axios from 'axios';
 import { useForm } from 'react-hook-form';
-import toast from 'react-hot-toast';
 import * as z from 'zod';
 
 import { Icons } from '@/app/ui/icons';
@@ -55,11 +54,19 @@ export const CategoryForm = ({
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
     try {
       await axios.patch(`/api/courses/${courseId}`, values);
-      toast.success('Course updated');
+      toast({
+        title: 'Cool, category updated.',
+        description:
+          "The Playbook's category was successfully updated and set.",
+      });
       toggleEdit();
       router.refresh();
     } catch {
-      toast.error('Something went wrong');
+      toast({
+        title: 'Ugh, not again!?',
+        description: 'Please try setting the category again, sorry!',
+        variant: 'destructive',
+      });
     }
   };
 
