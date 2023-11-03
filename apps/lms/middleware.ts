@@ -18,7 +18,6 @@ export default withAuth(
       if (isAuth) {
         return NextResponse.redirect(new URL('/', req.url));
       }
-
       return null;
     }
 
@@ -27,7 +26,6 @@ export default withAuth(
       if (req.nextUrl.search) {
         from += req.nextUrl.search;
       }
-
       return NextResponse.redirect(
         new URL(`/login?from=${encodeURIComponent(from)}`, req.url),
       );
@@ -46,14 +44,5 @@ export default withAuth(
 );
 
 export const config = {
-  matcher: [
-    '/',
-    '/docs/:path*',
-    '/learn/:path*',
-    '/tools/:path*',
-    '/settings/:path*',
-    '/support/:path*',
-    '/login',
-    '/register',
-  ],
+  matcher: ['/:path*', '/login', '/register'],
 };
