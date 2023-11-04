@@ -1,6 +1,5 @@
 import { NextResponse } from 'next/server';
 
-import { env } from '@/env.mjs';
 import { bestPlan } from '@/app/config/subscriptions';
 import { db } from '@/app/lib/db';
 import { getCurrentUser } from '@/app/lib/session';
@@ -42,7 +41,7 @@ export async function GET() {
       mode: 'subscription',
       discounts: [
         {
-          coupon: env.STRIPE_COUPON_ID,
+          coupon: process.env.STRIPE_COUPON_ID,
         },
       ],
       billing_address_collection: 'auto',

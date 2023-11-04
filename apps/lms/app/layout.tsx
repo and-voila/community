@@ -2,13 +2,11 @@ import 'ui/styles/globals.css';
 
 import { GeistMono, GeistSans } from 'geist/font';
 
-import { env } from '@/env.mjs';
-
 import { siteConfig } from './config/site';
 import { Providers } from './ui/providers/providers';
 
-const baseUrl = env.NEXT_PUBLIC_VERCEL_URL
-  ? `https://${env.NEXT_PUBLIC_VERCEL_URL}`
+const baseUrl = process.env.NEXT_PUBLIC_VERCEL_URL
+  ? `https://${process.env.NEXT_PUBLIC_VERCEL_URL}`
   : 'http://localhost:3001';
 
 export const metadata = {

@@ -2,7 +2,6 @@ import { headers } from 'next/headers';
 import { NextResponse } from 'next/server';
 import Stripe from 'stripe';
 
-import { env } from '@/env.mjs';
 import { db } from '@/app/lib/db';
 import { stripe } from '@/app/lib/stripe';
 
@@ -16,7 +15,7 @@ export async function POST(req: Request) {
     event = stripe.webhooks.constructEvent(
       body,
       signature,
-      env.STRIPE_WEBHOOK_SECRET!,
+      process.env.STRIPE_WEBHOOK_SECRET!,
     );
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
   } catch (error: any) {

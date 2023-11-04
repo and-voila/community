@@ -1,4 +1,3 @@
-import { env } from '@/env.mjs';
 import { SubscriptionPlan } from '@/app/lib/types';
 
 export const goodPlan: SubscriptionPlan = {
@@ -12,5 +11,5 @@ export const bestPlan: SubscriptionPlan = {
   name: 'Best',
   description:
     'The Best plan includes full-acess to our premium Discord community, priority support from the mods, all of our classes, and 7,500 AI-assist tokens.',
-  stripePriceId: env.STRIPE_BEST_MONTHLY_PRICE_ID || '',
+  stripePriceId: process.env.STRIPE_BEST_MONTHLY_PRICE_ID || '',
 };
