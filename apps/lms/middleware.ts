@@ -4,10 +4,6 @@ import { withAuth } from 'next-auth/middleware';
 
 export default withAuth(
   async function middleware(req) {
-    if (req.nextUrl.pathname.startsWith('/api')) {
-      return null;
-    }
-
     const token = await getToken({ req });
     const isAuth = !!token;
     const isAuthPage =
@@ -18,6 +14,7 @@ export default withAuth(
       if (isAuth) {
         return NextResponse.redirect(new URL('/', req.url));
       }
+
       return null;
     }
 
@@ -26,6 +23,7 @@ export default withAuth(
       if (req.nextUrl.search) {
         from += req.nextUrl.search;
       }
+
       return NextResponse.redirect(
         new URL(`/login?from=${encodeURIComponent(from)}`, req.url),
       );
@@ -44,5 +42,14 @@ export default withAuth(
 );
 
 export const config = {
-  matcher: ['/:path*', '/login', '/register'],
+  matcher: [
+    '/',
+    '/docs/:path*',
+    '/learn/:path*',
+    '/tools/:path*',
+    '/settings/:path*',
+    '/support/:path*',
+    '/login',
+    '/register',
+  ],
 };

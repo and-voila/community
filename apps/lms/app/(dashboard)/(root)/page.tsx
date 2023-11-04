@@ -66,7 +66,7 @@ export default async function DashboardPage() {
                   </div>
                 </CardTitle>
               </CardHeader>
-              <CardContent className="flex-grow text-muted-foreground">
+              <CardContent className="flex-grow text-muted-foreground text-sm lg:text-base">
                 <p>{tool.description}</p>
               </CardContent>
               <CardFooter className="mt-auto justify-end">
