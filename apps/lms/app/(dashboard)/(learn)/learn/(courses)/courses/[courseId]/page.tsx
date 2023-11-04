@@ -78,7 +78,7 @@ const CourseIdPage = async ({ params }: { params: { courseId: string } }) => {
             />
             <div className="rounded-xl bg-white p-6 dark:bg-background lg:p-8">
               <div className="flex flex-col items-center justify-between p-4 lg:flex-row">
-                <h2 className="mb-2 flex-grow font-display tracking-tight text-3xl">
+                <h2 className="mb-2 font-display tracking-tight text-3xl">
                   {course.title}
                 </h2>
                 <div className="lg:p-6 flex flex-col sm:py-0 lg:flex-row gap-x-4 items-center w-full lg:w-auto py-4 space-y-6 lg:space-y-0">
@@ -113,11 +113,13 @@ const CourseIdPage = async ({ params }: { params: { courseId: string } }) => {
               aria-label={`A featured image of an anthropomorphic cat representing ${course.title}`}
             />
             <div className="rounded-xl bg-white p-6 dark:bg-background lg:p-8">
-              <div className="flex flex-col items-center justify-between p-4 md:flex-row">
-                <h2 className="mb-2 flex-grow font-display tracking-tight text-3xl">
-                  {course.title}
-                </h2>
-                <div className="mt-4 flex flex-row gap-x-4 items-center w-full">
+              <div className="-ml-4 -mt-2 flex flex-wrap items-center justify-between sm:flex-nowrap">
+                <div className="ml-4 mt-2">
+                  <h2 className="text-2xl md:text-3xl font-display tracking-tight text-foreground">
+                    {course.title}
+                  </h2>
+                </div>
+                <div className="ml-4 mt-2 flex-shrink-0 w-full sm:w-auto">
                   <StartCourseButton
                     chapterId={course.chapters[0].id}
                     courseId={course.id}
@@ -126,7 +128,7 @@ const CourseIdPage = async ({ params }: { params: { courseId: string } }) => {
                   />
                 </div>
               </div>
-              <Separator />
+              <Separator className="my-6" />
               <div>
                 <Preview value={course.description!} />
               </div>
