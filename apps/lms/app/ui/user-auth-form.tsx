@@ -79,12 +79,12 @@ export function UserAuthForm({
       <form onSubmit={handleSubmit(onSubmit)}>
         <Card className="py-6">
           <CardHeader className="space-y-1">
-            <CardTitle className="text-2xl font-display pb-2">
+            <CardTitle className="text-2xl font-display">
               {isRegistration ? 'Create your free account' : 'Welcome back'}
             </CardTitle>
             <CardDescription>
               {isRegistration
-                ? 'Use Discord, Google, or enter your email to create an account.'
+                ? 'Create an account with Discord, Google, or email. Then check your inbox for a magic link.'
                 : "Use Discord, Google, or enter your email and we'll send you a magic link."}
             </CardDescription>
           </CardHeader>
@@ -162,7 +162,7 @@ export function UserAuthForm({
               )}
               {isRegistration ? 'Register with email' : 'Log in with email'}
             </button>
-            {!isRegistration && (
+            {!isRegistration ? (
               <p className="text-xs text-muted-foreground">
                 Don&apos;t have an account? No sweat,{' '}
                 <Link
@@ -171,6 +171,18 @@ export function UserAuthForm({
                   className="text-brand hover:underline"
                 >
                   create one
+                </Link>
+                .
+              </p>
+            ) : (
+              <p className="text-xs text-muted-foreground">
+                Already have an account? Awesome,{' '}
+                <Link
+                  href="/login"
+                  aria-label="Navigate to And Voila's Login page to log in to your account."
+                  className="text-brand hover:underline"
+                >
+                  log in now
                 </Link>
                 .
               </p>
