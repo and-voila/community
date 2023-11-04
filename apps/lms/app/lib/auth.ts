@@ -5,10 +5,11 @@ import EmailProvider from 'next-auth/providers/email';
 import GoogleProvider from 'next-auth/providers/google';
 import { Client } from 'postmark';
 
+import { env } from '@/env.mjs';
 import { siteConfig } from '@/app/config/site';
 import { db } from '@/app/lib/db';
 
-const postmarkClient = new Client(process.env.POSTMARK_API_TOKEN);
+const postmarkClient = new Client(env.POSTMARK_API_TOKEN);
 
 export const authOptions: NextAuthOptions = {
   adapter: PrismaAdapter(db),
@@ -22,17 +23,17 @@ export const authOptions: NextAuthOptions = {
   },
   providers: [
     DiscordProvider({
-      clientId: process.env.DISCORD_CLIENT_ID as string,
-      clientSecret: process.env.DISCORD_CLIENT_SECRET as string,
+      clientId: env.DISCORD_CLIENT_ID as string,
+      clientSecret: env.DISCORD_CLIENT_SECRET as string,
       allowDangerousEmailAccountLinking: true,
     }),
     GoogleProvider({
-      clientId: process.env.GOOGLE_CLIENT_ID as string,
-      clientSecret: process.env.GOOGLE_CLIENT_SECRET as string,
+      clientId: env.GOOGLE_CLIENT_ID as string,
+      clientSecret: env.GOOGLE_CLIENT_SECRET as string,
       allowDangerousEmailAccountLinking: true,
     }),
     EmailProvider({
-      from: process.env.SMTP_FROM as string,
+      from: env.SMTP_FROM as string,
       sendVerificationRequest: async ({ identifier, url, provider }) => {
         const user = await db.user.findUnique({
           where: {
@@ -44,8 +45,8 @@ export const authOptions: NextAuthOptions = {
         });
 
         const templateId = user?.emailVerified
-          ? process.env.POSTMARK_SIGN_IN_TEMPLATE
-          : process.env.POSTMARK_ACTIVATION_TEMPLATE;
+          ? env.POSTMARK_SIGN_IN_TEMPLATE
+          : env.POSTMARK_ACTIVATION_TEMPLATE;
         if (!templateId) {
           throw new Error('Missing template id');
         }
