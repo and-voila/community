@@ -250,6 +250,7 @@ model Teacher {
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@index([userId])
+  @@map(name: "teachers")
 }
 
 model UserApiLimit {
