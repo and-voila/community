@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { zodResolver } from '@hookform/resolvers/zod';
+import { Chapter, Course } from '@prisma/client';
 import { Button } from '@ui/components/ui/button';
 import {
   Form,
@@ -21,7 +22,6 @@ import * as z from 'zod';
 import { Icons } from '@/app/ui/icons';
 
 import { ChaptersList } from './chapters-list';
-import { Chapter, Course } from '.prisma/client';
 
 interface ChaptersFormProps {
   initialData: Course & { chapters: Chapter[] };

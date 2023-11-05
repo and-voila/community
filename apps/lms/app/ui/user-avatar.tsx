@@ -1,7 +1,7 @@
+import { User } from '@prisma/client';
 import { Avatar, AvatarFallback, AvatarImage, AvatarProps } from '@ui/index';
 
 import { Icons } from './icons';
-import { User } from '.prisma/client';
 
 interface UserAvatarProps extends AvatarProps {
   user: Pick<User, 'image' | 'name'>;

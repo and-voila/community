@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
+import { Course } from '@prisma/client';
 import { Button } from '@ui/components/ui/button';
 import { toast } from '@ui/index';
 import axios from 'axios';
@@ -10,8 +11,6 @@ import * as z from 'zod';
 
 import { Icons } from '@/app/ui/icons';
 import { FileUpload } from '@/app/ui/learn/teacher/file-upload';
-
-import { Course } from '.prisma/client';
 
 interface ImageFormProps {
   initialData: Course;

@@ -7,35 +7,6 @@
       "outputs": [".next/**", "!.next/cache/**"],
       "dotEnv": [".env.local", ".env.production", ".env"]
     },
-    "@community/write#build": {
-      "dependsOn": ["^build"],
-      "env": [
-        "AUTH_BEARER_TOKEN",
-        "AUTH_GITHUB_ID",
-        "AUTH_GITHUB_SECRET",
-        "BLOB_READ_WRITE_TOKEN",
-        "KV_REST_API_URL",
-        "KV_REST_API_TOKEN",
-        "NEXTAUTH_SECRET",
-        "NEXTAUTH_URL",
-        "NEXT_PUBLIC_ROOT_DOMAIN",
-        "NEXT_PUBLIC_VERCEL_ENV",
-        "NODE_ENV",
-        "OPENAI_API_KEY",
-        "POSTGRES_DATABASE",
-        "POSTGRES_HOST",
-        "POSTGRES_PASSWORD",
-        "POSTGRES_PRISMA_URL",
-        "POSTGRES_URL",
-        "POSTGRES_URL_NON_POOLING",
-        "POSTGRES_USER",
-        "PROJECT_ID_VERCEL",
-        "REDIRECT_TO_CUSTOM_DOMAIN_IF_EXISTS",
-        "TEAM_ID_VERCEL",
-        "VERCEL_URL"
-      ],
-      "outputs": [".next/**", "!.next/cache/**"]
-    },
     "@community/lms#build": {
       "dependsOn": ["^build"],
       "env": [

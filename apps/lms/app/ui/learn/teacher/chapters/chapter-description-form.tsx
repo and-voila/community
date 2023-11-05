@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { zodResolver } from '@hookform/resolvers/zod';
+import { Chapter } from '@prisma/client';
 import { Button } from '@ui/components/ui/button';
 import {
   Form,
@@ -20,8 +21,6 @@ import * as z from 'zod';
 import { Icons } from '@/app/ui/icons';
 import { Preview } from '@/app/ui/preview';
 import { QuillEditor } from '@/app/ui/quill-editor';
-
-import { Chapter } from '.prisma/client';
 
 interface ChapterDescriptionFormProps {
   initialData: Chapter;
