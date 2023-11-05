@@ -1,10 +1,10 @@
 'use client';
 
 import { Suspense } from 'react';
+import { Category } from '@prisma/client';
 
 import { CategoryItemSkeleton } from '../../skeletons';
 import { CategoryItem } from './category-item';
-import { Category } from '.prisma/client';
 
 interface CategoriesProps {
   items: Category[];

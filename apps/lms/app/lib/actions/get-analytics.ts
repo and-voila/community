@@ -1,8 +1,8 @@
 'use server';
 
-import { db } from '@/app/lib/db';
+import { Course, Purchase } from '@prisma/client';
 
-import { Course, Purchase } from '.prisma/client';
+import { db } from '@/app/lib/db';
 
 type PurchaseWithCourse = Purchase & {
   course: Course;

@@ -7,12 +7,11 @@ import {
   Droppable,
   DropResult,
 } from '@hello-pangea/dnd';
+import { Chapter } from '@prisma/client';
 import { Badge } from '@ui/components/ui/badge';
 import { cn } from '@ui/index';
 
 import { Icons } from '@/app/ui/icons';
-
-import { Chapter } from '.prisma/client';
 
 interface ChaptersListProps {
   items: Chapter[];

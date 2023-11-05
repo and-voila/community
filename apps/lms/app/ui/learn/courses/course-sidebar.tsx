@@ -1,4 +1,5 @@
 import { redirect } from 'next/navigation';
+import { Chapter, Course, UserProgress } from '@prisma/client';
 import { Logo } from '@ui/index';
 
 import { db } from '@/app/lib/db';
@@ -7,7 +8,6 @@ import { FreeCounter } from '@/app/ui/free-counter';
 import { CourseProgress } from '@/app/ui/learn/courses/course-progress';
 
 import { CourseSidebarItem } from './course-sidebar-item';
-import { Chapter, Course, UserProgress } from '.prisma/client';
 
 interface CourseSidebarProps {
   course: Course & {

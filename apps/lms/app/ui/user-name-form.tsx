@@ -3,6 +3,7 @@
 import * as React from 'react';
 import { useRouter } from 'next/navigation';
 import { zodResolver } from '@hookform/resolvers/zod';
+import { User } from '@prisma/client';
 import {
   buttonVariants,
   Card,
@@ -22,7 +23,6 @@ import * as z from 'zod';
 import { userNameSchema } from '@/app/lib/validations/user';
 
 import { Icons } from './icons';
-import { User } from '.prisma/client';
 
 interface UserNameFormProps extends React.HTMLAttributes<HTMLFormElement> {
   user: Pick<User, 'id' | 'name'>;

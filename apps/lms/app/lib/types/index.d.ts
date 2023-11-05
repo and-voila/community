@@ -1,6 +1,6 @@
-import { Icons } from '@/app/ui/icons';
+import { User } from '@prisma/client';
 
-import { User } from '.prisma/client';
+import { Icons } from '@/app/ui/icons';
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 export type RadixIconProps = React.SVGProps<SVGSVGElement>;
