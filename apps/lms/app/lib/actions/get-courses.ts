@@ -31,7 +31,6 @@ export const getCourses = async ({
         isPublished: true,
         title: {
           contains: title,
-          mode: 'insensitive',
         },
         categoryId,
       },
@@ -53,10 +52,6 @@ export const getCourses = async ({
       },
       orderBy: {
         createdAt: 'desc',
-      },
-      cacheStrategy: {
-        ttl: 3,
-        swr: 6,
       },
     });
 

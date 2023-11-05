@@ -3,7 +3,7 @@
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { Button } from '@ui/components/ui/button';
-import { ExitIcon, ModeToggle } from '@ui/index';
+import { ModeToggle } from '@ui/index';
 
 import { isTeacher } from '@/app/lib/teacher';
 import { SearchInput } from '@/app/ui/search-input';
@@ -28,8 +28,8 @@ export const NavbarRoutes = ({ userId }) => {
         {isTeacherPage || isCoursePage ? (
           <Link href="/learn">
             <Button size="sm" variant="outline">
-              <ExitIcon className="mr-2 h-4 w-4" />
-              Exit
+              <Icons.signOut className="mr-2 h-4 w-4" />
+              {isTeacherPage ? 'Exit teacher mode' : 'Exit playbook'}
             </Button>
           </Link>
         ) : isTeacher(userId) ? (

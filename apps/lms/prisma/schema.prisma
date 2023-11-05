@@ -1,12 +1,11 @@
 datasource db {
-  provider  = "postgresql"
-  url       = env("DATABASE_URL") // uses prisma accelerate
-  directUrl = env("POSTGRES_URL_NON_POOLING") // uses a direct connection
+  provider = "sqlite"
+  url      = "file:./dev.db"
 }
 
 generator client {
   provider        = "prisma-client-js"
-  previewFeatures = ["fullTextSearch", "fullTextIndex"]
+  previewFeatures = ["fullTextSearch", "fullTextIndex", "driverAdapters"]
   output          = "../node_modules/.prisma/client"
 }
 
@@ -19,50 +18,39 @@ model User {
   createdAt     DateTime  @default(now()) @map(name: "created_at")
   updatedAt     DateTime  @updatedAt @map(name: "updated_at")
 
-  // Fields from LMS
   discordId            String?  @unique
   discordUsername      String?
   discordAvatar        String?
-  discordDiscriminator String?
-  discordPremiumType   Int?
   discordServerMember  Boolean? @default(false)
   discordPremium       Boolean? @default(false)
-  discordMod           Boolean? @default(false)
 
-  // Relations
-  accounts     Account[] // Common
-  sessions     Session[] // Common
-  sites        Site[] // From LMS
-  Post         Post[]        @relation(name: "PostAuthor") // From Labs
-  posts        Post[]        @relation(name: "PostUser") // From LMS
-  teacher      Teacher?
-  UserApiLimit UserApiLimit?
-  courses      UserCourse[]
+  accounts     Account[]
+  sessions     Session[]
+  sites        Site[]
+  posts        Post[]        @relation 
+  userApiLimit UserApiLimit?
 
   @@map(name: "users")
 }
 
 model Account {
-  // Common Fields
   id                String  @id @default(cuid())
   userId            String
   type              String
   provider          String
   providerAccountId String
-  refresh_token     String? @db.Text
-  access_token      String? @db.Text
+  refresh_token     String? 
+  access_token      String?
   expires_at        Int?
   token_type        String?
   scope             String?
-  id_token          String? @db.Text
+  id_token          String?
   session_state     String?
 
-  // Fields from Labs
   createdAt DateTime @default(now()) @map(name: "created_at")
   updatedAt DateTime @default(now()) @map(name: "updated_at")
 
 
-  // Relations
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@unique([provider, providerAccountId])
@@ -93,26 +81,21 @@ model VerificationToken {
 model Post {
   id        String  @id @default(cuid())
   title     String
-  content   String? @db.Text
+  content   String?
   published Boolean @default(false)
 
-  // Fields from Labs
-  authorId  String?
   createdAt DateTime @default(now()) @map(name: "created_at")
   updatedAt DateTime @default(now()) @map(name: "updated_at")
 
-  // Fields from LMS
-  description   String? @db.Text
+  description   String?
   slug          String  @default(cuid())
-  image         String? @default("https://public.blob.vercel-storage.com/eEZHAoPTOBSYGBE3/hxfcV5V-eInX3jbVUhjAt1suB7zB88uGd1j20b.png") @db.Text
-  imageBlurhash String? @default("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAhCAYAAACbffiEAAAACXBIWXMAABYlAAAWJQFJUiTwAAABfUlEQVR4nN3XyZLDIAwE0Pz/v3q3r55JDlSBplsIEI49h76k4opexCK/juP4eXjOT149f2Tf9ySPgcjCc7kdpBTgDPKByKK2bTPFEdMO0RDrusJ0wLRBGCIuelmWJAjkgPGDSIQEMBDCfA2CEPM80+Qwl0JkNxBimiaYGOTUlXYI60YoehzHJDEm7kxjV3whOQTD3AaCuhGKHoYhyb+CBMwjIAFz647kTqyapdV4enGINuDJMSScPmijSwjCaHeLcT77C7EC0C1ugaCTi2HYfAZANgj6Z9A8xY5eiYghDMNQBJNCWhASot0jGsSCUiHWZcSGQjaWWCDaGMOWnsCcn2QhVkRuxqqNxMSdUSElCDbp1hbNOsa6Ugxh7xXauF4DyM1m5BLtCylBXgaxvPXVwEoOBjeIFVODtW74oj1yBQah3E8tyz3SkpolKS9Geo9YMD1QJR1Go4oJkgO1pgbNZq0AOUPChyjvh7vlXaQa+X1UXwKxgHokB2XPxbX+AnijwIU4ahazAAAAAElFTkSuQmCC") @db.Text
+  image         String? @default("https://public.blob.vercel-storage.com/eEZHAoPTOBSYGBE3/hxfcV5V-eInX3jbVUhjAt1suB7zB88uGd1j20b.png")
+  imageBlurhash String? @default("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAhCAYAAACbffiEAAAACXBIWXMAABYlAAAWJQFJUiTwAAABfUlEQVR4nN3XyZLDIAwE0Pz/v3q3r55JDlSBplsIEI49h76k4opexCK/juP4eXjOT149f2Tf9ySPgcjCc7kdpBTgDPKByKK2bTPFEdMO0RDrusJ0wLRBGCIuelmWJAjkgPGDSIQEMBDCfA2CEPM80+Qwl0JkNxBimiaYGOTUlXYI60YoehzHJDEm7kxjV3whOQTD3AaCuhGKHoYhyb+CBMwjIAFz647kTqyapdV4enGINuDJMSScPmijSwjCaHeLcT77C7EC0C1ugaCTi2HYfAZANgj6Z9A8xY5eiYghDMNQBJNCWhASot0jGsSCUiHWZcSGQjaWWCDaGMOWnsCcn2QhVkRuxqqNxMSdUSElCDbp1hbNOsa6Ugxh7xXauF4DyM1m5BLtCylBXgaxvPXVwEoOBjeIFVODtW74oj1yBQah3E8tyz3SkpolKS9Geo9YMD1QJR1Go4oJkgO1pgbNZq0AOUPChyjvh7vlXaQa+X1UXwKxgHokB2XPxbX+AnijwIU4ahazAAAAAElFTkSuQmCC")
   siteId        String?
   userId        String
 
-  // Relations
-  author User? @relation(name: "PostAuthor", fields: [authorId], references: [id]) // From Labs
-  user   User? @relation(name: "PostUser", fields: [userId], references: [id]) // From LMS
-  site   Site? @relation(fields: [siteId], references: [id], onDelete: Cascade) // From LMS
+  user   User? @relation(fields: [userId], references: [id])
+  site   Site? @relation(fields: [siteId], references: [id], onDelete: Cascade)
 
   @@unique([slug, siteId])
   @@index([siteId])
@@ -123,14 +106,14 @@ model Post {
 model Site {
   id            String   @id @default(cuid())
   name          String?
-  description   String?  @db.Text
+  description   String? 
   logo          String?  @default("https://public.blob.vercel-storage.com/eEZHAoPTOBSYGBE3/JRajRyC-PhBHEinQkupt02jqfKacBVHLWJq7Iy.png")
   font          String   @default("font-cal")
   image         String?  @default("https://public.blob.vercel-storage.com/eEZHAoPTOBSYGBE3/hxfcV5V-eInX3jbVUhjAt1suB7zB88uGd1j20b.png")
   imageBlurhash String?  @default("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAhCAYAAACbffiEAAAACXBIWXMAABYlAAAWJQFJUiTwAAABfUlEQVR4nN3XyZLDIAwE0Pz/v3q3r55JDlSBplsIEI49h76k4opexCK/juP4eXjOT149f2Tf9ySPgcjCc7kdpBTgDPKByKK2bTPFEdMO0RDrusJ0wLRBGCIuelmWJAjkgPGDSIQEMBDCfA2CEPM80+Qwl0JkNxBimiaYGOTUlXYI60YoehzHJDEm7kxjV3whOQTD3AaCuhGKHoYhyb+CBMwjIAFz647kTqyapdV4enGINuDJMSScPmijSwjCaHeLcT77C7EC0C1ugaCTi2HYfAZANgj6Z9A8xY5eiYghDMNQBJNCWhASot0jGsSCUiHWZcSGQjaWWCDaGMOWnsCcn2QhVkRuxqqNxMSdUSElCDbp1hbNOsa6Ugxh7xXauF4DyM1m5BLtCylBXgaxvPXVwEoOBjeIFVODtW74oj1yBQah3E8tyz3SkpolKS9Geo9YMD1QJR1Go4oJkgO1pgbNZq0AOUPChyjvh7vlXaQa+X1UXwKxgHokB2XPxbX+AnijwIU4ahazAAAAAElFTkSuQmCC")
   subdomain     String?  @unique
   customDomain  String?  @unique
-  message404    String?  @default("Blimey! You've found a page that doesn't exist.")
+  message404    String?  @default("Oops! You've found a page that doesn't exist.")
   createdAt     DateTime @default(now())
   updatedAt     DateTime @updatedAt
   user          User?    @relation(fields: [userId], references: [id], onDelete: Cascade, onUpdate: Cascade)
@@ -138,27 +121,29 @@ model Site {
   posts         Post[]
 
   @@index([userId])
+  @@map(name: "sites")
 }
 
 model Example {
   id            Int     @id @default(autoincrement())
   name          String?
-  description   String? @db.Text
+  description   String?
   domainCount   Int?
   url           String?
-  image         String? @db.Text
-  imageBlurhash String? @db.Text
+  image         String?
+  imageBlurhash String?
+
+  @@map(name: "examples")
 }
 
 model Course {
   id          String  @id @default(cuid())
   userId      String
-  title       String  @db.Text
-  description String? @db.Text
-  preview     String? @db.Text
-  imageUrl    String? @db.Text
+  title       String 
+  description String?
+  preview     String?
+  imageUrl    String?
   price       Float?
-  isFree      Boolean @default(false)
   isPublished Boolean @default(false)
 
   categoryId String?
@@ -166,7 +151,6 @@ model Course {
 
   chapters    Chapter[]
   attachments Attachment[]
-  users       UserCourse[]
   purchases   Purchase[]
 
   createdAt DateTime @default(now())
@@ -174,18 +158,21 @@ model Course {
   //@@fulltext([title])
 
   @@index([categoryId])
+  @@map(name: "courses")
 }
 
 model Category {
   id      String   @id @default(cuid())
   name    String   @unique
   courses Course[]
+
+  @@map(name: "categories")
 }
 
 model Attachment {
   id   String @id @default(cuid())
   name String
-  url  String @db.Text
+  url  String
 
   courseId String
   course   Course @relation(fields: [courseId], references: [id], onDelete: Cascade)
@@ -194,16 +181,16 @@ model Attachment {
   updatedAt DateTime @updatedAt
 
   @@index([courseId])
+  @@map(name: "attachments")
 }
 
 model Chapter {
   id          String  @id @default(cuid())
   title       String
-  description String? @db.Text
-  videoUrl    String? @db.Text
+  description String?
+  videoUrl    String?
   position    Int
   isPublished Boolean @default(false)
-  isFree      Boolean @default(false)
 
   muxData MuxData?
 
@@ -216,6 +203,7 @@ model Chapter {
   updatedAt DateTime @updatedAt
 
   @@index([courseId])
+  @@map(name: "chapters")
 }
 
 model MuxData {
@@ -225,6 +213,8 @@ model MuxData {
 
   chapterId String  @unique
   chapter   Chapter @relation(fields: [chapterId], references: [id], onDelete: Cascade)
+
+  @@map(name: "mux-data")
 }
 
 model UserProgress {
@@ -241,16 +231,7 @@ model UserProgress {
 
   @@unique([userId, chapterId])
   @@index([chapterId])
-}
-
-model Teacher {
-  id     String @id @default(cuid())
-  userId String @unique
-
-  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
-
-  @@index([userId])
-  @@map(name: "teachers")
+  @@map(name: "user_progress")
 }
 
 model UserApiLimit {
@@ -275,17 +256,6 @@ model UserSubscription {
   @@map(name: "user_subscriptions")
 }
 
-model UserCourse {
-  id         String  @id @default(cuid())
-  userId     String
-  courseId   String
-  isEnrolled Boolean @default(false)
-
-  user   User?   @relation(fields: [userId], references: [id])
-  course Course? @relation(fields: [courseId], references: [id])
-
-  @@unique([userId, courseId])
-}
 
 model Purchase {
   id     String @id @default(cuid())
@@ -299,6 +269,7 @@ model Purchase {
 
   @@unique([userId, courseId])
   @@index([courseId])
+  @@map(name: "purchases")
 }
 
 model StripeCustomer {
@@ -308,4 +279,6 @@ model StripeCustomer {
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+
+  @@map(name: "stripe_customers")
 }

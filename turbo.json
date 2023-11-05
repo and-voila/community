@@ -77,6 +77,8 @@
         "STRIPE_API_KEY",
         "STRIPE_PUBLISHABLE_KEY",
         "STRIPE_WEBHOOK_SECRET",
+        "TURSO_AUTH_TOKEN",
+        "TURSO_DATABASE_URL",
         "UPLOADTHING_APP_ID",
         "UPLOADTHING_SECRET"
       ],

@@ -45,10 +45,6 @@ const CourseLayout = async ({
         },
       },
     },
-    cacheStrategy: {
-      ttl: 15,
-      swr: 30,
-    },
   });
 
   if (!course) {

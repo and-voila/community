@@ -49,10 +49,6 @@ export const getDashboardCourses = async (
         },
         purchases: true,
       },
-      cacheStrategy: {
-        ttl: 3,
-        swr: 6,
-      },
     });
 
     const coursesWithProgress = await Promise.all(

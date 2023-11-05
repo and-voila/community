@@ -1,19 +1,25 @@
-import { withAccelerate } from '@prisma/extension-accelerate';
+import { createClient } from '@libsql/client';
+import { PrismaLibSQL } from '@prisma/adapter-libsql';
 
 import { PrismaClient } from '.prisma/client';
 
-const prismaClientSingleton = () => {
-  return new PrismaClient().$extends(withAccelerate());
-};
+declare global {
+  // eslint-disable-next-line no-var
+  var prisma: PrismaClient | undefined;
+}
 
-type PrismaClientSingleton = ReturnType<typeof prismaClientSingleton>;
+// Instantiate libSQL
+const libsql = createClient({
+  url: process.env.TURSO_DATABASE_URL,
+  authToken: process.env.TURSO_AUTH_TOKEN,
+});
 
-const globalForPrisma = globalThis as unknown as {
-  prisma: PrismaClientSingleton | undefined;
-};
+// Instantiate the libSQL driver adapter
+const adapter = new PrismaLibSQL(libsql);
 
-const prisma = globalForPrisma.prisma ?? prismaClientSingleton();
+// Pass the adapter option to the Prisma Client instance
+const prisma = globalThis.prisma || new PrismaClient({ adapter });
 
 export const db = prisma;
 
-if (process.env.NODE_ENV !== 'production') globalForPrisma.prisma = db;
+if (process.env.NODE_ENV !== 'production') globalThis.prisma = db;
