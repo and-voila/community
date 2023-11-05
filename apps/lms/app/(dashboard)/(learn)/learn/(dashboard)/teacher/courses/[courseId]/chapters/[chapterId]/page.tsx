@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import { redirect } from 'next/navigation';
+import { Button } from '@ui/index';
 
 import { db } from '@/app/lib/db';
 import { getCurrentUser } from '@/app/lib/session';
@@ -58,14 +59,13 @@ const ChapterIdPage = async ({
       <div className="p-6">
         <div className="flex items-center justify-between">
           <div className="w-full">
-            <Link
-              href={`/learn/teacher/courses/${params.courseId}`}
-              className="mb-6 flex items-center text-sm transition hover:opacity-75"
-            >
-              <Icons.arrowLeft className="mr-2 h-4 w-4 text-brand" />
-              Back to playbook setup
+            <Link href={`/learn/teacher/courses/${params.courseId}`}>
+              <Button variant="outline" className="mb-6">
+                <Icons.arrowLeft className="mr-2 h-4 w-4 text-brand" />
+                Back to playbook setup
+              </Button>
             </Link>
-            <div className="flex w-full items-center justify-between">
+            <div className="mt-6 flex w-full items-center justify-between">
               <div className="flex flex-col gap-y-2">
                 <h1 className="font-display tracking-tight text-2xl">
                   Create a play

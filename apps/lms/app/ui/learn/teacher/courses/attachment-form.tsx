@@ -111,7 +111,7 @@ export const AttachmentForm = ({
                       onClick={() => onDelete(attachment.id)}
                       className="ml-auto transition hover:opacity-75"
                     >
-                      <Icons.crossLarge className="h-4 w-4" />
+                      <Icons.crossLarge className="h-4 w-4 text-destructive" />
                     </button>
                   )}
                 </div>
