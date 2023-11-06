@@ -3,15 +3,8 @@
 import { usePathname, useRouter } from 'next/navigation';
 import { cn } from '@ui/index';
 
+import { CourseSidebarItemProps } from '@/app/lib/types';
 import { Icons } from '@/app/ui/icons';
-
-interface CourseSidebarItemProps {
-  label: string;
-  id: string;
-  isCompleted: boolean;
-  courseId: string;
-  isLocked: boolean;
-}
 
 export const CourseSidebarItem = ({
   label,

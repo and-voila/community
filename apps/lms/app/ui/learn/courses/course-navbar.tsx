@@ -1,21 +1,9 @@
-import { Chapter, Course, UserProgress } from '@prisma/client';
-
 import { NavbarRoutes } from '@/app/config/navbar-routes';
 import { getCurrentUser } from '@/app/lib/session';
+import { CourseNavbarProps } from '@/app/lib/types';
 
 import { UserAccountNav } from '../../user-account-nav';
 import { CourseMobileSidebar } from './course-mobile-sidebar';
-
-interface CourseNavbarProps {
-  course: Course & {
-    chapters: (Chapter & {
-      userProgress: UserProgress[] | null;
-    })[];
-  };
-  progressCount: number;
-  apiLimitCount: number;
-  isPaidMember: boolean;
-}
 
 export const CourseNavbar = async ({
   course,

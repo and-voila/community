@@ -1,3 +1,7 @@
+// -----------------------------------------------------------------------------
+// SECTION: Module augmentation Types for Auth
+// -----------------------------------------------------------------------------
+
 import { User } from 'next-auth';
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 import { JWT } from 'next-auth/jwt';

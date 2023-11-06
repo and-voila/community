@@ -3,15 +3,10 @@
 import { usePathname, useRouter } from 'next/navigation';
 import { cn } from '@ui/index';
 
-import { IconComponent } from '@/app/ui/icons';
+import { SidebarItemProps } from '@/app/lib/types';
+import { Icons } from '@/app/ui/icons';
 
-interface SidebarItemProps {
-  icon: IconComponent;
-  label: string;
-  href: string;
-}
-
-export const SidebarItem = ({ icon: Icon, label, href }: SidebarItemProps) => {
+export const SidebarItem = ({ icon, label, href }: SidebarItemProps) => {
   const pathname = usePathname();
   const router = useRouter();
 
@@ -20,6 +15,8 @@ export const SidebarItem = ({ icon: Icon, label, href }: SidebarItemProps) => {
   const onClick = () => {
     router.push(href);
   };
+
+  const IconComponent = Icons[icon];
 
   return (
     <button
@@ -32,7 +29,7 @@ export const SidebarItem = ({ icon: Icon, label, href }: SidebarItemProps) => {
       )}
     >
       <div className="flex items-center gap-x-2 py-4">
-        <Icon
+        <IconComponent
           className={cn(
             'text-muted-foreground h-5 w-5',
             isActive && 'text-brand',

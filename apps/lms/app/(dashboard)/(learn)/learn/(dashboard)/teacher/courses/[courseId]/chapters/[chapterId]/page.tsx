@@ -87,7 +87,7 @@ const ChapterIdPage = async ({
           <div className="space-y-4">
             <div>
               <div className="flex items-center gap-x-2">
-                <IconBadge icon={Icons.magic} />
+                <IconBadge icon="magic" />
                 <h2 className="font-display tracking-tight text-xl">
                   Customize your play
                 </h2>
@@ -106,7 +106,7 @@ const ChapterIdPage = async ({
           </div>
           <div>
             <div className="mt-16 flex items-center gap-x-2">
-              <IconBadge icon={Icons.youtube} />
+              <IconBadge icon="youtube" />
               <h2 className="font-display tracking-tight text-xl">
                 Add a video
               </h2>

@@ -2,10 +2,8 @@
 
 import { usePathname } from 'next/navigation';
 
-import { Route } from '@/app/lib/definitions';
+import { Route } from '@/app/lib/types';
 import { SidebarItem } from '@/app/ui/sidebar-item';
-
-import { Icons } from '../ui/icons';
 
 const dashboardRoutes: Route[] = [
   {
@@ -123,7 +121,7 @@ export const SidebarRoutes = () => {
       {routes.map((route) => (
         <SidebarItem
           key={route.id}
-          icon={Icons[route.icon]}
+          icon={route.icon}
           label={route.label}
           href={route.href}
         />

@@ -1,20 +1,9 @@
-import { Chapter, Course, UserProgress } from '@prisma/client';
 import { Sheet, SheetContent, SheetTrigger } from '@ui/components/ui/sheet';
 
+import { CourseMobileSidebarProps } from '@/app/lib/types';
 import { Icons } from '@/app/ui/icons';
 
 import { CourseSidebar } from './course-sidebar';
-
-interface CourseMobileSidebarProps {
-  course: Course & {
-    chapters: (Chapter & {
-      userProgress: UserProgress[] | null;
-    })[];
-  };
-  progressCount: number;
-  isPaidMember: boolean;
-  apiLimitCount: number;
-}
 
 export const CourseMobileSidebar = ({
   course,
