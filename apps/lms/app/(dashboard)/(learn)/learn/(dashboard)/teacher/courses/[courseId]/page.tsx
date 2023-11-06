@@ -5,7 +5,6 @@ import { getCurrentUser } from '@/app/lib/session';
 import { isTeacher } from '@/app/lib/teacher';
 import { Banner } from '@/app/ui/banner';
 import { IconBadge } from '@/app/ui/icon-badge';
-import { Icons } from '@/app/ui/icons';
 import { Actions } from '@/app/ui/learn/teacher/courses/actions';
 import { AttachmentForm } from '@/app/ui/learn/teacher/courses/attachment-form';
 import { CategoryForm } from '@/app/ui/learn/teacher/courses/category-form';
@@ -93,7 +92,7 @@ const CourseIdPage = async ({ params }: { params: { courseId: string } }) => {
         <div className="mt-16">
           <div>
             <div className="flex items-center gap-x-2">
-              <IconBadge icon={Icons.magic} />
+              <IconBadge icon="magic" />
               <h2 className="font-display tracking-tight text-lg">
                 Customize your playbook
               </h2>
@@ -114,7 +113,7 @@ const CourseIdPage = async ({ params }: { params: { courseId: string } }) => {
           <div className="mt-16 space-y-6">
             <div>
               <div className="flex items-center gap-x-2">
-                <IconBadge icon={Icons.activity} />
+                <IconBadge icon="activity" />
                 <h2 className="font-display tracking-tight text-lg">
                   Playbook chapters
                 </h2>
@@ -123,7 +122,7 @@ const CourseIdPage = async ({ params }: { params: { courseId: string } }) => {
             </div>
             <div>
               <div className="mt-16 flex items-center gap-x-2">
-                <IconBadge icon={Icons.rocket} />
+                <IconBadge icon="rocket" />
                 <h2 className="font-display tracking-tight text-lg">
                   Playbook pricing
                 </h2>
@@ -132,7 +131,7 @@ const CourseIdPage = async ({ params }: { params: { courseId: string } }) => {
             </div>
             <div>
               <div className="mt-16 flex items-center gap-x-2">
-                <IconBadge icon={Icons.file} />
+                <IconBadge icon="file" />
                 <h2 className="font-display tracking-tight text-lg">
                   Resources & Attachments
                 </h2>

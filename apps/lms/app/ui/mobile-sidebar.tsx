@@ -1,13 +1,9 @@
 import { Sheet, SheetContent, SheetTrigger } from 'ui';
 
+import { MobileSidebarProps } from '@/app/lib/types';
 import { Icons } from '@/app/ui/icons';
 
 import { Sidebar } from './sidebar';
-
-interface MobileSidebarProps {
-  apiLimitCount: number;
-  isPaidMember: boolean;
-}
 
 export const MobileSidebar = ({
   apiLimitCount = 0,

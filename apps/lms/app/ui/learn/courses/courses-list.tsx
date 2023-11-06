@@ -2,7 +2,7 @@ import { Category, Course } from '@prisma/client';
 
 import { CourseCard } from '@/app/ui/learn/courses/course-card';
 
-type CourseWithProgressWithCategory = Course & {
+type FilteredCoursesWithProgressAndAccess = Course & {
   category: Category | null;
   chapters: { id: string }[];
   progress: number | null;
@@ -11,7 +11,7 @@ type CourseWithProgressWithCategory = Course & {
 };
 
 interface CoursesListProps {
-  items: CourseWithProgressWithCategory[];
+  items: FilteredCoursesWithProgressAndAccess[];
 }
 
 const getLayoutType = (index: number, layoutPattern: string[][]) => {

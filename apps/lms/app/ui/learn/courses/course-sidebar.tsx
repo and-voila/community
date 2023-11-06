@@ -1,24 +1,13 @@
 import { redirect } from 'next/navigation';
-import { Chapter, Course, UserProgress } from '@prisma/client';
 import { Logo } from '@ui/index';
 
 import { db } from '@/app/lib/db';
 import { getCurrentUser } from '@/app/lib/session';
+import { CourseSidebarProps } from '@/app/lib/types';
 import { FreeCounter } from '@/app/ui/free-counter';
 import { CourseProgress } from '@/app/ui/learn/courses/course-progress';
 
 import { CourseSidebarItem } from './course-sidebar-item';
-
-interface CourseSidebarProps {
-  course: Course & {
-    chapters: (Chapter & {
-      userProgress: UserProgress[] | null;
-    })[];
-  };
-  progressCount: number;
-  apiLimitCount: number;
-  isPaidMember: boolean;
-}
 
 export const CourseSidebar = async ({
   course,

@@ -4,7 +4,7 @@ import { checkSubscription } from '@/app/lib/actions/check-subscription';
 import { getProgress } from '@/app/lib/actions/get-progress';
 import { db } from '@/app/lib/db';
 
-type CourseWithProgressWithCategory = Course & {
+type DashboardCourseWithProgressWithCategory = Course & {
   category: Category;
   chapters: Chapter[];
   progress: number | null;
@@ -13,8 +13,8 @@ type CourseWithProgressWithCategory = Course & {
 };
 
 type DashboardCourses = {
-  completedCourses: CourseWithProgressWithCategory[];
-  coursesInProgress: CourseWithProgressWithCategory[];
+  completedCourses: DashboardCourseWithProgressWithCategory[];
+  coursesInProgress: DashboardCourseWithProgressWithCategory[];
 };
 
 export const getDashboardCourses = async (
@@ -63,7 +63,7 @@ export const getDashboardCourses = async (
           progress,
           purchased,
           isPaidMember,
-        } as CourseWithProgressWithCategory;
+        } as DashboardCourseWithProgressWithCategory;
       }),
     );
 

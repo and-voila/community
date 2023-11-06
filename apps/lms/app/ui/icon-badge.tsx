@@ -1,6 +1,6 @@
 import { cn, cva, VariantProps } from '@ui/index';
 
-import { IconComponent } from './icons';
+import { IconName, Icons } from './icons';
 
 const backgroundVariants = cva('rounded-xl flex items-center justify-center', {
   variants: {
@@ -40,10 +40,11 @@ type BackgroundVariantsProps = VariantProps<typeof backgroundVariants>;
 type IconVariantsProps = VariantProps<typeof iconVariants>;
 
 interface IconBadgeProps extends BackgroundVariantsProps, IconVariantsProps {
-  icon: IconComponent;
+  icon: IconName;
 }
 
-export const IconBadge = ({ icon: Icon, variant, size }: IconBadgeProps) => {
+export const IconBadge = ({ icon, variant, size }: IconBadgeProps) => {
+  const Icon = Icons[icon];
   return (
     <div className={cn(backgroundVariants({ variant, size }))}>
       <Icon className={cn(iconVariants({ variant, size }))} />

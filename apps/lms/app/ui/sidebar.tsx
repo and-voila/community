@@ -1,14 +1,10 @@
 import { Logo } from '@ui/index';
 
+import { SidebarProps } from '@/app/lib/types';
 import { FreeCounter } from '@/app/ui/free-counter';
 
 import { SidebarRoutes } from '../config/sidebar-routes';
 import { getCurrentUser } from '../lib/session';
-
-interface SidebarProps {
-  apiLimitCount: number;
-  isPaidMember: boolean;
-}
 
 export const Sidebar = async ({
   apiLimitCount,
